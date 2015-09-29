@@ -1,0 +1,25 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 2 ],
+  "raw": "->",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 2 ],
+    "raw": "->",
+    "statements": [
+      {
+        "type": "Function",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 2 ],
+        "raw": "->",
+        "body": null,
+        "parameters": []
+      }
+    ]
+  }
+}

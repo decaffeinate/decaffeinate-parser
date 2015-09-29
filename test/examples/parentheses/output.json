@@ -1,0 +1,54 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 11 ],
+  "raw": "(a + b) * c",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 11 ],
+    "raw": "(a + b) * c",
+    "statements": [
+      {
+        "type": "MultiplyOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 11 ],
+        "raw": "(a + b) * c",
+        "left": {
+          "type": "PlusOp",
+          "line": 1,
+          "column": 2,
+          "range": [ 1, 6 ],
+          "raw": "a + b",
+          "left": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 2,
+            "range": [ 1, 2 ],
+            "raw": "a",
+            "data": "a"
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 6,
+            "range": [ 5, 6 ],
+            "raw": "b",
+            "data": "b"
+          }
+        },
+        "right": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 11,
+          "range": [ 10, 11 ],
+          "raw": "c",
+          "data": "c"
+        }
+      }
+    ]
+  }
+}

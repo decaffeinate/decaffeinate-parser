@@ -1,0 +1,39 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 5 ],
+  "raw": "3 % 4",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 5 ],
+    "raw": "3 % 4",
+    "statements": [
+      {
+        "type": "RemOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 5 ],
+        "raw": "3 % 4",
+        "left": {
+          "type": "Int",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "3",
+          "data": 3
+        },
+        "right": {
+          "type": "Int",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 5 ],
+          "raw": "4",
+          "data": 4
+        }
+      }
+    ]
+  }
+}

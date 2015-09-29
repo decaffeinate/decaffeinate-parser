@@ -1,0 +1,97 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 22 ],
+  "raw": "class A\n  a = 1\n  b: a",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 22 ],
+    "raw": "class A\n  a = 1\n  b: a",
+    "statements": [
+      {
+        "type": "Class",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 22 ],
+        "raw": "class A\n  a = 1\n  b: a",
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 10, 22 ],
+          "raw": "a = 1\n  b: a",
+          "statements": [
+            {
+              "type": "AssignOp",
+              "line": 2,
+              "column": 3,
+              "range": [ 10, 15 ],
+              "raw": "a = 1",
+              "assignee": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "range": [ 10, 11 ],
+                "raw": "a",
+                "data": "a"
+              },
+              "expression": {
+                "type": "Int",
+                "line": 2,
+                "column": 7,
+                "range": [ 14, 15 ],
+                "raw": "1",
+                "data": 1
+              }
+            },
+            {
+              "type": "ClassProtoAssignOp",
+              "line": 3,
+              "column": 3,
+              "range": [ 18, 22 ],
+              "raw": "b: a",
+              "assignee": {
+                "type": "Identifier",
+                "line": 3,
+                "column": 3,
+                "range": [ 18, 19 ],
+                "raw": "b",
+                "data": "b"
+              },
+              "expression": {
+                "type": "Identifier",
+                "line": 3,
+                "column": 6,
+                "range": [ 21, 22 ],
+                "raw": "a",
+                "data": "a"
+              }
+            }
+          ]
+        },
+        "boundMembers": [],
+        "ctor": null,
+        "name": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 7 ],
+          "raw": "A",
+          "data": "A"
+        },
+        "nameAssignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 7 ],
+          "raw": "A",
+          "data": "A"
+        },
+        "parent": null
+      }
+    ]
+  }
+}

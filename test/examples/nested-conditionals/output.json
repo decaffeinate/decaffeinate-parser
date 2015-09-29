@@ -1,0 +1,97 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 31 ],
+  "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 31 ],
+    "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
+    "statements": [
+      {
+        "type": "Conditional",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 31 ],
+        "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
+        "alternate": {
+          "type": "Conditional",
+          "line": 3,
+          "column": 6,
+          "range": [ 14, 31 ],
+          "raw": "if c\n  d\nelse\n  e",
+          "alternate": {
+            "type": "Block",
+            "line": 6,
+            "column": 3,
+            "range": [ 30, 31 ],
+            "raw": "e",
+            "statements": [
+              {
+                "type": "Identifier",
+                "line": 6,
+                "column": 3,
+                "range": [ 30, 31 ],
+                "raw": "e",
+                "data": "e"
+              }
+            ]
+          },
+          "condition": {
+            "type": "Identifier",
+            "line": 3,
+            "column": 9,
+            "range": [ 17, 18 ],
+            "raw": "c",
+            "data": "c"
+          },
+          "consequent": {
+            "type": "Block",
+            "line": 4,
+            "column": 3,
+            "range": [ 21, 22 ],
+            "raw": "d",
+            "statements": [
+              {
+                "type": "Identifier",
+                "line": 4,
+                "column": 3,
+                "range": [ 21, 22 ],
+                "raw": "d",
+                "data": "d"
+              }
+            ]
+          }
+        },
+        "condition": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 4,
+          "range": [ 3, 4 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "consequent": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 7, 8 ],
+          "raw": "b",
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 2,
+              "column": 3,
+              "range": [ 7, 8 ],
+              "raw": "b",
+              "data": "b"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

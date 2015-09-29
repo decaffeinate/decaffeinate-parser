@@ -1,0 +1,43 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 7 ],
+  "raw": "class A",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 7 ],
+    "raw": "class A",
+    "statements": [
+      {
+        "type": "Class",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 7 ],
+        "raw": "class A",
+        "body": null,
+        "boundMembers": [],
+        "ctor": null,
+        "name": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 7 ],
+          "raw": "A",
+          "data": "A"
+        },
+        "nameAssignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 7 ],
+          "raw": "A",
+          "data": "A"
+        },
+        "parent": null
+      }
+    ]
+  }
+}

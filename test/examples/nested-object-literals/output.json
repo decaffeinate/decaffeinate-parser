@@ -1,0 +1,72 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 9 ],
+  "raw": "a:\n  b: c",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 9 ],
+    "raw": "a:\n  b: c",
+    "statements": [
+      {
+        "type": "ObjectInitialiser",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 9 ],
+        "raw": "a:\n  b: c",
+        "members": [
+          {
+            "type": "ObjectInitialiserMember",
+            "line": 1,
+            "column": 1,
+            "range": [ 0, 9 ],
+            "raw": "a:\n  b: c",
+            "expression": {
+              "type": "ObjectInitialiser",
+              "line": 2,
+              "column": 3,
+              "range": [ 5, 9 ],
+              "raw": "b: c",
+              "members": [
+                {
+                  "type": "ObjectInitialiserMember",
+                  "line": 2,
+                  "column": 3,
+                  "range": [ 5, 9 ],
+                  "raw": "b: c",
+                  "expression": {
+                    "type": "Identifier",
+                    "line": 2,
+                    "column": 6,
+                    "range": [ 8, 9 ],
+                    "raw": "c",
+                    "data": "c"
+                  },
+                  "key": {
+                    "type": "Identifier",
+                    "line": 2,
+                    "column": 3,
+                    "range": [ 5, 6 ],
+                    "raw": "b",
+                    "data": "b"
+                  }
+                }
+              ]
+            },
+            "key": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 1,
+              "range": [ 0, 1 ],
+              "raw": "a",
+              "data": "a"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

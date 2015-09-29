@@ -1,0 +1,48 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 4 ],
+  "raw": "a: 1",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 4 ],
+    "raw": "a: 1",
+    "statements": [
+      {
+        "type": "ObjectInitialiser",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 4 ],
+        "raw": "a: 1",
+        "members": [
+          {
+            "type": "ObjectInitialiserMember",
+            "line": 1,
+            "column": 1,
+            "range": [ 0, 4 ],
+            "raw": "a: 1",
+            "expression": {
+              "type": "Int",
+              "line": 1,
+              "column": 4,
+              "range": [ 3, 4 ],
+              "raw": "1",
+              "data": 1
+            },
+            "key": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 1,
+              "range": [ 0, 1 ],
+              "raw": "a",
+              "data": "a"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

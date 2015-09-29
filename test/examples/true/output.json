@@ -1,0 +1,24 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 4 ],
+  "raw": "true",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 4 ],
+    "raw": "true",
+    "statements": [
+      {
+        "type": "Bool",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 4 ],
+        "raw": "true",
+        "data": true
+      }
+    ]
+  }
+}

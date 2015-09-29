@@ -1,0 +1,29 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 5 ],
+  "raw": "class",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 5 ],
+    "raw": "class",
+    "statements": [
+      {
+        "type": "Class",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 5 ],
+        "raw": "class",
+        "body": null,
+        "boundMembers": [],
+        "ctor": null,
+        "name": null,
+        "nameAssignee": null,
+        "parent": null
+      }
+    ]
+  }
+}

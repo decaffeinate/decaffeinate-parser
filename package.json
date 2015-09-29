@@ -1,0 +1,25 @@
+{
+  "name": "decaffeinate-parser",
+  "version": "1.0.0",
+  "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
+  "main": "lib/parser.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register"
+  },
+  "keywords": [
+    "coffeescript",
+    "ast",
+    "parse"
+  ],
+  "author": "Brian Donovan",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "coffee-script-redux": "^2.0.0-beta8",
+    "mocha": "^2.3.3",
+    "string-repeat": "^1.1.1"
+  }
+}

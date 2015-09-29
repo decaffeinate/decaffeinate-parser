@@ -1,0 +1,102 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 39 ],
+  "raw": "switch a\n  when b\n    c\n  when d\n    e\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 39 ],
+    "raw": "switch a\n  when b\n    c\n  when d\n    e\n",
+    "statements": [
+      {
+        "type": "Switch",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 39 ],
+        "raw": "switch a\n  when b\n    c\n  when d\n    e\n",
+        "alternate": null,
+        "cases": [
+          {
+            "type": "SwitchCase",
+            "line": 2,
+            "column": 3,
+            "range": [ 11, 23 ],
+            "raw": "when b\n    c",
+            "conditions": [
+              {
+                "type": "Identifier",
+                "line": 2,
+                "column": 8,
+                "range": [ 16, 17 ],
+                "raw": "b",
+                "data": "b"
+              }
+            ],
+            "consequent": {
+              "type": "Block",
+              "line": 3,
+              "column": 5,
+              "range": [ 22, 23 ],
+              "raw": "c",
+              "statements": [
+                {
+                  "type": "Identifier",
+                  "line": 3,
+                  "column": 5,
+                  "range": [ 22, 23 ],
+                  "raw": "c",
+                  "data": "c"
+                }
+              ]
+            }
+          },
+          {
+            "type": "SwitchCase",
+            "line": 4,
+            "column": 3,
+            "range": [ 26, 38 ],
+            "raw": "when d\n    e",
+            "conditions": [
+              {
+                "type": "Identifier",
+                "line": 4,
+                "column": 8,
+                "range": [ 31, 32 ],
+                "raw": "d",
+                "data": "d"
+              }
+            ],
+            "consequent": {
+              "type": "Block",
+              "line": 5,
+              "column": 5,
+              "range": [ 37, 38 ],
+              "raw": "e",
+              "statements": [
+                {
+                  "type": "Identifier",
+                  "line": 5,
+                  "column": 5,
+                  "range": [ 37, 38 ],
+                  "raw": "e",
+                  "data": "e"
+                }
+              ]
+            }
+          }
+        ],
+        "expression": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 8,
+          "range": [ 7, 8 ],
+          "raw": "a",
+          "data": "a"
+        }
+      }
+    ]
+  }
+}

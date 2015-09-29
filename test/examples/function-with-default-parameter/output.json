@@ -1,0 +1,49 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 8 ],
+  "raw": "(a=1) ->",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 8 ],
+    "raw": "(a=1) ->",
+    "statements": [
+      {
+        "type": "Function",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 8 ],
+        "raw": "(a=1) ->",
+        "body": null,
+        "parameters": [
+          {
+            "type": "DefaultParam",
+            "line": 1,
+            "column": 2,
+            "range": [ 1, 4 ],
+            "raw": "a=1",
+            "default": {
+              "type": "Int",
+              "line": 1,
+              "column": 4,
+              "range": [ 3, 4 ],
+              "raw": "1",
+              "data": 1
+            },
+            "param": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 2,
+              "range": [ 1, 2 ],
+              "raw": "a",
+              "data": "a"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

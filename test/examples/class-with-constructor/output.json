@@ -1,0 +1,144 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 39 ],
+  "raw": "class Point\n  constructor: (@x, @y) ->\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 39 ],
+    "raw": "class Point\n  constructor: (@x, @y) ->\n",
+    "statements": [
+      {
+        "type": "Class",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 39 ],
+        "raw": "class Point\n  constructor: (@x, @y) ->\n",
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 14, 38 ],
+          "raw": "constructor: (@x, @y) ->",
+          "statements": [
+            {
+              "type": "Constructor",
+              "line": 2,
+              "column": 3,
+              "range": [ 14, 38 ],
+              "raw": "constructor: (@x, @y) ->",
+              "expression": {
+                "type": "Function",
+                "line": 2,
+                "column": 16,
+                "range": [ 27, 38 ],
+                "raw": "(@x, @y) ->",
+                "body": null,
+                "parameters": [
+                  {
+                    "type": "MemberAccessOp",
+                    "line": 2,
+                    "column": 17,
+                    "range": [ 28, 30 ],
+                    "raw": "@x",
+                    "expression": {
+                      "type": "This",
+                      "line": 2,
+                      "column": 17,
+                      "range": [ 28, 29 ],
+                      "raw": "@"
+                    },
+                    "memberName": "x"
+                  },
+                  {
+                    "type": "MemberAccessOp",
+                    "line": 2,
+                    "column": 21,
+                    "range": [ 32, 34 ],
+                    "raw": "@y",
+                    "expression": {
+                      "type": "This",
+                      "line": 2,
+                      "column": 21,
+                      "range": [ 32, 33 ],
+                      "raw": "@"
+                    },
+                    "memberName": "y"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "boundMembers": [],
+        "ctor": {
+          "type": "Constructor",
+          "line": 2,
+          "column": 3,
+          "range": [ 14, 38 ],
+          "raw": "constructor: (@x, @y) ->",
+          "expression": {
+            "type": "Function",
+            "line": 2,
+            "column": 16,
+            "range": [ 27, 38 ],
+            "raw": "(@x, @y) ->",
+            "body": null,
+            "parameters": [
+              {
+                "type": "MemberAccessOp",
+                "line": 2,
+                "column": 17,
+                "range": [ 28, 30 ],
+                "raw": "@x",
+                "expression": {
+                  "type": "This",
+                  "line": 2,
+                  "column": 17,
+                  "range": [ 28, 29 ],
+                  "raw": "@"
+                },
+                "memberName": "x"
+              },
+              {
+                "type": "MemberAccessOp",
+                "line": 2,
+                "column": 21,
+                "range": [ 32, 34 ],
+                "raw": "@y",
+                "expression": {
+                  "type": "This",
+                  "line": 2,
+                  "column": 21,
+                  "range": [ 32, 33 ],
+                  "raw": "@"
+                },
+                "memberName": "y"
+              }
+            ]
+          }
+        },
+        "name": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 11 ],
+          "raw": "Point",
+          "data": "Point"
+        },
+        "nameAssignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 11 ],
+          "raw": "Point",
+          "data": "Point"
+        },
+        "parent": null
+      }
+    ]
+  }
+}
