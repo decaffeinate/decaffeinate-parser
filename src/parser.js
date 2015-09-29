@@ -311,6 +311,12 @@ function convert(node, source, mapper, ancestors=[]) {
         alternate: node.otherwise ? convertChild(node.otherwise) : null
       });
 
+    case 'In':
+      return makeNode('InOp', node.locationData, {
+        left: convertChild(node.object),
+        right: convertChild(node.array)
+      });
+
     default:
       throw new Error(`unknown node type: ${type(node)}\n${JSON.stringify(node, null, 2)}`);
       break;
@@ -455,6 +461,10 @@ function convert(node, source, mapper, ancestors=[]) {
 
         case '>=':
           nodeType = 'GTEOp';
+          break;
+
+        case 'in':
+          nodeType = 'OfOp';
           break;
 
         default:
