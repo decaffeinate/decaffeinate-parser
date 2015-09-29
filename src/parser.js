@@ -112,6 +112,14 @@ function convert(node, source, mapper, ancestors=[]) {
           ctor: convertChild(node.variable),
           arguments: node.args.map(convertChild)
         });
+      } else if (node.isSuper) {
+        if (node.args.length === 1 && type(node.args[0]) === 'Splat' && node.args[0].locationData === node.locationData) {
+          // Virtual splat argument, ignore it.
+          node.args = [];
+        }
+        return makeNode('SuperFunctionApplication', node.locationData, {
+          arguments: node.args.map(convertChild)
+        });
       } else {
         return makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
           function: convertChild(node.variable),
