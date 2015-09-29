@@ -393,6 +393,14 @@ function convert(node, source, mapper, ancestors=[]) {
 
     if (op.second) {
       switch (op.operator) {
+        case '===':
+          nodeType = 'EQOp';
+          break;
+
+        case '!==':
+          nodeType = 'NEQOp';
+          break;
+
         case '&&':
           nodeType = 'LogicalAndOp';
           break;
