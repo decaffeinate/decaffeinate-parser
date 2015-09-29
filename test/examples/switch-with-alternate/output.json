@@ -1,0 +1,84 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 37 ],
+  "raw": "switch a\n  when b\n    c\n\n  else\n    d",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 37 ],
+    "raw": "switch a\n  when b\n    c\n\n  else\n    d",
+    "statements": [
+      {
+        "type": "Switch",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 37 ],
+        "raw": "switch a\n  when b\n    c\n\n  else\n    d",
+        "alternate": {
+          "type": "Block",
+          "line": 6,
+          "column": 5,
+          "range": [ 36, 37 ],
+          "raw": "d",
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 6,
+              "column": 5,
+              "range": [ 36, 37 ],
+              "raw": "d",
+              "data": "d"
+            }
+          ]
+        },
+        "cases": [
+          {
+            "type": "SwitchCase",
+            "line": 2,
+            "column": 3,
+            "range": [ 11, 23 ],
+            "raw": "when b\n    c",
+            "conditions": [
+              {
+                "type": "Identifier",
+                "line": 2,
+                "column": 8,
+                "range": [ 16, 17 ],
+                "raw": "b",
+                "data": "b"
+              }
+            ],
+            "consequent": {
+              "type": "Block",
+              "line": 3,
+              "column": 5,
+              "range": [ 22, 23 ],
+              "raw": "c",
+              "statements": [
+                {
+                  "type": "Identifier",
+                  "line": 3,
+                  "column": 5,
+                  "range": [ 22, 23 ],
+                  "raw": "c",
+                  "data": "c"
+                }
+              ]
+            }
+          }
+        ],
+        "expression": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 8,
+          "range": [ 7, 8 ],
+          "raw": "a",
+          "data": "a"
+        }
+      }
+    ]
+  }
+}

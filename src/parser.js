@@ -225,7 +225,7 @@ function convert(node, source, mapper, ancestors=[]) {
             consequent: convertChild(body)
           })
         }),
-        alternate: null
+        alternate: node.otherwise ? convertChild(node.otherwise) : null
       });
 
     default:
