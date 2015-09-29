@@ -107,10 +107,17 @@ function convert(node, source, mapper, ancestors=[]) {
       }
 
     case 'Call':
-      return makeNode('FunctionApplication', node.locationData, {
-        function: convertChild(node.variable),
-        arguments: node.args.map(convertChild)
-      });
+      if (node.isNew) {
+        return makeNode('NewOp', expandLocationLeftThrough(node.locationData, 'new'), {
+          ctor: convertChild(node.variable),
+          arguments: node.args.map(convertChild)
+        });
+      } else {
+        return makeNode('FunctionApplication', node.locationData, {
+          function: convertChild(node.variable),
+          arguments: node.args.map(convertChild)
+        });
+      }
 
     case 'Op':
       const op = convertOperator(node);
