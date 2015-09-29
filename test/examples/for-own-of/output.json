@@ -1,0 +1,59 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 18 ],
+  "raw": "for own a of b\n  c",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 18 ],
+    "raw": "for own a of b\n  c",
+    "statements": [
+      {
+        "type": "ForOf",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 18 ],
+        "raw": "for own a of b\n  c",
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 17, 18 ],
+          "raw": "c",
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 2,
+              "column": 3,
+              "range": [ 17, 18 ],
+              "raw": "c",
+              "data": "c"
+            }
+          ]
+        },
+        "filter": null,
+        "isOwn": true,
+        "keyAssignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 9,
+          "range": [ 8, 9 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "target": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 14,
+          "range": [ 13, 14 ],
+          "raw": "b",
+          "data": "b"
+        },
+        "valAssignee": null
+      }
+    ]
+  }
+}

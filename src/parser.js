@@ -209,6 +209,30 @@ function convert(node, source, mapper, ancestors=[]) {
         expression: node.expression ? convertChild(node.expression) : null
       });
 
+    case 'For':
+      if (node.body.locationData === node.locationData) {
+        node.body.locationData = locationContainingNodes(...node.body.expressions);
+      }
+      if (node.index) {
+        return makeNode('ForOf', node.locationData, {
+          keyAssignee: convertChild(node.index),
+          valAssignee: convertChild(node.name),
+          body: convertChild(node.body),
+          target: convertChild(node.source),
+          filter: convertChild(node.guard),
+          isOwn: node.own
+        });
+      } else {
+        return makeNode('ForIn', node.locationData, {
+          keyAssignee: convertChild(node.index),
+          valAssignee: convertChild(node.name),
+          body: convertChild(node.body),
+          target: convertChild(node.source),
+          filter: convertChild(node.guard),
+          step: convertChild(node.step)
+        });
+      }
+
     case 'While':
       return makeNode('While', locationContainingNodes(node, node.condition, node.body), {
         condition: convertChild(node.condition),
@@ -293,6 +317,7 @@ function convert(node, source, mapper, ancestors=[]) {
   }
 
   function convertChild(child) {
+    if (!child) { return null; }
     return convert(child, source, mapper, [...ancestors, node]);
   }
 
