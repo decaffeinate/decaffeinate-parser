@@ -449,6 +449,14 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = 'BitNotOp';
           break;
 
+        case '--':
+          nodeType = op.flip ? 'PostDecrementOp' : 'PreDecrementOp';
+          break;
+
+        case '++':
+          nodeType = op.flip ? 'PostIncrementOp' : 'PreIncrementOp';
+          break;
+
         default:
           throw new Error(`unknown unary operator: ${op.operator}`);
       }
