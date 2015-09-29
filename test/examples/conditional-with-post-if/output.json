@@ -1,0 +1,49 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 6 ],
+  "raw": "a if b",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 6 ],
+    "raw": "a if b",
+    "statements": [
+      {
+        "type": "Conditional",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 6 ],
+        "raw": "a if b",
+        "alternate": null,
+        "condition": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 6,
+          "range": [ 5, 6 ],
+          "raw": "b",
+          "data": "b"
+        },
+        "consequent": {
+          "type": "Block",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 1,
+              "column": 1,
+              "range": [ 0, 1 ],
+              "raw": "a",
+              "data": "a"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

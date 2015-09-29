@@ -151,6 +151,12 @@ function convert(node, source, mapper, ancestors=[]) {
       return convertChild(node.body.expressions[0]);
 
     case 'If':
+      if (type(node.condition) === 'Op' && node.condition.operator === '!') {
+        if (node.locationData === node.condition.locationData) {
+          // Virtual node for `unless` condition.
+          node.condition.locationData = null;
+        }
+      }
       return makeNode('Conditional', node.locationData, {
         condition: convertChild(node.condition),
         consequent: convertChild(node.body),
@@ -278,19 +284,21 @@ function convert(node, source, mapper, ancestors=[]) {
   }
 
   function makeNode(type, loc, attrs={}) {
-    const start = mapper(loc.first_line, loc.first_column);
-    const end = mapper(loc.last_line, loc.last_column) + 1;
-    const result = {
-      type,
-      line: loc.first_line + 1,
-      column: loc.first_column + 1,
-      range: [start, end]
-    };
+    const result = { type };
+    if (loc) {
+      const start = mapper(loc.first_line, loc.first_column);
+      const end = mapper(loc.last_line, loc.last_column) + 1;
+      result.line = loc.first_line + 1;
+      result.column = loc.first_column + 1;
+      result.range = [start, end];
+    } else {
+      result.virtual = true;
+    }
     for (let key in attrs) {
       if (attrs.hasOwnProperty(key)) {
         let value = attrs[key];
         result[key] = value;
-        if (value) {
+        if (value && result.range) {
           (Array.isArray(value) ? value : [value]).forEach(node => {
             if (node.range) {
               // Expand the range to contain all the children.
@@ -306,13 +314,15 @@ function convert(node, source, mapper, ancestors=[]) {
       }
     }
     // Shrink to be within the size of the source.
-    if (result.range[0] < 0) {
-      result.range[0] = 0;
+    if (result.range) {
+      if (result.range[0] < 0) {
+        result.range[0] = 0;
+      }
+      if (result.range[1] > source.length) {
+        result.range[1] = source.length;
+      }
+      result.raw =  source.slice(result.range[0], result.range[1]);
     }
-    if (result.range[1] > source.length) {
-      result.range[1] = source.length;
-    }
-    result.raw =  source.slice(result.range[0], result.range[1]);
     return result;
   }
 
