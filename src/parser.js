@@ -21,13 +21,49 @@ export function parse(source) {
   return /** @type Program */ convert(csParse(source), source, lineColumnMapper(source));
 }
 
+function locationContainingNodes(...nodes) {
+  switch (nodes.length) {
+    case 0:
+      return null;
+
+    case 1:
+      return nodes[0].locationData;
+
+    case 2:
+      return mergeLocations(nodes[0].locationData, nodes[1].locationData);
+
+    default:
+      return mergeLocations(nodes[0].locationData, locationContainingNodes(...nodes.slice(1)));
+  }
+}
+
 function mergeLocations(left, right) {
-  return {
-    first_line: left.first_line,
-    first_column: left.first_column,
-    last_line: right.last_line,
-    last_column: right.last_column
-  };
+  let first_line;
+  let first_column;
+  let last_line;
+  let last_column;
+
+  if (left.first_line < right.first_line) {
+    ({ first_line, first_column } = left);
+  } else if (left.first_line > right.first_line) {
+    ({ first_line, first_column } = right);
+  } else if (left.first_column < right.first_column) {
+    ({ first_line, first_column } = left);
+  } else {
+    ({ first_line, first_column } = right);
+  }
+
+  if (left.last_line < right.last_line) {
+    ({ last_line, last_column } = right);
+  } else if (left.last_line > right.last_line) {
+    ({ last_line, last_column } = left);
+  } else if (left.last_column < right.last_column) {
+    ({ last_line, last_column } = right);
+  } else {
+    ({ last_line, last_column } = left);
+  }
+
+  return { first_line, first_column, last_line, last_column };
 }
 
 /**
@@ -161,6 +197,12 @@ function convert(node, source, mapper, ancestors=[]) {
     case 'Null':
       return makeNode('Null', node.locationData);
 
+    case 'While':
+      return makeNode('While', locationContainingNodes(node, node.condition, node.body), {
+        condition: convertChild(node.condition),
+        body: convertChild(node.body)
+      });
+
     case 'Class':
       const nameNode = node.variable ? convertChild(node.variable) : null;
 
@@ -222,7 +264,7 @@ function convert(node, source, mapper, ancestors=[]) {
             conditions = [conditions];
           }
           const loc = expandLocationLeftThrough(
-            mergeLocations(conditions[0].locationData, body.locationData),
+            locationContainingNodes(conditions[0], body),
             'when '
           );
           return makeNode('SwitchCase', loc, {
