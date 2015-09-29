@@ -106,6 +106,11 @@ function convert(node, source, mapper, ancestors=[]) {
         })
       });
 
+    case 'Arr':
+      return makeNode('ArrayInitialiser', node.locationData, {
+        members: node.objects.map(convertChild)
+      });
+
     case 'Parens':
       return convertChild(node.body.expressions[0]);
 
