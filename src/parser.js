@@ -239,6 +239,11 @@ function convert(node, source, mapper, ancestors=[]) {
         body: convertChild(node.body)
       });
 
+    case 'Existence':
+      return makeNode('UnaryExistsOp', node.locationData, {
+        expression: convertChild(node.expression)
+      });
+
     case 'Class':
       const nameNode = node.variable ? convertChild(node.variable) : null;
 
@@ -465,6 +470,10 @@ function convert(node, source, mapper, ancestors=[]) {
 
         case 'in':
           nodeType = 'OfOp';
+          break;
+
+        case '?':
+          nodeType = 'ExistsOp';
           break;
 
         default:

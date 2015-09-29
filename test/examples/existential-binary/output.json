@@ -1,0 +1,39 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 5 ],
+  "raw": "a ? b",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 5 ],
+    "raw": "a ? b",
+    "statements": [
+      {
+        "type": "ExistsOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 5 ],
+        "raw": "a ? b",
+        "left": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "right": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 5 ],
+          "raw": "b",
+          "data": "b"
+        }
+      }
+    ]
+  }
+}
