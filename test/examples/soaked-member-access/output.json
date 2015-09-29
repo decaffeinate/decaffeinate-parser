@@ -1,0 +1,32 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 4 ],
+  "raw": "a?.b",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 4 ],
+    "raw": "a?.b",
+    "statements": [
+      {
+        "type": "SoakedMemberAccessOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 4 ],
+        "raw": "a?.b",
+        "expression": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "memberName": "b"
+      }
+    ]
+  }
+}

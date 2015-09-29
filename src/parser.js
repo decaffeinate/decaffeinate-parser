@@ -113,7 +113,7 @@ function convert(node, source, mapper, ancestors=[]) {
           arguments: node.args.map(convertChild)
         });
       } else {
-        return makeNode('FunctionApplication', node.locationData, {
+        return makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
           function: convertChild(node.variable),
           arguments: node.args.map(convertChild)
         });
@@ -402,13 +402,13 @@ function convert(node, source, mapper, ancestors=[]) {
   function accessOpForProperty(expression, prop, loc) {
     switch (type(prop)) {
       case 'Access':
-        return makeNode('MemberAccessOp', mergeLocations(loc, prop.locationData), {
+        return makeNode(prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
           expression,
           memberName: prop.name.value
         });
 
       case 'Index':
-        return makeNode('DynamicMemberAccessOp', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
+        return makeNode(prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
           expression,
           indexingExpr: convert(prop.index, source, mapper, [...ancestors, node, prop])
         });
