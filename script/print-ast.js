@@ -1,7 +1,8 @@
 #!/usr/bin/env babel-node
 
 import { inspect } from 'util';
-import { parse } from 'coffee-script-redux';
+import { parse as csrParse } from 'coffee-script-redux';
+import { parse as dcParse } from '../src/parser';
 import repeat from 'string-repeat';
 
 const defaultPrintKey = (key, stream) => stream.write(key);
@@ -86,12 +87,17 @@ if (require.main === module) {
 
   let printKey = defaultPrintKey;
   let printPrimitive = defaultPrintPrimitive;
+  let parse = dcParse;
 
   process.argv.slice(2).forEach(arg => {
     switch (arg) {
       case '--json':
         printKey = (value, stream) => stream.write(JSON.stringify(value));
         printPrimitive = printKey;
+        break;
+
+      case '--redux':
+        parse = source => csrParse(source, { raw: true }).toBasicObject();
         break;
 
       default:
@@ -104,7 +110,7 @@ if (require.main === module) {
   readStdin()
     .then(stdin => {
       print(
-        parse(stdin, { raw: true }).toBasicObject(),
+        parse(stdin),
         stdout,
         printKey,
         printPrimitive
