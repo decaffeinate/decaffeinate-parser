@@ -18,53 +18,62 @@
         "range": [ 0, 31 ],
         "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
         "alternate": {
-          "type": "Conditional",
+          "type": "Block",
           "line": 3,
           "column": 6,
           "range": [ 14, 31 ],
           "raw": "if c\n  d\nelse\n  e",
-          "alternate": {
-            "type": "Block",
-            "line": 6,
-            "column": 3,
-            "range": [ 30, 31 ],
-            "raw": "e",
-            "statements": [
-              {
-                "type": "Identifier",
+          "statements": [
+            {
+              "type": "Conditional",
+              "line": 3,
+              "column": 6,
+              "range": [ 14, 31 ],
+              "raw": "if c\n  d\nelse\n  e",
+              "alternate": {
+                "type": "Block",
                 "line": 6,
                 "column": 3,
                 "range": [ 30, 31 ],
                 "raw": "e",
-                "data": "e"
-              }
-            ]
-          },
-          "condition": {
-            "type": "Identifier",
-            "line": 3,
-            "column": 9,
-            "range": [ 17, 18 ],
-            "raw": "c",
-            "data": "c"
-          },
-          "consequent": {
-            "type": "Block",
-            "line": 4,
-            "column": 3,
-            "range": [ 21, 22 ],
-            "raw": "d",
-            "statements": [
-              {
+                "statements": [
+                  {
+                    "type": "Identifier",
+                    "line": 6,
+                    "column": 3,
+                    "range": [ 30, 31 ],
+                    "raw": "e",
+                    "data": "e"
+                  }
+                ]
+              },
+              "condition": {
                 "type": "Identifier",
+                "line": 3,
+                "column": 9,
+                "range": [ 17, 18 ],
+                "raw": "c",
+                "data": "c"
+              },
+              "consequent": {
+                "type": "Block",
                 "line": 4,
                 "column": 3,
                 "range": [ 21, 22 ],
                 "raw": "d",
-                "data": "d"
+                "statements": [
+                  {
+                    "type": "Identifier",
+                    "line": 4,
+                    "column": 3,
+                    "range": [ 21, 22 ],
+                    "raw": "d",
+                    "data": "d"
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         },
         "condition": {
           "type": "Identifier",

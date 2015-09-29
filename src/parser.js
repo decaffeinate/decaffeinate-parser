@@ -151,17 +151,10 @@ function convert(node, source, mapper, ancestors=[]) {
       return convertChild(node.body.expressions[0]);
 
     case 'If':
-      let { elseBody } = node;
-      if (elseBody && type(elseBody) === 'Block') {
-        const offset = mapper(elseBody.locationData.first_line, elseBody.locationData.first_column);
-        if (source.slice(offset - 'else '.length, offset) === 'else ') {
-          elseBody = elseBody.expressions[0];
-        }
-      }
       return makeNode('Conditional', node.locationData, {
         condition: convertChild(node.condition),
         consequent: convertChild(node.body),
-        alternate: elseBody ? convertChild(elseBody) : null
+        alternate: node.elseBody ? convertChild(node.elseBody) : null
       });
 
     case 'Code':
