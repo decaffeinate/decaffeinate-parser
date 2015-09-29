@@ -355,6 +355,14 @@ function convert(node, source, mapper, ancestors=[]) {
 
     if (op.second) {
       switch (op.operator) {
+        case '&&':
+          nodeType = 'LogicalAndOp';
+          break;
+
+        case '||':
+          nodeType = 'LogicalOrOp';
+          break;
+
         case '+':
           nodeType = 'PlusOp';
           break;
@@ -374,6 +382,21 @@ function convert(node, source, mapper, ancestors=[]) {
         case '%':
           nodeType = 'RemOp';
           break;
+
+        case '&':
+          nodeType = 'BitAndOp';
+          break;
+
+        case '|':
+          nodeType = 'BitOrOp';
+          break;
+
+        case '^':
+          nodeType = 'BitXorOp';
+          break;
+
+        default:
+          throw new Error(`unknown binary operator: ${op.operator}`);
       }
 
       return makeNode(nodeType, op.locationData, {
@@ -393,6 +416,17 @@ function convert(node, source, mapper, ancestors=[]) {
         case 'typeof':
           nodeType = 'TypeofOp';
           break;
+
+        case '!':
+          nodeType = 'LogicalNotOp';
+          break;
+
+        case '~':
+          nodeType = 'BitNotOp';
+          break;
+
+        default:
+          throw new Error(`unknown unary operator: ${op.operator}`);
       }
 
       return makeNode(nodeType, op.locationData, {
