@@ -1,0 +1,91 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 17 ],
+  "raw": "a < b < c < d < e",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 17 ],
+    "raw": "a < b < c < d < e",
+    "statements": [
+      {
+        "type": "ChainedComparisonOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 17 ],
+        "raw": "a < b < c < d < e",
+        "expression": {
+          "type": "LTOp",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 17 ],
+          "raw": "a < b < c < d < e",
+          "left": {
+            "type": "LTOp",
+            "line": 1,
+            "column": 1,
+            "range": [ 0, 13 ],
+            "raw": "a < b < c < d",
+            "left": {
+              "type": "LTOp",
+              "line": 1,
+              "column": 1,
+              "range": [ 0, 9 ],
+              "raw": "a < b < c",
+              "left": {
+                "type": "LTOp",
+                "line": 1,
+                "column": 1,
+                "range": [ 0, 5 ],
+                "raw": "a < b",
+                "left": {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 1,
+                  "range": [ 0, 1 ],
+                  "raw": "a",
+                  "data": "a"
+                },
+                "right": {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 5,
+                  "range": [ 4, 5 ],
+                  "raw": "b",
+                  "data": "b"
+                }
+              },
+              "right": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 9,
+                "range": [ 8, 9 ],
+                "raw": "c",
+                "data": "c"
+              }
+            },
+            "right": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 13,
+              "range": [ 12, 13 ],
+              "raw": "d",
+              "data": "d"
+            }
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 17,
+            "range": [ 16, 17 ],
+            "raw": "e",
+            "data": "e"
+          }
+        }
+      }
+    ]
+  }
+}

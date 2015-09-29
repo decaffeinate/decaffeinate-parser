@@ -1,5 +1,7 @@
+import isChainedComparison from './util/isChainedComparison';
 import lineColumnMapper from './util/lineColumnMapper';
 import parseLiteral from './util/parseLiteral';
+import type from './util/type';
 import { nodes as csParse } from 'coffee-script';
 
 /**
@@ -111,7 +113,13 @@ function convert(node, source, mapper, ancestors=[]) {
       });
 
     case 'Op':
-      return convertOperator(node);
+      const op = convertOperator(node);
+      if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
+        return makeNode('ChainedComparisonOp', node.locationData, {
+          expression: op
+        });
+      }
+      return op;
 
     case 'Assign':
       if (node.context === 'object') {
@@ -492,10 +500,6 @@ function convert(node, source, mapper, ancestors=[]) {
       last_column: loc.last_column
     };
   }
-}
-
-function type(node) {
-  return node.constructor.name;
 }
 
 function nodeTypeForLiteral(value) {
