@@ -1,0 +1,31 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 8 ],
+  "raw": "throw 42",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 8 ],
+    "raw": "throw 42",
+    "statements": [
+      {
+        "type": "Throw",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 8 ],
+        "raw": "throw 42",
+        "expression": {
+          "type": "Int",
+          "line": 1,
+          "column": 7,
+          "range": [ 6, 8 ],
+          "raw": "42",
+          "data": 42
+        }
+      }
+    ]
+  }
+}

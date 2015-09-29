@@ -316,6 +316,11 @@ function convert(node, source, mapper, ancestors=[]) {
         alternate: node.otherwise ? convertChild(node.otherwise) : null
       });
 
+    case 'Throw':
+      return makeNode('Throw', node.locationData, {
+        expression: convertChild(node.expression)
+      });
+
     case 'In':
       return makeNode('InOp', node.locationData, {
         left: convertChild(node.object),
