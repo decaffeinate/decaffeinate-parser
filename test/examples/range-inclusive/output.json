@@ -1,0 +1,40 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 6 ],
+  "raw": "[a..b]",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 6 ],
+    "raw": "[a..b]",
+    "statements": [
+      {
+        "type": "Range",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 6 ],
+        "raw": "[a..b]",
+        "isInclusive": true,
+        "left": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 2,
+          "range": [ 1, 2 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "right": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 5 ],
+          "raw": "b",
+          "data": "b"
+        }
+      }
+    ]
+  }
+}

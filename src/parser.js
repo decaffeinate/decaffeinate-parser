@@ -328,6 +328,13 @@ function convert(node, source, mapper, ancestors=[]) {
         expression: convertChild(node.expression)
       });
 
+    case 'Range':
+      return makeNode('Range', node.locationData, {
+        left: convertChild(node.from),
+        right: convertChild(node.to),
+        isInclusive: !node.exclusive
+      });
+
     case 'In':
       return makeNode('InOp', node.locationData, {
         left: convertChild(node.object),
