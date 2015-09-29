@@ -395,6 +395,22 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = 'BitXorOp';
           break;
 
+        case '<':
+          nodeType = 'LTOp';
+          break;
+
+        case '>':
+          nodeType = 'GTOp';
+          break;
+
+        case '<=':
+          nodeType = 'LTEOp';
+          break;
+
+        case '>=':
+          nodeType = 'GTEOp';
+          break;
+
         default:
           throw new Error(`unknown binary operator: ${op.operator}`);
       }
