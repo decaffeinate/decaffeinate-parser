@@ -171,8 +171,22 @@ function convert(node, source, mapper, ancestors=[]) {
       });
 
     case 'Parens':
-      if (type(node.body) === 'Block' && node.body.expressions.length === 1) {
-        return convertChild(node.body.expressions[0]);
+      if (type(node.body) === 'Block') {
+        const expressions = node.body.expressions;
+        if (expressions.length === 1) {
+          return convertChild(expressions[0]);
+        } else {
+          const lastExpression = expressions[expressions.length - 1];
+          let result = convertChild(lastExpression);
+          for (let i = expressions.length - 2; i >= 0; i--) {
+            let left = expressions[i];
+            result = makeNode('SeqOp', locationContainingNodes(left, lastExpression), {
+              left: convertChild(left),
+              right: result
+            });
+          }
+          return result;
+        }
       } else {
         return convertChild(node.body);
       }
