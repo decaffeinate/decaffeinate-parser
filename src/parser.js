@@ -200,6 +200,11 @@ function convert(node, source, mapper, ancestors=[]) {
           param
         });
       }
+      if (node.splat) {
+        return makeNode('Rest', node.locationData, {
+          expression: param
+        });
+      }
       return param;
 
     case 'Block':

@@ -1,0 +1,41 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 12 ],
+  "raw": "(rest...) =>",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 12 ],
+    "raw": "(rest...) =>",
+    "statements": [
+      {
+        "type": "BoundFunction",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 12 ],
+        "raw": "(rest...) =>",
+        "body": null,
+        "parameters": [
+          {
+            "type": "Rest",
+            "line": 1,
+            "column": 2,
+            "range": [ 1, 8 ],
+            "raw": "rest...",
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 2,
+              "range": [ 1, 5 ],
+              "raw": "rest",
+              "data": "rest"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
