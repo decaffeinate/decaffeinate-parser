@@ -1,0 +1,40 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 6 ],
+  "raw": "[a...]",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 6 ],
+    "raw": "[a...]",
+    "statements": [
+      {
+        "type": "ArrayInitialiser",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 6 ],
+        "raw": "[a...]",
+        "members": [
+          {
+            "type": "Spread",
+            "line": 1,
+            "column": 2,
+            "range": [ 1, 5 ],
+            "raw": "a...",
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 2,
+              "range": [ 1, 2 ],
+              "raw": "a",
+              "data": "a"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

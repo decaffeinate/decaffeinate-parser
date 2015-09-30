@@ -331,6 +331,11 @@ function convert(node, source, mapper, ancestors=[]) {
         alternate: node.otherwise ? convertChild(node.otherwise) : null
       });
 
+    case 'Splat':
+      return makeNode('Spread', node.locationData, {
+        expression: convertChild(node.name)
+      });
+
     case 'Throw':
       return makeNode('Throw', node.locationData, {
         expression: convertChild(node.expression)

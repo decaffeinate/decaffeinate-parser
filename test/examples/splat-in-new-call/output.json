@@ -1,0 +1,48 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 16 ],
+  "raw": "new Foo(args...)",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 16 ],
+    "raw": "new Foo(args...)",
+    "statements": [
+      {
+        "type": "NewOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 16 ],
+        "raw": "new Foo(args...)",
+        "arguments": [
+          {
+            "type": "Spread",
+            "line": 1,
+            "column": 9,
+            "range": [ 8, 15 ],
+            "raw": "args...",
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 9,
+              "range": [ 8, 12 ],
+              "raw": "args",
+              "data": "args"
+            }
+          }
+        ],
+        "ctor": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 7 ],
+          "raw": "Foo",
+          "data": "Foo"
+        }
+      }
+    ]
+  }
+}
