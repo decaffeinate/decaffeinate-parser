@@ -171,7 +171,11 @@ function convert(node, source, mapper, ancestors=[]) {
       });
 
     case 'Parens':
-      return convertChild(node.body.expressions[0]);
+      if (type(node.body) === 'Block' && node.body.expressions.length === 1) {
+        return convertChild(node.body.expressions[0]);
+      } else {
+        return convertChild(node.body);
+      }
 
     case 'If':
       if (type(node.condition) === 'Op' && node.condition.operator === '!') {
