@@ -364,6 +364,14 @@ function convert(node, source, mapper, ancestors=[]) {
         expression: convertChild(node.expression)
       });
 
+    case 'Try':
+      return makeNode('Try', node.locationData, {
+        body: convertChild(node.attempt),
+        catchAssignee: convertChild(node.errorVariable),
+        catchBody: convertChild(node.recovery),
+        finallyBody: convertChild(node.ensure)
+      });
+
     case 'Range':
       return makeNode('Range', node.locationData, {
         left: convertChild(node.from),
