@@ -592,6 +592,10 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = op.flip ? 'PostIncrementOp' : 'PreIncrementOp';
           break;
 
+        case 'delete':
+          nodeType = 'DeleteOp';
+          break;
+
         default:
           throw new Error(`unknown unary operator: ${op.operator}`);
       }
