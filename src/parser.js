@@ -599,6 +599,13 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = 'DeleteOp';
           break;
 
+        case 'new':
+          // Parentheses-less "new".
+          return makeNode('NewOp', op.locationData, {
+            ctor: convertChild(op.first),
+            arguments: []
+          });
+
         default:
           throw new Error(`unknown unary operator: ${op.operator}`);
       }

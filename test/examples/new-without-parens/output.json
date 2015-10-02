@@ -1,0 +1,32 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 5 ],
+  "raw": "new A",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 5 ],
+    "raw": "new A",
+    "statements": [
+      {
+        "type": "NewOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 5 ],
+        "raw": "new A",
+        "arguments": [],
+        "ctor": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 5 ],
+          "raw": "A",
+          "data": "A"
+        }
+      }
+    ]
+  }
+}
