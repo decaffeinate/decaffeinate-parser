@@ -90,7 +90,8 @@ function parseQuotedString(string, quote) {
             break;
 
           default:
-            throw new Error(`unsupported escape sequence: \\${chr}`);
+            result += chr;
+            break;
         }
         break;
 
