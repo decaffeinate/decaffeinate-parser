@@ -79,7 +79,7 @@ function convert(node, source, mapper, ancestors=[]) {
   if (ancestors.length === 0) {
     return makeNode('Program', node.locationData, {
       body: makeNode('Block', node.locationData, {
-        statements: node.expressions.map(convertChild)
+        statements: convertChild(node.expressions)
       })
     });
   }
@@ -110,7 +110,7 @@ function convert(node, source, mapper, ancestors=[]) {
       if (node.isNew) {
         return makeNode('NewOp', expandLocationLeftThrough(node.locationData, 'new'), {
           ctor: convertChild(node.variable),
-          arguments: node.args.map(convertChild)
+          arguments: convertChild(node.args)
         });
       } else if (node.isSuper) {
         if (node.args.length === 1 && type(node.args[0]) === 'Splat' && node.args[0].locationData === node.locationData) {
@@ -118,12 +118,12 @@ function convert(node, source, mapper, ancestors=[]) {
           node.args = [];
         }
         return makeNode('SuperFunctionApplication', node.locationData, {
-          arguments: node.args.map(convertChild)
+          arguments: convertChild(node.args)
         });
       } else {
         return makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
           function: convertChild(node.variable),
-          arguments: node.args.map(convertChild)
+          arguments: convertChild(node.args)
         });
       }
 
@@ -167,7 +167,7 @@ function convert(node, source, mapper, ancestors=[]) {
 
     case 'Arr':
       return makeNode('ArrayInitialiser', node.locationData, {
-        members: node.objects.map(convertChild)
+        members: convertChild(node.objects)
       });
 
     case 'Parens':
@@ -201,13 +201,13 @@ function convert(node, source, mapper, ancestors=[]) {
       return makeNode('Conditional', node.locationData, {
         condition: convertChild(node.condition),
         consequent: convertChild(node.body),
-        alternate: node.elseBody ? convertChild(node.elseBody) : null
+        alternate: convertChild(node.elseBody)
       });
 
     case 'Code':
       return makeNode(node.bound ? 'BoundFunction' : 'Function', node.locationData, {
-        body: node.body ? convertChild(node.body) : null,
-        parameters: node.params.map(convertChild)
+        body: convertChild(node.body),
+        parameters: convertChild(node.params)
       });
 
     case 'Param':
@@ -230,7 +230,7 @@ function convert(node, source, mapper, ancestors=[]) {
         return null;
       } else {
         return makeNode('Block', node.locationData, {
-          statements: node.expressions.map(convertChild)
+          statements: convertChild(node.expressions)
         });
       }
 
@@ -347,7 +347,7 @@ function convert(node, source, mapper, ancestors=[]) {
             'when '
           );
           return makeNode('SwitchCase', loc, {
-            conditions: conditions.map(convertChild),
+            conditions: convertChild(conditions),
             consequent: convertChild(body)
           })
         }),
@@ -383,8 +383,13 @@ function convert(node, source, mapper, ancestors=[]) {
   }
 
   function convertChild(child) {
-    if (!child) { return null; }
-    return convert(child, source, mapper, [...ancestors, node]);
+    if (!child) {
+      return null;
+    } else if (Array.isArray(child)) {
+      return child.map(convertChild).filter(node => node);
+    } else {
+      return convert(child, source, mapper, [...ancestors, node]);
+    }
   }
 
   function makeNode(type, loc, attrs={}) {
