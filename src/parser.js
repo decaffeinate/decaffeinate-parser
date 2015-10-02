@@ -377,6 +377,9 @@ function convert(node, source, mapper, ancestors=[]) {
         right: convertChild(node.array)
       });
 
+    case 'Comment':
+      return null;
+
     default:
       throw new Error(`unknown node type: ${type(node)}\n${JSON.stringify(node, null, 2)}`);
       break;

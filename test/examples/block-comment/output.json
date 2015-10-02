@@ -1,0 +1,24 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 21 ],
+  "raw": "###\n# hey there\n###\na",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 21 ],
+    "raw": "###\n# hey there\n###\na",
+    "statements": [
+      {
+        "type": "Identifier",
+        "line": 4,
+        "column": 1,
+        "range": [ 20, 21 ],
+        "raw": "a",
+        "data": "a"
+      }
+    ]
+  }
+}
