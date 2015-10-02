@@ -162,7 +162,7 @@ function convert(node, source, mapper, ancestors=[]) {
           }
 
           return convertChild(property);
-        })
+        }).filter(node => node)
       });
 
     case 'Arr':
@@ -350,8 +350,8 @@ function convert(node, source, mapper, ancestors=[]) {
             conditions: convertChild(conditions),
             consequent: convertChild(body)
           })
-        }),
-        alternate: node.otherwise ? convertChild(node.otherwise) : null
+        }).filter(node => node),
+        alternate: convertChild(node.otherwise)
       });
 
     case 'Splat':

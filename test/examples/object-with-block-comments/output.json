@@ -1,0 +1,63 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 47 ],
+  "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 47 ],
+    "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+    "statements": [
+      {
+        "type": "AssignOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 47 ],
+        "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+        "assignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 3 ],
+          "raw": "obj",
+          "data": "obj"
+        },
+        "expression": {
+          "type": "ObjectInitialiser",
+          "line": 2,
+          "column": 3,
+          "range": [ 8, 47 ],
+          "raw": "###\n  # @returns {boolean}\n  ###\n  a: 1",
+          "members": [
+            {
+              "type": "ObjectInitialiserMember",
+              "line": 5,
+              "column": 3,
+              "range": [ 43, 47 ],
+              "raw": "a: 1",
+              "expression": {
+                "type": "Int",
+                "line": 5,
+                "column": 6,
+                "range": [ 46, 47 ],
+                "raw": "1",
+                "data": 1
+              },
+              "key": {
+                "type": "Identifier",
+                "line": 5,
+                "column": 3,
+                "range": [ 43, 44 ],
+                "raw": "a",
+                "data": "a"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
