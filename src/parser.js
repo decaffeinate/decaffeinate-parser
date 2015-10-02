@@ -293,12 +293,19 @@ function convert(node, source, mapper, ancestors=[]) {
             expr.base.properties.forEach(property => {
               let key;
               let value;
-              if (type(property) === 'Value') {
-                // shorthand property
-                key = value = convertChild(property);
-              } else {
-                key = convertChild(property.variable);
-                value = convertChild(property.value);
+              switch (type(property)) {
+                case 'Value':
+                  // shorthand property
+                  key = value = convertChild(property);
+                  break;
+
+                case 'Comment':
+                  return;
+
+                default:
+                  key = convertChild(property.variable);
+                  value = convertChild(property.value);
+                  break;
               }
               if (key.data === 'constructor') {
                 statements.push(ctor = makeNode('Constructor', property.locationData, {
