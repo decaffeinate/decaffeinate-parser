@@ -242,6 +242,9 @@ function convert(node, source, mapper, ancestors=[]) {
     case 'Null':
       return makeNode('Null', node.locationData);
 
+    case 'Undefined':
+      return makeNode('Undefined', node.locationData);
+
     case 'Return':
       return makeNode('Return', node.locationData, {
         expression: node.expression ? convertChild(node.expression) : null
