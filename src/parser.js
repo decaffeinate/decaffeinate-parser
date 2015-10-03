@@ -144,6 +144,12 @@ function convert(node, source, mapper, ancestors=[]) {
           key: convertChild(node.variable),
           expression: convertChild(node.value)
         });
+      } else if (node.context && node.context.slice(-1) === '=') {
+        return makeNode('CompoundAssignOp', node.locationData, {
+          assignee: convertChild(node.variable),
+          expression: convertChild(node.value),
+          op: binaryOperatorNodeType(node.context.slice(0, -1))
+        })
       } else {
         return makeNode('AssignOp', node.locationData, {
           assignee: convertChild(node.variable),
@@ -490,98 +496,85 @@ function convert(node, source, mapper, ancestors=[]) {
         throw new Error(`unknown property type: ${type(prop)}\n${JSON.stringify(prop, null, 2)}`)
     }
   }
+  
+  function binaryOperatorNodeType(operator) {
+    switch (operator) {
+      case '===':
+        return 'EQOp';
+
+      case '!==':
+        return 'NEQOp';
+
+      case '&&':
+        return 'LogicalAndOp';
+
+      case '||':
+        return 'LogicalOrOp';
+
+      case '+':
+        return 'PlusOp';
+
+      case '-':
+        return 'SubtractOp';
+
+      case '*':
+        return 'MultiplyOp';
+
+      case '/':
+        return 'DivideOp';
+
+      case '%':
+        return 'RemOp';
+
+      case '&':
+        return 'BitAndOp';
+
+      case '|':
+        return 'BitOrOp';
+
+      case '^':
+        return 'BitXorOp';
+
+      case '<':
+        return 'LTOp';
+
+      case '>':
+        return 'GTOp';
+
+      case '<=':
+        return 'LTEOp';
+
+      case '>=':
+        return 'GTEOp';
+
+      case 'in':
+        return 'OfOp';
+
+      case '?':
+        return 'ExistsOp';
+
+      case 'instanceof':
+        return 'InstanceofOp';
+
+      case '<<':
+        return 'LeftShiftOp';
+
+      case '>>':
+        return 'SignedRightShiftOp';
+
+      default:
+        return null;
+    }
+  }
 
   function convertOperator(op) {
     let nodeType;
 
     if (op.second) {
-      switch (op.operator) {
-        case '===':
-          nodeType = 'EQOp';
-          break;
+      nodeType = binaryOperatorNodeType(op.operator);
 
-        case '!==':
-          nodeType = 'NEQOp';
-          break;
-
-        case '&&':
-          nodeType = 'LogicalAndOp';
-          break;
-
-        case '||':
-          nodeType = 'LogicalOrOp';
-          break;
-
-        case '+':
-          nodeType = 'PlusOp';
-          break;
-
-        case '-':
-          nodeType = 'SubtractOp';
-          break;
-
-        case '*':
-          nodeType = 'MultiplyOp';
-          break;
-
-        case '/':
-          nodeType = 'DivideOp';
-          break;
-
-        case '%':
-          nodeType = 'RemOp';
-          break;
-
-        case '&':
-          nodeType = 'BitAndOp';
-          break;
-
-        case '|':
-          nodeType = 'BitOrOp';
-          break;
-
-        case '^':
-          nodeType = 'BitXorOp';
-          break;
-
-        case '<':
-          nodeType = 'LTOp';
-          break;
-
-        case '>':
-          nodeType = 'GTOp';
-          break;
-
-        case '<=':
-          nodeType = 'LTEOp';
-          break;
-
-        case '>=':
-          nodeType = 'GTEOp';
-          break;
-
-        case 'in':
-          nodeType = 'OfOp';
-          break;
-
-        case '?':
-          nodeType = 'ExistsOp';
-          break;
-
-        case 'instanceof':
-          nodeType = 'InstanceofOp';
-          break;
-
-        case '<<':
-          nodeType = 'LeftShiftOp';
-          break;
-
-        case '>>':
-          nodeType = 'SignedRightShiftOp';
-          break;
-
-        default:
-          throw new Error(`unknown binary operator: ${op.operator}`);
+      if (!nodeType) {
+        throw new Error(`unknown binary operator: ${op.operator}`);
       }
 
       return makeNode(nodeType, op.locationData, {
