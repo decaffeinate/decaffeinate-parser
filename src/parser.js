@@ -403,6 +403,9 @@ function convert(node, source, mapper, ancestors=[]) {
         right: convertChild(node.array)
       });
 
+    case 'Expansion':
+      return makeNode('Expansion', node.locationData);
+
     case 'Comment':
       return null;
 
