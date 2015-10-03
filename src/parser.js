@@ -264,7 +264,7 @@ function convert(node, source, mapper, ancestors=[]) {
       if (node.body.locationData === node.locationData) {
         node.body.locationData = locationContainingNodes(...node.body.expressions);
       }
-      if (node.index) {
+      if (node.object) {
         return makeNode('ForOf', node.locationData, {
           keyAssignee: convertChild(node.index),
           valAssignee: convertChild(node.name),
