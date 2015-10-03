@@ -570,6 +570,14 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = 'InstanceofOp';
           break;
 
+        case '<<':
+          nodeType = 'LeftShiftOp';
+          break;
+
+        case '>>':
+          nodeType = 'SignedRightShiftOp';
+          break;
+
         default:
           throw new Error(`unknown binary operator: ${op.operator}`);
       }
