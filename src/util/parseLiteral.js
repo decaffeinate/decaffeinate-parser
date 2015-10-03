@@ -15,6 +15,8 @@ export default function parseLiteral(string) {
     return parseInt(string);
   } else if (/^\d*\.\d+$/.test(string)) {
     return parseFloat(string);
+  } else if (/^0x[\da-f]+$/i.test(string)) {
+    return parseHexidecimal(string);
   }
 }
 
@@ -110,4 +112,12 @@ function parseQuotedString(string, quote) {
   }
 
   return result;
+}
+
+/**
+ * @param {string} string
+ * @returns {number}
+ */
+function parseHexidecimal(string) {
+  return parseInt(string.slice(2), 16);
 }

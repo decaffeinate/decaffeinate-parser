@@ -93,17 +93,19 @@ function convert(node, source, mapper, ancestors=[]) {
       return value;
 
     case 'Literal':
-      if (/^\d+|(\d+)?\.\d+$/.test(node.value)) {
-        const data = JSON.parse(node.value);
-        return makeNode(nodeTypeForLiteral(data), node.locationData, { data });
-      } else if (node.value === 'this') {
+      if (node.value === 'this') {
         return makeNode('This', node.locationData);
       } else {
         const data = parseLiteral(node.value);
         if (typeof data === 'string') {
-          return makeNode('String', node.locationData, { data });
+          return makeNode('String', node.locationData, {data});
+        } else if (typeof data === 'number') {
+          return makeNode(nodeTypeForLiteral(data), node.locationData, { data });
+        } else if (typeof data === 'undefined') {
+          return makeNode('Identifier', node.locationData, { data: node.value });
+        } else {
+          throw new Error(`unknown literal type for value: ${data}`);
         }
-        return makeNode('Identifier', node.locationData, { data: node.value });
       }
 
     case 'Call':
