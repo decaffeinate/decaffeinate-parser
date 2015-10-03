@@ -475,6 +475,15 @@ function convert(node, source, mapper, ancestors=[]) {
           indexingExpr: convert(prop.index, source, mapper, [...ancestors, node, prop])
         });
 
+      case 'Slice':
+        return makeNode('Slice', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
+          expression,
+          left: convertChild(prop.range.from),
+          right: convertChild(prop.range.to),
+          isInclusive: !prop.range.exclusive
+        });
+
+
       default:
         throw new Error(`unknown property type: ${type(prop)}\n${JSON.stringify(prop, null, 2)}`)
     }
