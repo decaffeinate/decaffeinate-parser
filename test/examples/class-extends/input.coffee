@@ -1,0 +1,1 @@
+A extends B

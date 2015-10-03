@@ -411,6 +411,12 @@ function convert(node, source, mapper, ancestors=[]) {
     case 'Comment':
       return null;
 
+    case 'Extends':
+      return makeNode('ExtendsOp', node.locationData, {
+        left: convertChild(node.child),
+        right: convertChild(node.parent)
+      });
+
     default:
       throw new Error(`unknown node type: ${type(node)}\n${JSON.stringify(node, null, 2)}`);
       break;
