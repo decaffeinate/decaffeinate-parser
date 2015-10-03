@@ -565,6 +565,9 @@ function convert(node, source, mapper, ancestors=[]) {
       case '>>':
         return 'SignedRightShiftOp';
 
+      case '>>>':
+        return 'UnsignedRightShiftOp';
+
       default:
         return null;
     }
