@@ -1,0 +1,39 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 14 ],
+  "raw": "a instanceof b",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 14 ],
+    "raw": "a instanceof b",
+    "statements": [
+      {
+        "type": "InstanceofOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 14 ],
+        "raw": "a instanceof b",
+        "left": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "data": "a"
+        },
+        "right": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 14,
+          "range": [ 13, 14 ],
+          "raw": "b",
+          "data": "b"
+        }
+      }
+    ]
+  }
+}

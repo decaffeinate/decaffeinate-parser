@@ -566,6 +566,10 @@ function convert(node, source, mapper, ancestors=[]) {
           nodeType = 'ExistsOp';
           break;
 
+        case 'instanceof':
+          nodeType = 'InstanceofOp';
+          break;
+
         default:
           throw new Error(`unknown binary operator: ${op.operator}`);
       }
