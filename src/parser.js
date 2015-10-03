@@ -579,6 +579,9 @@ function convert(node, source, mapper, ancestors=[]) {
       case '**':
         return 'ExpOp';
 
+      case '//':
+        return 'FloorDivideOp';
+
       default:
         return null;
     }
