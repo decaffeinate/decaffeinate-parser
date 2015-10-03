@@ -1,0 +1,24 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 6 ],
+  "raw": "0o1234",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 6 ],
+    "raw": "0o1234",
+    "statements": [
+      {
+        "type": "Int",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 6 ],
+        "raw": "0o1234",
+        "data": 668
+      }
+    ]
+  }
+}
