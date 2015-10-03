@@ -213,7 +213,9 @@ function convert(node, source, mapper, ancestors=[]) {
       });
 
     case 'Code':
-      return makeNode(node.bound ? 'BoundFunction' : 'Function', node.locationData, {
+      const fnType = node.bound ? 'BoundFunction' :
+                     node.isGenerator ? 'GeneratorFunction' : 'Function';
+      return makeNode(fnType, node.locationData, {
         body: convertChild(node.body),
         parameters: convertChild(node.params)
       });
@@ -626,6 +628,11 @@ function convert(node, source, mapper, ancestors=[]) {
           return makeNode('NewOp', op.locationData, {
             ctor: convertChild(op.first),
             arguments: []
+          });
+
+        case 'yield':
+          return makeNode('Yield', op.locationData, {
+            expression: convertChild(op.first)
           });
 
         default:
