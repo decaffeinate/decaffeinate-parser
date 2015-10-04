@@ -311,10 +311,18 @@ function convert(node, source, mapper, ancestors=[]) {
       }
 
     case 'While':
-      return makeNode('While', locationContainingNodes(node, node.condition, node.body), {
+      const result = makeNode('While', locationContainingNodes(node, node.condition, node.body), {
         condition: convertChild(node.condition),
         body: convertChild(node.body)
       });
+      if (result.raw.indexOf('loop') === 0) {
+        result.condition = {
+          type: 'Bool',
+          data: true,
+          virtual: true
+        };
+      }
+      return result;
 
     case 'Existence':
       return makeNode('UnaryExistsOp', node.locationData, {
