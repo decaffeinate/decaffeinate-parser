@@ -5,6 +5,7 @@
   "main": "lib/parser.js",
   "jsnext:main": "src/parser.js",
   "scripts": {
+    "prepublish": "babel --stage 0 src -d lib",
     "test": "mocha --compilers js:babel/register"
   },
   "keywords": [
@@ -14,6 +15,10 @@
   ],
   "author": "Brian Donovan",
   "license": "MIT",
+  "files": [
+    "lib/",
+    "src/"
+  ],
   "dependencies": {
     "coffee-script": "^1.10.0"
   },
