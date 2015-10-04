@@ -5,10 +5,11 @@ import type from './util/type';
 import { nodes as csParse } from 'coffee-script';
 
 /**
- * @param source
+ * @param {string} source
+ * @param {{coffeeScriptParser: function(string): Object}} options
  * @returns {Program}
  */
-export function parse(source) {
+export function parse(source, options={}) {
   if (source.length === 0) {
     return /** @type Program */ {
       type: 'Program',
@@ -20,7 +21,8 @@ export function parse(source) {
     };
   }
 
-  return /** @type Program */ convert(csParse(source), source, lineColumnMapper(source));
+  const parseCoffeeScript = options.coffeeScriptParser || csParse;
+  return /** @type Program */ convert(parseCoffeeScript(source), source, lineColumnMapper(source));
 }
 
 function locationContainingNodes(...nodes) {
