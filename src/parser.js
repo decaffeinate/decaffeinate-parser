@@ -91,6 +91,20 @@ function convert(node, source, mapper, ancestors=[]) {
       let value = convertChild(node.base);
       node.properties.forEach(prop => {
         value = accessOpForProperty(value, prop, node.base.locationData);
+        if (value.type === 'MemberAccessOp' && value.expression.type === 'MemberAccessOp') {
+          if (value.expression.memberName === 'prototype' && value.expression.raw.slice(-2) === '::') {
+            // Un-expand shorthand prototype access.
+            value = {
+              type: 'ProtoMemberAccessOp',
+              line: value.line,
+              column: value.column,
+              range: value.range,
+              raw: value.raw,
+              expression: value.expression.expression,
+              memberName: value.memberName
+            };
+          }
+        }
       });
       return value;
 
