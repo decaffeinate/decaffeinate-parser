@@ -1,0 +1,76 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 17 ],
+  "raw": "a(for b of c\n  b)",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 17 ],
+    "raw": "a(for b of c\n  b)",
+    "statements": [
+      {
+        "type": "FunctionApplication",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 17 ],
+        "raw": "a(for b of c\n  b)",
+        "arguments": [
+          {
+            "type": "ForOf",
+            "line": 1,
+            "column": 3,
+            "range": [ 2, 16 ],
+            "raw": "for b of c\n  b",
+            "body": {
+              "type": "Block",
+              "line": 2,
+              "column": 3,
+              "range": [ 15, 16 ],
+              "raw": "b",
+              "statements": [
+                {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 3,
+                  "range": [ 15, 16 ],
+                  "raw": "b",
+                  "data": "b"
+                }
+              ]
+            },
+            "filter": null,
+            "isOwn": false,
+            "keyAssignee": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 7,
+              "range": [ 6, 7 ],
+              "raw": "b",
+              "data": "b"
+            },
+            "target": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 12,
+              "range": [ 11, 12 ],
+              "raw": "c",
+              "data": "c"
+            },
+            "valAssignee": null
+          }
+        ],
+        "function": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "data": "a"
+        }
+      }
+    ]
+  }
+}

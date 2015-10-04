@@ -41,6 +41,15 @@ function locationContainingNodes(...nodes) {
   }
 }
 
+function locationWithLastPosition(loc, last) {
+  return {
+    first_line: loc.first_line,
+    first_column: loc.first_column,
+    last_line: last.last_line,
+    last_column: last.last_column
+  };
+}
+
 function mergeLocations(left, right) {
   let first_line;
   let first_column;
@@ -280,6 +289,7 @@ function convert(node, source, mapper, ancestors=[]) {
       if (node.body.locationData === node.locationData) {
         node.body.locationData = locationContainingNodes(...node.body.expressions);
       }
+      node.locationData = locationWithLastPosition(node.locationData, node.body.locationData);
       if (node.object) {
         return makeNode('ForOf', node.locationData, {
           keyAssignee: convertChild(node.index),
