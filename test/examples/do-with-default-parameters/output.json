@@ -1,0 +1,117 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 25 ],
+  "raw": "do (a=1, b=@b) ->\n  a + b",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 25 ],
+    "raw": "do (a=1, b=@b) ->\n  a + b",
+    "statements": [
+      {
+        "type": "DoOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 25 ],
+        "raw": "do (a=1, b=@b) ->\n  a + b",
+        "expression": {
+          "type": "Function",
+          "line": 1,
+          "column": 4,
+          "range": [ 3, 25 ],
+          "raw": "(a=1, b=@b) ->\n  a + b",
+          "body": {
+            "type": "Block",
+            "line": 2,
+            "column": 3,
+            "range": [ 20, 25 ],
+            "raw": "a + b",
+            "statements": [
+              {
+                "type": "PlusOp",
+                "line": 2,
+                "column": 3,
+                "range": [ 20, 25 ],
+                "raw": "a + b",
+                "left": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 3,
+                  "range": [ 20, 21 ],
+                  "raw": "a",
+                  "data": "a"
+                },
+                "right": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 7,
+                  "range": [ 24, 25 ],
+                  "raw": "b",
+                  "data": "b"
+                }
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "type": "DefaultParam",
+              "line": 1,
+              "column": 5,
+              "range": [ 4, 7 ],
+              "raw": "a=1",
+              "default": {
+                "type": "Int",
+                "line": 1,
+                "column": 7,
+                "range": [ 6, 7 ],
+                "raw": "1",
+                "data": 1
+              },
+              "param": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 5,
+                "range": [ 4, 5 ],
+                "raw": "a",
+                "data": "a"
+              }
+            },
+            {
+              "type": "DefaultParam",
+              "line": 1,
+              "column": 10,
+              "range": [ 9, 13 ],
+              "raw": "b=@b",
+              "default": {
+                "type": "MemberAccessOp",
+                "line": 1,
+                "column": 12,
+                "range": [ 11, 13 ],
+                "raw": "@b",
+                "expression": {
+                  "type": "This",
+                  "line": 1,
+                  "column": 12,
+                  "range": [ 11, 12 ],
+                  "raw": "@"
+                },
+                "memberName": "b"
+              },
+              "param": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 10,
+                "range": [ 9, 10 ],
+                "raw": "b",
+                "data": "b"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

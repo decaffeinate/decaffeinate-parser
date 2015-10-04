@@ -148,10 +148,34 @@ function convert(node, source, mapper, ancestors=[]) {
           arguments: convertChild(node.args)
         });
       } else {
-        return makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
+        const result = makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
           function: convertChild(node.variable),
           arguments: convertChild(node.args)
         });
+        if (result.type === 'FunctionApplication') {
+          switch (result.raw.slice(0, 'do '.length)) {
+            case 'do ':
+            case 'do(':
+              result.type = 'DoOp';
+              result.expression = result.function;
+              result.expression.parameters = result.expression.parameters.map((param, i) => {
+                const arg = result.arguments[i];
+
+                if (arg.type === 'Identifier' && arg.data === param.data) {
+                  return param;
+                }
+
+                return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
+                  param,
+                  default: arg
+                });
+              });
+              delete result.function;
+              delete result.arguments;
+              break;
+          }
+        }
+        return result;
       }
 
     case 'Op':
