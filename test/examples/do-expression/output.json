@@ -1,0 +1,65 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 12 ],
+  "raw": "a(do =>\n  b)",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 12 ],
+    "raw": "a(do =>\n  b)",
+    "statements": [
+      {
+        "type": "FunctionApplication",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 12 ],
+        "raw": "a(do =>\n  b)",
+        "arguments": [
+          {
+            "type": "DoOp",
+            "line": 1,
+            "column": 3,
+            "range": [ 2, 11 ],
+            "raw": "do =>\n  b",
+            "expression": {
+              "type": "BoundFunction",
+              "line": 1,
+              "column": 6,
+              "range": [ 5, 11 ],
+              "raw": "=>\n  b",
+              "body": {
+                "type": "Block",
+                "line": 2,
+                "column": 3,
+                "range": [ 10, 11 ],
+                "raw": "b",
+                "statements": [
+                  {
+                    "type": "Identifier",
+                    "line": 2,
+                    "column": 3,
+                    "range": [ 10, 11 ],
+                    "raw": "b",
+                    "data": "b"
+                  }
+                ]
+              },
+              "parameters": []
+            }
+          }
+        ],
+        "function": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "raw": "a",
+          "data": "a"
+        }
+      }
+    ]
+  }
+}

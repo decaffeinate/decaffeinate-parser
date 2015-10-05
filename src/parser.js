@@ -50,6 +50,58 @@ function locationWithLastPosition(loc, last) {
   };
 }
 
+function trimNonMatchingParentheses(source, loc, mapper) {
+  let level = 0;
+  let first = mapper(loc.first_line, loc.first_column);
+  let last = Math.min(mapper(loc.last_line, loc.last_column), source.length - 1);
+
+  for (let i = first; i <= last; i++) {
+    switch (source[i]) {
+      case ')':
+        level--;
+        break;
+
+      case '(':
+        level++;
+        break;
+    }
+  }
+
+  while (level > 0 && source[first] === '(') {
+    // Trim off leading parens.
+    first++;
+    level--;
+  }
+  while (level < 0 && source[last] === '\n') {
+    // Trim newlines off the end to get to the bad closing parens.
+    last--;
+  }
+  while (level < 0 && source[last] === ')') {
+    // Trim off trailing parens.
+    last--;
+    level++;
+  }
+
+  if (level !== 0) {
+    throw new Error(`unable to balance parens in: ${JSON.stringify(source.slice(first, last + 1))} (level=${level})`);
+  }
+
+  const firstLoc = mapper.invert(first);
+  const lastLoc = mapper.invert(last);
+
+  loc.first_line = firstLoc.line;
+  loc.first_column = firstLoc.column;
+  loc.last_line = lastLoc.line;
+  loc.last_column = lastLoc.column;
+}
+
+function locationsEqual(first, second) {
+  return first.first_line === second.first_line &&
+      first.first_column === second.first_column &&
+      first.last_line === second.last_line &&
+      first.last_column === second.last_column;
+}
+
 function mergeLocations(left, right) {
   let first_line;
   let first_column;
@@ -93,6 +145,10 @@ function convert(node, source, mapper, ancestors=[]) {
         statements: convertChild(node.expressions)
       })
     });
+  }
+
+  if (node.locationData) {
+    trimNonMatchingParentheses(source, node.locationData, mapper);
   }
 
   switch (type(node)) {
@@ -140,7 +196,7 @@ function convert(node, source, mapper, ancestors=[]) {
           arguments: convertChild(node.args)
         });
       } else if (node.isSuper) {
-        if (node.args.length === 1 && type(node.args[0]) === 'Splat' && node.args[0].locationData === node.locationData) {
+        if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
           // Virtual splat argument, ignore it.
           node.args = [];
         }
@@ -148,33 +204,41 @@ function convert(node, source, mapper, ancestors=[]) {
           arguments: convertChild(node.args)
         });
       } else {
+        let isDo = false;
+        if (!node.soak) {
+          const startPos = mapper(node.locationData.first_line, node.locationData.first_column);
+          switch (source.slice(startPos, startPos + 'do '.length)) {
+            case 'do ':
+            case 'do(':
+              isDo = true;
+              break;
+          }
+        }
+
         const result = makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
           function: convertChild(node.variable),
           arguments: convertChild(node.args)
         });
-        if (result.type === 'FunctionApplication') {
-          switch (result.raw.slice(0, 'do '.length)) {
-            case 'do ':
-            case 'do(':
-              result.type = 'DoOp';
-              result.expression = result.function;
-              result.expression.parameters = result.expression.parameters.map((param, i) => {
-                const arg = result.arguments[i];
 
-                if (arg.type === 'Identifier' && arg.data === param.data) {
-                  return param;
-                }
+        if (isDo) {
+          result.type = 'DoOp';
+          result.expression = result.function;
+          result.expression.parameters = result.expression.parameters.map((param, i) => {
+            const arg = result.arguments[i];
 
-                return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
-                  param,
-                  default: arg
-                });
-              });
-              delete result.function;
-              delete result.arguments;
-              break;
-          }
+            if (arg.type === 'Identifier' && arg.data === param.data) {
+              return param;
+            }
+
+            return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
+              param,
+              default: arg
+            });
+          });
+          delete result.function;
+          delete result.arguments;
         }
+
         return result;
       }
 
@@ -250,7 +314,7 @@ function convert(node, source, mapper, ancestors=[]) {
 
     case 'If':
       if (type(node.condition) === 'Op' && node.condition.operator === '!') {
-        if (node.locationData === node.condition.locationData) {
+        if (locationsEqual(node.locationData, node.condition.locationData)) {
           // Virtual node for `unless` condition.
           node.condition.locationData = null;
         }
@@ -310,7 +374,7 @@ function convert(node, source, mapper, ancestors=[]) {
       });
 
     case 'For':
-      if (node.body.locationData === node.locationData) {
+      if (locationsEqual(node.body.locationData, node.locationData)) {
         node.body.locationData = locationContainingNodes(...node.body.expressions);
       }
       node.locationData = locationWithLastPosition(node.locationData, node.body.locationData);
