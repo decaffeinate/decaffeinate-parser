@@ -1,6 +1,7 @@
 import isChainedComparison from './util/isChainedComparison';
 import lineColumnMapper from './util/lineColumnMapper';
 import parseLiteral from './util/parseLiteral';
+import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
 import type from './util/type';
 import { nodes as csParse } from 'coffee-script';
 
@@ -48,51 +49,6 @@ function locationWithLastPosition(loc, last) {
     last_line: last.last_line,
     last_column: last.last_column
   };
-}
-
-function trimNonMatchingParentheses(source, loc, mapper) {
-  let level = 0;
-  let first = mapper(loc.first_line, loc.first_column);
-  let last = Math.min(mapper(loc.last_line, loc.last_column), source.length - 1);
-
-  for (let i = first; i <= last; i++) {
-    switch (source[i]) {
-      case ')':
-        level--;
-        break;
-
-      case '(':
-        level++;
-        break;
-    }
-  }
-
-  while (level > 0 && source[first] === '(') {
-    // Trim off leading parens.
-    first++;
-    level--;
-  }
-  while (level < 0 && source[last] === '\n') {
-    // Trim newlines off the end to get to the bad closing parens.
-    last--;
-  }
-  while (level < 0 && source[last] === ')') {
-    // Trim off trailing parens.
-    last--;
-    level++;
-  }
-
-  if (level !== 0) {
-    throw new Error(`unable to balance parens in: ${JSON.stringify(source.slice(first, last + 1))} (level=${level})`);
-  }
-
-  const firstLoc = mapper.invert(first);
-  const lastLoc = mapper.invert(last);
-
-  loc.first_line = firstLoc.line;
-  loc.first_column = firstLoc.column;
-  loc.last_line = lastLoc.line;
-  loc.last_column = lastLoc.column;
 }
 
 function locationsEqual(first, second) {
