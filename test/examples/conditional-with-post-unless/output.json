@@ -19,16 +19,12 @@
         "raw": "a unless b",
         "alternate": null,
         "condition": {
-          "type": "LogicalNotOp",
-          "virtual": true,
-          "expression": {
-            "type": "Identifier",
-            "line": 1,
-            "column": 10,
-            "range": [ 9, 10 ],
-            "raw": "b",
-            "data": "b"
-          }
+          "type": "Identifier",
+          "line": 1,
+          "column": 10,
+          "range": [ 9, 10 ],
+          "raw": "b",
+          "data": "b"
         },
         "consequent": {
           "type": "Block",
@@ -46,7 +42,8 @@
               "data": "a"
             }
           ]
-        }
+        },
+        "isUnless": true
       }
     ]
   }

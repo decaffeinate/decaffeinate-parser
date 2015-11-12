@@ -83,6 +83,14 @@ describe('trimNonMatchingParentheses', () => {
     );
   });
 
+  it('ignores parentheses in strings', () => {
+    check(
+      'a("foo" + ")")',
+      { first_line: 0, first_column: 2, last_line: 0, last_column: 13 },
+      { first_line: 0, first_column: 2, last_line: 0, last_column: 12 }
+    );
+  });
+
   function check(source, loc, expected) {
     const mapper = lineColumnMapper(source);
     trimNonMatchingParentheses(source, loc, mapper);

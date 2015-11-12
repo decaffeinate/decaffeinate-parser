@@ -2,28 +2,28 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 16 ],
-  "raw": "unless a + b\n  c",
+  "range": [ 0, 17 ],
+  "raw": "unless a == b\n  c",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 16 ],
-    "raw": "unless a + b\n  c",
+    "range": [ 0, 17 ],
+    "raw": "unless a == b\n  c",
     "statements": [
       {
         "type": "Conditional",
         "line": 1,
         "column": 1,
-        "range": [ 0, 16 ],
-        "raw": "unless a + b\n  c",
+        "range": [ 0, 17 ],
+        "raw": "unless a == b\n  c",
         "alternate": null,
         "condition": {
-          "type": "PlusOp",
+          "type": "EQOp",
           "line": 1,
           "column": 8,
-          "range": [ 7, 12 ],
-          "raw": "a + b",
+          "range": [ 7, 13 ],
+          "raw": "a == b",
           "left": {
             "type": "Identifier",
             "line": 1,
@@ -35,8 +35,8 @@
           "right": {
             "type": "Identifier",
             "line": 1,
-            "column": 12,
-            "range": [ 11, 12 ],
+            "column": 13,
+            "range": [ 12, 13 ],
             "raw": "b",
             "data": "b"
           }
@@ -45,14 +45,14 @@
           "type": "Block",
           "line": 2,
           "column": 3,
-          "range": [ 15, 16 ],
+          "range": [ 16, 17 ],
           "raw": "c",
           "statements": [
             {
               "type": "Identifier",
               "line": 2,
               "column": 3,
-              "range": [ 15, 16 ],
+              "range": [ 16, 17 ],
               "raw": "c",
               "data": "c"
             }
