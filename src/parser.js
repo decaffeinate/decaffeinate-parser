@@ -1,5 +1,6 @@
 import isChainedComparison from './util/isChainedComparison';
 import lineColumnMapper from './util/lineColumnMapper';
+import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
 import type from './util/type';
@@ -49,13 +50,6 @@ function locationWithLastPosition(loc, last) {
     last_line: last.last_line,
     last_column: last.last_column
   };
-}
-
-function locationsEqual(first, second) {
-  return first.first_line === second.first_line &&
-      first.first_column === second.first_column &&
-      first.last_line === second.last_line &&
-      first.last_column === second.last_column;
 }
 
 function mergeLocations(left, right) {
