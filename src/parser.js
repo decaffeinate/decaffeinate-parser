@@ -508,7 +508,7 @@ function convert(context) {
       } else if (Array.isArray(child)) {
         return child.map(convertChild).filter(node => node);
       } else {
-        return convertNode(child, source, mapper, [...ancestors, node]);
+        return convertNode(child, [...ancestors, node]);
       }
     }
 
@@ -571,7 +571,7 @@ function convert(context) {
         case 'Index':
           return makeNode(prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
             expression,
-            indexingExpr: convertNode(prop.index, source, mapper, [...ancestors, node, prop])
+            indexingExpr: convertNode(prop.index, [...ancestors, node, prop])
           });
 
         case 'Slice':
@@ -678,8 +678,8 @@ function convert(context) {
         }
 
         return makeNode(nodeType, op.locationData, {
-          left: convertNode(op.first, source, mapper, [...ancestors, op]),
-          right: convertNode(op.second, source, mapper, [...ancestors, op])
+          left: convertNode(op.first, [...ancestors, op]),
+          right: convertNode(op.second, [...ancestors, op])
         });
       } else {
         switch (op.operator) {
@@ -732,7 +732,7 @@ function convert(context) {
         }
 
         return makeNode(nodeType, op.locationData, {
-          expression: convertNode(op.first, source, mapper, [...ancestors, op])
+          expression: convertNode(op.first, [...ancestors, op])
         });
       }
     }
