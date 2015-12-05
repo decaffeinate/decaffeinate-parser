@@ -1,0 +1,68 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 15 ],
+  "raw": "for [0..1]\n  2\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 15 ],
+    "raw": "for [0..1]\n  2\n",
+    "statements": [
+      {
+        "type": "ForIn",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 14 ],
+        "raw": "for [0..1]\n  2",
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 13, 14 ],
+          "raw": "2",
+          "statements": [
+            {
+              "type": "Int",
+              "line": 2,
+              "column": 3,
+              "range": [ 13, 14 ],
+              "raw": "2",
+              "data": 2
+            }
+          ]
+        },
+        "filter": null,
+        "keyAssignee": null,
+        "step": null,
+        "target": {
+          "type": "Range",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 10 ],
+          "raw": "[0..1]",
+          "isInclusive": true,
+          "left": {
+            "type": "Int",
+            "line": 1,
+            "column": 6,
+            "range": [ 5, 6 ],
+            "raw": "0",
+            "data": 0
+          },
+          "right": {
+            "type": "Int",
+            "line": 1,
+            "column": 9,
+            "range": [ 8, 9 ],
+            "raw": "1",
+            "data": 1
+          }
+        },
+        "valAssignee": null
+      }
+    ]
+  }
+}
