@@ -6,11 +6,10 @@ import type from './type';
  * @param {ParseContext} context
  */
 export default function isInterpolatedString(node, context) {
-  const tokensForNode = context.tokensForNode(node);
-  const firstTokenIteration = tokensForNode.next();
+  const [ firstToken ] = context.tokensForNode(node);
 
-  if (!firstTokenIteration.done) {
-    const [ type ] = firstTokenIteration.value;
+  if (firstToken) {
+    const [ type ] = firstToken;
     if (type === 'STRING_START') {
       return true;
     }

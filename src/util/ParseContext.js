@@ -42,9 +42,9 @@ export default class ParseContext {
 
   /**
    * @param {Object} node
-   * @yield {Array}
+   * @returns {Array}
    */
-  *tokensForNode(node) {
+  tokensForNode(node) {
     const nodeLoc = node.locationData;
     let firstTokenIndex = null;
 
@@ -57,9 +57,10 @@ export default class ParseContext {
     }
 
     if (firstTokenIndex === null) {
-      return;
+      return [];
     }
 
+    const result = [];
     for (let i = firstTokenIndex; i < this.tokens.length; i++) {
       const token = this.tokens[i];
       const loc = token[2];
@@ -69,8 +70,9 @@ export default class ParseContext {
       if (loc.last_line === nodeLoc.last_line && loc.last_column > nodeLoc.last_column) {
         break;
       }
-      yield token;
+      result.push(token);
     }
+    return result;
   }
 
   /**
