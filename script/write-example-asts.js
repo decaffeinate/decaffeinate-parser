@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node -r babel-register
 
 import print from './print-ast';
 import { createWriteStream, readFileSync, readdirSync, statSync } from 'fs';

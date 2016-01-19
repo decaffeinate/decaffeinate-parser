@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node -r babel-register
 
 import { basename, extname, join } from 'path';
 import { parse } from '../src/parser';

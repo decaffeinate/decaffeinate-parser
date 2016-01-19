@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node -r babel-register
 
 import { inspect } from 'util';
 import { parse as csrParse } from 'coffee-script-redux';
