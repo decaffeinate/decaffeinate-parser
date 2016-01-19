@@ -1,9 +1,10 @@
 #!/usr/bin/env node -r babel-register
 
+import repeat from 'string-repeat';
+import { basename } from 'path';
 import { inspect } from 'util';
 import { parse as csrParse } from 'coffee-script-redux';
 import { parse as dcParse } from '../src/parser';
-import repeat from 'string-repeat';
 
 const defaultPrintKey = (key, stream) => stream.write(key);
 const defaultPrintPrimitive = (value, stream) => stream.write(inspect(value));
@@ -35,7 +36,7 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
   }
 
   const hoistedKeys = ['type', 'line', 'column', 'range', 'raw'];
-  const extraKeys = Object.getOwnPropertyNames(node).filter(key => !hoistedKeys.includes(key)).sort();
+  const extraKeys = Object.getOwnPropertyNames(node).filter(key => hoistedKeys.indexOf(key) < 0).sort();
 
   function writeKey(key) {
     stream.write(`\n${fullIndent}`);
@@ -68,7 +69,7 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
 }
 
 function showHelp(print=str => console.log(str)) {
-  print(`${basename(process.argv[1])} [--json] < file.coffee`);
+  print(`${basename(process.argv[1])} [--json] [--redux] < file.coffee`);
 }
 
 if (require.main === module) {
@@ -98,6 +99,12 @@ if (require.main === module) {
 
       case '--redux':
         parse = source => csrParse(source, { raw: true }).toBasicObject();
+        break;
+
+      case '-h':
+      case '--help':
+        showHelp();
+        process.exit(0);
         break;
 
       default:
