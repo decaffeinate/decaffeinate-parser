@@ -1,0 +1,2 @@
+do wait = ->
+  wait()

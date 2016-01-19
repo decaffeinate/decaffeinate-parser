@@ -164,37 +164,29 @@ function convert(context) {
             arguments: convertChild(node.args)
           });
         } else {
-          let isDo = false;
-          if (!node.soak) {
-            const startPos = mapper(node.locationData.first_line, node.locationData.first_column);
-            switch (source.slice(startPos, startPos + 'do '.length)) {
-              case 'do ':
-              case 'do(':
-                isDo = true;
-                break;
-            }
-          }
-
           const result = makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
             function: convertChild(node.variable),
             arguments: convertChild(node.args)
           });
 
-          if (isDo) {
+          if (node.do) {
             result.type = 'DoOp';
             result.expression = result.function;
-            result.expression.parameters = result.expression.parameters.map((param, i) => {
-              const arg = result.arguments[i];
+            // The argument to `do` may not always be a function literal.
+            if (result.expression.parameters) {
+              result.expression.parameters = result.expression.parameters.map((param, i) => {
+                const arg = result.arguments[i];
 
-              if (arg.type === 'Identifier' && arg.data === param.data) {
-                return param;
-              }
+                if (arg.type === 'Identifier' && arg.data === param.data) {
+                  return param;
+                }
 
-              return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
-                param,
-                default: arg
+                return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
+                  param,
+                  default: arg
+                });
               });
-            });
+            }
             delete result.function;
             delete result.arguments;
           }
