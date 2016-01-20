@@ -609,6 +609,9 @@ function convert(context) {
         case '%':
           return 'RemOp';
 
+        case '%%':
+          return 'ModuloOp';
+
         case '&':
           return 'BitAndOp';
 
