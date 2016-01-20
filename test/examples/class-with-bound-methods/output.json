@@ -50,6 +50,7 @@
                   "column": 9,
                   "range": [ 16, 17 ],
                   "raw": "b",
+                  "inline": true,
                   "statements": [
                     {
                       "type": "Identifier",
@@ -93,6 +94,7 @@
                 "column": 9,
                 "range": [ 16, 17 ],
                 "raw": "b",
+                "inline": true,
                 "statements": [
                   {
                     "type": "Identifier",

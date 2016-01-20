@@ -29,6 +29,7 @@
             "column": 3,
             "range": [ 15, 20 ],
             "raw": "a + b",
+            "inline": false,
             "statements": [
               {
                 "type": "PlusOp",

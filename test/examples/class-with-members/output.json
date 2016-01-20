@@ -73,6 +73,7 @@
                   "column": 9,
                   "range": [ 23, 24 ],
                   "raw": "2",
+                  "inline": true,
                   "statements": [
                     {
                       "type": "Int",

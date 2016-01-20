@@ -42,6 +42,7 @@
                   "column": 5,
                   "range": [ 44, 49 ],
                   "raw": "super",
+                  "inline": false,
                   "statements": [
                     {
                       "type": "SuperFunctionApplication",
@@ -82,6 +83,7 @@
                   "column": 5,
                   "range": [ 65, 76 ],
                   "raw": "super(1, 2)",
+                  "inline": false,
                   "statements": [
                     {
                       "type": "SuperFunctionApplication",
@@ -134,6 +136,7 @@
               "column": 5,
               "range": [ 44, 49 ],
               "raw": "super",
+              "inline": false,
               "statements": [
                 {
                   "type": "SuperFunctionApplication",

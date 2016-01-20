@@ -302,9 +302,20 @@ function convert(context) {
         if (node.expressions.length === 0) {
           return null;
         } else {
-          return makeNode('Block', node.locationData, {
+          const block = makeNode('Block', node.locationData, {
             statements: convertChild(node.expressions)
           });
+          block.inline = false;
+          for (let i = block.range[0] - 1; i >= 0; i--) {
+            const char = source[i];
+            if (char === '\n') {
+              break;
+            } else if (char !== ' ' && char !== '\t') {
+              block.inline = true;
+              break;
+            }
+          }
+          return block;
         }
 
       case 'Bool':

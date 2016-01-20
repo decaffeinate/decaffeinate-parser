@@ -30,6 +30,7 @@
               "column": 3,
               "range": [ 15, 16 ],
               "raw": "b",
+              "inline": false,
               "statements": [
                 {
                   "type": "Identifier",

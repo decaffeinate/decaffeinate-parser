@@ -23,6 +23,7 @@
           "column": 3,
           "range": [ 16, 17 ],
           "raw": "c",
+          "inline": false,
           "statements": [
             {
               "type": "Identifier",
@@ -48,6 +49,7 @@
           "column": 3,
           "range": [ 7, 8 ],
           "raw": "b",
+          "inline": false,
           "statements": [
             {
               "type": "Identifier",

@@ -23,6 +23,7 @@
           "column": 3,
           "range": [ 5, 13 ],
           "raw": "return a",
+          "inline": false,
           "statements": [
             {
               "type": "Return",

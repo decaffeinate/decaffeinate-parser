@@ -23,6 +23,7 @@
           "column": 6,
           "range": [ 14, 31 ],
           "raw": "if c\n  d\nelse\n  e",
+          "inline": true,
           "statements": [
             {
               "type": "Conditional",
@@ -36,6 +37,7 @@
                 "column": 3,
                 "range": [ 30, 31 ],
                 "raw": "e",
+                "inline": false,
                 "statements": [
                   {
                     "type": "Identifier",
@@ -61,6 +63,7 @@
                 "column": 3,
                 "range": [ 21, 22 ],
                 "raw": "d",
+                "inline": false,
                 "statements": [
                   {
                     "type": "Identifier",
@@ -90,6 +93,7 @@
           "column": 3,
           "range": [ 7, 8 ],
           "raw": "b",
+          "inline": false,
           "statements": [
             {
               "type": "Identifier",

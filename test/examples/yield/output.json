@@ -23,6 +23,7 @@
           "column": 4,
           "range": [ 3, 10 ],
           "raw": "yield 1",
+          "inline": true,
           "statements": [
             {
               "type": "Yield",

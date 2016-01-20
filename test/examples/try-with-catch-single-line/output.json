@@ -23,6 +23,7 @@
           "column": 5,
           "range": [ 4, 5 ],
           "raw": "a",
+          "inline": true,
           "statements": [
             {
               "type": "Identifier",
