@@ -4,7 +4,7 @@
   "column": 1,
   "range": [
     0,
-    8
+    7
   ],
   "body": {
     "type": "Block",
@@ -12,7 +12,7 @@
     "column": 1,
     "range": [
       0,
-      8
+      7
     ],
     "statements": [
       {
@@ -21,9 +21,9 @@
         "column": 1,
         "range": [
           0,
-          8
+          7
         ],
-        "raw": "\"a#{b}c\"",
+        "raw": "\"a#{b}\"",
         "quasis": [
           {
             "type": "String",
@@ -38,14 +38,14 @@
           },
           {
             "type": "String",
+            "data": "",
+            "raw": "\"",
             "line": 1,
             "column": 7,
             "range": [
               6,
-              8
-            ],
-            "data": "c",
-            "raw": "c\""
+              7
+            ]
           }
         ],
         "expressions": [
@@ -63,7 +63,7 @@
         ]
       }
     ],
-    "raw": "\"a#{b}c\""
+    "raw": "\"a#{b}\""
   },
-  "raw": "\"a#{b}c\""
+  "raw": "\"a#{b}\""
 }

@@ -201,13 +201,19 @@ function convert(context) {
 
       case 'Op':
         const op = convertOperator(node);
+        if (op.type === 'PlusOp') {
+          if (isInterpolatedString(node, context)) {
+            op.type = 'ConcatOp';
+            let parentOp = ancestors.reduce((memo, ancestor) => type(ancestor) === 'Op' ? ancestor : memo, null);
+            if (!parentOp || !isInterpolatedString(parentOp, context)) {
+              return createTemplateLiteral(op);
+            }
+          }
+        }
         if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
           return makeNode('ChainedComparisonOp', node.locationData, {
             expression: op
           });
-        }
-        if (op.type === 'PlusOp' && isInterpolatedString(node, context)) {
-          op.type = 'ConcatOp';
         }
         return op;
 
@@ -561,6 +567,103 @@ function convert(context) {
         result.raw = source.slice(result.range[0], result.range[1]);
       }
       return result;
+    }
+
+    function createTemplateLiteral(op) {
+      let stringStartTokenIndex = context.indexOfTokenAtOffset(op.range[0]);
+      for (; stringStartTokenIndex >= 0; stringStartTokenIndex--) {
+        if (context.tokenAtIndex(stringStartTokenIndex).type === 'STRING_START') {
+          break;
+        }
+      }
+      let stringEndTokenIndex = context.indexOfEndTokenForStartTokenAtIndex(stringStartTokenIndex);
+      if (stringEndTokenIndex === null) {
+        throw new Error('cannot find interpolation end for node');
+      }
+      op.type = 'TemplateLiteral';
+      op.range = [
+        context.tokenAtIndex(stringStartTokenIndex).range[0],
+        context.tokenAtIndex(stringEndTokenIndex).range[1]
+      ];
+      op.raw = source.slice(...op.range);
+
+      let elements = [];
+
+      function addElements({ left, right }) {
+        if (left.type === 'ConcatOp') {
+          addElements(left);
+        } else {
+          elements.push(left);
+        }
+        elements.push(right);
+      }
+      addElements(op);
+
+      let quasis = [];
+      let expressions = [];
+      let quote = op.raw.slice(0, 3) === '"""' ? '"""' : '"';
+
+      elements.forEach((element, i) => {
+        if (i === 0) {
+          if (element.type === 'String') {
+            if (element.range[0] === op.range[0]) {
+              // This string is not interpolated, it's part of the string interpolation.
+              if (element.data === '' && element.raw.length > quote.length) {
+                // CoffeeScript includes the `#` in the raw value of a leading
+                // empty quasi string, but it shouldn't be there.
+                element.range[1] = element.range[0] + quote.length;
+                element.raw = source.slice(...element.range);
+              }
+              quasis.push(element);
+              return;
+            }
+          }
+        }
+
+        if (element.type === 'String' && (element.raw[0] !== '"' || element.raw[element.raw.length - 1] !== '"')) {
+          quasis.push(element);
+        } else {
+          if (quasis.length === 0) {
+            // This element is interpolated and is first, i.e. "${a}".
+            quasis.push({
+              type: 'String',
+              data: '',
+              raw: quote,
+              line: op.line,
+              column: op.column,
+              range: [op.range[0], op.range[0] + quote.length]
+            });
+          } else if (quasis.length < expressions.length + 1) {
+            let borderIndex = source.lastIndexOf('}#{', element.range[0]);
+            quasis.push({
+              type: 'String',
+              data: '',
+              raw: '',
+              line: element.line,
+              column: element.column - (element.range[0] - borderIndex),
+              range: [borderIndex + 1, borderIndex + 1]
+            });
+          }
+          expressions.push(element);
+        }
+      });
+
+      if (quasis.length < expressions.length + 1) {
+        quasis.push({
+          type: 'String',
+          data: '',
+          raw: quote,
+          line: op.line,
+          column: op.column + (op.range[1] - op.range[0]) - quote.length,
+          range: [op.range[1] - quote.length, op.range[1]]
+        });
+      }
+
+      op.quasis = quasis;
+      op.expressions = expressions;
+      delete op.left;
+      delete op.right;
+      return op;
     }
 
     /**
