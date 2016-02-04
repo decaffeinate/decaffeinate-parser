@@ -100,11 +100,16 @@ function convert(context) {
    */
   function convertNode(node, ancestors = []) {
     if (ancestors.length === 0) {
-      return makeNode('Program', node.locationData, {
+      let programNode = makeNode('Program', node.locationData, {
         body: makeNode('Block', node.locationData, {
           statements: convertChild(node.expressions)
         })
       });
+      Object.defineProperty(programNode, 'context', {
+        value: context,
+        enumerable: false
+      });
+      return programNode;
     }
 
     if (node.locationData) {

@@ -1,3 +1,4 @@
+import binarySearch from 'binary-search';
 import lineColumnMapper from './lineColumnMapper';
 import locationsEqual from './locationsEqual';
 
@@ -16,20 +17,26 @@ export default class ParseContext {
    */
   constructor(source, tokens, ast) {
     this.source = source;
-    this.tokens = tokens;
-    this.ast = ast;
     this.lineMap = lineColumnMapper(source);
+    this.ast = ast;
+    this.tokens = this.transformTokens(tokens);
   }
 
   /**
-   * @param {Object} node
+   * @param {Object} locatable
    * @returns {number[]}
    */
-  getNodeRange(node) {
-    return [
-      this.lineMap(node.first_line, node.first_column),
-      this.lineMap(node.last_line, node.last_column) + 1
-    ];
+  getRange(locatable) {
+    if ('range' in locatable) {
+      return locatable.range;
+    } else if ('locationData' in locatable) {
+      return this.getRange(locatable.locationData);
+    } else {
+      return [
+        this.lineMap(locatable.first_line, locatable.first_column),
+        this.lineMap(locatable.last_line, locatable.last_column) + 1
+      ];
+    }
   }
 
   /**
@@ -37,7 +44,7 @@ export default class ParseContext {
    * @returns {string}
    */
   getNodeSource(node) {
-    return this.source.slice(...this.getNodeRange(node));
+    return this.source.slice(...this.getRange(node));
   }
 
   /**
@@ -45,16 +52,8 @@ export default class ParseContext {
    * @returns {Array}
    */
   tokensForNode(node) {
-    const nodeLoc = node.locationData;
-    let firstTokenIndex = null;
-
-    for (let i = 0; i < this.tokens.length; i++) {
-      const loc = this.tokens[i][2];
-      if (nodeLoc.first_line === loc.first_line && nodeLoc.first_column === loc.first_column) {
-        firstTokenIndex = i;
-        break;
-      }
-    }
+    let [ start, end ] = this.getRange(node);
+    let firstTokenIndex = this.indexOfTokenAtOffset(start);
 
     if (firstTokenIndex === null) {
       return [];
@@ -63,16 +62,100 @@ export default class ParseContext {
     const result = [];
     for (let i = firstTokenIndex; i < this.tokens.length; i++) {
       const token = this.tokens[i];
-      const loc = token[2];
-      if (loc.last_line > nodeLoc.last_line) {
-        break;
-      }
-      if (loc.last_line === nodeLoc.last_line && loc.last_column > nodeLoc.last_column) {
+      if (token.range[1] > end) {
         break;
       }
       result.push(token);
     }
     return result;
+  }
+
+  tokenAtIndex(index) {
+    return this.tokens[index] || null;
+  }
+
+  indexOfTokenAtOffset(offset) {
+    let tokens = this.tokens;
+    let index = binarySearch(tokens, offset, (token, offset) => token.range[0] - offset);
+    while (tokens[index - 1] && tokens[index - 1].range[0] === offset) {
+      // There can be multiple tokens that start at the same offset, e.g.
+      // STRING and STRING_START with string interpolation.
+      index--;
+    }
+    return index;
+  }
+
+  indexOfTokenFromOffset(offset) {
+    let index = this.indexOfTokenAtOffset(offset);
+
+    if (index < 0) {
+      for (let i = ~index; i < this.tokens.length; i++) {
+        if (this.tokens[i].range[0] >= offset) {
+          return i;
+        }
+      }
+    }
+
+    return index;
+  }
+
+  /**
+   * @param {number} index
+   * @returns {?number}
+   */
+  indexOfEndTokenForStartTokenAtIndex(index) {
+    let startToken = this.tokenAtIndex(index);
+    let expectedEndTokenType;
+    switch (startToken.type) {
+      case 'PARAM_START':
+        expectedEndTokenType = 'PARAM_END';
+        break;
+
+      case 'STRING_START':
+        expectedEndTokenType = 'STRING_END';
+        break;
+
+      default:
+        throw new Error(`unexpected start token type: ${startToken.type}`);
+    }
+    let tokens = this.tokens;
+    for (let i = index; i < tokens.length; i++) {
+      if (tokens[i].type === expectedEndTokenType) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * @param {Object} left
+   * @param {Object} right
+   * @returns {Array}
+   */
+  tokensBetweenNodes(left, right) {
+    let leftIndex = this.indexOfTokenFromOffset(this.getRange(left)[1]);
+    let rightIndex = this.indexOfTokenAtOffset(this.getRange(right)[0]);
+    if (leftIndex < 0 || rightIndex < 0) {
+      return [];
+    }
+    return this.tokens.slice(leftIndex, rightIndex);
+  }
+
+  transformTokens(tokens) {
+    return tokens.map(token => this.transformToken(token));
+  }
+
+  /**
+   * @param token
+   * @returns {{type: string, data: string, range: number[], original: *}}
+   */
+  transformToken(token) {
+    return {
+      type: token[0],
+      data: token[1],
+      range: this.getRange(token[2]),
+      original: token
+    };
   }
 
   /**
