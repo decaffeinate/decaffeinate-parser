@@ -2,7 +2,6 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
-import lineColumnMapper from './util/lineColumnMapper';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -603,6 +602,39 @@ function convert(context) {
       let expressions = [];
       let quote = op.raw.slice(0, 3) === '"""' ? '"""' : '"';
 
+      function buildFirstQuasi() {
+        // Find the start of the first interpolation, i.e. "#{a}".
+        //                                                  ^
+        let startOfInterpolation = op.range[0];
+        while (source[startOfInterpolation] !== '#') {
+          startOfInterpolation += 1;
+        }
+        let range = [op.range[0], startOfInterpolation];
+        return buildQuasi(range);
+      }
+
+      function buildLastQuasi() {
+        // Find the close of the last interpolation, i.e. "a#{b}".
+        //                                                     ^
+        let endOfInterpolation = op.range[1];
+        while (source[endOfInterpolation] !== '}') {
+          endOfInterpolation -= 1;
+        }
+        return buildQuasi([endOfInterpolation + 1, op.range[1]]);
+      }
+
+      function buildQuasi(range) {
+        let loc = mapper.invert(range[0]);
+        return {
+          type: 'String',
+          data: '',
+          raw: source.slice(...range),
+          line: loc.line + 1,
+          column: loc.column + 1,
+          range
+        };
+      }
+
       elements.forEach((element, i) => {
         if (i === 0) {
           if (element.type === 'String') {
@@ -611,8 +643,7 @@ function convert(context) {
               if (element.data === '' && element.raw.length > quote.length) {
                 // CoffeeScript includes the `#` in the raw value of a leading
                 // empty quasi string, but it shouldn't be there.
-                element.range[1] = element.range[0] + quote.length;
-                element.raw = source.slice(...element.range);
+                element = buildFirstQuasi();
               }
               quasis.push(element);
               return;
@@ -624,39 +655,18 @@ function convert(context) {
           quasis.push(element);
         } else {
           if (quasis.length === 0) {
-            // This element is interpolated and is first, i.e. "${a}".
-            quasis.push({
-              type: 'String',
-              data: '',
-              raw: quote,
-              line: op.line,
-              column: op.column,
-              range: [op.range[0], op.range[0] + quote.length]
-            });
+            // This element is interpolated and is first, i.e. "#{a}".
+            quasis.push(buildFirstQuasi());
           } else if (quasis.length < expressions.length + 1) {
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
-            quasis.push({
-              type: 'String',
-              data: '',
-              raw: '',
-              line: element.line,
-              column: element.column - (element.range[0] - borderIndex),
-              range: [borderIndex + 1, borderIndex + 1]
-            });
+            quasis.push(buildQuasi([borderIndex + 1, borderIndex + 1]));
           }
           expressions.push(element);
         }
       });
 
       if (quasis.length < expressions.length + 1) {
-        quasis.push({
-          type: 'String',
-          data: '',
-          raw: quote,
-          line: op.line,
-          column: op.column + (op.range[1] - op.range[0]) - quote.length,
-          range: [op.range[1] - quote.length, op.range[1]]
-        });
+        quasis.push(buildLastQuasi());
       }
 
       op.quasis = quasis;
