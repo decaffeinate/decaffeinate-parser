@@ -635,6 +635,40 @@ function convert(context) {
         };
       }
 
+      function quotesMatch(string) {
+        let leftTripleQuoted = string.slice(0, 3) === '"""';
+        let rightTripleQuoted = string.slice(-3) === '"""';
+
+        if (string.slice(-4) === '\\"""') {
+          // Don't count escaped quotes.
+          rightTripleQuoted = false;
+        }
+
+        if (leftTripleQuoted !== rightTripleQuoted) {
+          // Unbalanced.
+          return false;
+        } else if (leftTripleQuoted && rightTripleQuoted) {
+          // We're set as long as we didn't double count.
+          return string.length >= 6;
+        }
+
+        let leftSingleQuoted = string.slice(0, 1) === '"';
+        let rightSingleQuoted = string.slice(-1) === '"';
+
+        if (string.slice(-2) === '\\"') {
+          // Don't count escaped quotes.
+          rightSingleQuoted = false;
+        }
+
+        if (leftSingleQuoted !== rightSingleQuoted) {
+          // Unbalanced.
+          return false;
+        } else if (leftSingleQuoted && rightSingleQuoted) {
+          // We're set as long as we didn't double count.
+          return string.length >= 2;
+        }
+      }
+
       elements.forEach((element, i) => {
         if (i === 0) {
           if (element.type === 'String') {
@@ -651,7 +685,7 @@ function convert(context) {
           }
         }
 
-        if (element.type === 'String' && (element.raw[0] !== '"' || element.raw[element.raw.length - 1] !== '"')) {
+        if (element.type === 'String' && !quotesMatch(element.raw)) {
           quasis.push(element);
         } else {
           if (quasis.length === 0) {
