@@ -12,10 +12,14 @@
     "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
     "statements": [
       {
-        "type": "String",
+        "type": "Herestring",
         "line": 1,
         "column": 1,
         "range": [ 0, 26 ],
+        "padding": [
+          [ 3, 4 ],
+          [ 22, 23 ]
+        ],
         "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
         "data": "multi-line strings"
       }

@@ -141,15 +141,27 @@ function convert(context) {
         if (node.value === 'this') {
           return makeNode('This', node.locationData);
         } else {
-          const data = parseLiteral(node.value);
-          if (typeof data === 'string') {
-            return makeNode('String', node.locationData, {data});
-          } else if (typeof data === 'number') {
-            return makeNode(nodeTypeForLiteral(data), node.locationData, {data});
-          } else if (typeof data === 'undefined') {
-            return makeNode('Identifier', node.locationData, {data: node.value});
+          let start = mapper(node.locationData.first_line, node.locationData.first_column);
+          let end = mapper(node.locationData.last_line, node.locationData.last_column) + 1;
+          let literal = parseLiteral(source.slice(start, end), start);
+          if (!literal) {
+            return makeNode('Identifier', node.locationData, { data: node.value });
+
+          } else if (literal.type === 'error') {
+            if (literal.error.type === 'unbalanced-quotes') {
+              // This is probably part of an interpolated string.
+              literal = parseLiteral(node.value);
+              return makeNode('String', node.locationData, { data: parseLiteral(node.value).data });
+            }
+            throw new Error(literal.error.message);
+          } else if (literal.type === 'string') {
+            return makeNode('String', node.locationData, { data: literal.data });
+          } else if (literal.type === 'number') {
+            return makeNode(nodeTypeForLiteral(literal.data), node.locationData, { data: literal.data });
+          } else if (literal.type === 'Herestring') {
+            return makeNode('Herestring', node.locationData, { data: literal.data, padding: literal.padding });
           } else {
-            throw new Error(`unknown literal type for value: ${data}`);
+            throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
           }
         }
 
