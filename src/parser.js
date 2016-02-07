@@ -308,12 +308,16 @@ function convert(context) {
         }
 
       case 'If':
-        return makeNode('Conditional', node.locationData, {
+        let conditional = makeNode('Conditional', node.locationData, {
           isUnless: Boolean(node.condition.inverted),
           condition: convertChild(node.condition),
           consequent: convertChild(node.body),
           alternate: convertChild(node.elseBody)
         });
+        if (conditional.condition.range[0] > conditional.consequent.range[0]) {
+          conditional.consequent.inline = true;
+        }
+        return conditional;
 
       case 'Code':
         const fnType = node.bound ? 'BoundFunction' :
