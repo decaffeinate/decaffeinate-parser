@@ -173,10 +173,28 @@ function convert(context) {
           });
         } else if (node.isSuper) {
           if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
-            // Virtual splat argument, ignore it.
-            node.args = [];
+            // Virtual splat argument.
+            return makeNode('FunctionApplication', node.locationData, {
+              function: makeNode('Super', node.locationData),
+              arguments: [{
+                type: 'Spread',
+                virtual: true,
+                expression: {
+                  type: 'Identifier',
+                  data: 'arguments',
+                  virtual: true
+                }
+              }]
+            });
           }
-          return makeNode('SuperFunctionApplication', node.locationData, {
+          const superLocationData = {
+            first_line: node.locationData.first_line,
+            first_column: node.locationData.first_column,
+            last_line: node.locationData.first_line,
+            last_column: node.locationData.first_column + 'super'.length - 1
+          };
+          return makeNode('FunctionApplication', node.locationData, {
+            function: makeNode('Super', superLocationData),
             arguments: convertChild(node.args)
           });
         } else {
