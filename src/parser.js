@@ -871,10 +871,14 @@ function convert(context) {
           throw new Error(`unknown binary operator: ${op.operator}`);
         }
 
-        return makeNode(nodeType, op.locationData, {
+        let result = makeNode(nodeType, op.locationData, {
           left: convertNode(op.first, [...ancestors, op]),
           right: convertNode(op.second, [...ancestors, op])
         });
+        if (result.type === 'InstanceofOp') {
+          result.isNot = op.inverted === true;
+        }
+        return result;
       } else {
         switch (op.operator) {
           case '+':
