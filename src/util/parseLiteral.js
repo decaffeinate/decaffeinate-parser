@@ -184,7 +184,7 @@ function parseQuotedString(string, quote) {
  * @returns {{type: string, data: number}}
  */
 function parseInteger(string) {
-  return { type: 'number', data: parseInt(string, 10) };
+  return { type: 'int', data: parseInt(string, 10) };
 }
 
 /**
@@ -192,7 +192,7 @@ function parseInteger(string) {
  * @returns {{type: string, data: number}}
  */
 function parseFloatingPoint(string) {
-  return { type: 'number', data: parseFloat(string) };
+  return { type: 'float', data: parseFloat(string) };
 }
 
 /**
@@ -200,7 +200,7 @@ function parseFloatingPoint(string) {
  * @returns {{type: string, data: number}}
  */
 function parseHexidecimal(string) {
-  return { type: 'number', data: parseInt(string.slice(2), 16) };
+  return { type: 'int', data: parseInt(string.slice(2), 16) };
 }
 
 /**
@@ -208,7 +208,7 @@ function parseHexidecimal(string) {
  * @returns {{type: string, data: number}}
  */
 function parseOctal(string) {
-  return { type: 'number', data: parseInt(string.slice(2), 8) };
+  return { type: 'int', data: parseInt(string.slice(2), 8) };
 }
 
 /**

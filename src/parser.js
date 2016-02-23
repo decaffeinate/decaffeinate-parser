@@ -156,8 +156,10 @@ function convert(context) {
             throw new Error(literal.error.message);
           } else if (literal.type === 'string') {
             return makeNode('String', node.locationData, { data: literal.data });
-          } else if (literal.type === 'number') {
-            return makeNode(nodeTypeForLiteral(literal.data), node.locationData, { data: literal.data });
+          } else if (literal.type === 'int') {
+            return makeNode('Int', node.locationData, { data: literal.data });
+          } else if (literal.type === 'float') {
+            return makeNode('Float', node.locationData, { data: literal.data });
           } else if (literal.type === 'Herestring') {
             return makeNode('Herestring', node.locationData, { data: literal.data, padding: literal.padding });
           } else {
