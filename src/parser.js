@@ -534,7 +534,8 @@ function convert(context) {
       case 'In':
         return makeNode('InOp', node.locationData, {
           left: convertChild(node.object),
-          right: convertChild(node.array)
+          right: convertChild(node.array),
+          isNot: node.negated === true
         });
 
       case 'Expansion':
