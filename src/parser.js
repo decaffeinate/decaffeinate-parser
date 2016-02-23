@@ -875,7 +875,7 @@ function convert(context) {
           left: convertNode(op.first, [...ancestors, op]),
           right: convertNode(op.second, [...ancestors, op])
         });
-        if (result.type === 'InstanceofOp') {
+        if (result.type === 'InstanceofOp' || result.type === 'OfOp') {
           result.isNot = op.inverted === true;
         }
         return result;
