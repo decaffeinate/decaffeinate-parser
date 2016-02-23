@@ -143,10 +143,13 @@ function convert(context) {
         } else {
           let start = mapper(node.locationData.first_line, node.locationData.first_column);
           let end = mapper(node.locationData.last_line, node.locationData.last_column) + 1;
-          let literal = parseLiteral(source.slice(start, end), start);
+          let raw = source.slice(start, end);
+          let literal = parseLiteral(raw, start);
           if (!literal) {
+            if (raw[0] === '`' && raw[raw.length - 1] === '`') {
+              return makeNode('JavaScript', node.locationData, { data: node.value });
+            }
             return makeNode('Identifier', node.locationData, { data: node.value });
-
           } else if (literal.type === 'error') {
             if (literal.error.type === 'unbalanced-quotes') {
               // This is probably part of an interpolated string.

@@ -1,0 +1,39 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 12 ],
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 12 ],
+    "statements": [
+      {
+        "type": "AssignOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 12 ],
+        "assignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 1 ],
+          "data": "a",
+          "raw": "a"
+        },
+        "expression": {
+          "type": "JavaScript",
+          "line": 1,
+          "column": 5,
+          "range": [ 4, 12 ],
+          "data": "void 0",
+          "raw": "`void 0`"
+        },
+        "raw": "a = `void 0`"
+      }
+    ],
+    "raw": "a = `void 0`"
+  },
+  "raw": "a = `void 0`"
+}
