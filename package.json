@@ -17,8 +17,7 @@
   "author": "Brian Donovan",
   "license": "MIT",
   "files": [
-    "lib/",
-    "src/"
+    "dist/"
   ],
   "dependencies": {
     "coffee-script": "^1.10.0"
