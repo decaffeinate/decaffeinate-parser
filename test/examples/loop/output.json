@@ -17,6 +17,8 @@
         "column": 1,
         "range": [ 0, 8 ],
         "raw": "loop\n  a",
+        "isUntil": false,
+        "guard": null,
         "body": {
           "type": "Block",
           "line": 2,

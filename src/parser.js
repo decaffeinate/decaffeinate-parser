@@ -411,7 +411,9 @@ function convert(context) {
       case 'While':
         const result = makeNode('While', locationContainingNodes(node, node.condition, node.body), {
           condition: convertChild(node.condition),
-          body: convertChild(node.body)
+          guard: convertChild(node.guard),
+          body: convertChild(node.body),
+          isUntil: node.condition.inverted === true
         });
         if (result.raw.indexOf('loop') === 0) {
           result.condition = {
