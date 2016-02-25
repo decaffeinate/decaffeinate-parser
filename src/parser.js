@@ -314,7 +314,7 @@ function convert(context) {
 
       case 'If':
         let conditional = makeNode('Conditional', node.locationData, {
-          isUnless: Boolean(node.condition.inverted),
+          isUnless: Boolean(node.condition.inverted || node.condition.negated),
           condition: convertChild(node.condition),
           consequent: convertChild(node.body),
           alternate: convertChild(node.elseBody)
