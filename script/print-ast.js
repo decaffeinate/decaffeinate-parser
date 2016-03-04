@@ -52,9 +52,11 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
   stream.write('{');
 
   hoistedKeys.forEach((key, i) => {
-    writeKey(key);
-    if (extraKeys.length > 0 || i !== hoistedKeys.length - 1) {
-      stream.write(',');
+    if (key in node) {
+      writeKey(key);
+      if (extraKeys.length > 0 || i !== hoistedKeys.length - 1) {
+        stream.write(',');
+      }
     }
   });
 
