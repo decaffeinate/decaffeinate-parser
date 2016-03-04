@@ -1,0 +1,73 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 26 ],
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 26 ],
+    "statements": [
+      {
+        "type": "AssignOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 21 ],
+        "assignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 4 ],
+          "data": "main",
+          "raw": "main"
+        },
+        "expression": {
+          "type": "Function",
+          "line": 1,
+          "column": 8,
+          "range": [ 7, 21 ],
+          "body": {
+            "type": "Block",
+            "line": 2,
+            "column": 3,
+            "range": [ 12, 21 ],
+            "statements": [
+              {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "range": [ 12, 15 ],
+                "data": "foo",
+                "raw": "foo"
+              },
+              {
+                "type": "Identifier",
+                "line": 3,
+                "column": 3,
+                "range": [ 18, 21 ],
+                "data": "bar",
+                "raw": "bar"
+              }
+            ],
+            "raw": "foo\n  bar",
+            "inline": false
+          },
+          "parameters": [],
+          "raw": "->\n  foo\n  bar"
+        },
+        "raw": "main = ->\n  foo\n  bar"
+      },
+      {
+        "type": "Identifier",
+        "line": 5,
+        "column": 1,
+        "range": [ 23, 26 ],
+        "data": "baz",
+        "raw": "baz"
+      }
+    ],
+    "raw": "main = ->\n  foo\n  bar\n\nbaz"
+  },
+  "raw": "main = ->\n  foo\n  bar\n\nbaz"
+}

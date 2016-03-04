@@ -6,6 +6,7 @@ import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
 import type from './util/type';
+import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
 
 /**
@@ -90,7 +91,223 @@ function mergeLocations(left, right) {
  */
 function convert(context) {
   const { source, lineMap: mapper } = context;
+  fixLocations(context.ast);
   return convertNode(context.ast);
+
+  /**
+   * @param {Object} node
+   * @param ancestors
+   */
+  function fixLocations(node, ancestors = []) {
+    node.eachChild(child => {
+      if (child && child.locationData) {
+        fixLocations(child, [node, ...ancestors]);
+      }
+    });
+    switch (type(node)) {
+      case 'Value':
+      {
+        let lastChild = node.properties[node.properties.length - 1];
+        if (lastChild) {
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            lastChild.locationData
+          );
+        }
+        break;
+      }
+
+      case 'Access':
+      case 'Arr':
+      case 'Bool':
+      case 'Comment':
+      case 'Existence':
+      case 'Expansion':
+      case 'Index':
+      case 'Literal':
+      case 'Null':
+      case 'Parens':
+      case 'Range':
+      case 'Return':
+      case 'Slice':
+      case 'Splat':
+      case 'Throw':
+      case 'Undefined':
+        break;
+
+      case 'Obj':
+      {
+        let loc = node.locationData;
+        let start = mapper(loc.first_line, loc.first_column);
+        let isImplicitObject = source[start] !== '{';
+        if (isImplicitObject) {
+          let lastChild = node.properties[node.properties.length - 1];
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            lastChild.locationData
+          );
+        }
+        break;
+      }
+
+      case 'Op':
+      {
+        let lastChild = node.second;
+        if (lastChild) {
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            lastChild.locationData
+          );
+        }
+        break;
+      }
+
+      case 'Assign':
+      {
+        let lastChild = node.value;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'In':
+      {
+        let lastChild = node.array;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'Call':
+      {
+        if (node.variable) {
+          // `super` won't have a callee (i.e. `node.variable`)
+          let calleeLoc = node.variable.locationData;
+          let calleeEnd = mapper(calleeLoc.last_line, calleeLoc.last_column) + 1;
+          // Account for soaked calls, e.g. `a?()`.
+          if (source[calleeEnd] === '?') { calleeEnd += 1; }
+          let isImplicitCall = source[calleeEnd] !== '(';
+          if (isImplicitCall) {
+            let lastChild = node.args[node.args.length - 1] || node.variable;
+            if (lastChild) {
+              node.locationData = locationWithLastPosition(
+                node.locationData,
+                lastChild.locationData
+              );
+            }
+          }
+        }
+        break;
+      }
+
+      case 'Block':
+      {
+        let lastChild = node.expressions[node.expressions.length - 1];
+        if (lastChild) {
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            lastChild.locationData
+          );
+        }
+        break;
+      }
+
+      case 'If':
+      {
+        let lastChild = node.elseBody || node.body;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'For':
+      case 'While':
+      {
+        let lastChild = node.body;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'Param':
+      {
+        if (!node.splat) {
+          let lastChild = node.value || node.name;
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            lastChild.locationData
+          );
+        }
+        break;
+      }
+
+      case 'Code':
+      {
+        if (node.body) {
+          node.locationData = locationWithLastPosition(
+            node.locationData,
+            node.body.locationData
+          );
+        }
+        break;
+      }
+
+      case 'Class':
+      {
+        let lastChild = node.body;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'Switch':
+      {
+        let lastChild = node.otherwise || node.cases[node.cases.length - 1][1];
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'Try':
+      {
+        let lastChild = node.ensure || node.recovery || node.errorVariable || node.attempt;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      case 'Extends':
+      {
+        let lastChild = node.parent;
+        node.locationData = locationWithLastPosition(
+          node.locationData,
+          lastChild.locationData
+        );
+        break;
+      }
+
+      default:
+        throw new Error(
+          `cannot fix location data for ${type(node)} at ` +
+          `${node.locationData.first_line + 1}:${node.locationData.first_column + 1}: ` +
+          inspect(node)
+        );
+    }
+  }
 
   /**
    * @param {Object} node
@@ -99,11 +316,16 @@ function convert(context) {
    */
   function convertNode(node, ancestors = []) {
     if (ancestors.length === 0) {
-      let programNode = makeNode('Program', node.locationData, {
+      let programNode = {
+        type: 'Program',
+        line: 1,
+        column: 1,
+        range: [0, source.length],
+        raw: source,
         body: makeNode('Block', node.locationData, {
           statements: convertChild(node.expressions)
         })
-      });
+      };
       Object.defineProperty(programNode, 'context', {
         value: context,
         enumerable: false
@@ -387,7 +609,6 @@ function convert(context) {
         if (locationsEqual(node.body.locationData, node.locationData)) {
           node.body.locationData = locationContainingNodes(...node.body.expressions);
         }
-        node.locationData = locationWithLastPosition(node.locationData, node.body.locationData);
         if (node.object) {
           return makeNode('ForOf', node.locationData, {
             keyAssignee: convertChild(node.index),

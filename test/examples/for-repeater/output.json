@@ -8,8 +8,8 @@
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 15 ],
-    "raw": "for [0..1]\n  2\n",
+    "range": [ 0, 14 ],
+    "raw": "for [0..1]\n  2",
     "statements": [
       {
         "type": "ForIn",

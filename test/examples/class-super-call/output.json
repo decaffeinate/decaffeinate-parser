@@ -40,12 +40,12 @@
               "type": "Constructor",
               "line": 2,
               "column": 3,
-              "range": [ 24, 53 ],
+              "range": [ 24, 49 ],
               "expression": {
                 "type": "Function",
                 "line": 2,
                 "column": 16,
-                "range": [ 37, 53 ],
+                "range": [ 37, 49 ],
                 "body": {
                   "type": "Block",
                   "line": 3,
@@ -82,9 +82,9 @@
                   "inline": false
                 },
                 "parameters": [],
-                "raw": "->\n    super\n\n  "
+                "raw": "->\n    super"
               },
-              "raw": "constructor: ->\n    super\n\n  "
+              "raw": "constructor: ->\n    super"
             },
             {
               "type": "ClassProtoAssignOp",
@@ -167,12 +167,12 @@
           "type": "Constructor",
           "line": 2,
           "column": 3,
-          "range": [ 24, 53 ],
+          "range": [ 24, 49 ],
           "expression": {
             "type": "Function",
             "line": 2,
             "column": 16,
-            "range": [ 37, 53 ],
+            "range": [ 37, 49 ],
             "body": {
               "type": "Block",
               "line": 3,
@@ -209,9 +209,9 @@
               "inline": false
             },
             "parameters": [],
-            "raw": "->\n    super\n\n  "
+            "raw": "->\n    super"
           },
-          "raw": "constructor: ->\n    super\n\n  "
+          "raw": "constructor: ->\n    super"
         },
         "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
       }

@@ -8,21 +8,21 @@
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 22 ],
-    "raw": "do wait = ->\n  wait()\n",
+    "range": [ 0, 21 ],
+    "raw": "do wait = ->\n  wait()",
     "statements": [
       {
         "type": "DoOp",
         "line": 1,
         "column": 1,
-        "range": [ 0, 22 ],
-        "raw": "do wait = ->\n  wait()\n",
+        "range": [ 0, 21 ],
+        "raw": "do wait = ->\n  wait()",
         "expression": {
           "type": "AssignOp",
           "line": 1,
           "column": 4,
-          "range": [ 3, 22 ],
-          "raw": "wait = ->\n  wait()\n",
+          "range": [ 3, 21 ],
+          "raw": "wait = ->\n  wait()",
           "assignee": {
             "type": "Identifier",
             "line": 1,
@@ -35,8 +35,8 @@
             "type": "Function",
             "line": 1,
             "column": 11,
-            "range": [ 10, 22 ],
-            "raw": "->\n  wait()\n",
+            "range": [ 10, 21 ],
+            "raw": "->\n  wait()",
             "body": {
               "type": "Block",
               "line": 2,
