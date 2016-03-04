@@ -541,8 +541,10 @@ function convert(context) {
           consequent: convertChild(node.body),
           alternate: convertChild(node.elseBody)
         });
-        if (conditional.condition.range[0] > conditional.consequent.range[0]) {
-          conditional.consequent.inline = true;
+        if (conditional.consequent) {
+          if (conditional.condition.range[0] > conditional.consequent.range[0]) {
+            conditional.consequent.inline = true;
+          }
         }
         return conditional;
 

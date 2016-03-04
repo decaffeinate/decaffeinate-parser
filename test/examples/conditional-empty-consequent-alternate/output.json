@@ -1,0 +1,61 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 27 ],
+  "raw": "if false\nelse if false\nelse",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 27 ],
+    "statements": [
+      {
+        "type": "Conditional",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 27 ],
+        "isUnless": false,
+        "condition": {
+          "type": "Bool",
+          "line": 1,
+          "column": 4,
+          "range": [ 3, 8 ],
+          "data": false,
+          "raw": "false"
+        },
+        "consequent": null,
+        "alternate": {
+          "type": "Block",
+          "line": 2,
+          "column": 6,
+          "range": [ 14, 27 ],
+          "statements": [
+            {
+              "type": "Conditional",
+              "line": 2,
+              "column": 6,
+              "range": [ 14, 27 ],
+              "isUnless": false,
+              "condition": {
+                "type": "Bool",
+                "line": 2,
+                "column": 9,
+                "range": [ 17, 22 ],
+                "data": false,
+                "raw": "false"
+              },
+              "consequent": null,
+              "alternate": null,
+              "raw": "if false\nelse"
+            }
+          ],
+          "raw": "if false\nelse",
+          "inline": true
+        },
+        "raw": "if false\nelse if false\nelse"
+      }
+    ],
+    "raw": "if false\nelse if false\nelse"
+  }
+}
