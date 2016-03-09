@@ -13,13 +13,18 @@ export default class ParseContext {
   /**
    * @param {string} source
    * @param {Array} tokens
+   * @param {SourceTokenList} sourceTokens
    * @param {Object} ast
    */
-  constructor(source, tokens, ast) {
+  constructor(source, tokens, sourceTokens, ast) {
     this.source = source;
     this.lineMap = lineColumnMapper(source);
     this.ast = ast;
+    /**
+     * @deprecated
+     */
     this.tokens = this.transformTokens(tokens);
+    this.sourceTokens = sourceTokens;
   }
 
   /**
@@ -41,15 +46,8 @@ export default class ParseContext {
 
   /**
    * @param {Object} node
-   * @returns {string}
-   */
-  getNodeSource(node) {
-    return this.source.slice(...this.getRange(node));
-  }
-
-  /**
-   * @param {Object} node
    * @returns {Array}
+   * @deprecated
    */
   tokensForNode(node) {
     let [ start, end ] = this.getRange(node);
@@ -70,10 +68,16 @@ export default class ParseContext {
     return result;
   }
 
+  /**
+   * @deprecated
+   */
   tokenAtIndex(index) {
     return this.tokens[index] || null;
   }
 
+  /**
+   * @deprecated
+   */
   indexOfTokenAtOffset(offset) {
     let tokens = this.tokens;
     let index = binarySearch(tokens, offset, (token, offset) => token.range[0] - offset);
@@ -85,6 +89,9 @@ export default class ParseContext {
     return index;
   }
 
+  /**
+   * @deprecated
+   */
   indexOfTokenFromOffset(offset) {
     let index = this.indexOfTokenAtOffset(offset);
 
@@ -102,6 +109,7 @@ export default class ParseContext {
   /**
    * @param {number} index
    * @returns {?number}
+   * @deprecated
    */
   indexOfEndTokenForStartTokenAtIndex(index) {
     let startToken = this.tokenAtIndex(index);
@@ -131,6 +139,7 @@ export default class ParseContext {
    * @param {Object} left
    * @param {Object} right
    * @returns {Array}
+   * @deprecated
    */
   tokensBetweenNodes(left, right) {
     let leftIndex = this.indexOfTokenFromOffset(this.getRange(left)[1]);
@@ -161,13 +170,15 @@ export default class ParseContext {
   /**
    * @param {string} source
    * @param {function(string, Object=): Array} lex
+   * @param {function(string): SourceTokenList} sourceLex
    * @param {function(string|Array): Object} parse
    * @returns {ParseContext}
    */
-  static fromSource(source, lex, parse) {
+  static fromSource(source, lex, sourceLex, parse) {
     try {
       const tokens = lex(source, { rewrite: false });
-      return new ParseContext(source, tokens, parse(source));
+      const sourceTokens = sourceLex(source);
+      return new ParseContext(source, tokens, sourceTokens, parse(source));
     } catch (ex) {
       if (ex instanceof SyntaxError) {
         throw new ParseError(ex);

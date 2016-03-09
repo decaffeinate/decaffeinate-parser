@@ -6,13 +6,15 @@ import type from './type';
  * @param {ParseContext} context
  */
 export default function isInterpolatedString(node, context) {
-  let tokens = context.tokensForNode(node);
-  let firstToken = tokens[0];
-  let lastToken = tokens[tokens.length - 1];
-
-  if (firstToken && lastToken) {
-    return firstToken.type === 'STRING_START' || lastToken.type === 'STRING_END';
+  let range = context.getRange(node);
+  let tokens = context.sourceTokens;
+  let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(range[0]);
+  if (!startTokenIndex) {
+    throw new Error(
+      `no token containing start of node at ${range[0]} found`
+    );
   }
-
-  return false;
+  return tokens.rangeOfInterpolatedStringTokensContainingTokenIndex(
+    startTokenIndex
+  ) !== null;
 }

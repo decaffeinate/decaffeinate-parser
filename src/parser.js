@@ -2,6 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
+import lex from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -28,7 +29,7 @@ export function parse(source, options={}) {
 
   const CS = options.coffeeScript || CoffeeScript;
   patchCoffeeScript(CS);
-  return /** @type Program */ convert(ParseContext.fromSource(source, CS.tokens, CS.nodes));
+  return /** @type Program */ convert(ParseContext.fromSource(source, CS.tokens, lex, CS.nodes));
 }
 
 function locationContainingNodes(...nodes) {
@@ -834,21 +835,16 @@ function convert(context) {
     }
 
     function createTemplateLiteral(op) {
-      let stringStartTokenIndex = context.indexOfTokenAtOffset(op.range[0]);
-      for (; stringStartTokenIndex >= 0; stringStartTokenIndex--) {
-        if (context.tokenAtIndex(stringStartTokenIndex).type === 'STRING_START') {
-          break;
-        }
-      }
-      let stringEndTokenIndex = context.indexOfEndTokenForStartTokenAtIndex(stringStartTokenIndex);
-      if (stringEndTokenIndex === null) {
+      let tokens = context.sourceTokens;
+      let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(op.range[0]);
+      let interpolatedStringTokenRange = tokens.rangeOfInterpolatedStringTokensContainingTokenIndex(startTokenIndex);
+      if (!interpolatedStringTokenRange) {
         throw new Error('cannot find interpolation end for node');
       }
+      let firstToken = tokens.tokenAtIndex(interpolatedStringTokenRange[0]);
+      let lastToken = tokens.tokenAtIndex(interpolatedStringTokenRange[1].previous());
       op.type = 'TemplateLiteral';
-      op.range = [
-        context.tokenAtIndex(stringStartTokenIndex).range[0],
-        context.tokenAtIndex(stringEndTokenIndex).range[1]
-      ];
+      op.range = [firstToken.start, lastToken.end];
       op.raw = source.slice(...op.range);
 
       let elements = [];
