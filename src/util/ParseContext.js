@@ -55,7 +55,7 @@ export default class ParseContext {
     let [ start, end ] = this.getRange(node);
     let firstTokenIndex = this.indexOfTokenAtOffset(start);
 
-    if (firstTokenIndex === null) {
+    if (firstTokenIndex < 0) {
       return [];
     }
 
