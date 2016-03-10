@@ -9,7 +9,7 @@ import { parse as dcParse } from '../src/parser';
 const defaultPrintKey = (key, stream) => stream.write(key);
 const defaultPrintPrimitive = (value, stream) => stream.write(inspect(value));
 
-export default function print(node, stream, printKey=defaultPrintKey, printPrimitive=defaultPrintPrimitive, indent=0) {
+export default function print(node, stream, printKey=defaultPrintKey, printPrimitive=defaultPrintPrimitive, indent=0, seen=new Set()) {
   const thisIndent = repeat('  ', indent);
   const fullIndent = repeat('  ', indent + 1);
 
@@ -19,7 +19,7 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
     } else {
       stream.write(`[\n${fullIndent}`);
       node.forEach((child, i) => {
-        print(child, stream, printKey, printPrimitive, indent + 1);
+        print(child, stream, printKey, printPrimitive, indent + 1, seen);
         if (i !== node.length - 1) {
           stream.write(`,\n${fullIndent}`);
         }
@@ -35,6 +35,14 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
     return;
   }
 
+  if (seen.has(node)) {
+    stream.write('[CIRCULAR]');
+    return;
+  } else {
+    seen = new Set(Array.from(seen));
+    seen.add(node);
+  }
+
   const hoistedKeys = ['type', 'line', 'column', 'range', 'raw'];
   const extraKeys = Object.getOwnPropertyNames(node).filter(key => hoistedKeys.indexOf(key) < 0).sort();
 
@@ -45,7 +53,7 @@ export default function print(node, stream, printKey=defaultPrintKey, printPrimi
     if (key === 'range' && Array.isArray(node[key])) {
       stream.write(`[ ${node[key][0]}, ${node[key][1]} ]`);
     } else {
-      print(node[key], stream, printKey, printPrimitive, indent + 1);
+      print(node[key], stream, printKey, printPrimitive, indent + 1, seen);
     }
   }
 
