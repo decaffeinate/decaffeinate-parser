@@ -680,6 +680,7 @@ function convert(context) {
                 }
                 if (key.data === 'constructor') {
                   statements.push(ctor = makeNode('Constructor', property.locationData, {
+                    assignee: key,
                     expression: value
                   }));
                 } else if (key.type === 'MemberAccessOp' && key.expression.type === 'This') {

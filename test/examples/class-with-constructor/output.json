@@ -30,6 +30,14 @@
               "column": 3,
               "range": [ 14, 38 ],
               "raw": "constructor: (@x, @y) ->",
+              "assignee": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "range": [ 14, 25 ],
+                "raw": "constructor",
+                "data": "constructor"
+              },
               "expression": {
                 "type": "Function",
                 "line": 2,
@@ -80,6 +88,14 @@
           "column": 3,
           "range": [ 14, 38 ],
           "raw": "constructor: (@x, @y) ->",
+          "assignee": {
+            "type": "Identifier",
+            "line": 2,
+            "column": 3,
+            "range": [ 14, 25 ],
+            "raw": "constructor",
+            "data": "constructor"
+          },
           "expression": {
             "type": "Function",
             "line": 2,

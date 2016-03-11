@@ -41,6 +41,14 @@
               "line": 2,
               "column": 3,
               "range": [ 24, 49 ],
+              "assignee": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "range": [ 24, 35 ],
+                "raw": "constructor",
+                "data": "constructor"
+              },
               "expression": {
                 "type": "Function",
                 "line": 2,
@@ -168,6 +176,14 @@
           "line": 2,
           "column": 3,
           "range": [ 24, 49 ],
+          "assignee": {
+            "type": "Identifier",
+            "line": 2,
+            "column": 3,
+            "range": [ 24, 35 ],
+            "raw": "constructor",
+            "data": "constructor"
+          },
           "expression": {
             "type": "Function",
             "line": 2,
