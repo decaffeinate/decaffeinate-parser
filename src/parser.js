@@ -2,7 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
-import lex from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -821,14 +821,26 @@ function convert(context) {
           }
         }
       }
-      // Shrink to be within the size of the source.
       if (result.range) {
+        // Shrink to be within the size of the source.
         if (result.range[0] < 0) {
           result.range[0] = 0;
         }
         if (result.range[1] > source.length) {
           result.range[1] = source.length;
         }
+        // Shrink the end to the nearest semantic token.
+        let lastTokenIndexOfNode = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
+          return (
+            token.end <= result.range[1] &&
+            token.type !== NEWLINE &&
+            token.type !== COMMENT &&
+            token.type !== HERECOMMENT
+          );
+        });
+
+        let lastTokenOfNode = context.sourceTokens.tokenAtIndex(lastTokenIndexOfNode);
+        result.range[1] = lastTokenOfNode.end;
         result.raw = source.slice(result.range[0], result.range[1]);
       }
       return result;
