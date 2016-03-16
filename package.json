@@ -1,6 +1,6 @@
 {
   "name": "decaffeinate-parser",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
   "main": "dist/decaffeinate-parser.umd.js",
   "jsnext:main": "dist/decaffeinate-parser.es6.js",
