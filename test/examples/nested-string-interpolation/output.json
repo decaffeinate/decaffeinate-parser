@@ -1,0 +1,78 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 13 ],
+  "raw": "\"a#{\"b#{c}\"}\"",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 13 ],
+    "statements": [
+      {
+        "type": "TemplateLiteral",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 13 ],
+        "raw": "\"a#{\"b#{c}\"}\"",
+        "quasis": [
+          {
+            "type": "String",
+            "line": 1,
+            "column": 1,
+            "range": [ 0, 2 ],
+            "data": "a",
+            "raw": "\"a"
+          },
+          {
+            "type": "String",
+            "data": "",
+            "raw": "\"",
+            "line": 1,
+            "column": 13,
+            "range": [ 12, 13 ]
+          }
+        ],
+        "expressions": [
+          {
+            "type": "TemplateLiteral",
+            "line": 1,
+            "column": 5,
+            "range": [ 4, 11 ],
+            "raw": "\"b#{c}\"",
+            "quasis": [
+              {
+                "type": "String",
+                "line": 1,
+                "column": 5,
+                "range": [ 4, 6 ],
+                "data": "b",
+                "raw": "\"b"
+              },
+              {
+                "type": "String",
+                "data": "",
+                "raw": "",
+                "line": 1,
+                "column": 13,
+                "range": [ 12, 11 ]
+              }
+            ],
+            "expressions": [
+              {
+                "type": "Identifier",
+                "line": 1,
+                "column": 9,
+                "range": [ 8, 9 ],
+                "data": "c",
+                "raw": "c"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "raw": "\"a#{\"b#{c}\"}\""
+  }
+}

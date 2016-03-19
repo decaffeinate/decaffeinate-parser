@@ -458,14 +458,8 @@ function convert(context) {
 
       case 'Op':
         const op = convertOperator(node);
-        if (op.type === 'PlusOp') {
-          if (isInterpolatedString(node, context)) {
-            op.type = 'ConcatOp';
-            let parentOp = ancestors.reduce((memo, ancestor) => type(ancestor) === 'Op' ? ancestor : memo, null);
-            if (!parentOp || !isInterpolatedString(parentOp, context)) {
-              return createTemplateLiteral(op);
-            }
-          }
+        if (isInterpolatedString(node, ancestors, context)) {
+          return createTemplateLiteral(op);
         }
         if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
           return makeNode('ChainedComparisonOp', node.locationData, {
