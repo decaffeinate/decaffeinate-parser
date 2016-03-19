@@ -857,7 +857,7 @@ function convert(context) {
       let elements = [];
 
       function addElements({ left, right }) {
-        if (left.type === 'ConcatOp') {
+        if (left.type === 'PlusOp') {
           addElements(left);
         } else {
           elements.push(left);
