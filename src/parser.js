@@ -10,6 +10,8 @@ import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
 
+const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
+
 /**
  * @param {string} source
  * @param {{coffeeScript: {nodes: function(string): Object, tokens: function(string): Array}}} options
@@ -371,6 +373,15 @@ function convert(context) {
           if (!literal) {
             if (raw[0] === '`' && raw[raw.length - 1] === '`') {
               return makeNode('JavaScript', node.locationData, { data: node.value });
+            } else if (raw.slice(0, '///'.length) === '///') {
+              let flags = raw.match(HEREGEX_PATTERN)[2];
+              return makeNode('RegExp', node.locationData, {
+                data: node.value,
+                flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
+                  memo[flag] = flags.indexOf(flag) >= 0;
+                  return memo;
+                }, {})
+              });
             }
             return makeNode('Identifier', node.locationData, { data: node.value });
           } else if (literal.type === 'error') {
@@ -388,6 +399,8 @@ function convert(context) {
             return makeNode('Float', node.locationData, { data: literal.data });
           } else if (literal.type === 'Herestring') {
             return makeNode('Herestring', node.locationData, { data: literal.data, padding: literal.padding });
+          } else if (literal.type === 'RegExp') {
+            return makeNode('RegExp', node.locationData, { data: literal.data, flags: literal.flags });
           } else {
             throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
           }

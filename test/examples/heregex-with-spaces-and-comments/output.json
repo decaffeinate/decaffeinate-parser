@@ -1,0 +1,45 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 306 ],
+  "raw": "OPERATOR = /// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 305 ],
+    "statements": [
+      {
+        "type": "AssignOp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 305 ],
+        "assignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [ 0, 8 ],
+          "data": "OPERATOR",
+          "raw": "OPERATOR"
+        },
+        "expression": {
+          "type": "RegExp",
+          "line": 1,
+          "column": 12,
+          "range": [ 11, 305 ],
+          "data": "/^(?:[-=]>|[-+*\\/%<>&|^!?=]=|>>>=?|([-+:])\\1|([&|<>])\\2=?|\\?\\.|\\.{2,3})/",
+          "flags": {
+            "g": false,
+            "i": false,
+            "m": false,
+            "y": false
+          },
+          "raw": "/// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
+        },
+        "raw": "OPERATOR = /// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
+      }
+    ],
+    "raw": "OPERATOR = /// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
+  }
+}

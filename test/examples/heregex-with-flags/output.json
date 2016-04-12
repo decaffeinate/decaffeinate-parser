@@ -1,0 +1,30 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 15 ],
+  "raw": "///a/b/c///gimy",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 15 ],
+    "statements": [
+      {
+        "type": "RegExp",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 15 ],
+        "data": "/a\\/b\\/c/gimy",
+        "flags": {
+          "g": true,
+          "i": true,
+          "m": true,
+          "y": true
+        },
+        "raw": "///a/b/c///gimy"
+      }
+    ],
+    "raw": "///a/b/c///gimy"
+  }
+}
