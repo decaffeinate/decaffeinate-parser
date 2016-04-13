@@ -1,3 +1,7 @@
+
+const NEWLINE = '\n';
+const NEWLINE_LENGTH = '\n'.length;
+
 /**
  * @param {string} source
  * @returns {function(number, number): number}
@@ -6,10 +10,10 @@ export default function lineColumnMapper(source) {
   const offsets = [0];
   let offset = 0;
 
-  while ((offset = source.indexOf('\n', offset)) > 0) {
-    offset += '\n'.length;
+  source.split(NEWLINE).forEach(function(line) {
     offsets.push(offset);
-  }
+    offset += line.length + NEWLINE_LENGTH;
+  });
 
   const result = (line, column) => offsets[line] + column;
   result.invert = offset => {
