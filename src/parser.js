@@ -18,8 +18,14 @@ const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
  * @returns {Program}
  */
 export function parse(source, options={}) {
+  let CS = options.coffeeScript || CoffeeScript;
+
+  patchCoffeeScript(CS);
+
+  let context = ParseContext.fromSource(source, CS.tokens, lex, CS.nodes);
+
   if (source.length === 0) {
-    return /** @type Program */ {
+    let program = {
       type: 'Program',
       line: 1,
       column: 1,
@@ -27,11 +33,12 @@ export function parse(source, options={}) {
       range: [0, 0],
       body: null
     };
+
+    Object.defineProperty(program, 'context', { value: context });
+    return /** @type Program */ program;
   }
 
-  const CS = options.coffeeScript || CoffeeScript;
-  patchCoffeeScript(CS);
-  return /** @type Program */ convert(ParseContext.fromSource(source, CS.tokens, lex, CS.nodes));
+  return /** @type Program */ convert(context);
 }
 
 function locationContainingNodes(...nodes) {
