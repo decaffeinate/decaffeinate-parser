@@ -1,9 +1,11 @@
+import { LPAREN, RPAREN } from 'coffee-lex';
 /**
  * @param {string} source
  * @param {{first_line: number, first_column: number, last_line: number, last_column: number}} loc
  * @param {function(number, number): number} mapper
+ * @param {SourceTokenList} sourceTokens
  */
-export default function trimNonMatchingParentheses(source, loc, mapper) {
+export default function trimNonMatchingParentheses(source, loc, mapper, sourceTokens) {
   let first = mapper(loc.first_line, loc.first_column);
   let last = mapper(loc.last_line, loc.last_column);
 
@@ -27,12 +29,16 @@ export default function trimNonMatchingParentheses(source, loc, mapper) {
   let lastBalancedIndex = first;
 
   for (let index = first; index <= last; index++) {
-    if (source[index] === '(') {
-      level++;
-    } else if (source[index] === ')') {
-      level--;
-      if (level < 0) {
-        break;
+    const sourceTokenIndex = sourceTokens.indexOfTokenStartingAtSourceIndex(index);
+    if (sourceTokenIndex) {
+      const sourceToken = sourceTokens.tokenAtIndex(sourceTokenIndex);
+      if (sourceToken.type === LPAREN) {
+        level++;
+      } else if (sourceToken.type === RPAREN) {
+        level--;
+        if (level < 0) {
+          break;
+        }
       }
     }
     if (level === 0) {
