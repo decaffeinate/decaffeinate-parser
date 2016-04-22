@@ -989,13 +989,10 @@ function convert(context) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
             expressions.push(element);
-          } else if( element.data && element.data.startsWith('"') && element.data.endsWith('"')){
-            let { range } = element;
-            let borderIndex = source.substr(range[0]).search(/}(.*?)#{/) + range[0];
-            let q = buildQuasiWithString(range,element.raw);
+          } else if( element.data && element.data.search(/^\"(.*?)\"$/) === 0){
+            let q = buildQuasiWithString(element.range,element.raw);
             quasis.push(q);
           }else if (quasis.length < expressions.length + 1) {
-            let { range } = element;
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
             let q = buildQuasi([borderIndex + 1 , borderIndex + 1]);
             quasis.push(q);
