@@ -923,10 +923,21 @@ function convert(context) {
         };
       }
 
+      function buildQuasiWithString(range,unident_str){
+        let loc = mapper.invert(range[0]);
+        return {
+          type: 'String',
+          data: unident_str,
+          raw: source.slice(...range),
+          line: loc.line + 1,
+          column: loc.column ,
+          range
+        };
+      }
+
       function quotesMatch(string) {
         let leftTripleQuoted = string.slice(0, 3) === '"""';
         let rightTripleQuoted = string.slice(-3) === '"""';
-
         if (string.slice(-4) === '\\"""') {
           // Don't count escaped quotes.
           rightTripleQuoted = false;
@@ -947,7 +958,6 @@ function convert(context) {
           // Don't count escaped quotes.
           rightSingleQuoted = false;
         }
-
         if (leftSingleQuoted !== rightSingleQuoted) {
           // Unbalanced.
           return false;
@@ -956,7 +966,6 @@ function convert(context) {
           return string.length >= 2;
         }
       }
-
       elements.forEach((element, i) => {
         if (i === 0) {
           if (element.type === 'String') {
@@ -979,12 +988,24 @@ function convert(context) {
           if (quasis.length === 0) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
-          } else if (quasis.length < expressions.length + 1) {
+            expressions.push(element);
+          } else if( element.data && element.data.startsWith('"') && element.data.endsWith('"')){
+            let { range } = element;
+            let borderIndex = source.substr(range[0]).search(/}(.*?)#{/) + range[0];
+            let q = buildQuasiWithString(range,element.raw);
+            quasis.push(q);
+          }else if (quasis.length < expressions.length + 1) {
+            let { range } = element;
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
-            quasis.push(buildQuasi([borderIndex + 1, borderIndex + 1]));
+            let q = buildQuasi([borderIndex + 1 , borderIndex + 1]);
+            quasis.push(q);
+            expressions.push(element);
+          }else{
+            expressions.push(element);
           }
-          expressions.push(element);
         }
+
+
       });
 
       if (quasis.length < expressions.length + 1) {

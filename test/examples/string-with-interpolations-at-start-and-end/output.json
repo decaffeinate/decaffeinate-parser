@@ -2,8 +2,8 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "\"#{a} #{b}\"\n",
+  "range": [ 0, 11 ],
+  "raw": "\"#{a} #{b}\"",
   "body": {
     "type": "Block",
     "line": 1,
@@ -27,8 +27,8 @@
           },
           {
             "type": "String",
-            "data": "",
-            "raw": "",
+            "data": " ",
+            "raw": " ",
             "line": 1,
             "column": 5,
             "range": [ 5, 6 ]
