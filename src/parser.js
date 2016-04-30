@@ -1193,6 +1193,11 @@ function convert(context) {
               expression: convertChild(op.first)
             });
 
+          case 'yield*':
+            return makeNode('YieldFrom', op.locationData, {
+              expression: convertChild(op.first)
+            });
+
           default:
             throw new Error(`unknown unary operator: ${op.operator}`);
         }
