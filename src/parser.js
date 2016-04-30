@@ -923,11 +923,11 @@ function convert(context) {
         };
       }
 
-      function buildQuasiWithString(range,unident_str){
+      function buildQuasiWithString(range, raw){
         let loc = mapper.invert(range[0]);
         return {
           type: 'String',
-          data: unident_str,
+          data: raw,
           raw: source.slice(...range),
           line: loc.line + 1,
           column: loc.column ,
@@ -989,15 +989,13 @@ function convert(context) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
             expressions.push(element);
-          } else if( element.data && element.data.search(/^\"(.*?)\"$/) === 0){
-            let q = buildQuasiWithString(element.range,element.raw);
-            quasis.push(q);
-          }else if (quasis.length < expressions.length + 1) {
+          } else if (element.data && element.data.search(/^"(.*?)"$/) === 0) {
+            quasis.push(buildQuasiWithString(element.range, element.raw));
+          } else if (quasis.length < expressions.length + 1) {
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
-            let q = buildQuasi([borderIndex + 1 , borderIndex + 1]);
-            quasis.push(q);
+            quasis.push(buildQuasi([borderIndex + 1 , borderIndex + 1]));
             expressions.push(element);
-          }else{
+          } else {
             expressions.push(element);
           }
         }
