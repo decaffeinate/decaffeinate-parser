@@ -1,0 +1,67 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 30 ],
+  "raw": "unless a not instanceof b\n  c\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [ 0, 29 ],
+    "statements": [
+      {
+        "type": "Conditional",
+        "line": 1,
+        "column": 1,
+        "range": [ 0, 29 ],
+        "isUnless": true,
+        "condition": {
+          "type": "InstanceofOp",
+          "line": 1,
+          "column": 8,
+          "range": [ 7, 25 ],
+          "left": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 8,
+            "range": [ 7, 8 ],
+            "data": "a",
+            "raw": "a"
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 25,
+            "range": [ 24, 25 ],
+            "data": "b",
+            "raw": "b"
+          },
+          "raw": "a not instanceof b",
+          "isNot": true
+        },
+        "consequent": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [ 28, 29 ],
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 2,
+              "column": 3,
+              "range": [ 28, 29 ],
+              "data": "c",
+              "raw": "c"
+            }
+          ],
+          "raw": "c",
+          "inline": false
+        },
+        "alternate": null,
+        "raw": "unless a not instanceof b\n  c"
+      }
+    ],
+    "raw": "unless a not instanceof b\n  c"
+  }
+}

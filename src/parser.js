@@ -2,7 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
-import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION } from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -1187,7 +1187,19 @@ function convert(context) {
           right: convertNode(op.second, [...ancestors, op])
         });
         if (result.type === 'InstanceofOp' || result.type === 'OfOp') {
-          result.isNot = op.inverted === true;
+          let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(result.left.range[1]);
+          let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(result.right.range[0]);
+          let isNot = false;
+
+          for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
+            let token = context.sourceTokens.tokenAtIndex(i);
+            if (token.type === OPERATOR || token.type === RELATION) {
+              isNot = source.slice(token.start, token.start + 'not'.length) === 'not';
+              break;
+            }
+          }
+
+          result.isNot = isNot;
         }
         return result;
       } else {
