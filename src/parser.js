@@ -2,7 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
-import lex, { NEWLINE, COMMENT, HERECOMMENT } from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -549,19 +549,45 @@ function convert(context) {
           return convertChild(node.body);
         }
 
-      case 'If':
-        let conditional = makeNode('Conditional', node.locationData, {
-          isUnless: Boolean(node.condition.inverted || node.condition.negated),
-          condition: convertChild(node.condition),
-          consequent: convertChild(node.body),
-          alternate: convertChild(node.elseBody)
-        });
-        if (conditional.consequent) {
-          if (conditional.condition.range[0] > conditional.consequent.range[0]) {
-            conditional.consequent.inline = true;
+      case 'If': {
+        let condition = convertChild(node.condition);
+        let consequent = convertChild(node.body);
+        let alternate = convertChild(node.elseBody);
+        let isUnless = false;
+
+        if (consequent && consequent.range[0] < condition.range[0]) {
+          // POST-if, so look for tokens between the consequent and the condition
+          consequent.inline = true;
+          let lastConsequentTokenIndex = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.range[1]);
+          let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
+
+          for (let i = lastConsequentTokenIndex; i !== firstConditionTokenIndex; i = i.next()) {
+            let token = context.sourceTokens.tokenAtIndex(i);
+            if (token.type === IF) {
+              isUnless = source.slice(token.start, token.end) === 'unless';
+              break;
+            }
+          }
+        } else {
+          // Regular `if`, so look at the start of the node.
+          let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
+
+          for (let i = firstConditionTokenIndex; i !== null; i = i.previous()) {
+            let token = context.sourceTokens.tokenAtIndex(i);
+            if (token.type === IF) {
+              isUnless = source.slice(token.start, token.end) === 'unless';
+              break;
+            }
           }
         }
-        return conditional;
+
+        return makeNode('Conditional', node.locationData, {
+          isUnless,
+          condition,
+          consequent,
+          alternate
+        });
+      }
 
       case 'Code':
         const fnType = node.bound ? 'BoundFunction' :
@@ -777,8 +803,17 @@ function convert(context) {
         // `true` when a parent `If` is an `unless`.
         let left = convertChild(node.object);
         let right = convertChild(node.array);
-        let operatorSource = source.slice(left.range[1], right.range[0]);
-        let isNot = /^\s*not\s+in\s*/.test(operatorSource);
+        let isNot = false;
+
+        let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.range[1]);
+        let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.range[0]);
+
+        for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
+          let token = context.sourceTokens.tokenAtIndex(i);
+          if (token.type === RELATION) {
+            isNot = source.slice(token.start, token.end) !== 'in';
+          }
+        }
 
         return makeNode('InOp', node.locationData, {
           left,
