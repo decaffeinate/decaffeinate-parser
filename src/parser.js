@@ -772,12 +772,20 @@ function convert(context) {
           isInclusive: !node.exclusive
         });
 
-      case 'In':
+      case 'In': {
+        // We don't use the `negated` flag on `node` because it gets set to
+        // `true` when a parent `If` is an `unless`.
+        let left = convertChild(node.object);
+        let right = convertChild(node.array);
+        let operatorSource = source.slice(left.range[1], right.range[0]);
+        let isNot = /^\s*not\s+in\s*/.test(operatorSource);
+
         return makeNode('InOp', node.locationData, {
-          left: convertChild(node.object),
-          right: convertChild(node.array),
-          isNot: node.negated === true
+          left,
+          right,
+          isNot
         });
+      }
 
       case 'Expansion':
         return makeNode('Expansion', node.locationData);
