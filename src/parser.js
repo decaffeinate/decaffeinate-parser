@@ -344,7 +344,7 @@ function convert(context) {
     }
 
     if (node.locationData) {
-      trimNonMatchingParentheses(source, node.locationData, mapper);
+      trimNonMatchingParentheses(source, node.locationData, mapper, context.sourceTokens);
     }
 
     switch (type(node)) {
