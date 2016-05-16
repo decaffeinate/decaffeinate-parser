@@ -344,7 +344,7 @@ function convert(context) {
     }
 
     if (node.locationData && type(node) !=='Literal') {
-      // should't trim an Literal, i.e. "(".
+      // should't trim Literal, i.e. "(".
       trimNonMatchingParentheses(source, node.locationData, mapper);
     }
 
