@@ -343,7 +343,8 @@ function convert(context) {
       return programNode;
     }
 
-    if (node.locationData) {
+    if (node.locationData && type(node) !=='Literal') {
+      // should't trim an Literal, i.e. "(".
       trimNonMatchingParentheses(source, node.locationData, mapper);
     }
 
@@ -1016,7 +1017,7 @@ function convert(context) {
               // This string is not interpolated, it's part of the string interpolation.
               if (element.data === '' && element.raw.length > quote.length) {
                 // CoffeeScript includes the `#` in the raw value of a leading
-                // empty quasi string, but it shouldn't be there.
+                // empty quasi string, but it `should`n't be there.
                 element = buildFirstQuasi();
               }
               quasis.push(element);
@@ -1032,7 +1033,7 @@ function convert(context) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
             expressions.push(element);
-          } else if (element.data && element.data.search(/^"(.*?)"$/) === 0) {
+          } else if ( /^"(.*?)"$/.test(element.data)) {
             quasis.push(buildQuasiWithString(element.range, element.raw));
           } else if (quasis.length < expressions.length + 1) {
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
