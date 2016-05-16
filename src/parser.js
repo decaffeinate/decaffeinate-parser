@@ -1017,7 +1017,7 @@ function convert(context) {
               // This string is not interpolated, it's part of the string interpolation.
               if (element.data === '' && element.raw.length > quote.length) {
                 // CoffeeScript includes the `#` in the raw value of a leading
-                // empty quasi string, but it `should`n't be there.
+                // empty quasi string, but it shouldn't be there.
                 element = buildFirstQuasi();
               }
               quasis.push(element);
