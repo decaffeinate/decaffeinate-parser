@@ -1033,7 +1033,7 @@ function convert(context) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
             expressions.push(element);
-          } else if ( /^"(.*?)"$/.test(element.data)) {
+          } else if (/^"(.*?)"$/.test(element.data)) {
             quasis.push(buildQuasiWithString(element.range, element.raw));
           } else if (quasis.length < expressions.length + 1) {
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);

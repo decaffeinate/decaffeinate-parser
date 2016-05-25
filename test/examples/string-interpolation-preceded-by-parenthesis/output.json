@@ -1,0 +1,51 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [ 0, 66 ],
+  "raw": "# https://github.com/decaffeinate/decaffeinate/issues/212\n\"(#{a}\"\n",
+  "body": {
+    "type": "Block",
+    "line": 2,
+    "column": 1,
+    "range": [ 58, 65 ],
+    "statements": [
+      {
+        "type": "TemplateLiteral",
+        "line": 2,
+        "column": 1,
+        "range": [ 58, 65 ],
+        "raw": "\"(#{a}\"",
+        "quasis": [
+          {
+            "type": "String",
+            "line": 2,
+            "column": 1,
+            "range": [ 58, 60 ],
+            "data": "(",
+            "raw": "\"("
+          },
+          {
+            "type": "String",
+            "data": "",
+            "raw": "\"",
+            "line": 2,
+            "column": 7,
+            "range": [ 64, 65 ]
+          }
+        ],
+        "expressions": [
+          {
+            "type": "Identifier",
+            "line": 2,
+            "column": 5,
+            "range": [ 62, 63 ],
+            "data": "a",
+            "raw": "a"
+          }
+        ]
+      }
+    ],
+    "raw": "\"(#{a}\""
+  }
+}
