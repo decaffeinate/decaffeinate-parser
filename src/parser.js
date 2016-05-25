@@ -343,7 +343,8 @@ function convert(context) {
       return programNode;
     }
 
-    if (node.locationData) {
+    if (node.locationData && type(node) !=='Literal') {
+      // should't trim Literal, i.e. "(".
       trimNonMatchingParentheses(source, node.locationData, mapper);
     }
 
@@ -1032,7 +1033,7 @@ function convert(context) {
             // This element is interpolated and is first, i.e. "#{a}".
             quasis.push(buildFirstQuasi());
             expressions.push(element);
-          } else if (element.data && element.data.search(/^"(.*?)"$/) === 0) {
+          } else if ( /^"(.*?)"$/.test(element.data)) {
             quasis.push(buildQuasiWithString(element.range, element.raw));
           } else if (quasis.length < expressions.length + 1) {
             let borderIndex = source.lastIndexOf('}#{', element.range[0]);
