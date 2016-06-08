@@ -31,7 +31,7 @@
     "babel-register": "^6.7.2",
     "coffee-script-redux": "^2.0.0-beta8",
     "mocha": "^2.4.5",
-    "rollup": "^0.27.0",
+    "rollup": "^0.29.0",
     "rollup-plugin-babel": "^2.4.0",
     "string-repeat": "^1.1.1"
   },
