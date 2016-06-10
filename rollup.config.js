@@ -1,13 +1,25 @@
 import babel from 'rollup-plugin-babel';
-import { readFileSync } from 'fs';
+import babelrc from 'babelrc-rollup';
 
-var babelConfig = JSON.parse(readFileSync('.babelrc', { encoding: 'utf8' }));
-babelConfig.presets = babelConfig.presets.map(function(preset) {
-  return preset === 'es2015' ? 'es2015-rollup' : preset;
-});
-babelConfig.babelrc = false;
+const pkg = require('./package.json');
+const external = Object.keys(pkg.dependencies);
 
 export default {
-  plugins: [babel(babelConfig)],
-  external: ['coffee-script']
+  entry: 'src/parser.js',
+  plugins: [babel(babelrc())],
+  external: external,
+  targets: [
+    {
+      dest: pkg['main'],
+      format: 'umd',
+      moduleName: 'decaffeinate.parser',
+      globals: {
+        'coffee-script': 'CoffeeScript'
+      }
+    },
+    {
+      dest: pkg['jsnext:main'],
+      format: 'es6'
+    }
+  ]
 };
