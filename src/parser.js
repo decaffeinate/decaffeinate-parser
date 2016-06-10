@@ -2,7 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
-import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR } from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
@@ -127,19 +127,34 @@ function convert(context) {
         break;
       }
 
+      case 'Index':
+      case 'Slice':
+      {
+        let rangeOfBrackets = rangeOfBracketTokensForIndexNode(node);
+        let lbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[0]);
+        let lbracketLoc = mapper.invert(lbracket.start);
+        let rbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[1].previous());
+        let rbracketLoc = mapper.invert(rbracket.start);
+        node.locationData = {
+          first_line: lbracketLoc.line,
+          first_column: lbracketLoc.column,
+          last_line: rbracketLoc.line,
+          last_column: rbracketLoc.column
+        };
+        break;
+      }
+
       case 'Access':
       case 'Arr':
       case 'Bool':
       case 'Comment':
       case 'Existence':
       case 'Expansion':
-      case 'Index':
       case 'Literal':
       case 'Null':
       case 'Parens':
       case 'Range':
       case 'Return':
-      case 'Slice':
       case 'Splat':
       case 'Throw':
       case 'Undefined':
@@ -317,6 +332,20 @@ function convert(context) {
           inspect(node)
         );
     }
+  }
+
+  function rangeOfBracketTokensForIndexNode(indexNode) {
+    let start = mapper(indexNode.locationData.first_line, indexNode.locationData.first_column);
+    let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
+    let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(LBRACKET, RBRACKET, startTokenIndex);
+    if (!range) {
+      throw new Error(
+        `cannot find braces surrounding index at ` +
+        `${indexNode.locationData.first_line + 1}:${indexNode.locationData.first_column}: ` +
+        `${inspect(indexNode)}`
+      );
+    }
+    return range;
   }
 
   /**
@@ -1072,13 +1101,13 @@ function convert(context) {
           });
 
         case 'Index':
-          return makeNode(prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
+          return makeNode(prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
             indexingExpr: convertNode(prop.index, [...ancestors, node, prop])
           });
 
         case 'Slice':
-          return makeNode('Slice', expandLocationRightThrough(mergeLocations(loc, prop.locationData), ']'), {
+          return makeNode('Slice', mergeLocations(loc, prop.locationData), {
             expression,
             left: convertChild(prop.range.from),
             right: convertChild(prop.range.to),
@@ -1262,27 +1291,6 @@ function convert(context) {
           expression: convertNode(op.first, [...ancestors, op])
         });
       }
-    }
-
-    function expandLocationRightThrough(loc, string) {
-      let offset = mapper(loc.last_line, loc.last_column) + 1;
-      offset = source.indexOf(string, offset);
-
-      if (offset < 0) {
-        throw new Error(
-          `unable to expand location ending at ${loc.last_line + 1}:${loc.last_column + 1} ` +
-          `because it is not followed by ${JSON.stringify(string)}`
-        );
-      }
-
-      const newLoc = mapper.invert(offset + string.length - 1);
-
-      return {
-        first_line: loc.first_line,
-        first_column: loc.first_column,
-        last_line: newLoc.line,
-        last_column: newLoc.column
-      };
     }
 
     function expandLocationLeftThrough(loc, string) {
