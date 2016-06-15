@@ -1,0 +1,66 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [0, 15 ],
+  "raw": "a if (b and c)\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [0, 14 ],
+    "statements": [
+      {
+        "type": "Conditional",
+        "line": 1,
+        "column": 1,
+        "range": [0, 14 ],
+        "isUnless": false,
+        "condition": {
+          "type": "LogicalAndOp",
+          "line": 1,
+          "column": 7,
+          "range": [6, 13 ],
+          "left": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 7,
+            "range": [6, 7 ],
+            "data": "b",
+            "raw": "b"
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 13,
+            "range": [12, 13 ],
+            "data": "c",
+            "raw": "c"
+          },
+          "raw": "b and c"
+        },
+        "consequent": {
+          "type": "Block",
+          "line": 1,
+          "column": 1,
+          "range": [0, 1 ],
+          "statements": [
+            {
+              "type": "Identifier",
+              "line": 1,
+              "column": 1,
+              "range": [0, 1 ],
+              "data": "a",
+              "raw": "a"
+            }
+          ],
+          "raw": "a",
+          "inline": true
+        },
+        "alternate": null,
+          "raw": "a if (b and c)"
+      }
+    ],
+    "raw": "a if (b and c)"
+  }
+}

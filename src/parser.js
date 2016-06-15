@@ -244,7 +244,7 @@ function convert(context) {
       case 'If':
       {
         let lastChild = node.elseBody || node.body;
-        node.locationData = locationWithLastPosition(
+        node.locationData = mergeLocations(
           node.locationData,
           lastChild.locationData
         );
