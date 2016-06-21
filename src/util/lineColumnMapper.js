@@ -6,7 +6,7 @@ export default function lineColumnMapper(source) {
   const offsets = [0];
   let offset = 0;
 
-  while ((offset = source.indexOf('\n', offset)) > 0) {
+  while ((offset = source.indexOf('\n', offset)) >= 0) {
     offset += '\n'.length;
     offsets.push(offset);
   }
