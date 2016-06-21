@@ -1,6 +1,5 @@
 {
   "name": "decaffeinate-parser",
-  "version": "1.3.1",
   "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
   "main": "dist/decaffeinate-parser.umd.js",
   "jsnext:main": "dist/decaffeinate-parser.es6.js",
@@ -8,7 +7,8 @@
     "prebuild": "rm -rf dist/",
     "build": "rollup -c",
     "prepublish": "npm run build",
-    "test": "mocha"
+    "test": "mocha",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "coffeescript",
@@ -35,9 +35,14 @@
     "mocha": "^2.4.5",
     "rollup": "^0.30.0",
     "rollup-plugin-babel": "^2.4.0",
+    "semantic-release": "^4.3.5",
     "string-repeat": "^1.1.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decaffeinate/decaffeinate-parser.git"
   }
 }
