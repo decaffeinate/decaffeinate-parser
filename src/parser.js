@@ -22,7 +22,7 @@ export function parse(source, options={}) {
 
   patchCoffeeScript(CS);
 
-  let context = ParseContext.fromSource(source, CS.tokens, lex, CS.nodes);
+  let context = ParseContext.fromSource(source, lex, CS.nodes);
 
   if (source.length === 0) {
     let program = {
