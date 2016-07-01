@@ -2,6 +2,7 @@ import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isInterpolatedString from './util/isInterpolatedString';
+import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
@@ -100,7 +101,7 @@ function mergeLocations(left, right) {
  * @returns {Node}
  */
 function convert(context) {
-  const { source, lineMap: mapper } = context;
+  const { source, linesAndColumns } = context;
   fixLocations(context.ast);
   return convertNode(context.ast);
 
@@ -114,6 +115,9 @@ function convert(context) {
         fixLocations(child, [node, ...ancestors]);
       }
     });
+
+    node.locationData = fixInvalidLocationData(node.locationData, context.linesAndColumns);
+
     switch (type(node)) {
       case 'Value':
       {
@@ -132,9 +136,9 @@ function convert(context) {
       {
         let rangeOfBrackets = rangeOfBracketTokensForIndexNode(node);
         let lbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[0]);
-        let lbracketLoc = mapper.invert(lbracket.start);
+        let lbracketLoc = linesAndColumns.locationForIndex(lbracket.start);
         let rbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[1].previous());
-        let rbracketLoc = mapper.invert(rbracket.start);
+        let rbracketLoc = linesAndColumns.locationForIndex(rbracket.start);
         node.locationData = {
           first_line: lbracketLoc.line,
           first_column: lbracketLoc.column,
@@ -163,7 +167,7 @@ function convert(context) {
       case 'Obj':
       {
         let loc = node.locationData;
-        let start = mapper(loc.first_line, loc.first_column);
+        let start = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
         let isImplicitObject = source[start] !== '{';
         if (isImplicitObject) {
           let lastChild = node.properties[node.properties.length - 1];
@@ -212,7 +216,7 @@ function convert(context) {
         if (node.variable) {
           // `super` won't have a callee (i.e. `node.variable`)
           let calleeLoc = node.variable.locationData;
-          let calleeEnd = mapper(calleeLoc.last_line, calleeLoc.last_column) + 1;
+          let calleeEnd = linesAndColumns.indexForLocation({ line: calleeLoc.last_line, column: calleeLoc.last_column }) + 1;
           // Account for soaked calls, e.g. `a?()`.
           if (source[calleeEnd] === '?') { calleeEnd += 1; }
           let isImplicitCall = source[calleeEnd] !== '(';
@@ -335,7 +339,7 @@ function convert(context) {
   }
 
   function rangeOfBracketTokensForIndexNode(indexNode) {
-    let start = mapper(indexNode.locationData.first_line, indexNode.locationData.first_column);
+    let start = linesAndColumns.indexForLocation({ line: indexNode.locationData.first_line, column: indexNode.locationData.first_column });
     let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
     let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(LBRACKET, RBRACKET, startTokenIndex);
     if (!range) {
@@ -403,8 +407,8 @@ function convert(context) {
         if (node.value === 'this') {
           return makeNode('This', node.locationData);
         } else {
-          let start = mapper(node.locationData.first_line, node.locationData.first_column);
-          let end = mapper(node.locationData.last_line, node.locationData.last_column) + 1;
+          let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
+          let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
           let raw = source.slice(start, end);
           let literal = parseLiteral(raw, start);
           if (!literal) {
@@ -882,8 +886,8 @@ function convert(context) {
     function makeNode(type, loc, attrs = {}) {
       const result = {type};
       if (loc) {
-        const start = mapper(loc.first_line, loc.first_column);
-        const end = mapper(loc.last_line, loc.last_column) + 1;
+        const start = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
+        const end = linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column }) + 1;
         result.line = loc.first_line + 1;
         result.column = loc.first_column + 1;
         result.range = [start, end];
@@ -985,7 +989,7 @@ function convert(context) {
       }
 
       function buildQuasi(range) {
-        let loc = mapper.invert(range[0]);
+        let loc = linesAndColumns.locationForIndex(range[0]);
         return {
           type: 'String',
           data: '',
@@ -997,7 +1001,7 @@ function convert(context) {
       }
 
       function buildQuasiWithString(range, raw){
-        let loc = mapper.invert(range[0]);
+        let loc = linesAndColumns.locationForIndex(range[0]);
         return {
           type: 'String',
           data: raw,
@@ -1294,7 +1298,7 @@ function convert(context) {
     }
 
     function expandLocationLeftThrough(loc, string) {
-      let offset = mapper(loc.first_line, loc.first_column);
+      let offset = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
       offset = source.lastIndexOf(string, offset);
 
       if (offset < 0) {
@@ -1304,7 +1308,7 @@ function convert(context) {
         );
       }
 
-      const newLoc = mapper.invert(offset);
+      const newLoc = linesAndColumns.locationForIndex(offset);
 
       return {
         first_line: newLoc.line,
