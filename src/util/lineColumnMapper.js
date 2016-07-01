@@ -1,6 +1,7 @@
 /**
  * @param {string} source
  * @returns {function(number, number): number}
+ * @deprecated
  */
 export default function lineColumnMapper(source) {
   const offsets = [0];

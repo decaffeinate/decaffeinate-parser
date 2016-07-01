@@ -6,22 +6,22 @@ import { CALL_START, CALL_END, LPAREN, RPAREN } from 'coffee-lex';
  * @param {ParseContext} context
  */
 export default function trimNonMatchingParentheses(source, loc, context) {
-  let mapper = context.lineMap;
-  let first = mapper(loc.first_line, loc.first_column);
-  let last = mapper(loc.last_line, loc.last_column);
+  let { linesAndColumns } = context;
+  let first = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
+  let last = linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
 
   // Ensure first & last are in bounds.
 
-  if (first < 0) {
+  if (first === null) {
     first = 0;
-    const firstLoc = mapper.invert(first);
+    let firstLoc = linesAndColumns.locationForIndex(first);
     loc.first_line = firstLoc.line;
     loc.first_column = firstLoc.column;
   }
 
-  if (last >= source.length) {
+  if (last === null) {
     last = source.length - 1;
-    const lastLoc = mapper.invert(last);
+    let lastLoc = linesAndColumns.locationForIndex(last);
     loc.last_line = lastLoc.line;
     loc.last_column = lastLoc.column;
   }
@@ -66,7 +66,7 @@ export default function trimNonMatchingParentheses(source, loc, context) {
 
   if (level !== 0 && lastBalancedIndex !== last) {
     last = lastBalancedIndex;
-    let lastLoc = mapper.invert(last);
+    let lastLoc = linesAndColumns.locationForIndex(last);
     loc.last_line = lastLoc.line;
     loc.last_column = lastLoc.column;
   }

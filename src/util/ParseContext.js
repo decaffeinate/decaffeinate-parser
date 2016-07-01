@@ -1,4 +1,5 @@
 import lineColumnMapper from './lineColumnMapper';
+import LinesAndColumns from 'lines-and-columns';
 
 class ParseError extends Error {
   constructor(syntaxError) {
@@ -15,7 +16,13 @@ export default class ParseContext {
    */
   constructor(source, sourceTokens, ast) {
     this.source = source;
+    /**
+     * Use `linesAndColumns` instead.
+     * 
+     * @deprecated
+     */
     this.lineMap = lineColumnMapper(source);
+    this.linesAndColumns = new LinesAndColumns(source);
     this.ast = ast;
     this.sourceTokens = sourceTokens;
   }
@@ -31,8 +38,8 @@ export default class ParseContext {
       return this.getRange(locatable.locationData);
     } else {
       return [
-        this.lineMap(locatable.first_line, locatable.first_column),
-        this.lineMap(locatable.last_line, locatable.last_column) + 1
+        this.linesAndColumns.indexForLocation({ line: locatable.first_line, column: locatable.first_column }),
+        this.linesAndColumns.indexForLocation({ line: locatable.last_line, column: locatable.last_column })
       ];
     }
   }
