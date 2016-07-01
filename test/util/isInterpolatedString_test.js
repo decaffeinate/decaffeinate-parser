@@ -1,27 +1,52 @@
 import isInterpolatedString from '../../src/util/isInterpolatedString';
 import ParseContext from '../../src/util/ParseContext';
 import coffeeLex from 'coffee-lex';
-import { nodes as parse, tokens as lex } from 'coffee-script';
+import { nodes as parse } from 'coffee-script';
 import { ok } from 'assert';
 
 describe('isInterpolatedString', () => {
   it('is false for non-interpolated strings', () => {
-    const context = ParseContext.fromSource('"a"', lex, coffeeLex, parse);
-    ok(!isInterpolatedString(context.ast.expressions[0], context));
+    let { node, ancestors, context } = getStringInfo('"a"', false);
+    ok(!isInterpolatedString(node, ancestors, context));
   });
 
   it('is true for strings that contain nothing but a single interpolation', () => {
-    const context = ParseContext.fromSource('"#{a}"', lex, coffeeLex, parse);
-    ok(isInterpolatedString(context.ast.expressions[0], context));
+    let { node, ancestors, context } = getStringInfo('"#{a}"', true);
+    ok(isInterpolatedString(node, ancestors, context));
   });
 
   it('is true for strings that start with an interpolation', () => {
-    const context = ParseContext.fromSource('"#{a}b"', lex, coffeeLex, parse);
-    ok(isInterpolatedString(context.ast.expressions[0], context));
+    let { node, ancestors, context } = getStringInfo('"#{a}b"', true);
+    ok(isInterpolatedString(node, ancestors, context));
   });
 
   it('is true for strings that start with string value but contain an interpolation', () => {
-    const context = ParseContext.fromSource('"a#{b}"', lex, coffeeLex, parse);
-    ok(isInterpolatedString(context.ast.expressions[0], context));
+    let { node, ancestors, context } = getStringInfo('"a#{b}"', true);
+    ok(isInterpolatedString(node, ancestors, context));
   });
+
+  function getStringInfo(source, interpolated) {
+    let context = ParseContext.fromSource(source, coffeeLex, parse);
+
+    if (interpolated) {
+      return {
+        node: context.ast.expressions[0].base.body.expressions[0],
+        ancestors: [
+          context.ast.expressions[0].base.body,
+          context.ast.expressions[0].base,
+          context.ast.expressions[0],
+          context.ast
+        ],
+        context
+      };
+    } else {
+      return {
+        node: context.ast.expressions[0],
+        ancestors: [
+          context.ast
+        ],
+        context
+      };
+    }
+  }
 });
