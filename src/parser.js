@@ -6,7 +6,6 @@ import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
-import trimNonMatchingParentheses from './util/trimNonMatchingParentheses';
 import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
@@ -374,11 +373,6 @@ function convert(context) {
         enumerable: false
       });
       return programNode;
-    }
-
-    if (node.locationData && type(node) !=='Literal') {
-      // should't trim Literal, i.e. "(".
-      trimNonMatchingParentheses(source, node.locationData, context);
     }
 
     switch (type(node)) {
