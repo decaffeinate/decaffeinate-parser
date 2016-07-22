@@ -1,6 +1,7 @@
 import * as CoffeeScript from 'coffee-script';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
+import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET } from 'coffee-lex';
@@ -506,7 +507,7 @@ function convert(context) {
 
       case 'Op':
         const op = convertOperator(node);
-        if (isInterpolatedString(node, ancestors, context)) {
+        if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
           return createTemplateLiteral(op);
         }
         if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
@@ -948,7 +949,7 @@ function convert(context) {
       let elements = [];
 
       function addElements({ left, right }) {
-        if (left.type === 'PlusOp') {
+        if (isImplicitPlusOp(left, context)) {
           addElements(left);
         } else {
           elements.push(left);
