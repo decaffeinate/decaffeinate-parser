@@ -1,0 +1,90 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "\"#{a + b}c\"\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      11
+    ],
+    "statements": [
+      {
+        "type": "TemplateLiteral",
+        "line": 1,
+        "column": 3,
+        "range": [
+          0,
+          11
+        ],
+        "raw": "\"#{a + b}c\"",
+        "quasis": [
+          {
+            "type": "String",
+            "data": "",
+            "raw": "\"",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              1
+            ]
+          },
+          {
+            "type": "String",
+            "line": 1,
+            "column": 10,
+            "range": [
+              9,
+              11
+            ],
+            "data": "c",
+            "raw": "c\""
+          }
+        ],
+        "expressions": [
+          {
+            "type": "PlusOp",
+            "line": 1,
+            "column": 4,
+            "range": [
+              3,
+              8
+            ],
+            "left": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 4,
+              "range": [
+                3,
+                4
+              ],
+              "data": "a",
+              "raw": "a"
+            },
+            "right": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 8,
+              "range": [
+                7,
+                8
+              ],
+              "data": "b",
+              "raw": "b"
+            },
+            "raw": "a + b"
+          }
+        ]
+      }
+    ],
+    "raw": "\"#{a + b}c\""
+  }
+}
