@@ -1,7 +1,7 @@
 import isInterpolatedString from '../../src/util/isInterpolatedString';
 import ParseContext from '../../src/util/ParseContext';
 import coffeeLex from 'coffee-lex';
-import { nodes as parse } from 'coffee-script';
+import { nodes as parse } from 'decaffeinate-coffeescript';
 import { ok } from 'assert';
 
 describe('isInterpolatedString', () => {

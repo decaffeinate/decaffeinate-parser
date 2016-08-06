@@ -14,7 +14,7 @@ export default {
       format: 'umd',
       moduleName: 'decaffeinate.parser',
       globals: {
-        'coffee-script': 'CoffeeScript'
+        'decaffeinate-coffeescript': 'CoffeeScript'
       }
     },
     {

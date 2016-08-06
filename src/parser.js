@@ -1,4 +1,4 @@
-import * as CoffeeScript from 'coffee-script';
+import * as CoffeeScript from 'decaffeinate-coffeescript';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
