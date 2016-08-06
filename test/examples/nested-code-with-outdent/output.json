@@ -1,0 +1,204 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    53
+  ],
+  "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}\ng\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      52
+    ],
+    "statements": [
+      {
+        "type": "FunctionApplication",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          50
+        ],
+        "function": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [
+            0,
+            1
+          ],
+          "data": "a",
+          "raw": "a"
+        },
+        "arguments": [
+          {
+            "type": "ObjectInitialiser",
+            "line": 1,
+            "column": 3,
+            "range": [
+              2,
+              50
+            ],
+            "members": [
+              {
+                "type": "ObjectInitialiserMember",
+                "line": 2,
+                "column": 3,
+                "range": [
+                  6,
+                  50
+                ],
+                "key": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 3,
+                  "range": [
+                    6,
+                    7
+                  ],
+                  "data": "b",
+                  "raw": "b"
+                },
+                "expression": {
+                  "type": "Function",
+                  "line": 2,
+                  "column": 6,
+                  "range": [
+                    9,
+                    50
+                  ],
+                  "body": {
+                    "type": "Block",
+                    "line": 3,
+                    "column": 5,
+                    "range": [
+                      16,
+                      50
+                    ],
+                    "statements": [
+                      {
+                        "type": "Return",
+                        "line": 3,
+                        "column": 5,
+                        "range": [
+                          16,
+                          50
+                        ],
+                        "expression": {
+                          "type": "FunctionApplication",
+                          "line": 3,
+                          "column": 12,
+                          "range": [
+                            23,
+                            48
+                          ],
+                          "function": {
+                            "type": "Identifier",
+                            "line": 3,
+                            "column": 12,
+                            "range": [
+                              23,
+                              24
+                            ],
+                            "data": "c",
+                            "raw": "c"
+                          },
+                          "arguments": [
+                            {
+                              "type": "Identifier",
+                              "line": 3,
+                              "column": 14,
+                              "range": [
+                                25,
+                                26
+                              ],
+                              "data": "d",
+                              "raw": "d"
+                            },
+                            {
+                              "type": "Conditional",
+                              "line": 4,
+                              "column": 7,
+                              "range": [
+                                34,
+                                48
+                              ],
+                              "isUnless": false,
+                              "condition": {
+                                "type": "Identifier",
+                                "line": 4,
+                                "column": 10,
+                                "range": [
+                                  37,
+                                  38
+                                ],
+                                "data": "e",
+                                "raw": "e"
+                              },
+                              "consequent": {
+                                "type": "Block",
+                                "line": 5,
+                                "column": 9,
+                                "range": [
+                                  47,
+                                  48
+                                ],
+                                "statements": [
+                                  {
+                                    "type": "Identifier",
+                                    "line": 5,
+                                    "column": 9,
+                                    "range": [
+                                      47,
+                                      48
+                                    ],
+                                    "data": "f",
+                                    "raw": "f"
+                                  }
+                                ],
+                                "raw": "f",
+                                "inline": false
+                              },
+                              "alternate": null,
+                              "raw": "if e\n        f"
+                            }
+                          ],
+                          "raw": "c d,\n      if e\n        f"
+                        },
+                        "raw": "return c d,\n      if e\n        f\n}"
+                      }
+                    ],
+                    "raw": "return c d,\n      if e\n        f\n}",
+                    "inline": false
+                  },
+                  "parameters": [],
+                  "raw": "->\n    return c d,\n      if e\n        f\n}"
+                },
+                "raw": "b: ->\n    return c d,\n      if e\n        f\n}"
+              }
+            ],
+            "raw": "{\n  b: ->\n    return c d,\n      if e\n        f\n}"
+          }
+        ],
+        "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}"
+      },
+      {
+        "type": "Identifier",
+        "line": 7,
+        "column": 1,
+        "range": [
+          51,
+          52
+        ],
+        "data": "g",
+        "raw": "g"
+      }
+    ],
+    "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}\ng"
+  }
+}
