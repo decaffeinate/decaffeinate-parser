@@ -33,7 +33,7 @@ export default function parseLiteral(string, offset=0) {
  *   among all lines except the partial line immediately after the open quotes.
  *   Note that this "smallest nonzero amount" behavior doesn't just ignore blank
  *   lines; *any* line with no leading whitespace will be ignored when
- *   calculating this value. Even though this initial partial line has no effect
+ *   calculating this value. Even though the initial partial line has no effect
  *   when computing leading whitespace, the common leading whitespace is still
  *   removed from that line if possible.
  * - Due to a bug in CoffeeScript, if the first full line (the one after the
