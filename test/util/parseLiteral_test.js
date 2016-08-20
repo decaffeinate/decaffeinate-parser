@@ -1,5 +1,7 @@
-import parseLiteral from '../../src/util/parseLiteral';
 import { deepEqual } from 'assert';
+import * as CoffeeScript from 'decaffeinate-coffeescript';
+
+import parseLiteral from '../../src/util/parseLiteral';
 
 describe('parseLiteral', () => {
   it('parses single-quoted strings', () => {
@@ -93,4 +95,84 @@ describe('parseLiteral', () => {
   it('parses floats without a leading digit', () => {
     deepEqual(parseLiteral('.1'), { type: 'float', data: 0.1 });
   });
+
+  it('inserts proper padding with when parsing multi-line herestrings', () => {
+    deepEqual(parseLiteral("'''a\n b'''"), { type: 'Herestring', data: 'a\nb', padding: [[5, 6]] });
+  });
+
+  it('ignores the indentation level of the first line in herestrings', () => {
+    verifyHerestringMatchesCoffeeScript(`a
+      b`, 'a\nb');
+  });
+
+  it('removes leading nonempty indentation in herestrings', () => {
+    verifyHerestringMatchesCoffeeScript(`
+ a
+  b
+c
+d`,
+      'a\n b\nc\nd');
+  });
+
+  it('preserves leading indentation on the first line in herestrings if necessary', () => {
+    verifyHerestringMatchesCoffeeScript(` a
+          b
+            c
+          d`, ' a\nb\n  c\nd');
+  });
+
+  it('removes indentation normally if the first full line is empty', () => {
+    verifyHerestringMatchesCoffeeScript(`
+
+  a
+  b
+  c`, '\na\nb\nc');
+  });
+
+  it('uses indentation 0 for herestrings if the first full line is nonempty and has indentation 0', () => {
+    verifyHerestringMatchesCoffeeScript(`
+a
+  b
+ c
+d`,
+      'a\n  b\n c\nd');
+  });
+
+  it('removes indentation from the first line if possible', () => {
+    verifyHerestringMatchesCoffeeScript(`     a
+      b
+    c
+      d`,
+      ' a\n  b\nc\n  d');
+  });
+
+  it('keeps spacing in the second line if there are two lines and both are only whitespace', () => {
+    verifyHerestringMatchesCoffeeScript(`    
+   `,
+      '   ');
+  });
+
+  it('removes leading whitespace from herestrings with tabs', () => {
+    verifyHerestringMatchesCoffeeScript(`
+\t\t\t\ta
+\t\tb`,
+      '\t\ta\nb');
+  });
+
+  it('handles a string with a leading and trailing blank line', () => {
+    verifyHerestringMatchesCoffeeScript(`
+a
+`,
+      'a');
+  });
+
+  function verifyHerestringMatchesCoffeeScript(stringContents, expectedResultString) {
+    let code = `"""${stringContents}"""`;
+    let decaffeinateParserResult = parseLiteral(code).data;
+    let coffeeScriptResult = JSON.parse(
+      CoffeeScript.tokens(code)[0][1].replace(/\t/g, '\\t')
+    );
+    deepEqual(decaffeinateParserResult, coffeeScriptResult);
+    deepEqual(decaffeinateParserResult, expectedResultString);
+  }
 });
