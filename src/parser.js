@@ -976,7 +976,7 @@ function convert(context) {
       function buildLastQuasi() {
         // Find the close of the last interpolation, i.e. "a#{b}".
         //                                                     ^
-        let endOfInterpolation = op.range[1];
+        let endOfInterpolation = op.range[1] - 1;
         while (source[endOfInterpolation] !== '}') {
           endOfInterpolation -= 1;
         }

@@ -1,0 +1,102 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "{a: \"#{b}\"}\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      11
+    ],
+    "statements": [
+      {
+        "type": "ObjectInitialiser",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          11
+        ],
+        "members": [
+          {
+            "type": "ObjectInitialiserMember",
+            "line": 1,
+            "column": 2,
+            "range": [
+              1,
+              10
+            ],
+            "key": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 2,
+              "range": [
+                1,
+                2
+              ],
+              "data": "a",
+              "raw": "a"
+            },
+            "expression": {
+              "type": "TemplateLiteral",
+              "line": 1,
+              "column": 5,
+              "range": [
+                4,
+                10
+              ],
+              "raw": "\"#{b}\"",
+              "quasis": [
+                {
+                  "type": "String",
+                  "line": 1,
+                  "column": 5,
+                  "range": [
+                    4,
+                    5
+                  ],
+                  "data": "",
+                  "raw": "\""
+                },
+                {
+                  "type": "String",
+                  "data": "",
+                  "raw": "\"",
+                  "line": 1,
+                  "column": 10,
+                  "range": [
+                    9,
+                    10
+                  ]
+                }
+              ],
+              "expressions": [
+                {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 8,
+                  "range": [
+                    7,
+                    8
+                  ],
+                  "data": "b",
+                  "raw": "b"
+                }
+              ]
+            },
+            "raw": "a: \"#{b}\""
+          }
+        ],
+        "raw": "{a: \"#{b}\"}"
+      }
+    ],
+    "raw": "{a: \"#{b}\"}"
+  }
+}
