@@ -23,34 +23,83 @@ export default function parseLiteral(string, offset=0) {
   }
 }
 
+/**
+ * Compute the padding (the extra spacing to remove) for the given herestring.
+ *
+ * CoffeeScript removes spacing in the following situations:
+ * - If the first or last line is completely blank, it is removed.
+ * - The "common leading whitespace" is removed from each line if possible. This
+ *   is computed by taking the smallest nonzero amount of leading whitespace
+ *   among all lines except the partial line immediately after the open quotes.
+ *   Note that this "smallest nonzero amount" behavior doesn't just ignore blank
+ *   lines; *any* line with no leading whitespace will be ignored when
+ *   calculating this value. Even though the initial partial line has no effect
+ *   when computing leading whitespace, the common leading whitespace is still
+ *   removed from that line if possible.
+ * - Due to a bug in CoffeeScript, if the first full line (the one after the
+ *   partial line) is nonempty and has indent zero, the entire string is
+ *   considered to have "common leading whitespace" zero.
+ * - Due to another bug in CoffeeScript, if the herestring has exactly two lines
+ *   that both consist of only whitespace, the whitespace and newline is removed
+ *   from the first line, but the second line keeps all of its whitespace.
+ *
+ * See the stringToken function in lexer.coffee in the CoffeeScript source code
+ * for CoffeeScript's implementation of this.
+ *
+ * The "padding" array returned by this function is an array of ranges of
+ * whitespace to remove.
+ */
 function parseHerestring(string, quote, offset=0) {
   let { error, data } = parseQuotedString(string, quote);
   if (error) {
     return { type: 'error', error };
   }
-  let { leadingMargin, trailingMargin, ranges } = getIndentInfo(string, 3, string.length - 3);
-  let indentSize = sharedIndentSize(ranges);
+  let ranges = getLeadingWhitespaceRanges(string, 3, string.length - 3);
 
   let padding = [];
-  let contentStart = offset + 3;
-  let contentEnd = offset + string.length - 3;
-
-  if (leadingMargin) {
-    padding.push([contentStart, contentStart + leadingMargin]);
-  }
-
-  if (indentSize) {
-    ranges.forEach(([start, end]) => {
-      if (end - start >= indentSize) {
+  if (ranges.length >= 2) {
+    let indentSize;
+    let [firstFullLineIndentStart, firstFullLineIndentEnd] = ranges[1];
+    if (firstFullLineIndentStart === firstFullLineIndentEnd &&
+        string[firstFullLineIndentEnd] !== '\n' &&
+        firstFullLineIndentEnd !== string.length - 3) {
+      // Replicate a bug in CoffeeScript: treat the indent level as 0 if the
+      // first full line is nonempty and has indent zero.
+      indentSize = 0;
+    } else {
+      // The first line (a partial line) is ignored when computing indent.
+      indentSize = sharedIndentSize(ranges.slice(1));
+    }
+    let removeInitialIndent = function(start, end) {
+      if (indentSize > 0 && end - start >= indentSize) {
         padding.push([offset + start, offset + start + indentSize]);
       }
-    });
+    };
+
+    let [initialStart, initialEnd] = ranges[0];
+    if (string[initialEnd] === '\n') {
+      padding.push([offset + initialStart, offset + initialEnd + 1]);
+    } else {
+      removeInitialIndent(initialStart, initialEnd);
+    }
+
+    ranges.slice(1, ranges.length - 1).forEach(
+      ([start, end]) => removeInitialIndent(start, end));
+
+    let [finalStart, finalEnd] = ranges[ranges.length - 1];
+    if (finalEnd === string.length - 3) {
+      // Replicate a bug in CoffeeScript: if the first line was removed due to
+      // only having whitespace, and there are exactly two lines, don't run the
+      // remove-if-only-whitespace code for the second line.
+      if (!(ranges.length === 2 && finalStart === initialEnd + 1)) {
+        padding.push([offset + finalStart - 1, offset + finalEnd])
+      }
+    } else {
+      removeInitialIndent(finalStart, finalEnd);
+    }
   }
 
-  if (trailingMargin) {
-    padding.push([contentEnd - trailingMargin, contentEnd]);
-  }
-
+  let contentStart = offset + 3;
   for (let i = padding.length - 1; i >= 0; i--) {
     let [ start, end ] = padding[i];
     data = data.slice(0, start - contentStart) + data.slice(end - contentStart);
@@ -212,49 +261,27 @@ function parseOctal(string) {
 }
 
 /**
+ * Determines the indents in the given string for herestring processing.
+ *
  * @param {string} source
  * @param {number=} start
  * @param {number=} end
- * @returns {{leadingMargin: number, trailingMargin: number, ranges: Array<Array<number>>}}
+ * @returns Array<Array<number>>}
  */
-function getIndentInfo(source, start=0, end=source.length) {
+function getLeadingWhitespaceRanges(source, start=0, end=source.length) {
   const ranges = [];
-
-  let leadingMargin = 0;
-  while (source[start + leadingMargin] === ' ') {
-    leadingMargin += ' '.length;
-  }
-  if (source[start + leadingMargin] === '\n') {
-    leadingMargin += '\n'.length;
-    start += leadingMargin;
-  }
-
-  let trailingMargin = 0;
-  while (source[end - trailingMargin - ' '.length] === ' ') {
-    trailingMargin += ' '.length;
-  }
-  if (source[end - trailingMargin - '\n'.length] === '\n') {
-    trailingMargin += '\n'.length;
-    end -= trailingMargin;
-  }
-
-  for (let index = start; index < end; index++) {
+  // Note that we want to include the end index in our search since it might be
+  // the "first character" of an empty line.
+  for (let index = start; index <= end; index++) {
     if (index === start || source[index - 1] === '\n') {
-      if (source[index] !== '\n') {
-        let start = index;
-        while (source[index] === ' ') {
-          index++;
-        }
-        ranges.push([start, index]);
+      let start = index;
+      while (source[index] === ' ' || source[index] === '\t') {
+        index++;
       }
+      ranges.push([start, index]);
     }
   }
-
-  return {
-    leadingMargin,
-    trailingMargin,
-    ranges
-  };
+  return ranges;
 }
 
 /**
@@ -265,7 +292,10 @@ function sharedIndentSize(ranges) {
   let size = null;
 
   ranges.forEach(([start, end]) => {
-    if (size === null || (start !== end && end - start < size)) {
+    if (start === end) {
+      return;
+    }
+    if (size === null || end - start < size) {
       size = end - start;
     }
   });
