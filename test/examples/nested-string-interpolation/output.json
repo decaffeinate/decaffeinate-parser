@@ -53,10 +53,10 @@
               {
                 "type": "String",
                 "data": "",
-                "raw": "",
+                "raw": "\"",
                 "line": 1,
-                "column": 13,
-                "range": [ 12, 11 ]
+                "column": 11,
+                "range": [ 10, 11 ]
               }
             ],
             "expressions": [
