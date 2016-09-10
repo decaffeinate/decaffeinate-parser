@@ -39,7 +39,7 @@
     "coffee-script-redux": "^2.0.0-beta8",
     "cz-conventional-changelog": "^1.1.6",
     "mocha": "^3.0.0",
-    "rollup": "^0.34.1",
+    "rollup": "^0.35.5",
     "rollup-plugin-babel": "^2.4.0",
     "semantic-release": "^4.3.5",
     "string-repeat": "^1.1.1"
