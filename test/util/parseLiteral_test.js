@@ -166,6 +166,22 @@ a
       'a');
   });
 
+  it('handles a string with a blank line with spaces in it', () => {
+    verifyHerestringMatchesCoffeeScript(`
+  a
+ 
+  b`,
+      'a\n \nb');
+  });
+
+  it('handles a string where the last line is a blank line with spaces', () => {
+    verifyHerestringMatchesCoffeeScript(`
+  a
+  b
+ `,
+      'a\nb');
+  });
+
   function verifyHerestringMatchesCoffeeScript(stringContents, expectedResultString) {
     let code = `"""${stringContents}"""`;
     let decaffeinateParserResult = parseLiteral(code).data;

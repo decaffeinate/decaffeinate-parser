@@ -30,12 +30,13 @@ export default function parseLiteral(string, offset=0) {
  * - If the first or last line is completely blank, it is removed.
  * - The "common leading whitespace" is removed from each line if possible. This
  *   is computed by taking the smallest nonzero amount of leading whitespace
- *   among all lines except the partial line immediately after the open quotes.
- *   Note that this "smallest nonzero amount" behavior doesn't just ignore blank
- *   lines; *any* line with no leading whitespace will be ignored when
- *   calculating this value. Even though the initial partial line has no effect
- *   when computing leading whitespace, the common leading whitespace is still
- *   removed from that line if possible.
+ *   among all lines except the partial line immediately after the open quotes
+ *   and except lines that consist only of whitespace. Note that this "smallest
+ *   nonzero amount" behavior doesn't just ignore blank lines; *any* line with
+ *   no leading whitespace will be ignored when calculating this value. Even
+ *   though the initial partial line has no effect when computing leading
+ *   whitespace, the common leading whitespace is still removed from that line
+ *   if possible.
  * - Due to a bug in CoffeeScript, if the first full line (the one after the
  *   partial line) is nonempty and has indent zero, the entire string is
  *   considered to have "common leading whitespace" zero.
@@ -68,7 +69,7 @@ function parseHerestring(string, quote, offset=0) {
       indentSize = 0;
     } else {
       // The first line (a partial line) is ignored when computing indent.
-      indentSize = sharedIndentSize(ranges.slice(1));
+      indentSize = sharedIndentSize(string, ranges.slice(1));
     }
     let removeInitialIndent = function(start, end) {
       if (indentSize > 0 && end - start >= indentSize) {
@@ -285,14 +286,19 @@ function getLeadingWhitespaceRanges(source, start=0, end=source.length) {
 }
 
 /**
+ * @param {string} string
  * @param {Array<Array<number>>} ranges
  * @returns {number}
  */
-function sharedIndentSize(ranges) {
+function sharedIndentSize(string, ranges) {
   let size = null;
 
   ranges.forEach(([start, end]) => {
     if (start === end) {
+      return;
+    }
+    // Lines with only whitespace don't count.
+    if (string[end] === '\r' || string[end] === '\n' || end === string.length - 3) {
       return;
     }
     if (size === null || end - start < size) {
