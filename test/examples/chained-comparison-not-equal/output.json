@@ -1,0 +1,85 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "a != b != c\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      11
+    ],
+    "statements": [
+      {
+        "type": "ChainedComparisonOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          11
+        ],
+        "expression": {
+          "type": "NEQOp",
+          "line": 1,
+          "column": 1,
+          "range": [
+            0,
+            11
+          ],
+          "left": {
+            "type": "NEQOp",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              6
+            ],
+            "left": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 1,
+              "range": [
+                0,
+                1
+              ],
+              "data": "a",
+              "raw": "a"
+            },
+            "right": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 6,
+              "range": [
+                5,
+                6
+              ],
+              "data": "b",
+              "raw": "b"
+            },
+            "raw": "a != b"
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 11,
+            "range": [
+              10,
+              11
+            ],
+            "data": "c",
+            "raw": "c"
+          },
+          "raw": "a != b != c"
+        },
+        "raw": "a != b != c"
+      }
+    ],
+    "raw": "a != b != c"
+  }
+}

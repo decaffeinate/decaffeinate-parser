@@ -22,6 +22,8 @@ function isComparisonOperator(node) {
     case '>':
     case '<=':
     case '>=':
+    case '===':
+    case '!==':
       return true;
 
     default:
