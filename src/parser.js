@@ -1064,8 +1064,8 @@ function convert(context) {
           } else if (/^"(.*?)"$/.test(element.data)) {
             quasis.push(buildQuasiWithString(element.range, element.raw));
           } else if (quasis.length < expressions.length + 1) {
-            let borderIndex = source.lastIndexOf('}#{', element.range[0]);
-            quasis.push(buildQuasi([borderIndex + 1 , borderIndex + 1]));
+            let borderIndex = source.lastIndexOf('#{', element.range[0]);
+            quasis.push(buildQuasi([borderIndex, borderIndex]));
             expressions.push(element);
           } else {
             expressions.push(element);
