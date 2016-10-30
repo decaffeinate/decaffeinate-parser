@@ -1,4 +1,5 @@
 import type from './type.js';
+import isPlusTokenBetweenRanges from './isPlusTokenBetweenRanges';
 
 /**
  * @param {Object} node
@@ -41,6 +42,10 @@ export default function isInterpolatedString(node, ancestors, context) {
 
 function rangeOfInterpolatedStringForNode(node, context) {
   if (node.operator !== '+' || !node.second) {
+    return null;
+  }
+  if (isPlusTokenBetweenRanges(
+      context.getRange(node.first), context.getRange(node.second), context)) {
     return null;
   }
 
