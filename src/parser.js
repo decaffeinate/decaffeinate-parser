@@ -967,6 +967,10 @@ function convert(context) {
         //                                                  ^
         let startOfInterpolation = op.range[0];
         while (source[startOfInterpolation] !== '#') {
+          if (startOfInterpolation >= source.length) {
+            throw new Error(
+              `Unable to find start of interpolation for op ${JSON.stringify(op)}`);
+          }
           startOfInterpolation += 1;
         }
         let range = [op.range[0], startOfInterpolation];
@@ -978,6 +982,10 @@ function convert(context) {
         //                                                     ^
         let endOfInterpolation = op.range[1] - 1;
         while (source[endOfInterpolation] !== '}') {
+          if (endOfInterpolation < 0) {
+            throw new Error(
+              `Unable to find last interpolation for op ${JSON.stringify(op)}`);
+          }
           endOfInterpolation -= 1;
         }
         return buildQuasi([endOfInterpolation + 1, op.range[1]]);
