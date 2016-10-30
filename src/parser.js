@@ -25,7 +25,8 @@ export function parse(source, options={}) {
 
   let context = ParseContext.fromSource(source, lex, CS.nodes);
 
-  if (source.length === 0) {
+  let ast = context.ast;
+  if (type(ast) === 'Block' && ast.expressions.length === 0) {
     let program = {
       type: 'Program',
       line: 1,
