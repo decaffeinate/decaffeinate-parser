@@ -51,7 +51,7 @@
                 "column": 3,
                 "range": [
                   6,
-                  50
+                  48
                 ],
                 "key": {
                   "type": "Identifier",
@@ -70,7 +70,7 @@
                   "column": 6,
                   "range": [
                     9,
-                    50
+                    48
                   ],
                   "body": {
                     "type": "Block",
@@ -78,7 +78,7 @@
                     "column": 5,
                     "range": [
                       16,
-                      50
+                      48
                     ],
                     "statements": [
                       {
@@ -87,7 +87,7 @@
                         "column": 5,
                         "range": [
                           16,
-                          50
+                          48
                         ],
                         "expression": {
                           "type": "FunctionApplication",
@@ -170,16 +170,16 @@
                           ],
                           "raw": "c d,\n      if e\n        f"
                         },
-                        "raw": "return c d,\n      if e\n        f\n}"
+                        "raw": "return c d,\n      if e\n        f"
                       }
                     ],
-                    "raw": "return c d,\n      if e\n        f\n}",
+                    "raw": "return c d,\n      if e\n        f",
                     "inline": false
                   },
                   "parameters": [],
-                  "raw": "->\n    return c d,\n      if e\n        f\n}"
+                  "raw": "->\n    return c d,\n      if e\n        f"
                 },
-                "raw": "b: ->\n    return c d,\n      if e\n        f\n}"
+                "raw": "b: ->\n    return c d,\n      if e\n        f"
               }
             ],
             "raw": "{\n  b: ->\n    return c d,\n      if e\n        f\n}"
