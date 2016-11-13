@@ -260,7 +260,7 @@ function convert(context) {
       case 'While':
       {
         let lastChild = node.body;
-        node.locationData = locationWithLastPosition(
+        node.locationData = mergeLocations(
           node.locationData,
           lastChild.locationData
         );
