@@ -1,0 +1,91 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    40
+  ],
+  "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      39
+    ],
+    "statements": [
+      {
+        "type": "TemplateLiteral",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          39
+        ],
+        "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
+        "quasis": [
+          {
+            "type": "String",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              14
+            ],
+            "data": "a\n  b\"",
+            "raw": "\"\"\"\n  a\n    b\""
+          },
+          {
+            "type": "String",
+            "line": 3,
+            "column": 11,
+            "range": [
+              18,
+              26
+            ],
+            "data": "\n    d",
+            "raw": "\"\n    d\""
+          },
+          {
+            "type": "String",
+            "line": 4,
+            "column": 11,
+            "range": [
+              30,
+              39
+            ],
+            "data": "\"\nf",
+            "raw": "\"\n  f\n\"\"\""
+          }
+        ],
+        "expressions": [
+          {
+            "type": "Identifier",
+            "line": 3,
+            "column": 9,
+            "range": [
+              16,
+              17
+            ],
+            "data": "c",
+            "raw": "c"
+          },
+          {
+            "type": "Identifier",
+            "line": 4,
+            "column": 9,
+            "range": [
+              28,
+              29
+            ],
+            "data": "e",
+            "raw": "e"
+          }
+        ]
+      }
+    ],
+    "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\""
+  }
+}
