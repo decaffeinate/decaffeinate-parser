@@ -422,7 +422,7 @@ function convert(context) {
             }
             return makeNode('Identifier', node.locationData, { data: node.value });
           } else if (literal.type === 'error') {
-            if (literal.error.type === 'unbalanced-quotes') {
+            if (literal.error.type === 'unbalanced-quotes' || literal.error.type === 'unexpected-closing-quote') {
               // This is probably part of an interpolated string.
               literal = parseLiteral(node.value);
               return makeNode('String', node.locationData, { data: parseLiteral(node.value).data });
