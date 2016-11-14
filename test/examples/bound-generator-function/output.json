@@ -1,0 +1,67 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    11
+  ],
+  "raw": "=> yield 3\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      10
+    ],
+    "statements": [
+      {
+        "type": "BoundGeneratorFunction",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          10
+        ],
+        "body": {
+          "type": "Block",
+          "line": 1,
+          "column": 4,
+          "range": [
+            3,
+            10
+          ],
+          "statements": [
+            {
+              "type": "Yield",
+              "line": 1,
+              "column": 4,
+              "range": [
+                3,
+                10
+              ],
+              "expression": {
+                "type": "Int",
+                "line": 1,
+                "column": 10,
+                "range": [
+                  9,
+                  10
+                ],
+                "data": 3,
+                "raw": "3"
+              },
+              "raw": "yield 3"
+            }
+          ],
+          "raw": "yield 3",
+          "inline": true
+        },
+        "parameters": [],
+        "raw": "=> yield 3"
+      }
+    ],
+    "raw": "=> yield 3"
+  }
+}
