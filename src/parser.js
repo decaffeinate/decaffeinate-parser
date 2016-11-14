@@ -623,8 +623,20 @@ function convert(context) {
       }
 
       case 'Code':
-        const fnType = node.bound ? 'BoundFunction' :
-          node.isGenerator ? 'GeneratorFunction' : 'Function';
+        let fnType;
+        if (node.bound) {
+          if (node.isGenerator) {
+            fnType = 'BoundGeneratorFunction';
+          } else {
+            fnType = 'BoundFunction';
+          }
+        } else {
+          if (node.isGenerator) {
+            fnType = 'GeneratorFunction';
+          } else {
+            fnType = 'Function';
+          }
+        }
         return makeNode(fnType, node.locationData, {
           body: convertChild(node.body),
           parameters: convertChild(node.params)
