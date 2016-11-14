@@ -489,7 +489,10 @@ function convert(context) {
               result.expression.parameters = result.expression.parameters.map((param, i) => {
                 const arg = result.arguments[i];
 
-                if (arg.type === 'Identifier' && arg.data === param.data) {
+                // If there's a parameter with no default, CoffeeScript will insert a fake
+                // arg with the same value and location.
+                if (arg.type === 'Identifier' && arg.data === param.data &&
+                    arg.range[0] === param.range[0] && arg.range[1] === param.range[1]) {
                   return param;
                 }
 

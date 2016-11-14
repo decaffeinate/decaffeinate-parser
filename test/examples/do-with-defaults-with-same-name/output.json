@@ -1,0 +1,153 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    25
+  ],
+  "raw": "do (a=a, b=b) ->\n  a + b\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      24
+    ],
+    "statements": [
+      {
+        "type": "DoOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          24
+        ],
+        "raw": "do (a=a, b=b) ->\n  a + b",
+        "expression": {
+          "type": "Function",
+          "line": 1,
+          "column": 4,
+          "range": [
+            3,
+            24
+          ],
+          "body": {
+            "type": "Block",
+            "line": 2,
+            "column": 3,
+            "range": [
+              19,
+              24
+            ],
+            "statements": [
+              {
+                "type": "PlusOp",
+                "line": 2,
+                "column": 3,
+                "range": [
+                  19,
+                  24
+                ],
+                "left": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 3,
+                  "range": [
+                    19,
+                    20
+                  ],
+                  "data": "a",
+                  "raw": "a"
+                },
+                "right": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 7,
+                  "range": [
+                    23,
+                    24
+                  ],
+                  "data": "b",
+                  "raw": "b"
+                },
+                "raw": "a + b"
+              }
+            ],
+            "raw": "a + b",
+            "inline": false
+          },
+          "parameters": [
+            {
+              "type": "DefaultParam",
+              "line": 1,
+              "column": 5,
+              "range": [
+                4,
+                7
+              ],
+              "param": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 5,
+                "range": [
+                  4,
+                  5
+                ],
+                "data": "a",
+                "raw": "a"
+              },
+              "default": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 7,
+                "range": [
+                  6,
+                  7
+                ],
+                "data": "a",
+                "raw": "a"
+              },
+              "raw": "a=a"
+            },
+            {
+              "type": "DefaultParam",
+              "line": 1,
+              "column": 10,
+              "range": [
+                9,
+                12
+              ],
+              "param": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 10,
+                "range": [
+                  9,
+                  10
+                ],
+                "data": "b",
+                "raw": "b"
+              },
+              "default": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 12,
+                "range": [
+                  11,
+                  12
+                ],
+                "data": "b",
+                "raw": "b"
+              },
+              "raw": "b=b"
+            }
+          ],
+          "raw": "(a=a, b=b) ->\n  a + b"
+        }
+      }
+    ],
+    "raw": "do (a=a, b=b) ->\n  a + b"
+  }
+}
