@@ -1,0 +1,91 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    49
+  ],
+  "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"e\"\n    f\"#{g}\"\n  h\n\"\"\"\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      48
+    ],
+    "statements": [
+      {
+        "type": "TemplateLiteral",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          48
+        ],
+        "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"e\"\n    f\"#{g}\"\n  h\n\"\"\"",
+        "quasis": [
+          {
+            "type": "String",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              14
+            ],
+            "data": "a\n  b\"",
+            "raw": "\"\"\"\n  a\n    b\""
+          },
+          {
+            "type": "String",
+            "line": 3,
+            "column": 11,
+            "range": [
+              18,
+              35
+            ],
+            "data": "\"\n  d\"e\"\n  f\"",
+            "raw": "\"\n    d\"e\"\n    f\""
+          },
+          {
+            "type": "String",
+            "line": 5,
+            "column": 11,
+            "range": [
+              39,
+              48
+            ],
+            "data": "\"\nh",
+            "raw": "\"\n  h\n\"\"\""
+          }
+        ],
+        "expressions": [
+          {
+            "type": "Identifier",
+            "line": 3,
+            "column": 9,
+            "range": [
+              16,
+              17
+            ],
+            "data": "c",
+            "raw": "c"
+          },
+          {
+            "type": "Identifier",
+            "line": 5,
+            "column": 9,
+            "range": [
+              37,
+              38
+            ],
+            "data": "g",
+            "raw": "g"
+          }
+        ]
+      }
+    ],
+    "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"e\"\n    f\"#{g}\"\n  h\n\"\"\""
+  }
+}
