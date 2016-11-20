@@ -41,7 +41,7 @@
     "mocha": "^3.0.0",
     "rollup": "^0.36.1",
     "rollup-plugin-babel": "^2.4.0",
-    "semantic-release": "^4.3.5",
+    "semantic-release": "^6.3.2",
     "string-repeat": "^1.1.1"
   },
   "publishConfig": {
