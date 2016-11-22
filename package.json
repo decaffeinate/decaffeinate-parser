@@ -21,7 +21,7 @@
     "dist/"
   ],
   "dependencies": {
-    "coffee-lex": "^1.4.1",
+    "coffee-lex": "^3.0.0",
     "decaffeinate-coffeescript": "^1.10.0-patch3",
     "lines-and-columns": "^1.1.5"
   },
