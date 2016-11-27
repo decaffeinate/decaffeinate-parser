@@ -2,44 +2,62 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 11 ],
+  "range": [
+    0,
+    11
+  ],
   "raw": "\"#{a} #{b}\"",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 11 ],
+    "range": [
+      0,
+      11
+    ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 3,
-        "range": [ 0, 11 ],
+        "range": [
+          0,
+          11
+        ],
         "raw": "\"#{a} #{b}\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\"",
             "line": 1,
             "column": 1,
-            "range": [ 0, 1 ]
+            "range": [
+              0,
+              1
+            ]
           },
           {
-            "type": "String",
-            "data": " ",
-            "raw": " ",
+            "type": "Quasi",
             "line": 1,
-            "column": 5,
-            "range": [ 5, 6 ]
+            "column": 6,
+            "range": [
+              5,
+              6
+            ],
+            "data": " ",
+            "raw": " "
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\"",
             "line": 1,
             "column": 11,
-            "range": [ 10, 11 ]
+            "range": [
+              10,
+              11
+            ]
           }
         ],
         "expressions": [
@@ -47,7 +65,10 @@
             "type": "Identifier",
             "line": 1,
             "column": 4,
-            "range": [ 3, 4 ],
+            "range": [
+              3,
+              4
+            ],
             "data": "a",
             "raw": "a"
           },
@@ -55,7 +76,10 @@
             "type": "Identifier",
             "line": 1,
             "column": 9,
-            "range": [ 8, 9 ],
+            "range": [
+              8,
+              9
+            ],
             "data": "b",
             "raw": "b"
           }

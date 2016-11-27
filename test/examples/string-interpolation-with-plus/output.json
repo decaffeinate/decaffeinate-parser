@@ -17,7 +17,7 @@
     ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 3,
         "range": [
@@ -27,7 +27,7 @@
         "raw": "\"#{a + b}c\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\"",
             "line": 1,
@@ -38,7 +38,7 @@
             ]
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 10,
             "range": [

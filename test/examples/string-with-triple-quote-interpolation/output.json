@@ -2,35 +2,51 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 12 ],
+  "range": [
+    0,
+    12
+  ],
+  "raw": "\"\"\"\n#{a}\n\"\"\"",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "range": [
+      0,
+      12
+    ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 12 ],
+        "range": [
+          0,
+          12
+        ],
         "raw": "\"\"\"\n#{a}\n\"\"\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 1,
-            "range": [ 0, 4 ],
+            "range": [
+              0,
+              4
+            ],
             "data": "",
             "raw": "\"\"\"\n"
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\n\"\"\"",
             "line": 2,
             "column": 5,
-            "range": [ 8, 12 ]
+            "range": [
+              8,
+              12
+            ]
           }
         ],
         "expressions": [
@@ -38,7 +54,10 @@
             "type": "Identifier",
             "line": 2,
             "column": 3,
-            "range": [ 6, 7 ],
+            "range": [
+              6,
+              7
+            ],
             "data": "a",
             "raw": "a"
           }
@@ -46,6 +65,5 @@
       }
     ],
     "raw": "\"\"\"\n#{a}\n\"\"\""
-  },
-  "raw": "\"\"\"\n#{a}\n\"\"\""
+  }
 }

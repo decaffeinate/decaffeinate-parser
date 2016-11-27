@@ -2,81 +2,137 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 56 ],
+  "range": [
+    0,
+    56
+  ],
   "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 56 ],
-    "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)",
+    "range": [
+      0,
+      56
+    ],
     "statements": [
       {
         "type": "FunctionApplication",
         "line": 1,
         "column": 1,
-        "range": [ 0, 56 ],
-        "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)",
-        "arguments": [
-          {
-            "type": "String",
-            "line": 3,
-            "column": 15,
-            "range": [ 39, 47 ],
-            "raw": "'MyCtrl'",
-            "data": "MyCtrl"
-          },
-          {
-            "type": "Identifier",
-            "line": 3,
-            "column": 25,
-            "range": [ 49, 55 ],
-            "raw": "MyCtrl",
-            "data": "MyCtrl"
-          }
+        "range": [
+          0,
+          56
         ],
         "function": {
           "type": "MemberAccessOp",
           "line": 1,
           "column": 1,
-          "range": [ 0, 38 ],
-          "raw": "angular\n  .module('app')\n  .controller",
+          "range": [
+            0,
+            38
+          ],
           "expression": {
             "type": "FunctionApplication",
             "line": 1,
             "column": 1,
-            "range": [ 0, 24 ],
-            "raw": "angular\n  .module('app')",
-            "arguments": [
-              {
-                "type": "String",
-                "line": 2,
-                "column": 11,
-                "range": [ 18, 23 ],
-                "raw": "'app'",
-                "data": "app"
-              }
+            "range": [
+              0,
+              24
             ],
             "function": {
               "type": "MemberAccessOp",
               "line": 1,
               "column": 1,
-              "range": [ 0, 17 ],
-              "raw": "angular\n  .module",
+              "range": [
+                0,
+                17
+              ],
               "expression": {
                 "type": "Identifier",
                 "line": 1,
                 "column": 1,
-                "range": [ 0, 7 ],
-                "raw": "angular",
-                "data": "angular"
+                "range": [
+                  0,
+                  7
+                ],
+                "data": "angular",
+                "raw": "angular"
               },
-              "memberName": "module"
-            }
+              "memberName": "module",
+              "raw": "angular\n  .module"
+            },
+            "arguments": [
+              {
+                "type": "String",
+                "line": 2,
+                "column": 11,
+                "range": [
+                  18,
+                  23
+                ],
+                "quasis": [
+                  {
+                    "type": "Quasi",
+                    "line": 2,
+                    "column": 11,
+                    "range": [
+                      18,
+                      23
+                    ],
+                    "data": "app",
+                    "raw": "'app'"
+                  }
+                ],
+                "expressions": [],
+                "raw": "'app'"
+              }
+            ],
+            "raw": "angular\n  .module('app')"
           },
-          "memberName": "controller"
-        }
+          "memberName": "controller",
+          "raw": "angular\n  .module('app')\n  .controller"
+        },
+        "arguments": [
+          {
+            "type": "String",
+            "line": 3,
+            "column": 15,
+            "range": [
+              39,
+              47
+            ],
+            "quasis": [
+              {
+                "type": "Quasi",
+                "line": 3,
+                "column": 15,
+                "range": [
+                  39,
+                  47
+                ],
+                "data": "MyCtrl",
+                "raw": "'MyCtrl'"
+              }
+            ],
+            "expressions": [],
+            "raw": "'MyCtrl'"
+          },
+          {
+            "type": "Identifier",
+            "line": 3,
+            "column": 25,
+            "range": [
+              49,
+              55
+            ],
+            "data": "MyCtrl",
+            "raw": "MyCtrl"
+          }
+        ],
+        "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)"
       }
-    ]
+    ],
+    "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)"
   }
 }

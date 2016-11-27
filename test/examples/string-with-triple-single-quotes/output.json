@@ -2,27 +2,45 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 26 ],
+  "range": [
+    0,
+    26
+  ],
   "raw": "'''\nmulti-line strings\n'''",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 26 ],
-    "raw": "'''\nmulti-line strings\n'''",
+    "range": [
+      0,
+      26
+    ],
     "statements": [
       {
-        "type": "Herestring",
+        "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 26 ],
-        "padding": [
-          [ 3, 4 ],
-          [ 22, 23 ]
+        "range": [
+          0,
+          26
         ],
-        "raw": "'''\nmulti-line strings\n'''",
-        "data": "multi-line strings"
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              26
+            ],
+            "data": "multi-line strings",
+            "raw": "'''\nmulti-line strings\n'''"
+          }
+        ],
+        "expressions": [],
+        "raw": "'''\nmulti-line strings\n'''"
       }
-    ]
+    ],
+    "raw": "'''\nmulti-line strings\n'''"
   }
 }

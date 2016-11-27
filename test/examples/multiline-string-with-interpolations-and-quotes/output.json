@@ -17,7 +17,7 @@
     ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 1,
         "range": [
@@ -27,7 +27,7 @@
         "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 1,
             "range": [
@@ -38,18 +38,18 @@
             "raw": "\"\"\"\n  a\n    b\""
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 3,
             "column": 11,
             "range": [
               18,
               26
             ],
-            "data": "\n    d",
+            "data": "\"\n  d\"",
             "raw": "\"\n    d\""
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 4,
             "column": 11,
             "range": [

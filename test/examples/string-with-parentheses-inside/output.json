@@ -2,20 +2,42 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 5 ],
+  "range": [
+    0,
+    5
+  ],
   "raw": "\"( a\"",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 5 ],
+    "range": [
+      0,
+      5
+    ],
     "statements": [
       {
         "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 5 ],
-        "data": "( a",
+        "range": [
+          0,
+          5
+        ],
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              5
+            ],
+            "data": "( a",
+            "raw": "\"( a\""
+          }
+        ],
+        "expressions": [],
         "raw": "\"( a\""
       }
     ],

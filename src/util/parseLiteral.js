@@ -3,12 +3,8 @@
  * @param {number=} offset
  * @returns {*}
  */
-export default function parseLiteral(string, offset=0) {
-  if (string.slice(0, 3) === '"""' || string.slice(-3) === '"""') {
-    return parseHerestring(string, '"""', offset);
-  } else if (string.slice(0, 3) === "'''" || string.slice(-3) === "'''") {
-    return parseHerestring(string, "'''", offset);
-  } else if (string[0] === "'" || string[string.length - 1] === "'") {
+export default function parseLiteral(string) {
+  if (string[0] === "'" || string[string.length - 1] === "'") {
     return parseQuotedString(string, "'");
   } else if (string[0] === '"' || string[string.length - 1] === '"') {
     return parseQuotedString(string, '"');
@@ -21,92 +17,6 @@ export default function parseLiteral(string, offset=0) {
   } else if (/^0o[0-7]+$/i.test(string)) {
     return parseOctal(string);
   }
-}
-
-/**
- * Compute the padding (the extra spacing to remove) for the given herestring.
- *
- * CoffeeScript removes spacing in the following situations:
- * - If the first or last line is completely blank, it is removed.
- * - The "common leading whitespace" is removed from each line if possible. This
- *   is computed by taking the smallest nonzero amount of leading whitespace
- *   among all lines except the partial line immediately after the open quotes
- *   and except lines that consist only of whitespace. Note that this "smallest
- *   nonzero amount" behavior doesn't just ignore blank lines; *any* line with
- *   no leading whitespace will be ignored when calculating this value. Even
- *   though the initial partial line has no effect when computing leading
- *   whitespace, the common leading whitespace is still removed from that line
- *   if possible.
- * - Due to a bug in CoffeeScript, if the first full line (the one after the
- *   partial line) is nonempty and has indent zero, the entire string is
- *   considered to have "common leading whitespace" zero.
- * - Due to another bug in CoffeeScript, if the herestring has exactly two lines
- *   that both consist of only whitespace, the whitespace and newline is removed
- *   from the first line, but the second line keeps all of its whitespace.
- *
- * See the stringToken function in lexer.coffee in the CoffeeScript source code
- * for CoffeeScript's implementation of this.
- *
- * The "padding" array returned by this function is an array of ranges of
- * whitespace to remove.
- */
-function parseHerestring(string, quote, offset=0) {
-  let { error, data } = parseQuotedString(string, quote);
-  if (error) {
-    return { type: 'error', error };
-  }
-  let ranges = getLeadingWhitespaceRanges(string, 3, string.length - 3);
-
-  let padding = [];
-  if (ranges.length >= 2) {
-    let indentSize;
-    let [firstFullLineIndentStart, firstFullLineIndentEnd] = ranges[1];
-    if (firstFullLineIndentStart === firstFullLineIndentEnd &&
-        string[firstFullLineIndentEnd] !== '\n' &&
-        firstFullLineIndentEnd !== string.length - 3) {
-      // Replicate a bug in CoffeeScript: treat the indent level as 0 if the
-      // first full line is nonempty and has indent zero.
-      indentSize = 0;
-    } else {
-      // The first line (a partial line) is ignored when computing indent.
-      indentSize = sharedIndentSize(string, ranges.slice(1));
-    }
-    let removeInitialIndent = function(start, end) {
-      if (indentSize > 0 && end - start >= indentSize) {
-        padding.push([offset + start, offset + start + indentSize]);
-      }
-    };
-
-    let [initialStart, initialEnd] = ranges[0];
-    if (string[initialEnd] === '\n') {
-      padding.push([offset + initialStart, offset + initialEnd + 1]);
-    } else {
-      removeInitialIndent(initialStart, initialEnd);
-    }
-
-    ranges.slice(1, ranges.length - 1).forEach(
-      ([start, end]) => removeInitialIndent(start, end));
-
-    let [finalStart, finalEnd] = ranges[ranges.length - 1];
-    if (finalEnd === string.length - 3) {
-      // Replicate a bug in CoffeeScript: if the first line was removed due to
-      // only having whitespace, and there are exactly two lines, don't run the
-      // remove-if-only-whitespace code for the second line.
-      if (!(ranges.length === 2 && finalStart === initialEnd + 1)) {
-        padding.push([offset + finalStart - 1, offset + finalEnd])
-      }
-    } else {
-      removeInitialIndent(finalStart, finalEnd);
-    }
-  }
-
-  let contentStart = offset + 3;
-  for (let i = padding.length - 1; i >= 0; i--) {
-    let [ start, end ] = padding[i];
-    data = data.slice(0, start - contentStart) + data.slice(end - contentStart);
-  }
-
-  return { type: 'Herestring', data, padding };
 }
 
 /**
@@ -259,52 +169,4 @@ function parseHexidecimal(string) {
  */
 function parseOctal(string) {
   return { type: 'int', data: parseInt(string.slice(2), 8) };
-}
-
-/**
- * Determines the indents in the given string for herestring processing.
- *
- * @param {string} source
- * @param {number=} start
- * @param {number=} end
- * @returns Array<Array<number>>}
- */
-function getLeadingWhitespaceRanges(source, start=0, end=source.length) {
-  const ranges = [];
-  // Note that we want to include the end index in our search since it might be
-  // the "first character" of an empty line.
-  for (let index = start; index <= end; index++) {
-    if (index === start || source[index - 1] === '\n') {
-      let start = index;
-      while (source[index] === ' ' || source[index] === '\t') {
-        index++;
-      }
-      ranges.push([start, index]);
-    }
-  }
-  return ranges;
-}
-
-/**
- * @param {string} string
- * @param {Array<Array<number>>} ranges
- * @returns {number}
- */
-function sharedIndentSize(string, ranges) {
-  let size = null;
-
-  ranges.forEach(([start, end]) => {
-    if (start === end) {
-      return;
-    }
-    // Lines with only whitespace don't count.
-    if (string[end] === '\r' || string[end] === '\n' || end === string.length - 3) {
-      return;
-    }
-    if (size === null || end - start < size) {
-      size = end - start;
-    }
-  });
-
-  return size === null ? 0 : size;
 }

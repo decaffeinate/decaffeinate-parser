@@ -2,35 +2,51 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 20 ],
+  "range": [
+    0,
+    20
+  ],
+  "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 20 ],
+    "range": [
+      0,
+      20
+    ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 20 ],
+        "range": [
+          0,
+          20
+        ],
         "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 1,
-            "range": [ 0, 9 ],
+            "range": [
+              0,
+              9
+            ],
             "data": "bar=\"",
             "raw": "\"\"\"\nbar=\""
           },
           {
-            "type": "String",
-            "data": "\"",
-            "raw": "\"\n\"\"\"",
+            "type": "Quasi",
             "line": 2,
             "column": 12,
-            "range": [ 15, 20 ]
+            "range": [
+              15,
+              20
+            ],
+            "data": "\"",
+            "raw": "\"\n\"\"\""
           }
         ],
         "expressions": [
@@ -38,7 +54,10 @@
             "type": "Identifier",
             "line": 2,
             "column": 8,
-            "range": [ 11, 14 ],
+            "range": [
+              11,
+              14
+            ],
             "data": "bar",
             "raw": "bar"
           }
@@ -46,6 +65,5 @@
       }
     ],
     "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\""
-  },
-  "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\""
+  }
 }

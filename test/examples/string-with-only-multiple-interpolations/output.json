@@ -2,51 +2,73 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 14 ],
+  "range": [
+    0,
+    14
+  ],
+  "raw": "\"#{a}#{b}#{c}\"",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 14 ],
+    "range": [
+      0,
+      14
+    ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 14 ],
+        "range": [
+          0,
+          14
+        ],
         "raw": "\"#{a}#{b}#{c}\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 1,
-            "range": [ 0, 1 ],
+            "range": [
+              0,
+              1
+            ],
             "data": "",
             "raw": "\""
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "",
             "line": 1,
             "column": 6,
-            "range": [ 5, 5 ]
+            "range": [
+              5,
+              5
+            ]
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "",
             "line": 1,
             "column": 10,
-            "range": [ 9, 9 ]
+            "range": [
+              9,
+              9
+            ]
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\"",
             "line": 1,
             "column": 14,
-            "range": [ 13, 14 ]
+            "range": [
+              13,
+              14
+            ]
           }
         ],
         "expressions": [
@@ -54,7 +76,10 @@
             "type": "Identifier",
             "line": 1,
             "column": 4,
-            "range": [ 3, 4 ],
+            "range": [
+              3,
+              4
+            ],
             "data": "a",
             "raw": "a"
           },
@@ -62,7 +87,10 @@
             "type": "Identifier",
             "line": 1,
             "column": 8,
-            "range": [ 7, 8 ],
+            "range": [
+              7,
+              8
+            ],
             "data": "b",
             "raw": "b"
           },
@@ -70,7 +98,10 @@
             "type": "Identifier",
             "line": 1,
             "column": 12,
-            "range": [ 11, 12 ],
+            "range": [
+              11,
+              12
+            ],
             "data": "c",
             "raw": "c"
           }
@@ -78,6 +109,5 @@
       }
     ],
     "raw": "\"#{a}#{b}#{c}\""
-  },
-  "raw": "\"#{a}#{b}#{c}\""
+  }
 }
