@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "coffee-lex": "^4.2.0",
-    "decaffeinate-coffeescript": "^1.10.0-patch3",
+    "decaffeinate-coffeescript": "^1.10.0-patch5",
     "lines-and-columns": "^1.1.5"
   },
   "devDependencies": {
