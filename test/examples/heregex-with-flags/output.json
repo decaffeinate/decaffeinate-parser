@@ -2,20 +2,42 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 15 ],
+  "range": [
+    0,
+    15
+  ],
   "raw": "///a/b/c///gimy",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 15 ],
+    "range": [
+      0,
+      15
+    ],
     "statements": [
       {
-        "type": "RegExp",
+        "type": "Heregex",
         "line": 1,
         "column": 1,
-        "range": [ 0, 15 ],
-        "data": "/a\\/b\\/c/gimy",
+        "range": [
+          0,
+          15
+        ],
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              15
+            ],
+            "data": "/a\\/b\\/c/gimy",
+            "raw": "///a/b/c///gimy"
+          }
+        ],
+        "expressions": [],
         "flags": {
           "g": true,
           "i": true,
