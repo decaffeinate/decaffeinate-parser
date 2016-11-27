@@ -6,6 +6,7 @@
     0,
     7
   ],
+  "raw": "\"#{a}b\"",
   "body": {
     "type": "Block",
     "line": 1,
@@ -16,7 +17,7 @@
     ],
     "statements": [
       {
-        "type": "TemplateLiteral",
+        "type": "String",
         "line": 1,
         "column": 3,
         "range": [
@@ -26,7 +27,7 @@
         "raw": "\"#{a}b\"",
         "quasis": [
           {
-            "type": "String",
+            "type": "Quasi",
             "data": "",
             "raw": "\"",
             "line": 1,
@@ -37,7 +38,7 @@
             ]
           },
           {
-            "type": "String",
+            "type": "Quasi",
             "line": 1,
             "column": 6,
             "range": [
@@ -64,6 +65,5 @@
       }
     ],
     "raw": "\"#{a}b\""
-  },
-  "raw": "\"#{a}b\""
+  }
 }

@@ -2,23 +2,45 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 4 ],
+  "range": [
+    0,
+    4
+  ],
   "raw": "'\\.'",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 4 ],
-    "raw": "'\\.'",
+    "range": [
+      0,
+      4
+    ],
     "statements": [
       {
         "type": "String",
         "line": 1,
         "column": 1,
-        "range": [ 0, 4 ],
-        "raw": "'\\.'",
-        "data": "."
+        "range": [
+          0,
+          4
+        ],
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              4
+            ],
+            "data": ".",
+            "raw": "'\\.'"
+          }
+        ],
+        "expressions": [],
+        "raw": "'\\.'"
       }
-    ]
+    ],
+    "raw": "'\\.'"
   }
 }

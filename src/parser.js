@@ -3,6 +3,7 @@ import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
+import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET, STRING_CONTENT } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
@@ -406,7 +407,8 @@ function convert(context) {
           let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
           let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
           let raw = source.slice(start, end);
-          let literal = parseLiteral(raw, start);
+          let literal = parseLiteral(node.value);
+
           if (!literal) {
             if (raw[0] === '`' && raw[raw.length - 1] === '`') {
               return makeNode('JavaScript', node.locationData, { data: node.value });
@@ -422,22 +424,28 @@ function convert(context) {
             }
             return makeNode('Identifier', node.locationData, { data: node.value });
           } else if (literal.type === 'error') {
-            if (literal.error.type === 'unbalanced-quotes' || literal.error.type === 'unexpected-closing-quote') {
-              // This is probably part of an interpolated string.
-              literal = parseLiteral(node.value);
-              return makeNode('String', node.locationData, { data: parseLiteral(node.value).data });
-            }
             throw new Error(literal.error.message);
           } else if (literal.type === 'string') {
-            return makeNode('String', node.locationData, { data: literal.data });
+            // Top-level strings should all be in the same format: an array of
+            // quasis and expressions. For a normal string literal, this is the
+            // simple case of one quasi and no expressions. But if this string
+            // is actually a quasi that CoffeeScript is calling a string, then
+            // just return a Quasi node, and higher-up code should insert it
+            // into a string interpolation.
+            if (isStringAtPosition(start, end, context)) {
+              return makeNode('String', node.locationData, {
+                quasis: [
+                  makeNode('Quasi', node.locationData, {data: literal.data})
+                ],
+                expressions: [],
+              });
+            } else {
+              return makeNode('Quasi', node.locationData, {data: literal.data});
+            }
           } else if (literal.type === 'int') {
             return makeNode('Int', node.locationData, { data: literal.data });
           } else if (literal.type === 'float') {
             return makeNode('Float', node.locationData, { data: literal.data });
-          } else if (literal.type === 'Herestring') {
-            return makeNode('Herestring', node.locationData, { data: literal.data, padding: literal.padding });
-          } else if (literal.type === 'RegExp') {
-            return makeNode('RegExp', node.locationData, { data: literal.data, flags: literal.flags });
           } else {
             throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
           }
@@ -958,7 +966,7 @@ function convert(context) {
       }
       let firstToken = tokens.tokenAtIndex(interpolatedStringTokenRange[0]);
       let lastToken = tokens.tokenAtIndex(interpolatedStringTokenRange[1].previous());
-      op.type = 'TemplateLiteral';
+      op.type = 'String';
       op.range = [firstToken.start, lastToken.end];
       op.raw = source.slice(...op.range);
 
@@ -1010,7 +1018,7 @@ function convert(context) {
       function buildQuasi(range) {
         let loc = linesAndColumns.locationForIndex(range[0]);
         return {
-          type: 'String',
+          type: 'Quasi',
           data: '',
           raw: source.slice(...range),
           line: loc.line + 1,
@@ -1022,22 +1030,13 @@ function convert(context) {
       function buildQuasiWithString(range, raw){
         let loc = linesAndColumns.locationForIndex(range[0]);
         return {
-          type: 'String',
+          type: 'Quasi',
           data: raw,
           raw: source.slice(...range),
           line: loc.line + 1,
           column: loc.column ,
           range
         };
-      }
-
-      function isQuasi(element) {
-        if (element.type !== 'String') {
-          return false;
-        }
-        let tokens = context.sourceTokens;
-        let tokenIndex = tokens.indexOfTokenContainingSourceIndex(element.range[0]);
-        return tokenIndex !== null && tokens.tokenAtIndex(tokenIndex).type === STRING_CONTENT;
       }
 
       elements.forEach((element, i) => {
@@ -1056,7 +1055,7 @@ function convert(context) {
           }
         }
 
-        if (isQuasi(element)) {
+        if (element.type === 'Quasi') {
           quasis.push(element);
         } else {
           if (quasis.length === 0) {
