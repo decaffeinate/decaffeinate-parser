@@ -427,7 +427,7 @@ function convert(context) {
             throw new Error(literal.error.message);
           } else if (literal.type === 'string') {
             // Top-level strings should all be in the same format: an array of
-            // quasis an expressions. For a normal string literal, this is the
+            // quasis and expressions. For a normal string literal, this is the
             // simple case of one quasi and no expressions. But if this string
             // is actually a quasi that CoffeeScript is calling a string, then
             // just return a Quasi node, and higher-up code should insert it
