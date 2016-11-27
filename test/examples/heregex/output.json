@@ -2,27 +2,49 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 11 ],
+  "range": [
+    0,
+    11
+  ],
   "raw": "///a/b/c///",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 11 ],
+    "range": [
+      0,
+      11
+    ],
     "statements": [
       {
-        "type": "RegExp",
+        "type": "Heregex",
         "line": 1,
         "column": 1,
-        "range": [ 0, 11 ],
-        "raw": "///a/b/c///",
-        "data": "/a\\/b\\/c/",
+        "range": [
+          0,
+          11
+        ],
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              11
+            ],
+            "data": "/a\\/b\\/c/",
+            "raw": "///a/b/c///"
+          }
+        ],
+        "expressions": [],
         "flags": {
           "g": false,
           "i": false,
           "m": false,
           "y": false
-        }
+        },
+        "raw": "///a/b/c///"
       }
     ],
     "raw": "///a/b/c///"

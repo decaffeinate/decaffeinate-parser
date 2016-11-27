@@ -1,0 +1,99 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    20
+  ],
+  "raw": "///foo///.test('a')\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      19
+    ],
+    "statements": [
+      {
+        "type": "FunctionApplication",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          19
+        ],
+        "function": {
+          "type": "MemberAccessOp",
+          "line": 1,
+          "column": 1,
+          "range": [
+            0,
+            14
+          ],
+          "expression": {
+            "type": "Heregex",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              9
+            ],
+            "quasis": [
+              {
+                "type": "Quasi",
+                "line": 1,
+                "column": 1,
+                "range": [
+                  0,
+                  9
+                ],
+                "data": "/foo/",
+                "raw": "///foo///"
+              }
+            ],
+            "expressions": [],
+            "flags": {
+              "g": false,
+              "i": false,
+              "m": false,
+              "y": false
+            },
+            "raw": "///foo///"
+          },
+          "memberName": "test",
+          "raw": "///foo///.test"
+        },
+        "arguments": [
+          {
+            "type": "String",
+            "line": 1,
+            "column": 16,
+            "range": [
+              15,
+              18
+            ],
+            "quasis": [
+              {
+                "type": "Quasi",
+                "line": 1,
+                "column": 16,
+                "range": [
+                  15,
+                  18
+                ],
+                "data": "a",
+                "raw": "'a'"
+              }
+            ],
+            "expressions": [],
+            "raw": "'a'"
+          }
+        ],
+        "raw": "///foo///.test('a')"
+      }
+    ],
+    "raw": "///foo///.test('a')"
+  }
+}

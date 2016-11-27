@@ -1,0 +1,75 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    31
+  ],
+  "raw": "///\n  abc # def #{ghi} j\n///gi\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      30
+    ],
+    "statements": [
+      {
+        "type": "Heregex",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          30
+        ],
+        "raw": "///\n  abc # def #{ghi} j\n///gi",
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              16
+            ],
+            "data": "abc",
+            "raw": "///\n  abc # def "
+          },
+          {
+            "type": "Quasi",
+            "line": 2,
+            "column": 19,
+            "range": [
+              22,
+              25
+            ],
+            "data": "j",
+            "raw": " j\n"
+          }
+        ],
+        "expressions": [
+          {
+            "type": "Identifier",
+            "line": 2,
+            "column": 15,
+            "range": [
+              18,
+              21
+            ],
+            "data": "ghi",
+            "raw": "ghi"
+          }
+        ],
+        "flags": {
+          "g": true,
+          "i": true,
+          "m": false,
+          "y": false
+        }
+      }
+    ],
+    "raw": "///\n  abc # def #{ghi} j\n///gi"
+  }
+}

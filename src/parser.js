@@ -1,6 +1,7 @@
 import * as CoffeeScript from 'decaffeinate-coffeescript';
 import ParseContext from './util/ParseContext';
 import isChainedComparison from './util/isChainedComparison';
+import isHeregexTemplateNode from './util/isHeregexTemplateNode';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
 import isStringAtPosition from './util/isStringAtPosition';
@@ -414,8 +415,11 @@ function convert(context) {
               return makeNode('JavaScript', node.locationData, { data: node.value });
             } else if (raw.slice(0, '///'.length) === '///') {
               let flags = raw.match(HEREGEX_PATTERN)[2];
-              return makeNode('RegExp', node.locationData, {
-                data: node.value,
+              return makeNode('Heregex', node.locationData, {
+                quasis: [
+                  makeNode('Quasi', node.locationData, { data: node.value })
+                ],
+                expressions: [],
                 flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
                   memo[flag] = flags.indexOf(flag) >= 0;
                   return memo;
@@ -452,6 +456,23 @@ function convert(context) {
         }
 
       case 'Call':
+        if (isHeregexTemplateNode(node, context)) {
+          let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
+          let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
+          let flags;
+          if (node.args.length > 1) {
+            let secondArg = convertChild(node.args[1].base);
+            flags = secondArg.data;
+          } else {
+            flags = '';
+          }
+          heregexResult.flags = ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
+            memo[flag] = flags.indexOf(flag) >= 0;
+            return memo;
+          }, {});
+          return heregexResult;
+        }
+
         if (node.isNew) {
           return makeNode('NewOp', expandLocationLeftThrough(node.locationData, 'new'), {
             ctor: convertChild(node.variable),
@@ -520,7 +541,7 @@ function convert(context) {
       case 'Op':
         const op = convertOperator(node);
         if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
-          return createTemplateLiteral(op);
+          return createTemplateLiteral(op, 'String');
         }
         if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
           return makeNode('ChainedComparisonOp', node.locationData, {
@@ -957,7 +978,7 @@ function convert(context) {
       return result;
     }
 
-    function createTemplateLiteral(op) {
+    function createTemplateLiteral(op, nodeType) {
       let tokens = context.sourceTokens;
       let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(op.range[0]);
       let interpolatedStringTokenRange = tokens.rangeOfInterpolatedStringTokensContainingTokenIndex(startTokenIndex);
@@ -966,7 +987,7 @@ function convert(context) {
       }
       let firstToken = tokens.tokenAtIndex(interpolatedStringTokenRange[0]);
       let lastToken = tokens.tokenAtIndex(interpolatedStringTokenRange[1].previous());
-      op.type = 'String';
+      op.type = nodeType;
       op.range = [firstToken.start, lastToken.end];
       op.raw = source.slice(...op.range);
 
