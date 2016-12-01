@@ -6,7 +6,7 @@ import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
 import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
-import lex, { NEWLINE, COMMENT, HERECOMMENT, IF, RELATION, OPERATOR, LBRACKET, RBRACKET, STRING_CONTENT } from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT, HEREGEXP_START, HEREGEXP_END, IF, JS, RELATION, OPERATOR, LBRACKET, RBRACKET, STRING_CONTENT } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import type from './util/type';
@@ -408,24 +408,31 @@ function convert(context) {
           let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
           let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
           let raw = source.slice(start, end);
+
+          let tokens = context.sourceTokens;
+          let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
+          let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
+          let endTokenIndex = tokens.indexOfTokenContainingSourceIndex(end - 1);
+          let endTokenType = tokens.tokenAtIndex(endTokenIndex).type;
+          if (startTokenType === JS) {
+            return makeNode('JavaScript', node.locationData, { data: node.value });
+          } else if (startTokenType === HEREGEXP_START && endTokenType === HEREGEXP_END) {
+            let flags = raw.match(HEREGEX_PATTERN)[2];
+            return makeNode('Heregex', node.locationData, {
+              quasis: [
+                makeNode('Quasi', node.locationData, { data: node.value })
+              ],
+              expressions: [],
+              flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
+                memo[flag] = flags.indexOf(flag) >= 0;
+                return memo;
+              }, {})
+            });
+          }
+
           let literal = parseLiteral(node.value);
 
           if (!literal) {
-            if (raw[0] === '`' && raw[raw.length - 1] === '`') {
-              return makeNode('JavaScript', node.locationData, { data: node.value });
-            } else if (raw.slice(0, '///'.length) === '///') {
-              let flags = raw.match(HEREGEX_PATTERN)[2];
-              return makeNode('Heregex', node.locationData, {
-                quasis: [
-                  makeNode('Quasi', node.locationData, { data: node.value })
-                ],
-                expressions: [],
-                flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
-                  memo[flag] = flags.indexOf(flag) >= 0;
-                  return memo;
-                }, {})
-              });
-            }
             return makeNode('Identifier', node.locationData, { data: node.value });
           } else if (literal.type === 'error') {
             throw new Error(literal.error.message);
