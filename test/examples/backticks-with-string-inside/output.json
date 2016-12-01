@@ -1,0 +1,33 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    24
+  ],
+  "raw": "`import foo from 'foo'`\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      23
+    ],
+    "statements": [
+      {
+        "type": "JavaScript",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          23
+        ],
+        "data": "import foo from 'foo'",
+        "raw": "`import foo from 'foo'`"
+      }
+    ],
+    "raw": "`import foo from 'foo'`"
+  }
+}
