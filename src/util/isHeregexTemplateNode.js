@@ -1,6 +1,6 @@
 import { SourceType } from 'coffee-lex';
 
-import type from './type.js';
+import type from './type';
 
 /**
  * Determine if the given CoffeeScript AST node is an interpolated heregex node

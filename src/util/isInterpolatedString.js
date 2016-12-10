@@ -1,4 +1,4 @@
-import type from './type.js';
+import type from './type';
 import isPlusTokenBetweenRanges from './isPlusTokenBetweenRanges';
 
 /**
