@@ -6,7 +6,7 @@ import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
 import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
-import lex, { NEWLINE, COMMENT, HERECOMMENT, HEREGEXP_START, HEREGEXP_END, IF, JS, RELATION, OPERATOR, LBRACKET, RBRACKET, } from 'coffee-lex';
+import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import type from './util/type';
@@ -344,7 +344,7 @@ function convert(context) {
   function rangeOfBracketTokensForIndexNode(indexNode) {
     let start = linesAndColumns.indexForLocation({ line: indexNode.locationData.first_line, column: indexNode.locationData.first_column });
     let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-    let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(LBRACKET, RBRACKET, startTokenIndex);
+    let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(SourceType.LBRACKET, SourceType.RBRACKET, startTokenIndex);
     if (!range) {
       throw new Error(
         `cannot find braces surrounding index at ` +
@@ -415,9 +415,9 @@ function convert(context) {
           let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
           let endTokenIndex = tokens.indexOfTokenContainingSourceIndex(end - 1);
           let endTokenType = tokens.tokenAtIndex(endTokenIndex).type;
-          if (startTokenType === JS) {
+          if (startTokenType === SourceType.JS) {
             return makeNode('JavaScript', node.locationData, { data: node.value });
-          } else if (startTokenType === HEREGEXP_START && endTokenType === HEREGEXP_END) {
+          } else if (startTokenType === SourceType.HEREGEXP_START && endTokenType === SourceType.HEREGEXP_END) {
             let flags = raw.match(HEREGEX_PATTERN)[2];
             return makeNode('Heregex', node.locationData, {
               quasis: [
@@ -634,7 +634,7 @@ function convert(context) {
 
           for (let i = lastConsequentTokenIndex; i !== firstConditionTokenIndex; i = i.next()) {
             let token = context.sourceTokens.tokenAtIndex(i);
-            if (token.type === IF) {
+            if (token.type === SourceType.IF) {
               isUnless = source.slice(token.start, token.end) === 'unless';
               break;
             }
@@ -645,7 +645,7 @@ function convert(context) {
 
           for (let i = firstConditionTokenIndex; i !== null; i = i.previous()) {
             let token = context.sourceTokens.tokenAtIndex(i);
-            if (token.type === IF) {
+            if (token.type === SourceType.IF) {
               isUnless = source.slice(token.start, token.end) === 'unless';
               break;
             }
@@ -897,7 +897,7 @@ function convert(context) {
 
         for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
           let token = context.sourceTokens.tokenAtIndex(i);
-          if (token.type === RELATION) {
+          if (token.type === SourceType.RELATION) {
             isNot = source.slice(token.start, token.end) !== 'in';
           }
         }
@@ -977,9 +977,9 @@ function convert(context) {
         let lastTokenIndexOfNode = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
           return (
             token.end <= result.range[1] &&
-            token.type !== NEWLINE &&
-            token.type !== COMMENT &&
-            token.type !== HERECOMMENT
+            token.type !== SourceType.NEWLINE &&
+            token.type !== SourceType.COMMENT &&
+            token.type !== SourceType.HERECOMMENT
           );
         }, context.sourceTokens.indexOfTokenNearSourceIndex(result.range[1]));
 
@@ -1256,7 +1256,7 @@ function convert(context) {
 
           for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
             let token = context.sourceTokens.tokenAtIndex(i);
-            if (token.type === OPERATOR || token.type === RELATION) {
+            if (token.type === SourceType.OPERATOR || token.type === SourceType.RELATION) {
               isNot = source.slice(token.start, token.start + 'not'.length) === 'not';
               break;
             }

@@ -1,4 +1,4 @@
-import { HEREGEXP_START } from 'coffee-lex';
+import { SourceType } from 'coffee-lex';
 
 import type from './type.js';
 
@@ -21,5 +21,5 @@ export default function isHeregexTemplateNode(node, context) {
   if (startTokenIndex === null) {
     return false;
   }
-  return sourceTokens.tokenAtIndex(startTokenIndex).type === HEREGEXP_START;
+  return sourceTokens.tokenAtIndex(startTokenIndex).type === SourceType.HEREGEXP_START;
 }
