@@ -1,4 +1,4 @@
-import { OPERATOR } from 'coffee-lex';
+import { SourceType } from 'coffee-lex';
 
 /**
  * Given the ranges of two operands, determine from the token list whether there
@@ -19,7 +19,7 @@ export default function isPlusTokenBetweenRanges(leftRange, rightRange, context)
   // this must be an implicit '+'.
   let foundPlusToken = false;
   tokensBetweenOperands.forEach(({ type, start, end }) => {
-    if (type === OPERATOR && context.source.slice(start, end) === '+') {
+    if (type === SourceType.OPERATOR && context.source.slice(start, end) === '+') {
       foundPlusToken = true;
     }
   });
