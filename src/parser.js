@@ -976,7 +976,7 @@ function convert(context) {
             token.type !== COMMENT &&
             token.type !== HERECOMMENT
           );
-        });
+        }, context.sourceTokens.indexOfTokenNearSourceIndex(result.range[1]));
 
         let lastTokenOfNode = context.sourceTokens.tokenAtIndex(lastTokenIndexOfNode);
         result.range[1] = lastTokenOfNode.end;
