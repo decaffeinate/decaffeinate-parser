@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 class Node {
   /** @type {string} */
   type = '';

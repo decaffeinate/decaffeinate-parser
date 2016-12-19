@@ -6,7 +6,7 @@ import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
 import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
-import lex, { NEWLINE, COMMENT, HERECOMMENT, HEREGEXP_START, HEREGEXP_END, IF, JS, RELATION, OPERATOR, LBRACKET, RBRACKET, STRING_CONTENT } from 'coffee-lex';
+import lex, { NEWLINE, COMMENT, HERECOMMENT, HEREGEXP_START, HEREGEXP_END, IF, JS, RELATION, OPERATOR, LBRACKET, RBRACKET, } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import parseLiteral from './util/parseLiteral';
 import type from './util/type';
@@ -380,7 +380,7 @@ function convert(context) {
     }
 
     switch (type(node)) {
-      case 'Value':
+      case 'Value': {
         let value = convertChild(node.base);
         node.properties.forEach(prop => {
           value = accessOpForProperty(value, prop, node.base.locationData);
@@ -400,6 +400,7 @@ function convert(context) {
           }
         });
         return value;
+      }
 
       case 'Literal':
         if (node.value === 'this') {
@@ -545,7 +546,7 @@ function convert(context) {
           return result;
         }
 
-      case 'Op':
+      case 'Op': {
         const op = convertOperator(node);
         if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
           return createTemplateLiteral(op, 'String');
@@ -556,6 +557,7 @@ function convert(context) {
           });
         }
         return op;
+      }
 
       case 'Assign':
         if (node.context === 'object') {
@@ -658,7 +660,7 @@ function convert(context) {
         });
       }
 
-      case 'Code':
+      case 'Code': {
         let fnType;
         if (node.bound) {
           if (node.isGenerator) {
@@ -677,8 +679,9 @@ function convert(context) {
           body: convertChild(node.body),
           parameters: convertChild(node.params)
         });
+      }
 
-      case 'Param':
+      case 'Param': {
         const param = convertChild(node.name);
         if (node.value) {
           return makeNode('DefaultParam', node.locationData, {
@@ -692,6 +695,7 @@ function convert(context) {
           });
         }
         return param;
+      }
 
       case 'Block':
         if (node.expressions.length === 0) {
@@ -753,7 +757,7 @@ function convert(context) {
           });
         }
 
-      case 'While':
+      case 'While': {
         const result = makeNode('While', locationContainingNodes(node, node.condition, node.body), {
           condition: convertChild(node.condition),
           guard: convertChild(node.guard),
@@ -768,13 +772,14 @@ function convert(context) {
           };
         }
         return result;
+      }
 
       case 'Existence':
         return makeNode('UnaryExistsOp', node.locationData, {
           expression: convertChild(node.expression)
         });
 
-      case 'Class':
+      case 'Class': {
         const nameNode = node.variable ? convertChild(node.variable) : null;
 
         let ctor = null;
@@ -834,6 +839,7 @@ function convert(context) {
           parent: node.parent ? convertChild(node.parent) : null,
           ctor
         });
+      }
 
       case 'Switch':
         return makeNode('Switch', node.locationData, {
@@ -917,7 +923,6 @@ function convert(context) {
 
       default:
         throw new Error(`unknown node type: ${type(node)}\n${JSON.stringify(node, null, 2)}`);
-        break;
     }
 
     function convertChild(child) {
@@ -1343,15 +1348,3 @@ function convert(context) {
     }
   }
 }
-
-function nodeTypeForLiteral(value) {
-  switch (typeof value) {
-    case 'number':
-      return Math.floor(value) === value ? 'Int' : 'Float';
-
-    default:
-      throw new Error(`unimplemented node type for ${JSON.stringify(value)}`);
-  }
-}
-
-

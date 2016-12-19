@@ -90,21 +90,23 @@ function parseQuotedString(string, quote) {
             result += '\f';
             break;
 
-          case 'x':
+          case 'x': {
             let x = hex(2);
             if (x.type === 'error') {
               return x;
             }
             result += String.fromCharCode(x);
             break;
+          }
 
-          case 'u':
+          case 'u': {
             let u = hex(4);
             if (u.type === 'error') {
               return u;
             }
             result += String.fromCharCode(u);
             break;
+          }
 
           case '0':
             result += String.fromCharCode(0);
