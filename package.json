@@ -7,6 +7,8 @@
     "prebuild": "rm -rf dist/",
     "build": "rollup -c",
     "prepublish": "npm run build",
+    "lint": "eslint src test",
+    "pretest": "npm run lint",
     "test": "mocha",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-external-helpers": "^6.8.0",
     "babel-plugin-object-rest-spread": "0.0.0",
     "babel-plugin-syntax-flow": "^6.8.0",
@@ -37,6 +40,7 @@
     "babel-register": "^6.7.2",
     "babelrc-rollup": "^3.0.0",
     "coffee-script-redux": "^2.0.0-beta8",
+    "eslint": "^3.12.2",
     "mocha": "^3.0.0",
     "rollup": "^0.37.0",
     "rollup-plugin-babel": "^2.4.0",
