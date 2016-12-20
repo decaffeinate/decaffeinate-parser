@@ -1,5 +1,6 @@
 import * as CoffeeScript from 'decaffeinate-coffeescript';
 import ParseContext from './util/ParseContext';
+import expandLocationLeftThrough from './util/expandLocationLeftThrough';
 import isChainedComparison from './util/isChainedComparison';
 import isHeregexTemplateNode from './util/isHeregexTemplateNode';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
@@ -8,7 +9,12 @@ import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
+import locationContainingNodes from './util/locationContainingNodes';
+import locationWithLastPosition from './util/locationWithLastPosition';
+import makeNode from './util/makeNode';
+import mergeLocations from './util/mergeLocations';
 import parseLiteral from './util/parseLiteral';
+import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
 import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
@@ -17,15 +23,12 @@ const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
 
 /**
  * @param {string} source
- * @param {{coffeeScript: {nodes: function(string): Object, tokens: function(string): Array}}} options
  * @returns {Program}
  */
-export function parse(source, options={}) {
-  let CS = options.coffeeScript || CoffeeScript;
+export function parse(source) {
+  patchCoffeeScript();
 
-  patchCoffeeScript(CS);
-
-  let context = ParseContext.fromSource(source, lex, CS.nodes);
+  let context = ParseContext.fromSource(source, lex, CoffeeScript.nodes);
 
   let ast = context.ast;
   if (type(ast) === 'Block' && ast.expressions.every(e => type(e) === 'Comment')) {
@@ -43,60 +46,6 @@ export function parse(source, options={}) {
   }
 
   return /** @type Program */ convert(context);
-}
-
-function locationContainingNodes(...nodes) {
-  switch (nodes.length) {
-    case 0:
-      return null;
-
-    case 1:
-      return nodes[0].locationData;
-
-    case 2:
-      return mergeLocations(nodes[0].locationData, nodes[1].locationData);
-
-    default:
-      return mergeLocations(nodes[0].locationData, locationContainingNodes(...nodes.slice(1)));
-  }
-}
-
-function locationWithLastPosition(loc, last) {
-  return {
-    first_line: loc.first_line,
-    first_column: loc.first_column,
-    last_line: last.last_line,
-    last_column: last.last_column
-  };
-}
-
-function mergeLocations(left, right) {
-  let first_line;
-  let first_column;
-  let last_line;
-  let last_column;
-
-  if (left.first_line < right.first_line) {
-    ({ first_line, first_column } = left);
-  } else if (left.first_line > right.first_line) {
-    ({ first_line, first_column } = right);
-  } else if (left.first_column < right.first_column) {
-    ({ first_line, first_column } = left);
-  } else {
-    ({ first_line, first_column } = right);
-  }
-
-  if (left.last_line < right.last_line) {
-    ({ last_line, last_column } = right);
-  } else if (left.last_line > right.last_line) {
-    ({ last_line, last_column } = left);
-  } else if (left.last_column < right.last_column) {
-    ({ last_line, last_column } = right);
-  } else {
-    ({ last_line, last_column } = left);
-  }
-
-  return { first_line, first_column, last_line, last_column };
 }
 
 /**
@@ -137,7 +86,7 @@ function convert(context) {
       case 'Index':
       case 'Slice':
       {
-        let rangeOfBrackets = rangeOfBracketTokensForIndexNode(node);
+        let rangeOfBrackets = rangeOfBracketTokensForIndexNode(context, node);
         let lbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[0]);
         let lbracketLoc = linesAndColumns.locationForIndex(lbracket.start);
         let rbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[1].previous());
@@ -341,20 +290,6 @@ function convert(context) {
     }
   }
 
-  function rangeOfBracketTokensForIndexNode(indexNode) {
-    let start = linesAndColumns.indexForLocation({ line: indexNode.locationData.first_line, column: indexNode.locationData.first_column });
-    let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-    let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(SourceType.LBRACKET, SourceType.RBRACKET, startTokenIndex);
-    if (!range) {
-      throw new Error(
-        `cannot find braces surrounding index at ` +
-        `${indexNode.locationData.first_line + 1}:${indexNode.locationData.first_column}: ` +
-        `${inspect(indexNode)}`
-      );
-    }
-    return range;
-  }
-
   /**
    * @param {Object} node
    * @param ancestors
@@ -368,7 +303,7 @@ function convert(context) {
         column: 1,
         range: [0, source.length],
         raw: source,
-        body: makeNode('Block', node.locationData, {
+        body: makeNode(context, 'Block', node.locationData, {
           statements: convertChild(node.expressions)
         })
       };
@@ -404,7 +339,7 @@ function convert(context) {
 
       case 'Literal':
         if (node.value === 'this') {
-          return makeNode('This', node.locationData);
+          return makeNode(context, 'This', node.locationData);
         } else {
           let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
           let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
@@ -416,12 +351,12 @@ function convert(context) {
           let endTokenIndex = tokens.indexOfTokenContainingSourceIndex(end - 1);
           let endTokenType = tokens.tokenAtIndex(endTokenIndex).type;
           if (startTokenType === SourceType.JS) {
-            return makeNode('JavaScript', node.locationData, { data: node.value });
+            return makeNode(context, 'JavaScript', node.locationData, { data: node.value });
           } else if (startTokenType === SourceType.HEREGEXP_START && endTokenType === SourceType.HEREGEXP_END) {
             let flags = raw.match(HEREGEX_PATTERN)[2];
-            return makeNode('Heregex', node.locationData, {
+            return makeNode(context, 'Heregex', node.locationData, {
               quasis: [
-                makeNode('Quasi', node.locationData, { data: node.value })
+                makeNode(context, 'Quasi', node.locationData, { data: node.value })
               ],
               expressions: [],
               flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
@@ -434,7 +369,7 @@ function convert(context) {
           let literal = parseLiteral(node.value);
 
           if (!literal) {
-            return makeNode('Identifier', node.locationData, { data: node.value });
+            return makeNode(context, 'Identifier', node.locationData, { data: node.value });
           } else if (literal.type === 'error') {
             throw new Error(literal.error.message);
           } else if (literal.type === 'string') {
@@ -445,19 +380,19 @@ function convert(context) {
             // just return a Quasi node, and higher-up code should insert it
             // into a string interpolation.
             if (isStringAtPosition(start, end, context)) {
-              return makeNode('String', node.locationData, {
+              return makeNode(context, 'String', node.locationData, {
                 quasis: [
-                  makeNode('Quasi', node.locationData, {data: literal.data})
+                  makeNode(context, 'Quasi', node.locationData, {data: literal.data})
                 ],
                 expressions: [],
               });
             } else {
-              return makeNode('Quasi', node.locationData, {data: literal.data});
+              return makeNode(context, 'Quasi', node.locationData, {data: literal.data});
             }
           } else if (literal.type === 'int') {
-            return makeNode('Int', node.locationData, { data: literal.data });
+            return makeNode(context, 'Int', node.locationData, { data: literal.data });
           } else if (literal.type === 'float') {
-            return makeNode('Float', node.locationData, { data: literal.data });
+            return makeNode(context, 'Float', node.locationData, { data: literal.data });
           } else {
             throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
           }
@@ -482,15 +417,15 @@ function convert(context) {
         }
 
         if (node.isNew) {
-          return makeNode('NewOp', expandLocationLeftThrough(node.locationData, 'new'), {
+          return makeNode(context, 'NewOp', expandLocationLeftThrough(context, node.locationData, 'new'), {
             ctor: convertChild(node.variable),
             arguments: convertChild(node.args)
           });
         } else if (node.isSuper) {
           if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
             // Virtual splat argument.
-            return makeNode('FunctionApplication', node.locationData, {
-              function: makeNode('Super', node.locationData),
+            return makeNode(context, 'FunctionApplication', node.locationData, {
+              function: makeNode(context, 'Super', node.locationData),
               arguments: [{
                 type: 'Spread',
                 virtual: true,
@@ -508,12 +443,12 @@ function convert(context) {
             last_line: node.locationData.first_line,
             last_column: node.locationData.first_column + 'super'.length - 1
           };
-          return makeNode('FunctionApplication', node.locationData, {
-            function: makeNode('Super', superLocationData),
+          return makeNode(context, 'FunctionApplication', node.locationData, {
+            function: makeNode(context, 'Super', superLocationData),
             arguments: convertChild(node.args)
           });
         } else {
-          const result = makeNode(node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
+          const result = makeNode(context, node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
             function: convertChild(node.variable),
             arguments: convertChild(node.args)
           });
@@ -533,7 +468,7 @@ function convert(context) {
                   return param;
                 }
 
-                return makeNode('DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
+                return makeNode(context, 'DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
                   param,
                   default: arg
                 });
@@ -552,7 +487,7 @@ function convert(context) {
           return createTemplateLiteral(op, 'String');
         }
         if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
-          return makeNode('ChainedComparisonOp', node.locationData, {
+          return makeNode(context, 'ChainedComparisonOp', node.locationData, {
             expression: op
           });
         }
@@ -561,30 +496,30 @@ function convert(context) {
 
       case 'Assign':
         if (node.context === 'object') {
-          return makeNode('ObjectInitialiserMember', node.locationData, {
+          return makeNode(context, 'ObjectInitialiserMember', node.locationData, {
             key: convertChild(node.variable),
             expression: convertChild(node.value)
           });
         } else if (node.context && node.context.slice(-1) === '=') {
-          return makeNode('CompoundAssignOp', node.locationData, {
+          return makeNode(context, 'CompoundAssignOp', node.locationData, {
             assignee: convertChild(node.variable),
             expression: convertChild(node.value),
             op: binaryOperatorNodeType(node.context.slice(0, -1))
           })
         } else {
-          return makeNode('AssignOp', node.locationData, {
+          return makeNode(context, 'AssignOp', node.locationData, {
             assignee: convertChild(node.variable),
             expression: convertChild(node.value)
           });
         }
 
       case 'Obj':
-        return makeNode('ObjectInitialiser', node.locationData, {
+        return makeNode(context, 'ObjectInitialiser', node.locationData, {
           members: node.properties.map(property => {
             if (type(property) === 'Value') {
               // shorthand property
               const keyValue = convertChild(property);
-              return makeNode('ObjectInitialiserMember', property.locationData, {
+              return makeNode(context, 'ObjectInitialiserMember', property.locationData, {
                 key: keyValue,
                 expression: keyValue
               });
@@ -595,7 +530,7 @@ function convert(context) {
         });
 
       case 'Arr':
-        return makeNode('ArrayInitialiser', node.locationData, {
+        return makeNode(context, 'ArrayInitialiser', node.locationData, {
           members: convertChild(node.objects)
         });
 
@@ -609,7 +544,7 @@ function convert(context) {
             let result = convertChild(lastExpression);
             for (let i = expressions.length - 2; i >= 0; i--) {
               let left = expressions[i];
-              result = makeNode('SeqOp', locationContainingNodes(left, lastExpression), {
+              result = makeNode(context, 'SeqOp', locationContainingNodes(left, lastExpression), {
                 left: convertChild(left),
                 right: result
               });
@@ -652,7 +587,7 @@ function convert(context) {
           }
         }
 
-        return makeNode('Conditional', node.locationData, {
+        return makeNode(context, 'Conditional', node.locationData, {
           isUnless,
           condition,
           consequent,
@@ -675,7 +610,7 @@ function convert(context) {
             fnType = 'Function';
           }
         }
-        return makeNode(fnType, node.locationData, {
+        return makeNode(context, fnType, node.locationData, {
           body: convertChild(node.body),
           parameters: convertChild(node.params)
         });
@@ -684,13 +619,13 @@ function convert(context) {
       case 'Param': {
         const param = convertChild(node.name);
         if (node.value) {
-          return makeNode('DefaultParam', node.locationData, {
+          return makeNode(context, 'DefaultParam', node.locationData, {
             default: convertChild(node.value),
             param
           });
         }
         if (node.splat) {
-          return makeNode('Rest', node.locationData, {
+          return makeNode(context, 'Rest', node.locationData, {
             expression: param
           });
         }
@@ -701,7 +636,7 @@ function convert(context) {
         if (node.expressions.length === 0) {
           return null;
         } else {
-          const block = makeNode('Block', node.locationData, {
+          const block = makeNode(context, 'Block', node.locationData, {
             statements: convertChild(node.expressions)
           });
           block.inline = false;
@@ -718,18 +653,18 @@ function convert(context) {
         }
 
       case 'Bool':
-        return makeNode('Bool', node.locationData, {
+        return makeNode(context, 'Bool', node.locationData, {
           data: JSON.parse(node.val)
         });
 
       case 'Null':
-        return makeNode('Null', node.locationData);
+        return makeNode(context, 'Null', node.locationData);
 
       case 'Undefined':
-        return makeNode('Undefined', node.locationData);
+        return makeNode(context, 'Undefined', node.locationData);
 
       case 'Return':
-        return makeNode('Return', node.locationData, {
+        return makeNode(context, 'Return', node.locationData, {
           expression: node.expression ? convertChild(node.expression) : null
         });
 
@@ -738,7 +673,7 @@ function convert(context) {
           node.body.locationData = locationContainingNodes(...node.body.expressions);
         }
         if (node.object) {
-          return makeNode('ForOf', node.locationData, {
+          return makeNode(context, 'ForOf', node.locationData, {
             keyAssignee: convertChild(node.index),
             valAssignee: convertChild(node.name),
             body: convertChild(node.body),
@@ -747,7 +682,7 @@ function convert(context) {
             isOwn: node.own
           });
         } else {
-          return makeNode('ForIn', node.locationData, {
+          return makeNode(context, 'ForIn', node.locationData, {
             keyAssignee: convertChild(node.index),
             valAssignee: convertChild(node.name),
             body: convertChild(node.body),
@@ -758,7 +693,7 @@ function convert(context) {
         }
 
       case 'While': {
-        const result = makeNode('While', locationContainingNodes(node, node.condition, node.body), {
+        const result = makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
           condition: convertChild(node.condition),
           guard: convertChild(node.guard),
           body: convertChild(node.body),
@@ -775,7 +710,7 @@ function convert(context) {
       }
 
       case 'Existence':
-        return makeNode('UnaryExistsOp', node.locationData, {
+        return makeNode(context, 'UnaryExistsOp', node.locationData, {
           expression: convertChild(node.expression)
         });
 
@@ -784,7 +719,7 @@ function convert(context) {
 
         let ctor = null;
         let boundMembers = [];
-        const body = (!node.body || node.body.expressions.length === 0) ? null : makeNode('Block', node.body.locationData, {
+        const body = (!node.body || node.body.expressions.length === 0) ? null : makeNode(context, 'Block', node.body.locationData, {
           statements: node.body.expressions.reduce((statements, expr) => {
             if (type(expr) === 'Value' && type(expr.base) === 'Obj') {
               expr.base.properties.forEach(property => {
@@ -805,17 +740,17 @@ function convert(context) {
                     break;
                 }
                 if (key.data === 'constructor') {
-                  statements.push(ctor = makeNode('Constructor', property.locationData, {
+                  statements.push(ctor = makeNode(context, 'Constructor', property.locationData, {
                     assignee: key,
                     expression: value
                   }));
                 } else if (key.type === 'MemberAccessOp' && key.expression.type === 'This') {
-                  statements.push(makeNode('AssignOp', property.locationData, {
+                  statements.push(makeNode(context, 'AssignOp', property.locationData, {
                     assignee: key,
                     expression: value
                   }));
                 } else {
-                  statements.push(makeNode('ClassProtoAssignOp', property.locationData, {
+                  statements.push(makeNode(context, 'ClassProtoAssignOp', property.locationData, {
                     assignee: key,
                     expression: value
                   }));
@@ -831,7 +766,7 @@ function convert(context) {
           }, [])
         });
 
-        return makeNode('Class', node.locationData, {
+        return makeNode(context, 'Class', node.locationData, {
           name: nameNode,
           nameAssignee: nameNode,
           body,
@@ -842,17 +777,18 @@ function convert(context) {
       }
 
       case 'Switch':
-        return makeNode('Switch', node.locationData, {
+        return makeNode(context, 'Switch', node.locationData, {
           expression: convertChild(node.subject),
           cases: node.cases.map(([conditions, body]) => {
             if (!Array.isArray(conditions)) {
               conditions = [conditions];
             }
             const loc = expandLocationLeftThrough(
+              context,
               locationContainingNodes(conditions[0], body),
               'when '
             );
-            return makeNode('SwitchCase', loc, {
+            return makeNode(context, 'SwitchCase', loc, {
               conditions: convertChild(conditions),
               consequent: convertChild(body)
             })
@@ -861,17 +797,17 @@ function convert(context) {
         });
 
       case 'Splat':
-        return makeNode('Spread', node.locationData, {
+        return makeNode(context, 'Spread', node.locationData, {
           expression: convertChild(node.name)
         });
 
       case 'Throw':
-        return makeNode('Throw', node.locationData, {
+        return makeNode(context, 'Throw', node.locationData, {
           expression: convertChild(node.expression)
         });
 
       case 'Try':
-        return makeNode('Try', node.locationData, {
+        return makeNode(context, 'Try', node.locationData, {
           body: convertChild(node.attempt),
           catchAssignee: convertChild(node.errorVariable),
           catchBody: convertChild(node.recovery),
@@ -879,7 +815,7 @@ function convert(context) {
         });
 
       case 'Range':
-        return makeNode('Range', node.locationData, {
+        return makeNode(context, 'Range', node.locationData, {
           left: convertChild(node.from),
           right: convertChild(node.to),
           isInclusive: !node.exclusive
@@ -902,7 +838,7 @@ function convert(context) {
           }
         }
 
-        return makeNode('InOp', node.locationData, {
+        return makeNode(context, 'InOp', node.locationData, {
           left,
           right,
           isNot
@@ -910,13 +846,13 @@ function convert(context) {
       }
 
       case 'Expansion':
-        return makeNode('Expansion', node.locationData);
+        return makeNode(context, 'Expansion', node.locationData);
 
       case 'Comment':
         return null;
 
       case 'Extends':
-        return makeNode('ExtendsOp', node.locationData, {
+        return makeNode(context, 'ExtendsOp', node.locationData, {
           left: convertChild(node.child),
           right: convertChild(node.parent)
         });
@@ -933,61 +869,6 @@ function convert(context) {
       } else {
         return convertNode(child, [...ancestors, node]);
       }
-    }
-
-    function makeNode(type, loc, attrs = {}) {
-      const result = {type};
-      if (loc) {
-        const start = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
-        const end = linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column }) + 1;
-        result.line = loc.first_line + 1;
-        result.column = loc.first_column + 1;
-        result.range = [start, end];
-      } else {
-        result.virtual = true;
-      }
-      for (let key in attrs) {
-        if (attrs.hasOwnProperty(key)) {
-          let value = attrs[key];
-          result[key] = value;
-          if (value && result.range) {
-            (Array.isArray(value) ? value : [value]).forEach(node => {
-              if (node.range) {
-                // Expand the range to contain all the children.
-                if (result.range[0] > node.range[0]) {
-                  result.range[0] = node.range[0];
-                }
-                if (result.range[1] < node.range[1]) {
-                  result.range[1] = node.range[1];
-                }
-              }
-            });
-          }
-        }
-      }
-      if (result.range) {
-        // Shrink to be within the size of the source.
-        if (result.range[0] < 0) {
-          result.range[0] = 0;
-        }
-        if (result.range[1] > source.length) {
-          result.range[1] = source.length;
-        }
-        // Shrink the end to the nearest semantic token.
-        let lastTokenIndexOfNode = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
-          return (
-            token.end <= result.range[1] &&
-            token.type !== SourceType.NEWLINE &&
-            token.type !== SourceType.COMMENT &&
-            token.type !== SourceType.HERECOMMENT
-          );
-        }, context.sourceTokens.indexOfTokenNearSourceIndex(result.range[1]));
-
-        let lastTokenOfNode = context.sourceTokens.tokenAtIndex(lastTokenIndexOfNode);
-        result.range[1] = lastTokenOfNode.end;
-        result.raw = source.slice(result.range[0], result.range[1]);
-      }
-      return result;
     }
 
     function createTemplateLiteral(op, nodeType) {
@@ -1131,19 +1012,19 @@ function convert(context) {
     function accessOpForProperty(expression, prop, loc) {
       switch (type(prop)) {
         case 'Access':
-          return makeNode(prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
+          return makeNode(context, prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
             memberName: prop.name.value
           });
 
         case 'Index':
-          return makeNode(prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', mergeLocations(loc, prop.locationData), {
+          return makeNode(context, prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
             indexingExpr: convertNode(prop.index, [...ancestors, node, prop])
           });
 
         case 'Slice':
-          return makeNode('Slice', mergeLocations(loc, prop.locationData), {
+          return makeNode(context, 'Slice', mergeLocations(loc, prop.locationData), {
             expression,
             left: convertChild(prop.range.from),
             right: convertChild(prop.range.to),
@@ -1248,7 +1129,7 @@ function convert(context) {
           throw new Error(`unknown binary operator: ${op.operator}`);
         }
 
-        let result = makeNode(nodeType, op.locationData, {
+        let result = makeNode(context, nodeType, op.locationData, {
           left: convertNode(op.first, [...ancestors, op]),
           right: convertNode(op.second, [...ancestors, op])
         });
@@ -1304,18 +1185,18 @@ function convert(context) {
 
           case 'new':
             // Parentheses-less "new".
-            return makeNode('NewOp', op.locationData, {
+            return makeNode(context, 'NewOp', op.locationData, {
               ctor: convertChild(op.first),
               arguments: []
             });
 
           case 'yield':
-            return makeNode('Yield', op.locationData, {
+            return makeNode(context, 'Yield', op.locationData, {
               expression: convertChild(op.first)
             });
 
           case 'yield*':
-            return makeNode('YieldFrom', op.locationData, {
+            return makeNode(context, 'YieldFrom', op.locationData, {
               expression: convertChild(op.first)
             });
 
@@ -1323,31 +1204,10 @@ function convert(context) {
             throw new Error(`unknown unary operator: ${op.operator}`);
         }
 
-        return makeNode(nodeType, op.locationData, {
+        return makeNode(context, nodeType, op.locationData, {
           expression: convertNode(op.first, [...ancestors, op])
         });
       }
-    }
-
-    function expandLocationLeftThrough(loc, string) {
-      let offset = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
-      offset = source.lastIndexOf(string, offset);
-
-      if (offset < 0) {
-        throw new Error(
-          `unable to expand location starting at ${loc.first_line + 1}:${loc.first_column + 1} ` +
-          `because it is not preceded by ${JSON.stringify(string)}`
-        );
-      }
-
-      const newLoc = linesAndColumns.locationForIndex(offset);
-
-      return {
-        first_line: newLoc.line,
-        first_column: newLoc.column,
-        last_line: loc.last_line,
-        last_column: loc.last_column
-      };
     }
   }
 }
