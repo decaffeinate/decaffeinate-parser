@@ -1,11 +1,35 @@
-/**
- * @param {string} string
- * @param {number=} offset
- * @returns {*}
- */
-export default function parseLiteral(string) {
-  if (string[0] === "'" || string[string.length - 1] === "'") {
-    return parseQuotedString(string, "'");
+export type ParseLiteralErrorResult = {
+  type: 'error';
+  error: {
+    type: string;
+    message: string;
+  }
+};
+
+export type ParseLiteralStringResult = {
+  type: 'string';
+  data: string;
+};
+
+export type ParseLiteralIntResult = {
+  type: 'int';
+  data: number;
+};
+
+export type ParseLiteralFloatResult = {
+  type: 'float';
+  data: number;
+};
+
+export type ParseLiteralResult =
+  ParseLiteralErrorResult |
+  ParseLiteralFloatResult |
+  ParseLiteralIntResult |
+  ParseLiteralStringResult;
+
+export default function parseLiteral(string: string): ParseLiteralResult | null {
+  if (string[0] === '\'' || string[string.length - 1] === '\'') {
+    return parseQuotedString(string, '\'');
   } else if (string[0] === '"' || string[string.length - 1] === '"') {
     return parseQuotedString(string, '"');
   } else if (/^\d+$/.test(string)) {
@@ -16,15 +40,12 @@ export default function parseLiteral(string) {
     return parseHexidecimal(string);
   } else if (/^0o[0-7]+$/i.test(string)) {
     return parseOctal(string);
+  } else {
+    return null;
   }
 }
 
-/**
- * @param {string} string
- * @param {string} quote
- * @returns {*}
- */
-function parseQuotedString(string, quote) {
+function parseQuotedString(string: string, quote: string): ParseLiteralErrorResult | ParseLiteralStringResult {
   if (string.slice(0, quote.length) !== quote || string.slice(-quote.length) !== quote) {
     return {
       type: 'error',
@@ -38,7 +59,7 @@ function parseQuotedString(string, quote) {
   let p = quote.length;
   let result = '';
 
-  function hex(count) {
+  function hex(count: number): ParseLiteralErrorResult | number {
     let digits = '';
     while (count-- > 0) {
       let chr = string[p++];
@@ -92,7 +113,7 @@ function parseQuotedString(string, quote) {
 
           case 'x': {
             let x = hex(2);
-            if (x.type === 'error') {
+            if (typeof x !== 'number') {
               return x;
             }
             result += String.fromCharCode(x);
@@ -101,7 +122,7 @@ function parseQuotedString(string, quote) {
 
           case 'u': {
             let u = hex(4);
-            if (u.type === 'error') {
+            if (typeof u !== 'number') {
               return u;
             }
             result += String.fromCharCode(u);
@@ -141,34 +162,18 @@ function parseQuotedString(string, quote) {
   return { type: 'string', data: result };
 }
 
-/**
- * @param {string} string
- * @returns {{type: string, data: number}}
- */
-function parseInteger(string) {
+function parseInteger(string: string): ParseLiteralIntResult {
   return { type: 'int', data: parseInt(string, 10) };
 }
 
-/**
- * @param {string} string
- * @returns {{type: string, data: number}}
- */
-function parseFloatingPoint(string) {
+function parseFloatingPoint(string: string): ParseLiteralFloatResult {
   return { type: 'float', data: parseFloat(string) };
 }
 
-/**
- * @param {string} string
- * @returns {{type: string, data: number}}
- */
-function parseHexidecimal(string) {
+function parseHexidecimal(string: string): ParseLiteralIntResult {
   return { type: 'int', data: parseInt(string.slice(2), 16) };
 }
 
-/**
- * @param {string} string
- * @returns {{type: string, data: number}}
- */
-function parseOctal(string) {
+function parseOctal(string: string): ParseLiteralIntResult {
   return { type: 'int', data: parseInt(string.slice(2), 8) };
 }

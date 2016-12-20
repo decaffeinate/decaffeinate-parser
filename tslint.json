@@ -14,6 +14,7 @@
     "no-var-requires": true,
     "no-var-keyword": true,
     "prefer-for-of": true,
+    "quotemark": [true, "single"],
     "typedef": [true, "parameter", "property-declaration"],
     "typedef-whitespace": [
       true,

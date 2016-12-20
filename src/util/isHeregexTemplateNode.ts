@@ -1,25 +1,32 @@
 import { SourceType } from 'coffee-lex';
-
-import type from './type';
+import { Base, Call, Literal, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import ParseContext from './ParseContext';
 
 /**
  * Determine if the given CoffeeScript AST node is an interpolated heregex node
  * that's pretending to be a function call to the RegExp function.
  */
-export default function isHeregexTemplateNode(node, context) {
-  if (type(node) !== 'Call' ||
+export default function isHeregexTemplateNode(node: Base, context: ParseContext) {
+  if (!(node instanceof Call) ||
       !node.variable ||
-      type(node.variable) !== 'Value' ||
+      !(node.variable instanceof Value) ||
       !node.variable.base ||
-      type(node.variable.base) !== 'Literal' ||
+      !(node.variable.base instanceof Literal) ||
       node.variable.base.value !== 'RegExp') {
     return false;
   }
   let { sourceTokens, linesAndColumns } = context;
   let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
+  if (start === null) {
+    return false;
+  }
   let startTokenIndex = sourceTokens.indexOfTokenContainingSourceIndex(start);
   if (startTokenIndex === null) {
     return false;
   }
-  return sourceTokens.tokenAtIndex(startTokenIndex).type === SourceType.HEREGEXP_START;
+  let startToken = sourceTokens.tokenAtIndex(startTokenIndex);
+  if (startToken === null) {
+    return false;
+  }
+  return startToken.type === SourceType.HEREGEXP_START;
 }

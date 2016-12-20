@@ -9,8 +9,8 @@ var external = Object.keys(pkg.dependencies);
 export default {
   entry: 'src/parser.js',
   plugins: [
-    babel(babelrc()),
-    ts({ typescript: TypeScript })
+    ts({ typescript: TypeScript }),
+    babel(babelrc())
   ],
   external: external,
   targets: [
