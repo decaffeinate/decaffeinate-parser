@@ -1,12 +1,17 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
+import * as TypeScript from 'typescript';
+import ts from 'rollup-plugin-typescript';
 
 var pkg = require('./package.json');
 var external = Object.keys(pkg.dependencies);
 
 export default {
   entry: 'src/parser.js',
-  plugins: [babel(babelrc())],
+  plugins: [
+    ts({ typescript: TypeScript }),
+    babel(babelrc())
+  ],
   external: external,
   targets: [
     {

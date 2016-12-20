@@ -1,23 +1,20 @@
-import type from './type.js';
+import { Base, Op } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import isPlusTokenBetweenRanges from './isPlusTokenBetweenRanges';
+import ParseContext from './ParseContext';
 
-/**
- * @param {Object} node
- * @param {Array<Object>} ancestors
- * @param {ParseContext} context
- * @returns boolean
- */
-export default function isInterpolatedString(node, ancestors, context) {
+export default function isInterpolatedString(node: Op, ancestors: Array<Base>, context: ParseContext): boolean {
   let range = rangeOfInterpolatedStringForNode(node, context);
 
   if (!range) {
     return false;
   }
 
-  let parentOp;
+  let parentOp: Op | null = null;
+
   for (let i = ancestors.length - 1; i >= 0; i--) {
-    if (type(ancestors[i]) === 'Op') {
-      parentOp = ancestors[i];
+    let ancestor = ancestors[i];
+    if (ancestor instanceof Op) {
+      parentOp = ancestor;
       break;
     }
   }
@@ -40,23 +37,37 @@ export default function isInterpolatedString(node, ancestors, context) {
   return parentRange[0] !== range[0] || parentRange[1] !== range[1];
 }
 
-function rangeOfInterpolatedStringForNode(node, context) {
+function rangeOfInterpolatedStringForNode(node: Op, context: ParseContext) {
   if (node.operator !== '+' || !node.second) {
     return null;
   }
-  if (isPlusTokenBetweenRanges(
-      context.getRange(node.first), context.getRange(node.second), context)) {
+
+  let firstRange = context.getRange(node.first);
+  let secondRange = context.getRange(node.second);
+
+  if (!firstRange || !secondRange) {
+    return null;
+  }
+
+  if (isPlusTokenBetweenRanges(firstRange, secondRange, context)) {
     return null;
   }
 
   let range = context.getRange(node);
+
+  if (!range) {
+    return null;
+  }
+
   let tokens = context.sourceTokens;
   let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(range[0]);
+
   if (!startTokenIndex) {
     throw new Error(
       `no token containing start of node at ${range[0]} found`
     );
   }
+
   return tokens.rangeOfInterpolatedStringTokensContainingTokenIndex(
     startTokenIndex
   );

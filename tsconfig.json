@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "module": "commonjs",
+    "typeRoots": ["declarations", "node_modules/@types"],
+    "declaration": true,
+    "lib": ["es2015"],
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noEmit": true
+  }
+}

@@ -1,2 +1,2 @@
---compilers js:babel-register
+--compilers ts:ts-node/register,js:babel-register
 --recursive

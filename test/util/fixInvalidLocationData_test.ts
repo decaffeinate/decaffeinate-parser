@@ -1,6 +1,6 @@
-import LinesAndColumns from 'lines-and-columns';
-import fixInvalidLocationData from '../../src/util/fixInvalidLocationData.js';
 import { deepEqual } from 'assert';
+import LinesAndColumns from 'lines-and-columns';
+import fixInvalidLocationData from '../../src/util/fixInvalidLocationData';
 
 describe('fixInvalidLocationData', () => {
   it('returns the location data unchanged when the last location exists', () => {

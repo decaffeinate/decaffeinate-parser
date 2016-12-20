@@ -1,11 +1,12 @@
 import { SourceType } from 'coffee-lex';
+import ParseContext from './ParseContext';
 
 /**
  * Given the ranges of two operands, determine from the token list whether there
  * is a real '+' operator between them. A plus operation without an actual '+'
  * operator is an implicit string interpolation operation.
  */
-export default function isPlusTokenBetweenRanges(leftRange, rightRange, context) {
+export default function isPlusTokenBetweenRanges(leftRange: [number, number], rightRange: [number, number], context: ParseContext): boolean {
   let tokens = context.sourceTokens;
   let leftEnd = tokens.indexOfTokenContainingSourceIndex(leftRange[1] - 1);
   let rightStart = tokens.indexOfTokenContainingSourceIndex(rightRange[0]);
@@ -14,7 +15,11 @@ export default function isPlusTokenBetweenRanges(leftRange, rightRange, context)
   if (!leftEnd || !rightStart) {
     return false;
   }
-  let tokensBetweenOperands = tokens.slice(leftEnd.next(), rightStart);
+  let afterLeftEnd = leftEnd.next();
+  if (!afterLeftEnd) {
+    return false;
+  }
+  let tokensBetweenOperands = tokens.slice(afterLeftEnd, rightStart);
   // If we find an actual operator, this must have been a real '+'. Otherwise,
   // this must be an implicit '+'.
   let foundPlusToken = false;

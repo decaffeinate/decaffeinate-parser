@@ -1,13 +1,5 @@
-/* @flow */
-
-import type LinesAndColumns from 'lines-and-columns';
-
-type LocationData = {
-  first_line: number;
-  first_column: number;
-  last_line: number;
-  last_column: number;
-};
+import { LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import LinesAndColumns from 'lines-and-columns';
 
 /**
  * Assumes first_line/first_column are correct.
@@ -15,7 +7,7 @@ type LocationData = {
 export default function fixInvalidLocationData(locationData: LocationData, linesAndColumns: LinesAndColumns): LocationData {
   let { last_line, last_column } = locationData;
   let indexForLocation = linesAndColumns.indexForLocation({ line: last_line, column: last_column });
-  
+
   if (indexForLocation !== null) {
     return locationData;
   } else {

@@ -7,7 +7,8 @@
     "prebuild": "rm -rf dist/",
     "build": "rollup -c",
     "prepublish": "npm run build",
-    "lint": "eslint src test",
+    "lint": "eslint src test && tslint --config tslint.json --project tsconfig.json --type-check",
+    "lint-fix": "eslint src test --fix && tslint --config tslint.json --project tsconfig.json --type-check --fix",
     "pretest": "npm run lint",
     "test": "mocha",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -24,10 +25,12 @@
   ],
   "dependencies": {
     "coffee-lex": "^5.0.0",
-    "decaffeinate-coffeescript": "^1.10.0-patch5",
+    "decaffeinate-coffeescript": "^1.10.0-patch8",
     "lines-and-columns": "^1.1.6"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.33",
+    "@types/node": "0.0.2",
     "babel": "^6.5.2",
     "babel-eslint": "^7.1.1",
     "babel-plugin-external-helpers": "^6.8.0",
@@ -44,8 +47,12 @@
     "mocha": "^3.0.0",
     "rollup": "^0.37.0",
     "rollup-plugin-babel": "^2.4.0",
+    "rollup-plugin-typescript": "^0.8.1",
     "semantic-release": "^6.3.2",
-    "string-repeat": "^1.1.1"
+    "string-repeat": "^1.1.1",
+    "ts-node": "^1.7.2",
+    "tslint": "^4.0.2",
+    "typescript": "^2.1.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
