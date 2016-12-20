@@ -1,4 +1,3 @@
-import lineColumnMapper from './lineColumnMapper';
 import LinesAndColumns from 'lines-and-columns';
 
 class ParseError extends Error {
@@ -16,12 +15,6 @@ export default class ParseContext {
    */
   constructor(source, sourceTokens, ast) {
     this.source = source;
-    /**
-     * Use `linesAndColumns` instead.
-     * 
-     * @deprecated
-     */
-    this.lineMap = lineColumnMapper(source);
     this.linesAndColumns = new LinesAndColumns(source);
     this.ast = ast;
     this.sourceTokens = sourceTokens;
