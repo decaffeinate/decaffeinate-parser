@@ -45,7 +45,7 @@
     "coffee-script-redux": "^2.0.0-beta8",
     "eslint": "^3.12.2",
     "mocha": "^3.0.0",
-    "rollup": "^0.37.0",
+    "rollup": "^0.38.0",
     "rollup-plugin-babel": "^2.4.0",
     "rollup-plugin-typescript": "^0.8.1",
     "semantic-release": "^6.3.2",
