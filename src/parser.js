@@ -1019,33 +1019,35 @@ function convert(context) {
       let expressions = [];
       let quote = op.raw.slice(0, 3) === '"""' ? '"""' : '"';
 
+      function findNextToken(position, tokenType) {
+        let tokens = context.sourceTokens;
+        let startTokenIndex = tokens.indexOfTokenNearSourceIndex(position);
+        let tokenIndex = tokens.indexOfTokenMatchingPredicate(
+          token => token.type === tokenType, startTokenIndex);
+        return tokens.tokenAtIndex(tokenIndex);
+      }
+
+      function findPrevToken(position, tokenType) {
+        let tokens = context.sourceTokens;
+        let startTokenIndex = tokens.indexOfTokenNearSourceIndex(position);
+        let tokenIndex = tokens.lastIndexOfTokenMatchingPredicate(
+          token => token.type === tokenType, startTokenIndex);
+        return tokens.tokenAtIndex(tokenIndex);
+      }
+
       function buildFirstQuasi() {
         // Find the start of the first interpolation, i.e. "#{a}".
         //                                                  ^
-        let startOfInterpolation = op.range[0];
-        while (source[startOfInterpolation] !== '#') {
-          if (startOfInterpolation >= source.length) {
-            throw new Error(
-              `Unable to find start of interpolation for op ${JSON.stringify(op)}`);
-          }
-          startOfInterpolation += 1;
-        }
-        let range = [op.range[0], startOfInterpolation];
+        let interpolationStart = findNextToken(op.range[0], SourceType.INTERPOLATION_START);
+        let range = [op.range[0], interpolationStart.start];
         return buildQuasi(range);
       }
 
       function buildLastQuasi() {
         // Find the close of the last interpolation, i.e. "a#{b}".
         //                                                     ^
-        let endOfInterpolation = op.range[1] - 1;
-        while (source[endOfInterpolation] !== '}') {
-          if (endOfInterpolation < 0) {
-            throw new Error(
-              `Unable to find last interpolation for op ${JSON.stringify(op)}`);
-          }
-          endOfInterpolation -= 1;
-        }
-        return buildQuasi([endOfInterpolation + 1, op.range[1]]);
+        let interpolationEnd = findPrevToken(op.range[1] - 1, SourceType.INTERPOLATION_END);
+        return buildQuasi([interpolationEnd.end, op.range[1]]);
       }
 
       function buildQuasi(range) {
@@ -1098,8 +1100,9 @@ function convert(context) {
           } else if (/^"(.*?)"$/.test(element.data)) {
             quasis.push(buildQuasiWithString(element.range, element.raw));
           } else if (quasis.length < expressions.length + 1) {
-            let borderIndex = source.lastIndexOf('#{', element.range[0]);
-            quasis.push(buildQuasi([borderIndex, borderIndex]));
+            let lastInterpolationEnd = findPrevToken(element.range[0], SourceType.INTERPOLATION_END);
+            let lastInterpolationStart = findPrevToken(element.range[0], SourceType.INTERPOLATION_START);
+            quasis.push(buildQuasi([lastInterpolationEnd.end, lastInterpolationStart.start]));
             expressions.push(element);
           } else {
             expressions.push(element);
