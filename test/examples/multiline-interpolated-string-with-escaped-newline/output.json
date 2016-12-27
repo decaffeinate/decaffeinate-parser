@@ -4,16 +4,16 @@
   "column": 1,
   "range": [
     0,
-    13
+    14
   ],
-  "raw": "\"#{a}\\\n#{b}\"\n",
+  "raw": "\"#{a}\\\n #{b}\"\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      12
+      13
     ],
     "statements": [
       {
@@ -22,9 +22,9 @@
         "column": 1,
         "range": [
           0,
-          12
+          13
         ],
-        "raw": "\"#{a}\\\n#{b}\"",
+        "raw": "\"#{a}\\\n #{b}\"",
         "quasis": [
           {
             "type": "Quasi",
@@ -40,12 +40,12 @@
           {
             "type": "Quasi",
             "data": "",
-            "raw": "\\\n",
+            "raw": "\\\n ",
             "line": 1,
             "column": 6,
             "range": [
               5,
-              7
+              8
             ]
           },
           {
@@ -53,10 +53,10 @@
             "data": "",
             "raw": "\"",
             "line": 2,
-            "column": 5,
+            "column": 6,
             "range": [
-              11,
-              12
+              12,
+              13
             ]
           }
         ],
@@ -75,10 +75,10 @@
           {
             "type": "Identifier",
             "line": 2,
-            "column": 3,
+            "column": 4,
             "range": [
-              9,
-              10
+              10,
+              11
             ],
             "data": "b",
             "raw": "b"
@@ -86,6 +86,6 @@
         ]
       }
     ],
-    "raw": "\"#{a}\\\n#{b}\""
+    "raw": "\"#{a}\\\n #{b}\""
   }
 }
