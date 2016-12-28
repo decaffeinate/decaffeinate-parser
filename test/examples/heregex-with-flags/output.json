@@ -39,6 +39,10 @@
         ],
         "expressions": [],
         "flags": {
+          "global": true,
+          "ignoreCase": true,
+          "multiline": true,
+          "sticky": true,
           "g": true,
           "i": true,
           "m": true,
