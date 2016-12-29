@@ -1,6 +1,7 @@
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import { Base, Block, LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import LinesAndColumns from 'lines-and-columns';
+import { DecaffeinateNode } from './makeNode';
 
 class ParseError extends Error {
   syntaxError: SyntaxError;
@@ -10,10 +11,6 @@ class ParseError extends Error {
     this.syntaxError = syntaxError;
   }
 }
-
-export type DecaffeinateNode = {
-  range: [number, number];
-};
 
 export default class ParseContext {
   source: string;
