@@ -55,6 +55,10 @@
             ],
             "expressions": [],
             "flags": {
+              "global": false,
+              "ignoreCase": false,
+              "multiline": false,
+              "sticky": false,
               "g": false,
               "i": false,
               "m": false,
@@ -74,6 +78,7 @@
               15,
               18
             ],
+            "raw": "'a'",
             "quasis": [
               {
                 "type": "Quasi",
@@ -83,12 +88,11 @@
                   15,
                   18
                 ],
-                "data": "a",
-                "raw": "'a'"
+                "raw": "'a'",
+                "data": "a"
               }
             ],
-            "expressions": [],
-            "raw": "'a'"
+            "expressions": []
           }
         ],
         "raw": "///foo///.test('a')"

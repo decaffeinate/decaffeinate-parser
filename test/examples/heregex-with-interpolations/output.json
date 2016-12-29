@@ -34,8 +34,8 @@
               0,
               12
             ],
-            "data": "foo",
-            "raw": "///\n  foo\n  "
+            "raw": "///\n  foo\n  ",
+            "data": "foo"
           },
           {
             "type": "Quasi",
@@ -63,6 +63,10 @@
           }
         ],
         "flags": {
+          "global": false,
+          "ignoreCase": false,
+          "multiline": false,
+          "sticky": false,
           "g": false,
           "i": false,
           "m": false,

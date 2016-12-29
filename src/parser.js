@@ -5,21 +5,21 @@ import isChainedComparison from './util/isChainedComparison';
 import isHeregexTemplateNode from './util/isHeregexTemplateNode';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
-import isStringAtPosition from './util/isStringAtPosition';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
-import makeNode from './util/makeNode';
+import makeNode, { Bool, RegexFlags } from './nodes';
+import mapAny from './mappers/mapAny';
+import mapLiteral from './mappers/mapLiteral';
 import mergeLocations from './util/mergeLocations';
 import parseLiteral from './util/parseLiteral';
+import parseString from './util/parseString';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
 import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
-
-const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
 
 /**
  * @param {string} source
@@ -339,31 +339,25 @@ function convert(context) {
 
       case 'Literal':
         if (node.value === 'this') {
-          return makeNode(context, 'This', node.locationData);
+          return mapLiteral(context, node);
         } else {
           let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
           let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
-          let raw = source.slice(start, end);
 
           let tokens = context.sourceTokens;
           let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
           let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
           let endTokenIndex = tokens.indexOfTokenContainingSourceIndex(end - 1);
           let endTokenType = tokens.tokenAtIndex(endTokenIndex).type;
-          if (startTokenType === SourceType.JS) {
-            return makeNode(context, 'JavaScript', node.locationData, { data: node.value });
+
+          if (startTokenType === SourceType.IDENTIFIER) {
+            return mapLiteral(context, node);
+          } else if (startTokenType === SourceType.JS) {
+            return mapLiteral(context, node);
           } else if (startTokenType === SourceType.HEREGEXP_START && endTokenType === SourceType.HEREGEXP_END) {
-            let flags = raw.match(HEREGEX_PATTERN)[2];
-            return makeNode(context, 'Heregex', node.locationData, {
-              quasis: [
-                makeNode(context, 'Quasi', node.locationData, { data: node.value })
-              ],
-              expressions: [],
-              flags: ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
-                memo[flag] = flags.indexOf(flag) >= 0;
-                return memo;
-              }, {})
-            });
+            return mapLiteral(context, node);
+          } else if (startTokenType === SourceType.NUMBER) {
+            return mapLiteral(context, node);
           }
 
           let literal = parseLiteral(node.value);
@@ -373,26 +367,7 @@ function convert(context) {
           } else if (literal.type === 'error') {
             throw new Error(literal.error.message);
           } else if (literal.type === 'string') {
-            // Top-level strings should all be in the same format: an array of
-            // quasis and expressions. For a normal string literal, this is the
-            // simple case of one quasi and no expressions. But if this string
-            // is actually a quasi that CoffeeScript is calling a string, then
-            // just return a Quasi node, and higher-up code should insert it
-            // into a string interpolation.
-            if (isStringAtPosition(start, end, context)) {
-              return makeNode(context, 'String', node.locationData, {
-                quasis: [
-                  makeNode(context, 'Quasi', node.locationData, {data: literal.data})
-                ],
-                expressions: [],
-              });
-            } else {
-              return makeNode(context, 'Quasi', node.locationData, {data: literal.data});
-            }
-          } else if (literal.type === 'int') {
-            return makeNode(context, 'Int', node.locationData, { data: literal.data });
-          } else if (literal.type === 'float') {
-            return makeNode(context, 'Float', node.locationData, { data: literal.data });
+            return mapLiteral(context, node);
           } else {
             throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
           }
@@ -404,15 +379,11 @@ function convert(context) {
           let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
           let flags;
           if (node.args.length > 1) {
-            let secondArg = convertChild(node.args[1].base);
-            flags = secondArg.data;
+            flags = parseString(node.args[1].base.value);
           } else {
             flags = '';
           }
-          heregexResult.flags = ['g', 'i', 'm', 'y'].reduce((memo, flag) => {
-            memo[flag] = flags.indexOf(flag) >= 0;
-            return memo;
-          }, {});
+          heregexResult.flags = RegexFlags.parse(flags);
           return heregexResult;
         }
 
@@ -652,17 +623,6 @@ function convert(context) {
           return block;
         }
 
-      case 'Bool':
-        return makeNode(context, 'Bool', node.locationData, {
-          data: JSON.parse(node.val)
-        });
-
-      case 'Null':
-        return makeNode(context, 'Null', node.locationData);
-
-      case 'Undefined':
-        return makeNode(context, 'Undefined', node.locationData);
-
       case 'Return':
         return makeNode(context, 'Return', node.locationData, {
           expression: node.expression ? convertChild(node.expression) : null
@@ -700,11 +660,7 @@ function convert(context) {
           isUntil: node.condition.inverted === true
         });
         if (result.raw.indexOf('loop') === 0) {
-          result.condition = {
-            type: 'Bool',
-            data: true,
-            virtual: true
-          };
+          result.condition = Bool.true();
         }
         return result;
       }
@@ -858,7 +814,7 @@ function convert(context) {
         });
 
       default:
-        throw new Error(`unknown node type: ${type(node)}\n${JSON.stringify(node, null, 2)}`);
+        return mapAny(context, node);
     }
 
     function convertChild(child) {
