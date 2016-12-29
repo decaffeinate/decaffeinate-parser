@@ -12,9 +12,7 @@ import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
 import makeNode, { RegexFlags } from './nodes';
 import mapAny from './mappers/mapAny';
-import mapLiteral from './mappers/mapLiteral';
 import mergeLocations from './util/mergeLocations';
-import parseLiteral from './util/parseLiteral';
 import parseString from './util/parseString';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
 import type from './util/type';
@@ -336,42 +334,6 @@ function convert(context) {
         });
         return value;
       }
-
-      case 'Literal':
-        if (node.value === 'this') {
-          return mapLiteral(context, node);
-        } else {
-          let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
-          let end = linesAndColumns.indexForLocation({ line: node.locationData.last_line, column: node.locationData.last_column }) + 1;
-
-          let tokens = context.sourceTokens;
-          let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
-          let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
-          let endTokenIndex = tokens.indexOfTokenContainingSourceIndex(end - 1);
-          let endTokenType = tokens.tokenAtIndex(endTokenIndex).type;
-
-          if (startTokenType === SourceType.IDENTIFIER) {
-            return mapLiteral(context, node);
-          } else if (startTokenType === SourceType.JS) {
-            return mapLiteral(context, node);
-          } else if (startTokenType === SourceType.HEREGEXP_START && endTokenType === SourceType.HEREGEXP_END) {
-            return mapLiteral(context, node);
-          } else if (startTokenType === SourceType.NUMBER) {
-            return mapLiteral(context, node);
-          }
-
-          let literal = parseLiteral(node.value);
-
-          if (!literal) {
-            return makeNode(context, 'Identifier', node.locationData, { data: node.value });
-          } else if (literal.type === 'error') {
-            throw new Error(literal.error.message);
-          } else if (literal.type === 'string') {
-            return mapLiteral(context, node);
-          } else {
-            throw new Error(`unknown literal type for value: ${JSON.stringify(literal)}`);
-          }
-        }
 
       case 'Call':
         if (isHeregexTemplateNode(node, context)) {
