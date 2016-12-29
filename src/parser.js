@@ -10,7 +10,7 @@ import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
-import makeNode, { Bool, RegexFlags } from './nodes';
+import makeNode, { RegexFlags } from './nodes';
 import mapAny from './mappers/mapAny';
 import mapLiteral from './mappers/mapLiteral';
 import mergeLocations from './util/mergeLocations';
@@ -653,16 +653,23 @@ function convert(context) {
         }
 
       case 'While': {
-        const result = makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
+        let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
+        let tokens = context.sourceTokens;
+        let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
+        let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
+
+        if (startTokenType === SourceType.LOOP) {
+          return makeNode(context, 'Loop', locationContainingNodes(node, node.body), {
+            body: convertChild(node.body)
+          });
+        }
+
+        return makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
           condition: convertChild(node.condition),
           guard: convertChild(node.guard),
           body: convertChild(node.body),
           isUntil: node.condition.inverted === true
         });
-        if (result.raw.indexOf('loop') === 0) {
-          result.condition = Bool.true();
-        }
-        return result;
       }
 
       case 'Existence':
