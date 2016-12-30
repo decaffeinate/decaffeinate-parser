@@ -12,6 +12,7 @@ import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
 import makeNode, { RegexFlags } from './nodes';
 import mapAny from './mappers/mapAny';
+import mapValue from './mappers/mapValue';
 import mergeLocations from './util/mergeLocations';
 import parseString from './util/parseString';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
@@ -314,25 +315,29 @@ function convert(context) {
 
     switch (type(node)) {
       case 'Value': {
-        let value = convertChild(node.base);
-        node.properties.forEach(prop => {
-          value = accessOpForProperty(value, prop, node.base.locationData);
-          if (value.type === 'MemberAccessOp' && value.expression.type === 'MemberAccessOp') {
-            if (value.expression.memberName === 'prototype' && value.expression.raw.slice(-2) === '::') {
-              // Un-expand shorthand prototype access.
-              value = {
-                type: 'ProtoMemberAccessOp',
-                line: value.line,
-                column: value.column,
-                range: value.range,
-                raw: value.raw,
-                expression: value.expression.expression,
-                memberName: value.memberName
-              };
+        try {
+          return mapValue(context, node);
+        } catch (err) {
+          let value = convertChild(node.base);
+          node.properties.forEach(prop => {
+            value = accessOpForProperty(value, prop, node.base.locationData);
+            if (value.type === 'MemberAccessOp' && value.expression.type === 'MemberAccessOp') {
+              if (value.expression.memberName === 'prototype' && value.expression.raw.slice(-2) === '::') {
+                // Un-expand shorthand prototype access.
+                value = {
+                  type: 'ProtoMemberAccessOp',
+                  line: value.line,
+                  column: value.column,
+                  range: value.range,
+                  raw: value.raw,
+                  expression: value.expression.expression,
+                  memberName: value.memberName
+                };
+              }
             }
-          }
-        });
-        return value;
+          });
+          return value;
+        }
       }
 
       case 'Call':
@@ -727,9 +732,13 @@ function convert(context) {
         });
 
       case 'Throw':
-        return makeNode(context, 'Throw', node.locationData, {
-          expression: convertChild(node.expression)
-        });
+        try {
+          return mapAny(context, node);
+        } catch (err) {
+          return makeNode(context, 'Throw', node.locationData, {
+            expression: convertChild(node.expression)
+          });
+        }
 
       case 'Try':
         return makeNode(context, 'Try', node.locationData, {
