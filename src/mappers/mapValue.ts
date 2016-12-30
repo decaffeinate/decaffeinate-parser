@@ -5,6 +5,7 @@ import { inspect } from 'util';
 import { MemberAccessOp, Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
+import { UnsupportedNodeError } from './mapAnyWithFallback';
 
 export default function mapValue(context: ParseContext, node: Value): Node {
   let result = mapAny(context, node.base);
@@ -24,7 +25,7 @@ export default function mapValue(context: ParseContext, node: Value): Node {
       }
 
       if (startToken.type === SourceType.PROTO) {
-        throw new Error(`TODO: cannot handle prototype access yet: ${inspect(property)}`);
+        throw new UnsupportedNodeError(property);
       }
 
       let last = context.linesAndColumns.indexForLocation({
@@ -43,7 +44,7 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         name.value
       );
     } else {
-      throw new Error(`TODO: cannot handle property yet: ${inspect(property)}`);
+      throw new UnsupportedNodeError(property);
     }
   }
 
