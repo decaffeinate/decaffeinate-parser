@@ -39,7 +39,7 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     return new JavaScript(line, column, start, end, raw, virtual, node.value);
   }
 
-  if (startToken.type === SourceType.NUMBER || startToken.type === SourceType.DOT) {
+  if (startToken.type === SourceType.NUMBER) {
     if (raw.includes('.')) {
       return new Float(line, column, start, end, raw, virtual, parseNumber(node.value));
     } else {
