@@ -1,4 +1,4 @@
-# decaffeinate-parser [![Build Status](https://travis-ci.org/decaffeinate/decaffeinate-parser.svg?branch=master)](https://travis-ci.org/decaffeinate/decaffeinate-parser)
+# decaffeinate-parser [![Build Status](https://travis-ci.org/decaffeinate/decaffeinate-parser.svg?branch=master)](https://travis-ci.org/decaffeinate/decaffeinate-parser) [![npm version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser)
 
 This project uses the [official CoffeeScript
 parser](https://github.com/jashkenas/coffeescript) to parse CoffeeScript source
