@@ -152,6 +152,26 @@ export class Int extends Number {
   }
 }
 
+export class MemberAccessOp extends Node {
+  readonly expression: Node;
+  readonly memberName: string;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node,
+    memberName: string
+  ) {
+    super('MemberAccessOp', line, column, start, end, raw, virtual);
+    this.expression = expression;
+    this.memberName = memberName;
+  }
+}
+
 export class Quasi extends Node {
   readonly data: string;
 
