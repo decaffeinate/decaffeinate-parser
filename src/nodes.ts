@@ -209,6 +209,40 @@ export class String extends Node {
   }
 }
 
+export class Block extends Node {
+  readonly statements: Array<Node>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    statements: Array<Node>
+  ) {
+    super('Block', line, column, start, end, raw, virtual);
+    this.statements = statements;
+  }
+}
+
+export class Loop extends Node {
+  readonly body: Block;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    body: Block
+  ) {
+    super('Loop', line, column, start, end, raw, virtual);
+    this.body = body;
+  }
+}
+
 export class RegexFlags {
   readonly global: boolean;
   readonly ignoreCase: boolean;
