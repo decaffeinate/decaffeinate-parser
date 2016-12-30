@@ -13,10 +13,10 @@ readdirSync(examplesPath).forEach(entry => {
 
   testFn(config.description || entry, () => {
     let input = readFileSync(join(dir, 'input.coffee'), { encoding: 'utf8' });
-    let actual = parse(input);
+    let actual = stripExtraInfo(parse(input));
     writeFileSync(join(dir, '_actual.json'), JSON.stringify(actual, null, 2), { encoding: 'utf8' });
     let expected = JSON.parse(readFileSync(join(dir, 'output.json'), { encoding: 'utf8' }));
-    deepEqual(stripExtraInfo(actual), expected);
+    deepEqual(actual, expected);
   });
 });
 
