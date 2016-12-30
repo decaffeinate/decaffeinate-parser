@@ -6,6 +6,7 @@ import isStringAtPosition from '../util/isStringAtPosition';
 import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
 import parseString from '../util/parseString';
+import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
@@ -91,10 +92,5 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     return new Quasi(line, column, start, end, raw, virtual, parseString(node.value));
   }
 
-  throw new Error(
-    `cannot handle literal: ${inspect(node)}
-hint:
-  first token=${inspect(startToken)} (${SourceType[startToken.type]})
-  last token=${inspect(lastToken)} (${SourceType[lastToken.type]})`
-  );
+  throw new UnsupportedNodeError(node);
 }
