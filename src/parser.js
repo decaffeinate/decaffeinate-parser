@@ -314,6 +314,13 @@ function convert(context) {
     }
 
     switch (type(node)) {
+      case 'Literal':
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Identifier', node.locationData, {
+            data: node.value
+          })
+        );
+
       case 'Value': {
         return mapAnyWithFallback(context, node, () => {
           let value = convertChild(node.base);
