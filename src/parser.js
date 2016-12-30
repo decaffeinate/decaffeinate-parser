@@ -12,7 +12,7 @@ import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
 import makeNode, { RegexFlags } from './nodes';
 import mapAny from './mappers/mapAny';
-import mapValue from './mappers/mapValue';
+import mapAnyWithFallback from './mappers/mapAnyWithFallback';
 import mergeLocations from './util/mergeLocations';
 import parseString from './util/parseString';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
@@ -315,9 +315,7 @@ function convert(context) {
 
     switch (type(node)) {
       case 'Value': {
-        try {
-          return mapValue(context, node);
-        } catch (err) {
+        return mapAnyWithFallback(context, node, () => {
           let value = convertChild(node.base);
           node.properties.forEach(prop => {
             value = accessOpForProperty(value, prop, node.base.locationData);
@@ -337,7 +335,7 @@ function convert(context) {
             }
           });
           return value;
-        }
+        });
       }
 
       case 'Call':
@@ -732,13 +730,11 @@ function convert(context) {
         });
 
       case 'Throw':
-        try {
-          return mapAny(context, node);
-        } catch (err) {
-          return makeNode(context, 'Throw', node.locationData, {
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Throw', node.locationData, {
             expression: convertChild(node.expression)
-          });
-        }
+          })
+        );
 
       case 'Try':
         return makeNode(context, 'Try', node.locationData, {
