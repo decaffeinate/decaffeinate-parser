@@ -339,395 +339,429 @@ function convert(context) {
       }
 
       case 'Call':
-        if (isHeregexTemplateNode(node, context)) {
-          let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
-          let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
-          let flags;
-          if (node.args.length > 1) {
-            flags = parseString(node.args[1].base.value);
-          } else {
-            flags = '';
+        return mapAnyWithFallback(context, node, () => {
+          if (isHeregexTemplateNode(node, context)) {
+            let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
+            let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
+            let flags;
+            if (node.args.length > 1) {
+              flags = parseString(node.args[1].base.value);
+            } else {
+              flags = '';
+            }
+            heregexResult.flags = RegexFlags.parse(flags);
+            return heregexResult;
           }
-          heregexResult.flags = RegexFlags.parse(flags);
-          return heregexResult;
-        }
 
-        if (node.isNew) {
-          return makeNode(context, 'NewOp', expandLocationLeftThrough(context, node.locationData, 'new'), {
-            ctor: convertChild(node.variable),
-            arguments: convertChild(node.args)
-          });
-        } else if (node.isSuper) {
-          if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
-            // Virtual splat argument.
-            return makeNode(context, 'FunctionApplication', node.locationData, {
-              function: makeNode(context, 'Super', node.locationData),
-              arguments: [{
-                type: 'Spread',
-                virtual: true,
-                expression: {
-                  type: 'Identifier',
-                  data: 'arguments',
-                  virtual: true
-                }
-              }]
+          if (node.isNew) {
+            return makeNode(context, 'NewOp', expandLocationLeftThrough(context, node.locationData, 'new'), {
+              ctor: convertChild(node.variable),
+              arguments: convertChild(node.args)
             });
-          }
-          const superLocationData = {
-            first_line: node.locationData.first_line,
-            first_column: node.locationData.first_column,
-            last_line: node.locationData.first_line,
-            last_column: node.locationData.first_column + 'super'.length - 1
-          };
-          return makeNode(context, 'FunctionApplication', node.locationData, {
-            function: makeNode(context, 'Super', superLocationData),
-            arguments: convertChild(node.args)
-          });
-        } else {
-          const result = makeNode(context, node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
-            function: convertChild(node.variable),
-            arguments: convertChild(node.args)
-          });
-
-          if (node.do) {
-            result.type = 'DoOp';
-            result.expression = result.function;
-            // The argument to `do` may not always be a function literal.
-            if (result.expression.parameters) {
-              result.expression.parameters = result.expression.parameters.map((param, i) => {
-                const arg = result.arguments[i];
-
-                // If there's a parameter with no default, CoffeeScript will insert a fake
-                // arg with the same value and location.
-                if (arg.type === 'Identifier' && arg.data === param.data &&
-                    arg.range[0] === param.range[0] && arg.range[1] === param.range[1]) {
-                  return param;
-                }
-
-                return makeNode(context, 'DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
-                  param,
-                  default: arg
-                });
+          } else if (node.isSuper) {
+            if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
+              // Virtual splat argument.
+              return makeNode(context, 'FunctionApplication', node.locationData, {
+                function: makeNode(context, 'Super', node.locationData),
+                arguments: [{
+                  type: 'Spread',
+                  virtual: true,
+                  expression: {
+                    type: 'Identifier',
+                    data: 'arguments',
+                    virtual: true
+                  }
+                }]
               });
             }
-            delete result.function;
-            delete result.arguments;
-          }
+            const superLocationData = {
+              first_line: node.locationData.first_line,
+              first_column: node.locationData.first_column,
+              last_line: node.locationData.first_line,
+              last_column: node.locationData.first_column + 'super'.length - 1
+            };
+            return makeNode(context, 'FunctionApplication', node.locationData, {
+              function: makeNode(context, 'Super', superLocationData),
+              arguments: convertChild(node.args)
+            });
+          } else {
+            const result = makeNode(context, node.soak ? 'SoakedFunctionApplication' : 'FunctionApplication', node.locationData, {
+              function: convertChild(node.variable),
+              arguments: convertChild(node.args)
+            });
 
-          return result;
-        }
+            if (node.do) {
+              result.type = 'DoOp';
+              result.expression = result.function;
+              // The argument to `do` may not always be a function literal.
+              if (result.expression.parameters) {
+                result.expression.parameters = result.expression.parameters.map((param, i) => {
+                  const arg = result.arguments[i];
+
+                  // If there's a parameter with no default, CoffeeScript will insert a fake
+                  // arg with the same value and location.
+                  if (arg.type === 'Identifier' && arg.data === param.data &&
+                    arg.range[0] === param.range[0] && arg.range[1] === param.range[1]) {
+                    return param;
+                  }
+
+                  return makeNode(context, 'DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
+                    param,
+                    default: arg
+                  });
+                });
+              }
+              delete result.function;
+              delete result.arguments;
+            }
+
+            return result;
+          }
+        });
 
       case 'Op': {
-        const op = convertOperator(node);
-        if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
-          return createTemplateLiteral(op, 'String');
-        }
-        if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
-          return makeNode(context, 'ChainedComparisonOp', node.locationData, {
-            expression: op
-          });
-        }
-        return op;
+        return mapAnyWithFallback(context, node, () => {
+          const op = convertOperator(node);
+          if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
+            return createTemplateLiteral(op, 'String');
+          }
+          if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
+            return makeNode(context, 'ChainedComparisonOp', node.locationData, {
+              expression: op
+            });
+          }
+          return op;
+        });
       }
 
       case 'Assign':
-        if (node.context === 'object') {
-          return makeNode(context, 'ObjectInitialiserMember', node.locationData, {
-            key: convertChild(node.variable),
-            expression: convertChild(node.value)
-          });
-        } else if (node.context && node.context.slice(-1) === '=') {
-          return makeNode(context, 'CompoundAssignOp', node.locationData, {
-            assignee: convertChild(node.variable),
-            expression: convertChild(node.value),
-            op: binaryOperatorNodeType(node.context.slice(0, -1))
-          })
-        } else {
-          return makeNode(context, 'AssignOp', node.locationData, {
-            assignee: convertChild(node.variable),
-            expression: convertChild(node.value)
-          });
-        }
+        return mapAnyWithFallback(context, node, () => {
+          if (node.context === 'object') {
+            return makeNode(context, 'ObjectInitialiserMember', node.locationData, {
+              key: convertChild(node.variable),
+              expression: convertChild(node.value)
+            });
+          } else if (node.context && node.context.slice(-1) === '=') {
+            return makeNode(context, 'CompoundAssignOp', node.locationData, {
+              assignee: convertChild(node.variable),
+              expression: convertChild(node.value),
+              op: binaryOperatorNodeType(node.context.slice(0, -1))
+            })
+          } else {
+            return makeNode(context, 'AssignOp', node.locationData, {
+              assignee: convertChild(node.variable),
+              expression: convertChild(node.value)
+            });
+          }
+        });
 
       case 'Obj':
-        return makeNode(context, 'ObjectInitialiser', node.locationData, {
-          members: node.properties.map(property => {
-            if (type(property) === 'Value') {
-              // shorthand property
-              const keyValue = convertChild(property);
-              return makeNode(context, 'ObjectInitialiserMember', property.locationData, {
-                key: keyValue,
-                expression: keyValue
-              });
-            }
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'ObjectInitialiser', node.locationData, {
+            members: node.properties.map(property => {
+              if (type(property) === 'Value') {
+                // shorthand property
+                const keyValue = convertChild(property);
+                return makeNode(context, 'ObjectInitialiserMember', property.locationData, {
+                  key: keyValue,
+                  expression: keyValue
+                });
+              }
 
-            return convertChild(property);
-          }).filter(node => node)
-        });
+              return convertChild(property);
+            }).filter(node => node)
+          })
+        );
 
       case 'Arr':
-        return makeNode(context, 'ArrayInitialiser', node.locationData, {
-          members: convertChild(node.objects)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'ArrayInitialiser', node.locationData, {
+            members: convertChild(node.objects)
+          })
+        );
 
       case 'Parens':
-        if (type(node.body) === 'Block') {
-          const expressions = node.body.expressions;
-          if (expressions.length === 1) {
-            return convertChild(expressions[0]);
-          } else {
-            const lastExpression = expressions[expressions.length - 1];
-            let result = convertChild(lastExpression);
-            for (let i = expressions.length - 2; i >= 0; i--) {
-              let left = expressions[i];
-              result = makeNode(context, 'SeqOp', locationContainingNodes(left, lastExpression), {
-                left: convertChild(left),
-                right: result
-              });
+        return mapAnyWithFallback(context, node, () => {
+          if (type(node.body) === 'Block') {
+            const expressions = node.body.expressions;
+            if (expressions.length === 1) {
+              return convertChild(expressions[0]);
+            } else {
+              const lastExpression = expressions[expressions.length - 1];
+              let result = convertChild(lastExpression);
+              for (let i = expressions.length - 2; i >= 0; i--) {
+                let left = expressions[i];
+                result = makeNode(context, 'SeqOp', locationContainingNodes(left, lastExpression), {
+                  left: convertChild(left),
+                  right: result
+                });
+              }
+              return result;
             }
-            return result;
+          } else {
+            return convertChild(node.body);
           }
-        } else {
-          return convertChild(node.body);
-        }
+        });
 
       case 'If': {
-        let condition = convertChild(node.condition);
-        let consequent = convertChild(node.body);
-        let alternate = convertChild(node.elseBody);
-        let isUnless = false;
+        return mapAnyWithFallback(context, node, () => {
+          let condition = convertChild(node.condition);
+          let consequent = convertChild(node.body);
+          let alternate = convertChild(node.elseBody);
+          let isUnless = false;
 
-        if (consequent && consequent.range[0] < condition.range[0]) {
-          // POST-if, so look for tokens between the consequent and the condition
-          consequent.inline = true;
-          let lastConsequentTokenIndex = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.range[1]);
-          let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
+          if (consequent && consequent.range[0] < condition.range[0]) {
+            // POST-if, so look for tokens between the consequent and the condition
+            consequent.inline = true;
+            let lastConsequentTokenIndex = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.range[1]);
+            let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
 
-          for (let i = lastConsequentTokenIndex; i !== firstConditionTokenIndex; i = i.next()) {
-            let token = context.sourceTokens.tokenAtIndex(i);
-            if (token.type === SourceType.IF) {
-              isUnless = source.slice(token.start, token.end) === 'unless';
-              break;
+            for (let i = lastConsequentTokenIndex; i !== firstConditionTokenIndex; i = i.next()) {
+              let token = context.sourceTokens.tokenAtIndex(i);
+              if (token.type === SourceType.IF) {
+                isUnless = source.slice(token.start, token.end) === 'unless';
+                break;
+              }
+            }
+          } else {
+            // Regular `if`, so look at the start of the node.
+            let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
+
+            for (let i = firstConditionTokenIndex; i !== null; i = i.previous()) {
+              let token = context.sourceTokens.tokenAtIndex(i);
+              if (token.type === SourceType.IF) {
+                isUnless = source.slice(token.start, token.end) === 'unless';
+                break;
+              }
             }
           }
-        } else {
-          // Regular `if`, so look at the start of the node.
-          let firstConditionTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.range[0]);
 
-          for (let i = firstConditionTokenIndex; i !== null; i = i.previous()) {
-            let token = context.sourceTokens.tokenAtIndex(i);
-            if (token.type === SourceType.IF) {
-              isUnless = source.slice(token.start, token.end) === 'unless';
-              break;
-            }
-          }
-        }
-
-        return makeNode(context, 'Conditional', node.locationData, {
-          isUnless,
-          condition,
-          consequent,
-          alternate
+          return makeNode(context, 'Conditional', node.locationData, {
+            isUnless,
+            condition,
+            consequent,
+            alternate
+          });
         });
       }
 
       case 'Code': {
-        let fnType;
-        if (node.bound) {
-          if (node.isGenerator) {
-            fnType = 'BoundGeneratorFunction';
+        return mapAnyWithFallback(context, node, () => {
+          let fnType;
+          if (node.bound) {
+            if (node.isGenerator) {
+              fnType = 'BoundGeneratorFunction';
+            } else {
+              fnType = 'BoundFunction';
+            }
           } else {
-            fnType = 'BoundFunction';
+            if (node.isGenerator) {
+              fnType = 'GeneratorFunction';
+            } else {
+              fnType = 'Function';
+            }
           }
-        } else {
-          if (node.isGenerator) {
-            fnType = 'GeneratorFunction';
-          } else {
-            fnType = 'Function';
-          }
-        }
-        return makeNode(context, fnType, node.locationData, {
-          body: convertChild(node.body),
-          parameters: convertChild(node.params)
+          return makeNode(context, fnType, node.locationData, {
+            body: convertChild(node.body),
+            parameters: convertChild(node.params)
+          });
         });
       }
 
       case 'Param': {
-        const param = convertChild(node.name);
-        if (node.value) {
-          return makeNode(context, 'DefaultParam', node.locationData, {
-            default: convertChild(node.value),
-            param
-          });
-        }
-        if (node.splat) {
-          return makeNode(context, 'Rest', node.locationData, {
-            expression: param
-          });
-        }
-        return param;
+        return mapAnyWithFallback(context, node, () => {
+          const param = convertChild(node.name);
+          if (node.value) {
+            return makeNode(context, 'DefaultParam', node.locationData, {
+              default: convertChild(node.value),
+              param
+            });
+          }
+          if (node.splat) {
+            return makeNode(context, 'Rest', node.locationData, {
+              expression: param
+            });
+          }
+          return param;
+        });
       }
 
       case 'Block':
-        if (node.expressions.length === 0) {
-          return null;
-        } else {
-          const block = makeNode(context, 'Block', node.locationData, {
-            statements: convertChild(node.expressions)
-          });
-          block.inline = false;
-          for (let i = block.range[0] - 1; i >= 0; i--) {
-            const char = source[i];
-            if (char === '\n') {
-              break;
-            } else if (char !== ' ' && char !== '\t') {
-              block.inline = true;
-              break;
+        return mapAnyWithFallback(context, node, () => {
+          if (node.expressions.length === 0) {
+            return null;
+          } else {
+            const block = makeNode(context, 'Block', node.locationData, {
+              statements: convertChild(node.expressions)
+            });
+            block.inline = false;
+            for (let i = block.range[0] - 1; i >= 0; i--) {
+              const char = source[i];
+              if (char === '\n') {
+                break;
+              } else if (char !== ' ' && char !== '\t') {
+                block.inline = true;
+                break;
+              }
             }
+            return block;
           }
-          return block;
-        }
-
-      case 'Return':
-        return makeNode(context, 'Return', node.locationData, {
-          expression: node.expression ? convertChild(node.expression) : null
         });
 
+      case 'Return':
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Return', node.locationData, {
+            expression: node.expression ? convertChild(node.expression) : null
+          })
+        );
+
       case 'For':
-        if (locationsEqual(node.body.locationData, node.locationData)) {
-          node.body.locationData = locationContainingNodes(...node.body.expressions);
-        }
-        if (node.object) {
-          return makeNode(context, 'ForOf', node.locationData, {
-            keyAssignee: convertChild(node.index),
-            valAssignee: convertChild(node.name),
-            body: convertChild(node.body),
-            target: convertChild(node.source),
-            filter: convertChild(node.guard),
-            isOwn: node.own
-          });
-        } else {
-          return makeNode(context, 'ForIn', node.locationData, {
-            keyAssignee: convertChild(node.index),
-            valAssignee: convertChild(node.name),
-            body: convertChild(node.body),
-            target: convertChild(node.source),
-            filter: convertChild(node.guard),
-            step: convertChild(node.step)
-          });
-        }
+        return mapAnyWithFallback(context, node, () => {
+          if (locationsEqual(node.body.locationData, node.locationData)) {
+            node.body.locationData = locationContainingNodes(...node.body.expressions);
+          }
+          if (node.object) {
+            return makeNode(context, 'ForOf', node.locationData, {
+              keyAssignee: convertChild(node.index),
+              valAssignee: convertChild(node.name),
+              body: convertChild(node.body),
+              target: convertChild(node.source),
+              filter: convertChild(node.guard),
+              isOwn: node.own
+            });
+          } else {
+            return makeNode(context, 'ForIn', node.locationData, {
+              keyAssignee: convertChild(node.index),
+              valAssignee: convertChild(node.name),
+              body: convertChild(node.body),
+              target: convertChild(node.source),
+              filter: convertChild(node.guard),
+              step: convertChild(node.step)
+            });
+          }
+        });
 
       case 'While': {
-        let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
-        let tokens = context.sourceTokens;
-        let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
-        let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
+        return mapAnyWithFallback(context, node, () => {
+          let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
+          let tokens = context.sourceTokens;
+          let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
+          let startTokenType = tokens.tokenAtIndex(startTokenIndex).type;
 
-        if (startTokenType === SourceType.LOOP) {
-          return makeNode(context, 'Loop', locationContainingNodes(node, node.body), {
-            body: convertChild(node.body)
+          if (startTokenType === SourceType.LOOP) {
+            return makeNode(context, 'Loop', locationContainingNodes(node, node.body), {
+              body: convertChild(node.body)
+            });
+          }
+
+          return makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
+            condition: convertChild(node.condition),
+            guard: convertChild(node.guard),
+            body: convertChild(node.body),
+            isUntil: node.condition.inverted === true
           });
-        }
-
-        return makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
-          condition: convertChild(node.condition),
-          guard: convertChild(node.guard),
-          body: convertChild(node.body),
-          isUntil: node.condition.inverted === true
         });
       }
 
       case 'Existence':
-        return makeNode(context, 'UnaryExistsOp', node.locationData, {
-          expression: convertChild(node.expression)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'UnaryExistsOp', node.locationData, {
+            expression: convertChild(node.expression)
+          })
+        );
 
       case 'Class': {
-        const nameNode = node.variable ? convertChild(node.variable) : null;
+        return mapAnyWithFallback(context, node, () => {
+          const nameNode = node.variable ? convertChild(node.variable) : null;
 
-        let ctor = null;
-        let boundMembers = [];
-        const body = (!node.body || node.body.expressions.length === 0) ? null : makeNode(context, 'Block', node.body.locationData, {
-          statements: node.body.expressions.reduce((statements, expr) => {
-            if (type(expr) === 'Value' && type(expr.base) === 'Obj') {
-              expr.base.properties.forEach(property => {
-                let key;
-                let value;
-                switch (type(property)) {
-                  case 'Value':
-                    // shorthand property
-                    key = value = convertChild(property);
-                    break;
+          let ctor = null;
+          let boundMembers = [];
+          const body = (!node.body || node.body.expressions.length === 0) ? null : makeNode(context, 'Block', node.body.locationData, {
+              statements: node.body.expressions.reduce((statements, expr) => {
+                if (type(expr) === 'Value' && type(expr.base) === 'Obj') {
+                  expr.base.properties.forEach(property => {
+                    let key;
+                    let value;
+                    switch (type(property)) {
+                      case 'Value':
+                        // shorthand property
+                        key = value = convertChild(property);
+                        break;
 
-                  case 'Comment':
-                    return;
+                      case 'Comment':
+                        return;
 
-                  default:
-                    key = convertChild(property.variable);
-                    value = convertChild(property.value);
-                    break;
-                }
-                if (key.data === 'constructor') {
-                  statements.push(ctor = makeNode(context, 'Constructor', property.locationData, {
-                    assignee: key,
-                    expression: value
-                  }));
-                } else if (key.type === 'MemberAccessOp' && key.expression.type === 'This') {
-                  statements.push(makeNode(context, 'AssignOp', property.locationData, {
-                    assignee: key,
-                    expression: value
-                  }));
+                      default:
+                        key = convertChild(property.variable);
+                        value = convertChild(property.value);
+                        break;
+                    }
+                    if (key.data === 'constructor') {
+                      statements.push(ctor = makeNode(context, 'Constructor', property.locationData, {
+                        assignee: key,
+                        expression: value
+                      }));
+                    } else if (key.type === 'MemberAccessOp' && key.expression.type === 'This') {
+                      statements.push(makeNode(context, 'AssignOp', property.locationData, {
+                        assignee: key,
+                        expression: value
+                      }));
+                    } else {
+                      statements.push(makeNode(context, 'ClassProtoAssignOp', property.locationData, {
+                        assignee: key,
+                        expression: value
+                      }));
+                    }
+                    if (value.type === 'BoundFunction') {
+                      boundMembers.push(statements[statements.length - 1]);
+                    }
+                  });
                 } else {
-                  statements.push(makeNode(context, 'ClassProtoAssignOp', property.locationData, {
-                    assignee: key,
-                    expression: value
-                  }));
+                  statements.push(convertChild(expr));
                 }
-                if (value.type === 'BoundFunction') {
-                  boundMembers.push(statements[statements.length - 1]);
-                }
-              });
-            } else {
-              statements.push(convertChild(expr));
-            }
-            return statements;
-          }, [])
-        });
+                return statements;
+              }, [])
+            });
 
-        return makeNode(context, 'Class', node.locationData, {
-          name: nameNode,
-          nameAssignee: nameNode,
-          body,
-          boundMembers,
-          parent: node.parent ? convertChild(node.parent) : null,
-          ctor
+          return makeNode(context, 'Class', node.locationData, {
+            name: nameNode,
+            nameAssignee: nameNode,
+            body,
+            boundMembers,
+            parent: node.parent ? convertChild(node.parent) : null,
+            ctor
+          });
         });
       }
 
       case 'Switch':
-        return makeNode(context, 'Switch', node.locationData, {
-          expression: convertChild(node.subject),
-          cases: node.cases.map(([conditions, body]) => {
-            if (!Array.isArray(conditions)) {
-              conditions = [conditions];
-            }
-            const loc = expandLocationLeftThrough(
-              context,
-              locationContainingNodes(conditions[0], body),
-              'when '
-            );
-            return makeNode(context, 'SwitchCase', loc, {
-              conditions: convertChild(conditions),
-              consequent: convertChild(body)
-            })
-          }).filter(node => node),
-          alternate: convertChild(node.otherwise)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Switch', node.locationData, {
+            expression: convertChild(node.subject),
+            cases: node.cases.map(([conditions, body]) => {
+              if (!Array.isArray(conditions)) {
+                conditions = [conditions];
+              }
+              const loc = expandLocationLeftThrough(
+                context,
+                locationContainingNodes(conditions[0], body),
+                'when '
+              );
+              return makeNode(context, 'SwitchCase', loc, {
+                conditions: convertChild(conditions),
+                consequent: convertChild(body)
+              })
+            }).filter(node => node),
+            alternate: convertChild(node.otherwise)
+          })
+        );
 
       case 'Splat':
-        return makeNode(context, 'Spread', node.locationData, {
-          expression: convertChild(node.name)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Spread', node.locationData, {
+            expression: convertChild(node.name)
+          })
+        );
 
       case 'Throw':
         return mapAnyWithFallback(context, node, () =>
@@ -737,55 +771,65 @@ function convert(context) {
         );
 
       case 'Try':
-        return makeNode(context, 'Try', node.locationData, {
-          body: convertChild(node.attempt),
-          catchAssignee: convertChild(node.errorVariable),
-          catchBody: convertChild(node.recovery),
-          finallyBody: convertChild(node.ensure)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Try', node.locationData, {
+            body: convertChild(node.attempt),
+            catchAssignee: convertChild(node.errorVariable),
+            catchBody: convertChild(node.recovery),
+            finallyBody: convertChild(node.ensure)
+          })
+        );
 
       case 'Range':
-        return makeNode(context, 'Range', node.locationData, {
-          left: convertChild(node.from),
-          right: convertChild(node.to),
-          isInclusive: !node.exclusive
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Range', node.locationData, {
+            left: convertChild(node.from),
+            right: convertChild(node.to),
+            isInclusive: !node.exclusive
+          })
+        );
 
       case 'In': {
-        // We don't use the `negated` flag on `node` because it gets set to
-        // `true` when a parent `If` is an `unless`.
-        let left = convertChild(node.object);
-        let right = convertChild(node.array);
-        let isNot = false;
+        return mapAnyWithFallback(context, node, () => {
+          // We don't use the `negated` flag on `node` because it gets set to
+          // `true` when a parent `If` is an `unless`.
+          let left = convertChild(node.object);
+          let right = convertChild(node.array);
+          let isNot = false;
 
-        let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.range[1]);
-        let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.range[0]);
+          let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.range[1]);
+          let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.range[0]);
 
-        for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
-          let token = context.sourceTokens.tokenAtIndex(i);
-          if (token.type === SourceType.RELATION) {
-            isNot = source.slice(token.start, token.end) !== 'in';
+          for (let i = lastTokenIndexOfLeft.next(); i !== firstTokenIndexOfRight; i = i.next()) {
+            let token = context.sourceTokens.tokenAtIndex(i);
+            if (token.type === SourceType.RELATION) {
+              isNot = source.slice(token.start, token.end) !== 'in';
+            }
           }
-        }
 
-        return makeNode(context, 'InOp', node.locationData, {
-          left,
-          right,
-          isNot
+          return makeNode(context, 'InOp', node.locationData, {
+            left,
+            right,
+            isNot
+          });
         });
       }
 
       case 'Expansion':
-        return makeNode(context, 'Expansion', node.locationData);
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'Expansion', node.locationData)
+        );
 
       case 'Comment':
-        return null;
+        return mapAnyWithFallback(context, node, () => null);
 
       case 'Extends':
-        return makeNode(context, 'ExtendsOp', node.locationData, {
-          left: convertChild(node.child),
-          right: convertChild(node.parent)
-        });
+        return mapAnyWithFallback(context, node, () =>
+          makeNode(context, 'ExtendsOp', node.locationData, {
+            left: convertChild(node.child),
+            right: convertChild(node.parent)
+          })
+        );
 
       default:
         return mapAny(context, node);
