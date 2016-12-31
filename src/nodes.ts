@@ -469,6 +469,32 @@ export class Rest extends Node {
   }
 }
 
+export class Break extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean
+  ) {
+    super('Break', line, column, start, end, raw, virtual);
+  }
+}
+
+export class Continue extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean
+  ) {
+    super('Continue', line, column, start, end, raw, virtual);
+  }
+}
+
 export type DecaffeinateNode =
   Bool |
   Null |

@@ -1,7 +1,7 @@
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Literal } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Float, Heregex, Identifier, Int, JavaScript, Node, Quasi, Regex, RegexFlags, String, This } from '../nodes';
+import { Break, Continue, Float, Heregex, Identifier, Int, JavaScript, Node, Quasi, Regex, RegexFlags, String, This } from '../nodes';
 import isStringAtPosition from '../util/isStringAtPosition';
 import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
@@ -101,6 +101,14 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     // just return a Quasi node, and higher-up code should insert it
     // into a string interpolation.
     return new Quasi(line, column, start, end, raw, virtual, parseString(node.value));
+  }
+
+  if (startToken.type === SourceType.BREAK) {
+    return new Break(line, column, start, end, raw, virtual);
+  }
+
+  if (startToken.type === SourceType.CONTINUE) {
+    return new Continue(line, column, start, end, raw, virtual);
   }
 
   // Fall back to identifiers.

@@ -1,0 +1,55 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    16
+  ],
+  "raw": "loop\n  continue\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      15
+    ],
+    "statements": [
+      {
+        "type": "Loop",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          15
+        ],
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [
+            7,
+            15
+          ],
+          "statements": [
+            {
+              "type": "Continue",
+              "line": 2,
+              "column": 3,
+              "range": [
+                7,
+                15
+              ],
+              "raw": "continue"
+            }
+          ],
+          "raw": "continue",
+          "inline": false
+        },
+        "raw": "loop\n  continue"
+      }
+    ],
+    "raw": "loop\n  continue"
+  }
+}
