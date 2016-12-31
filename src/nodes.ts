@@ -432,6 +432,43 @@ export class ArrayInitialiser extends Node {
   }
 }
 
+export class DefaultParam extends Node {
+  readonly param: Node;
+  readonly default: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    param: Node,
+    defaultValue: Node
+  ) {
+    super('DefaultParam', line, column, start, end, raw, virtual);
+    this.param = param;
+    this.default = defaultValue;
+  }
+}
+
+export class Rest extends Node {
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('Rest', line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
 export type DecaffeinateNode =
   Bool |
   Null |
