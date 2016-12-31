@@ -348,7 +348,7 @@ export class Undefined extends Node {
 }
 
 export class Return extends Node {
-  readonly argument: Node | null;
+  readonly expression: Node | null;
 
   constructor(
     line: number,
@@ -357,10 +357,10 @@ export class Return extends Node {
     end: number,
     raw: string,
     virtual: boolean,
-    argument: Node | null
+    expression: Node | null
   ) {
     super('Return', line, column, start, end, raw, virtual);
-    this.argument = argument;
+    this.expression = expression;
   }
 }
 
