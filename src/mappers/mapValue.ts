@@ -41,7 +41,9 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         context.source.slice(result.start, last + 1),
         false,
         result,
-        name.value
+        // Sometimes the CoffeeScript AST contains a string object instead of a
+        // string primitive. Convert to string primitive if necessary.
+        name.value.valueOf()
       );
     } else {
       throw new UnsupportedNodeError(property);

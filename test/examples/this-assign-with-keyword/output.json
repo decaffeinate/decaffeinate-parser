@@ -1,0 +1,56 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    11
+  ],
+  "raw": "(@case) ->\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      10
+    ],
+    "statements": [
+      {
+        "type": "Function",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          10
+        ],
+        "body": null,
+        "parameters": [
+          {
+            "type": "MemberAccessOp",
+            "line": 1,
+            "column": 2,
+            "range": [
+              1,
+              6
+            ],
+            "raw": "@case",
+            "expression": {
+              "type": "This",
+              "line": 1,
+              "column": 2,
+              "range": [
+                1,
+                2
+              ],
+              "raw": "@"
+            },
+            "memberName": "case"
+          }
+        ],
+        "raw": "(@case) ->"
+      }
+    ],
+    "raw": "(@case) ->"
+  }
+}
