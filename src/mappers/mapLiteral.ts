@@ -33,7 +33,10 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
   }
 
   if (startToken.type === SourceType.IDENTIFIER) {
-    return new Identifier(line, column, start, end, raw, virtual, node.value);
+    // Sometimes the CoffeeScript AST contains a string object instead of a
+    // string primitive. Convert to string primitive if necessary.
+    let value = node.value.valueOf();
+    return new Identifier(line, column, start, end, raw, virtual, value);
   }
 
   if (startToken.type === SourceType.JS) {

@@ -951,7 +951,7 @@ function convert(context) {
         case 'Access':
           return makeNode(context, prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
-            memberName: prop.name.value
+            memberName: prop.name.value.valueOf()
           });
 
         case 'Index':
