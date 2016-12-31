@@ -334,6 +334,7 @@ export class Null extends Node {
     super('Null', line, column, start, end, raw, virtual);
   }
 }
+
 export class Undefined extends Node {
   constructor(
     line: number,
@@ -344,6 +345,26 @@ export class Undefined extends Node {
     virtual: boolean
   ) {
     super('Undefined', line, column, start, end, raw, virtual);
+  }
+}
+
+export class Regex extends Node {
+  readonly pattern: string;
+  readonly flags: RegexFlags;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    pattern: string,
+    flags: RegexFlags
+  ) {
+    super('Regex', line, column, start, end, raw, virtual);
+    this.pattern = pattern;
+    this.flags = flags;
   }
 }
 
