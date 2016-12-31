@@ -1,10 +1,11 @@
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Literal } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Float, Heregex, Identifier, Int, JavaScript, Node, Quasi, RegexFlags, String, This } from '../nodes';
+import { Float, Heregex, Identifier, Int, JavaScript, Node, Quasi, Regex, RegexFlags, String, This } from '../nodes';
 import isStringAtPosition from '../util/isStringAtPosition';
 import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
+import parseRegExp from '../util/parseRegExp';
 import parseString from '../util/parseString';
 import mapBase from './mapBase';
 
@@ -48,6 +49,14 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     } else {
       return new Int(line, column, start, end, raw, virtual, parseNumber(node.value));
     }
+  }
+
+  if (startToken.type === SourceType.REGEXP) {
+    let regExp = parseRegExp(node.value);
+    return new Regex(
+      line, column, start, end, raw, virtual,
+      regExp.pattern, RegexFlags.parse(regExp.flags)
+    );
   }
 
   if (isStringAtPosition(start, end, context)) {
