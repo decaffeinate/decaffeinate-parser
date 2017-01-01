@@ -9,7 +9,7 @@ import parseRegExp from '../util/parseRegExp';
 import parseString from '../util/parseString';
 import mapBase from './mapBase';
 
-const HEREGEX_PATTERN = /^\/\/\/((?:.|\n)*)\/\/\/([gimy]*)$/;
+const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimy]*)$/;
 
 export default function mapLiteral(context: ParseContext, node: Literal): Node {
   let { line, column, start, end, raw, virtual } = mapBase(context, node);
