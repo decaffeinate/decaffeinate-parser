@@ -58,7 +58,7 @@
             }
           ],
           "raw": "a",
-          "inline": false
+          "inline": true
         },
         "target": {
           "type": "Identifier",

@@ -1,17 +1,25 @@
-import { Arr, Base, Bool, Existence, Literal, Null, Param, Return, Throw, Undefined, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Arr, Base, Block, Bool, Code, Existence, Extends, For, Literal, Null, Param, Parens, Range, Return, Splat, Throw, Try, Undefined, Value, While } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapArr from './mapArr';
+import mapBlock from './mapBlock';
 import mapBool from './mapBool';
+import mapCode from './mapCode';
 import mapExistence from './mapExistence';
+import mapExtends from './mapExtends';
 import mapLiteral from './mapLiteral';
 import mapNull from './mapNull';
 import mapParam from './mapParam';
+import mapParens from './mapParens';
+import mapRange from './mapRange';
 import mapReturn from './mapReturn';
+import mapSplat from './mapSplat';
 import mapThrow from './mapThrow';
+import mapTry from './mapTry';
 import mapUndefined from './mapUndefined';
 import mapValue from './mapValue';
+import mapWhile from './mapWhile';
 
 export default function mapAny(context: ParseContext, node: Base): Node {
   if (node instanceof Value) {
@@ -42,6 +50,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapNull(context, node);
   }
 
+  if (node instanceof Parens) {
+    return mapParens(context, node);
+  }
+
   if (node instanceof Throw) {
     return mapThrow(context, node);
   }
@@ -50,8 +62,36 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapUndefined(context, node);
   }
 
+  if (node instanceof Block) {
+    return mapBlock(context, node);
+  }
+
+  if (node instanceof Code) {
+    return mapCode(context, node);
+  }
+
+  if (node instanceof While && !(node instanceof For)) {
+    return mapWhile(context, node);
+  }
+
+  if (node instanceof Try) {
+    return mapTry(context, node);
+  }
+
   if (node instanceof Existence) {
     return mapExistence(context, node);
+  }
+
+  if (node instanceof Splat) {
+    return mapSplat(context, node);
+  }
+
+  if (node instanceof Range) {
+    return mapRange(context, node);
+  }
+
+  if (node instanceof Extends) {
+    return mapExtends(context, node);
   }
 
   throw new UnsupportedNodeError(node);

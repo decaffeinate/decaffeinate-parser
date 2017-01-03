@@ -211,6 +211,7 @@ export class String extends Node {
 
 export class Block extends Node {
   readonly statements: Array<Node>;
+  readonly inline: boolean;
 
   constructor(
     line: number,
@@ -219,15 +220,17 @@ export class Block extends Node {
     end: number,
     raw: string,
     virtual: boolean,
-    statements: Array<Node>
+    statements: Array<Node>,
+    inline: boolean
   ) {
     super('Block', line, column, start, end, raw, virtual);
     this.statements = statements;
+    this.inline = inline;
   }
 }
 
 export class Loop extends Node {
-  readonly body: Block;
+  readonly body: Node | null;
 
   constructor(
     line: number,
@@ -236,10 +239,36 @@ export class Loop extends Node {
     end: number,
     raw: string,
     virtual: boolean,
-    body: Block
+    body: Node | null
   ) {
     super('Loop', line, column, start, end, raw, virtual);
     this.body = body;
+  }
+}
+
+export class While extends Node {
+  readonly condition: Node;
+  readonly guard: Node | null;
+  readonly body: Node | null;
+  readonly isUntil: boolean;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    condition: Node,
+    guard: Node | null,
+    body: Node | null,
+    isUntil: boolean
+  ) {
+    super('While', line, column, start, end, raw, virtual);
+    this.condition = condition;
+    this.guard = guard;
+    this.body = body;
+    this.isUntil = isUntil;
   }
 }
 
@@ -509,6 +538,206 @@ export class UnaryExistsOp extends Node {
   ) {
     super('UnaryExistsOp', line, column, start, end, raw, virtual);
     this.expression = expression;
+  }
+}
+
+export class Spread extends Node {
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('Spread', line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
+export class Range extends Node {
+  readonly left: Node;
+  readonly right: Node;
+  readonly isInclusive: boolean;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node,
+    isInclusive: boolean
+  ) {
+    super('Range', line, column, start, end, raw, virtual);
+    this.left = left;
+    this.right = right;
+    this.isInclusive = isInclusive;
+  }
+}
+
+export class BinaryOp extends Node {
+  readonly left: Node;
+  readonly right: Node;
+
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.left = left;
+    this.right = right;
+  }
+}
+
+export class ExtendsOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super('ExtendsOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
+
+export class SeqOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super('SeqOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
+
+abstract class BaseFunction extends Node {
+  readonly parameters: Array<Node>;
+  readonly body: Block;
+
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    parameters: Array<Node>,
+    body: Block
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.parameters = parameters;
+    this.body = body;
+  }
+}
+
+export { BaseFunction };
+
+export class Function extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    parameters: Array<Node>,
+    body: Block
+  ) {
+    super('Function', line, column, start, end, raw, virtual, parameters, body);
+  }
+}
+
+export class BoundFunction extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    parameters: Array<Node>,
+    body: Block
+  ) {
+    super('BoundFunction', line, column, start, end, raw, virtual, parameters, body);
+  }
+}
+
+export class GeneratorFunction extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    parameters: Array<Node>,
+    body: Block
+  ) {
+    super('GeneratorFunction', line, column, start, end, raw, virtual, parameters, body);
+  }
+}
+
+export class BoundGeneratorFunction extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    parameters: Array<Node>,
+    body: Block
+  ) {
+    super('BoundGeneratorFunction', line, column, start, end, raw, virtual, parameters, body);
+  }
+}
+
+export class Try extends Node {
+  readonly body: Node | null;
+  readonly catchAssignee: Node | null;
+  readonly catchBody: Node | null;
+  readonly finallyBody: Node | null;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    body: Node | null,
+    catchAssignee: Node | null,
+    catchBody: Node | null,
+    finallyBody: Node | null
+  ) {
+    super('Try', line, column, start, end, raw, virtual);
+    this.body = body;
+    this.catchAssignee = catchAssignee;
+    this.catchBody = catchBody;
+    this.finallyBody = finallyBody;
   }
 }
 
