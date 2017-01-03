@@ -495,6 +495,23 @@ export class Continue extends Node {
   }
 }
 
+export class UnaryExistsOp extends Node {
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('UnaryExistsOp', line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
 export type DecaffeinateNode =
   Bool |
   Null |

@@ -1,9 +1,10 @@
-import { Arr, Base, Bool, Literal, Null, Param, Return, Throw, Undefined, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Arr, Base, Bool, Existence, Literal, Null, Param, Return, Throw, Undefined, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapArr from './mapArr';
 import mapBool from './mapBool';
+import mapExistence from './mapExistence';
 import mapLiteral from './mapLiteral';
 import mapNull from './mapNull';
 import mapParam from './mapParam';
@@ -47,6 +48,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Undefined) {
     return mapUndefined(context, node);
+  }
+
+  if (node instanceof Existence) {
+    return mapExistence(context, node);
   }
 
   throw new UnsupportedNodeError(node);
