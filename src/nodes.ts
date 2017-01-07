@@ -209,6 +209,69 @@ export class String extends Node {
   }
 }
 
+export class ObjectInitialiser extends Node {
+  readonly members: Array<ObjectInitialiserMember>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    members: Array<ObjectInitialiserMember>
+  ) {
+    super('ObjectInitialiser', line, column, start, end, raw, virtual);
+    this.members = members;
+  }
+}
+
+export class ObjectInitialiserMember extends Node {
+  readonly key: String | Identifier;
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    key: String | Identifier,
+    expression: Node
+  ) {
+    super('ObjectInitialiserMember', line, column, start, end, raw, virtual);
+    this.key = key;
+    this.expression = expression;
+  }
+}
+
+export class Conditional extends Node {
+  readonly condition: Node;
+  readonly consequent: Block;
+  readonly alternate: Block | null;
+  readonly isUnless: boolean;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    condition: Node,
+    consequent: Block,
+    alternate: Block | null,
+    isUnless: boolean
+  ) {
+    super('Conditional', line, column, start, end, raw, virtual);
+    this.condition = condition;
+    this.consequent = consequent;
+    this.alternate = alternate;
+    this.isUnless = isUnless;
+  }
+}
+
 export class Block extends Node {
   readonly statements: Array<Node>;
   readonly inline: boolean;

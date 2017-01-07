@@ -1,4 +1,4 @@
-import { Arr, Base, Block, Bool, Code, Existence, Extends, For, Literal, Null, Param, Parens, Range, Return, Splat, Throw, Try, Undefined, Value, While } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Arr, Base, Block, Bool, Code, Existence, Extends, For, If, Literal, Null, Obj, Param, Parens, Range, Return, Splat, Throw, Try, Undefined, Value, While } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
@@ -8,8 +8,10 @@ import mapBool from './mapBool';
 import mapCode from './mapCode';
 import mapExistence from './mapExistence';
 import mapExtends from './mapExtends';
+import mapIf from './mapIf';
 import mapLiteral from './mapLiteral';
 import mapNull from './mapNull';
+import mapObj from './mapObj';
 import mapParam from './mapParam';
 import mapParens from './mapParens';
 import mapRange from './mapRange';
@@ -46,8 +48,16 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapReturn(context, node);
   }
 
+  if (node instanceof If) {
+    return mapIf(context, node);
+  }
+
   if (node instanceof Null) {
     return mapNull(context, node);
+  }
+
+  if (node instanceof Obj) {
+    return mapObj(context, node);
   }
 
   if (node instanceof Parens) {
