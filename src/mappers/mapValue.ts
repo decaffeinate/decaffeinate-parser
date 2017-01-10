@@ -2,7 +2,7 @@ import { SourceType } from 'coffee-lex';
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import { Access, Literal, LocationData, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { MemberAccessOp, Node, ProtoMemberAccessOp } from '../nodes';
+import { Identifier, MemberAccessOp, Node, ProtoMemberAccessOp } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
@@ -42,7 +42,11 @@ export default function mapValue(context: ParseContext, node: Value): Node {
           result
         );
       } else {
-        let memberName = name.value.valueOf();
+        let member = mapAny(context, name);
+
+        if (!(member instanceof Identifier)) {
+          throw new Error(`unexpected non-Identifier access member: ${inspect(member)}`);
+        }
 
         result = new MemberAccessOp(
           result.line,
@@ -52,7 +56,7 @@ export default function mapValue(context: ParseContext, node: Value): Node {
           context.source.slice(result.start, last + 1),
           false,
           result,
-          memberName
+          member
         );
       }
     } else {

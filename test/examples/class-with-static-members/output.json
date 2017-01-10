@@ -2,67 +2,36 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 15 ],
+  "range": [
+    0,
+    15
+  ],
   "raw": "class A\n  @b: c",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 15 ],
-    "raw": "class A\n  @b: c",
+    "range": [
+      0,
+      15
+    ],
     "statements": [
       {
         "type": "Class",
         "line": 1,
         "column": 1,
-        "range": [ 0, 15 ],
-        "raw": "class A\n  @b: c",
-        "body": {
-          "type": "Block",
-          "line": 2,
-          "column": 3,
-          "range": [ 10, 15 ],
-          "raw": "@b: c",
-          "statements": [
-            {
-              "type": "AssignOp",
-              "line": 2,
-              "column": 3,
-              "range": [ 10, 15 ],
-              "raw": "@b: c",
-              "assignee": {
-                "type": "MemberAccessOp",
-                "line": 2,
-                "column": 3,
-                "range": [ 10, 12 ],
-                "raw": "@b",
-                "expression": {
-                  "type": "This",
-                  "line": 2,
-                  "column": 3,
-                  "range": [ 10, 11 ],
-                  "raw": "@"
-                },
-                "memberName": "b"
-              },
-              "expression": {
-                "type": "Identifier",
-                "line": 2,
-                "column": 7,
-                "range": [ 14, 15 ],
-                "raw": "c",
-                "data": "c"
-              }
-            }
-          ]
-        },
-        "boundMembers": [],
-        "ctor": null,
+        "range": [
+          0,
+          15
+        ],
         "name": {
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
           "data": "A"
         },
@@ -70,12 +39,83 @@
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
           "data": "A"
         },
-        "parent": null
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [
+            10,
+            15
+          ],
+          "statements": [
+            {
+              "type": "AssignOp",
+              "line": 2,
+              "column": 3,
+              "range": [
+                10,
+                15
+              ],
+              "assignee": {
+                "type": "MemberAccessOp",
+                "line": 2,
+                "column": 3,
+                "range": [
+                  10,
+                  12
+                ],
+                "raw": "@b",
+                "expression": {
+                  "type": "This",
+                  "line": 2,
+                  "column": 3,
+                  "range": [
+                    10,
+                    11
+                  ],
+                  "raw": "@"
+                },
+                "member": {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 4,
+                  "range": [
+                    11,
+                    12
+                  ],
+                  "raw": "b",
+                  "data": "b"
+                }
+              },
+              "expression": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 7,
+                "range": [
+                  14,
+                  15
+                ],
+                "raw": "c",
+                "data": "c"
+              },
+              "raw": "@b: c"
+            }
+          ],
+          "raw": "@b: c"
+        },
+        "boundMembers": [],
+        "parent": null,
+        "ctor": null,
+        "raw": "class A\n  @b: c"
       }
-    ]
+    ],
+    "raw": "class A\n  @b: c"
   }
 }

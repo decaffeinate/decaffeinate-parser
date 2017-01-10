@@ -73,12 +73,42 @@
                   "data": "Object"
                 }
               },
-              "memberName": "toString"
+              "member": {
+                "type": "Identifier",
+                "line": 1,
+                "column": 9,
+                "range": [
+                  8,
+                  16
+                ],
+                "raw": "toString",
+                "data": "toString"
+              }
             },
-            "memberName": "constructor"
+            "member": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 18,
+              "range": [
+                17,
+                28
+              ],
+              "raw": "constructor",
+              "data": "constructor"
+            }
           }
         },
-        "memberName": "valueOf"
+        "member": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 31,
+          "range": [
+            30,
+            37
+          ],
+          "raw": "valueOf",
+          "data": "valueOf"
+        }
       }
     ],
     "raw": "Object::toString.constructor::valueOf"

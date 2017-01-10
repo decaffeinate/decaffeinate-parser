@@ -46,7 +46,17 @@
             "data": "Object"
           }
         },
-        "memberName": "toString"
+        "member": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 9,
+          "range": [
+            8,
+            16
+          ],
+          "raw": "toString",
+          "data": "toString"
+        }
       }
     ],
     "raw": "Object::toString"

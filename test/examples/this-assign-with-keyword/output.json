@@ -45,7 +45,17 @@
               ],
               "raw": "@"
             },
-            "memberName": "case"
+            "member": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 3,
+              "range": [
+                2,
+                6
+              ],
+              "raw": "case",
+              "data": "case"
+            }
           }
         ],
         "raw": "(@case) ->"

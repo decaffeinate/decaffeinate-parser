@@ -48,6 +48,7 @@
                 0,
                 17
               ],
+              "raw": "angular\n  .module",
               "expression": {
                 "type": "Identifier",
                 "line": 1,
@@ -56,11 +57,20 @@
                   0,
                   7
                 ],
-                "data": "angular",
-                "raw": "angular"
+                "raw": "angular",
+                "data": "angular"
               },
-              "memberName": "module",
-              "raw": "angular\n  .module"
+              "member": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 4,
+                "range": [
+                  11,
+                  17
+                ],
+                "raw": "module",
+                "data": "module"
+              }
             },
             "arguments": [
               {
@@ -71,6 +81,7 @@
                   18,
                   23
                 ],
+                "raw": "'app'",
                 "quasis": [
                   {
                     "type": "Quasi",
@@ -80,12 +91,11 @@
                       18,
                       23
                     ],
-                    "data": "app",
-                    "raw": "'app'"
+                    "raw": "'app'",
+                    "data": "app"
                   }
                 ],
-                "expressions": [],
-                "raw": "'app'"
+                "expressions": []
               }
             ],
             "raw": "angular\n  .module('app')"
@@ -102,6 +112,7 @@
               39,
               47
             ],
+            "raw": "'MyCtrl'",
             "quasis": [
               {
                 "type": "Quasi",
@@ -111,12 +122,11 @@
                   39,
                   47
                 ],
-                "data": "MyCtrl",
-                "raw": "'MyCtrl'"
+                "raw": "'MyCtrl'",
+                "data": "MyCtrl"
               }
             ],
-            "expressions": [],
-            "raw": "'MyCtrl'"
+            "expressions": []
           },
           {
             "type": "Identifier",
@@ -126,8 +136,8 @@
               49,
               55
             ],
-            "data": "MyCtrl",
-            "raw": "MyCtrl"
+            "raw": "MyCtrl",
+            "data": "MyCtrl"
           }
         ],
         "raw": "angular\n  .module('app')\n  .controller('MyCtrl', MyCtrl)"

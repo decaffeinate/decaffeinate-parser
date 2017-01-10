@@ -171,7 +171,7 @@ export abstract class AccessOp extends Node {
 }
 
 export class MemberAccessOp extends AccessOp {
-  readonly memberName: string;
+  readonly member: Identifier;
 
   constructor(
     line: number,
@@ -181,10 +181,10 @@ export class MemberAccessOp extends AccessOp {
     raw: string,
     virtual: boolean,
     expression: Node,
-    memberName: string
+    member: Identifier
   ) {
     super('MemberAccessOp', line, column, start, end, raw, virtual, expression);
-    this.memberName = memberName;
+    this.member = member;
   }
 }
 

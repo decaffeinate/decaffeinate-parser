@@ -48,6 +48,7 @@
                 0,
                 21
               ],
+              "raw": "$stateProvider\n.state",
               "expression": {
                 "type": "Identifier",
                 "line": 1,
@@ -56,11 +57,20 @@
                   0,
                   14
                 ],
-                "data": "$stateProvider",
-                "raw": "$stateProvider"
+                "raw": "$stateProvider",
+                "data": "$stateProvider"
               },
-              "memberName": "state",
-              "raw": "$stateProvider\n.state"
+              "member": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 2,
+                "range": [
+                  16,
+                  21
+                ],
+                "raw": "state",
+                "data": "state"
+              }
             },
             "arguments": [
               {
@@ -71,6 +81,7 @@
                   22,
                   27
                 ],
+                "raw": "'foo'",
                 "quasis": [
                   {
                     "type": "Quasi",
@@ -80,12 +91,11 @@
                       22,
                       27
                     ],
-                    "data": "foo",
-                    "raw": "'foo'"
+                    "raw": "'foo'",
+                    "data": "foo"
                   }
                 ],
-                "expressions": [],
-                "raw": "'foo'"
+                "expressions": []
               }
             ],
             "raw": "$stateProvider\n.state 'foo'"
@@ -102,6 +112,7 @@
               35,
               40
             ],
+            "raw": "'bar'",
             "quasis": [
               {
                 "type": "Quasi",
@@ -111,12 +122,11 @@
                   35,
                   40
                 ],
-                "data": "bar",
-                "raw": "'bar'"
+                "raw": "'bar'",
+                "data": "bar"
               }
             ],
-            "expressions": [],
-            "raw": "'bar'"
+            "expressions": []
           }
         ],
         "raw": "$stateProvider\n.state 'foo'\n.state 'bar'"
