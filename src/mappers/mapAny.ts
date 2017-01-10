@@ -1,14 +1,20 @@
-import { Arr, Base, Block, Bool, Code, Existence, Extends, For, If, Literal, Null, Obj, Param, Parens, Range, Return, Splat, Throw, Try, Undefined, Value, While } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {
+  Arr, Assign, Base, Block, Bool, Code, Existence, Extends, For, If, In, Literal, Null, Obj, Param, Parens,
+  Range, Return, Splat, Switch, Throw, Try, Undefined, Value, While
+} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapArr from './mapArr';
+import mapAssign from './mapAssign';
 import mapBlock from './mapBlock';
 import mapBool from './mapBool';
 import mapCode from './mapCode';
 import mapExistence from './mapExistence';
 import mapExtends from './mapExtends';
+import mapFor from './mapFor';
 import mapIf from './mapIf';
+import mapIn from './mapIn';
 import mapLiteral from './mapLiteral';
 import mapNull from './mapNull';
 import mapObj from './mapObj';
@@ -17,6 +23,7 @@ import mapParens from './mapParens';
 import mapRange from './mapRange';
 import mapReturn from './mapReturn';
 import mapSplat from './mapSplat';
+import mapSwitch from './mapSwitch';
 import mapThrow from './mapThrow';
 import mapTry from './mapTry';
 import mapUndefined from './mapUndefined';
@@ -38,6 +45,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Bool) {
     return mapBool(context, node);
+  }
+
+  if (node instanceof Assign) {
+    return mapAssign(context, node);
   }
 
   if (node instanceof Param) {
@@ -62,6 +73,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Parens) {
     return mapParens(context, node);
+  }
+
+  if (node instanceof For) {
+    return mapFor(context, node);
   }
 
   if (node instanceof Throw) {
@@ -94,6 +109,14 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Splat) {
     return mapSplat(context, node);
+  }
+
+  if (node instanceof Switch) {
+    return mapSwitch(context, node);
+  }
+
+  if (node instanceof In) {
+    return mapIn(context, node);
   }
 
   if (node instanceof Range) {

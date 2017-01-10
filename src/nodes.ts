@@ -335,6 +335,123 @@ export class While extends Node {
   }
 }
 
+export abstract class For extends Node {
+  readonly keyAssignee: Node | null;
+  readonly valAssignee: Node | null;
+  readonly body: Block;
+  readonly target: Node;
+  readonly filter: Node | null;
+
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    keyAssignee: Node | null,
+    valAssignee: Node | null,
+    target: Node,
+    filter: Node | null,
+    body: Block
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.keyAssignee = keyAssignee;
+    this.valAssignee = valAssignee;
+    this.target = target;
+    this.filter = filter;
+    this.body = body;
+  }
+}
+
+export class ForOf extends For {
+  readonly isOwn: boolean;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    keyAssignee: Node | null,
+    valAssignee: Node | null,
+    target: Node,
+    filter: Node | null,
+    body: Block,
+    isOwn: boolean,
+  ) {
+    super('ForOf', line, column, start, end, raw, virtual, keyAssignee, valAssignee, target, filter, body);
+    this.isOwn = isOwn;
+  }
+}
+
+export class ForIn extends For {
+  readonly step: Node | null;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    keyAssignee: Node | null,
+    valAssignee: Node | null,
+    target: Node,
+    filter: Node | null,
+    body: Block,
+    step: Node | null
+  ) {
+    super('ForIn', line, column, start, end, raw, virtual, keyAssignee, valAssignee, target, filter, body);
+    this.step = step;
+  }
+}
+
+export class Switch extends Node {
+  readonly expression: Node | null;
+  readonly cases: Array<SwitchCase>;
+  readonly alternate: Block | null;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node | null,
+    cases: Array<SwitchCase>,
+    alternate: Block | null
+  ) {
+    super('Switch', line, column, start, end, raw, virtual);
+    this.expression = expression;
+    this.cases = cases;
+    this.alternate = alternate;
+  }
+}
+
+export class SwitchCase extends Node {
+  readonly conditions: Array<Node>;
+  readonly consequent: Block;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    conditions: Array<Node>,
+    consequent: Block
+  ) {
+    super('SwitchCase', line, column, start, end, raw, virtual);
+    this.conditions = conditions;
+    this.consequent = consequent;
+  }
+}
+
 export class RegexFlags {
   readonly global: boolean;
   readonly ignoreCase: boolean;
@@ -662,6 +779,45 @@ export class BinaryOp extends Node {
     super(type, line, column, start, end, raw, virtual);
     this.left = left;
     this.right = right;
+  }
+}
+
+export class InOp extends BinaryOp {
+  readonly isNot: boolean;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node,
+    isNot: boolean
+  ) {
+    super('InOp', line, column, start, end, raw, virtual, left, right);
+    this.isNot = isNot;
+  }
+}
+
+export class AssignOp extends Node {
+  readonly assignee: Node;
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    assignee: Node,
+    expression: Node
+  ) {
+    super('AssignOp', line, column, start, end, raw, virtual);
+    this.assignee = assignee;
+    this.expression = expression;
   }
 }
 
