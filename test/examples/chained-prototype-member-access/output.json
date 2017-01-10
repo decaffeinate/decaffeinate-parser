@@ -1,0 +1,86 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    38
+  ],
+  "raw": "Object::toString.constructor::valueOf\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      37
+    ],
+    "statements": [
+      {
+        "type": "MemberAccessOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          37
+        ],
+        "raw": "Object::toString.constructor::valueOf",
+        "expression": {
+          "type": "ProtoMemberAccessOp",
+          "line": 1,
+          "column": 1,
+          "range": [
+            0,
+            30
+          ],
+          "raw": "Object::toString.constructor::",
+          "expression": {
+            "type": "MemberAccessOp",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              28
+            ],
+            "raw": "Object::toString.constructor",
+            "expression": {
+              "type": "MemberAccessOp",
+              "line": 1,
+              "column": 1,
+              "range": [
+                0,
+                16
+              ],
+              "raw": "Object::toString",
+              "expression": {
+                "type": "ProtoMemberAccessOp",
+                "line": 1,
+                "column": 1,
+                "range": [
+                  0,
+                  8
+                ],
+                "raw": "Object::",
+                "expression": {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 1,
+                  "range": [
+                    0,
+                    6
+                  ],
+                  "raw": "Object",
+                  "data": "Object"
+                }
+              },
+              "memberName": "toString"
+            },
+            "memberName": "constructor"
+          }
+        },
+        "memberName": "valueOf"
+      }
+    ],
+    "raw": "Object::toString.constructor::valueOf"
+  }
+}

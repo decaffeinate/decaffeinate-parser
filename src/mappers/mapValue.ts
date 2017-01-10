@@ -2,7 +2,7 @@ import { SourceType } from 'coffee-lex';
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import { Access, Literal, LocationData, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { MemberAccessOp, Node } from '../nodes';
+import { MemberAccessOp, Node, ProtoMemberAccessOp } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
@@ -24,27 +24,37 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         throw new Error(`cannot find token at start of property: ${inspect(property)}`);
       }
 
-      if (startToken.type === SourceType.PROTO) {
-        throw new UnsupportedNodeError(property);
-      }
-
       let last = context.linesAndColumns.indexForLocation({
         line: property.locationData.last_line,
         column: property.locationData.last_column
       });
 
-      result = new MemberAccessOp(
-        result.line,
-        result.column,
-        result.start,
-        last + 1,
-        context.source.slice(result.start, last + 1),
-        false,
-        result,
-        // Sometimes the CoffeeScript AST contains a string object instead of a
-        // string primitive. Convert to string primitive if necessary.
-        name.value.valueOf()
-      );
+      let isPrototypeAccess = startToken.type === SourceType.PROTO;
+
+      if (isPrototypeAccess) {
+        result = new ProtoMemberAccessOp(
+          result.line,
+          result.column,
+          result.start,
+          last + 1,
+          context.source.slice(result.start, last + 1),
+          false,
+          result
+        );
+      } else {
+        let memberName = name.value.valueOf();
+
+        result = new MemberAccessOp(
+          result.line,
+          result.column,
+          result.start,
+          last + 1,
+          context.source.slice(result.start, last + 1),
+          false,
+          result,
+          memberName
+        );
+      }
     } else {
       throw new UnsupportedNodeError(property);
     }

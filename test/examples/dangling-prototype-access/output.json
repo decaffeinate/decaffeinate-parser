@@ -1,0 +1,43 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "Object::\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      8
+    ],
+    "statements": [
+      {
+        "type": "ProtoMemberAccessOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          8
+        ],
+        "raw": "Object::",
+        "expression": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "range": [
+            0,
+            6
+          ],
+          "raw": "Object",
+          "data": "Object"
+        }
+      }
+    ],
+    "raw": "Object::"
+  }
+}
