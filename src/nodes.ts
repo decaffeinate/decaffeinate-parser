@@ -152,9 +152,26 @@ export class Int extends Number {
   }
 }
 
-export class MemberAccessOp extends Node {
+export abstract class AccessOp extends Node {
   readonly expression: Node;
-  readonly memberName: string;
+
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
+export class MemberAccessOp extends AccessOp {
+  readonly member: Identifier;
 
   constructor(
     line: number,
@@ -164,11 +181,24 @@ export class MemberAccessOp extends Node {
     raw: string,
     virtual: boolean,
     expression: Node,
-    memberName: string
+    member: Identifier
   ) {
-    super('MemberAccessOp', line, column, start, end, raw, virtual);
-    this.expression = expression;
-    this.memberName = memberName;
+    super('MemberAccessOp', line, column, start, end, raw, virtual, expression);
+    this.member = member;
+  }
+}
+
+export class ProtoMemberAccessOp extends AccessOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('ProtoMemberAccessOp', line, column, start, end, raw, virtual, expression);
   }
 }
 

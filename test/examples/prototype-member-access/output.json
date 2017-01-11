@@ -2,31 +2,63 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 16 ],
+  "range": [
+    0,
+    16
+  ],
   "raw": "Object::toString",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 16 ],
-    "raw": "Object::toString",
+    "range": [
+      0,
+      16
+    ],
     "statements": [
       {
-        "type": "ProtoMemberAccessOp",
+        "type": "MemberAccessOp",
         "line": 1,
         "column": 1,
-        "range": [ 0, 16 ],
+        "range": [
+          0,
+          16
+        ],
         "raw": "Object::toString",
         "expression": {
-          "type": "Identifier",
+          "type": "ProtoMemberAccessOp",
           "line": 1,
           "column": 1,
-          "range": [ 0, 6 ],
-          "raw": "Object",
-          "data": "Object"
+          "range": [
+            0,
+            8
+          ],
+          "raw": "Object::",
+          "expression": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              6
+            ],
+            "raw": "Object",
+            "data": "Object"
+          }
         },
-        "memberName": "toString"
+        "member": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 9,
+          "range": [
+            8,
+            16
+          ],
+          "raw": "toString",
+          "data": "toString"
+        }
       }
-    ]
+    ],
+    "raw": "Object::toString"
   }
 }

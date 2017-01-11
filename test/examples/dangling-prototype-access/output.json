@@ -4,50 +4,40 @@
   "column": 1,
   "range": [
     0,
-    2
+    9
   ],
-  "raw": "@a",
+  "raw": "Object::\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      2
+      8
     ],
     "statements": [
       {
-        "type": "MemberAccessOp",
+        "type": "ProtoMemberAccessOp",
         "line": 1,
         "column": 1,
         "range": [
           0,
-          2
+          8
         ],
-        "raw": "@a",
+        "raw": "Object::",
         "expression": {
-          "type": "This",
+          "type": "Identifier",
           "line": 1,
           "column": 1,
           "range": [
             0,
-            1
+            6
           ],
-          "raw": "@"
-        },
-        "member": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 2,
-          "range": [
-            1,
-            2
-          ],
-          "raw": "a",
-          "data": "a"
+          "raw": "Object",
+          "data": "Object"
         }
       }
     ],
-    "raw": "@a"
+    "raw": "Object::"
   }
 }
