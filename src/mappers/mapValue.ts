@@ -1,8 +1,8 @@
 import { SourceType } from 'coffee-lex';
-import SourceToken from 'coffee-lex/dist/SourceToken';
+import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { Access, Literal, LocationData, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Identifier, MemberAccessOp, Node, ProtoMemberAccessOp } from '../nodes';
+import { Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, SoakedMemberAccessOp, SoakedProtoMemberAccessOp } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
@@ -11,14 +11,24 @@ export default function mapValue(context: ParseContext, node: Value): Node {
   let result = mapAny(context, node.base);
 
   for (let property of node.properties) {
-    if (property instanceof Access && !property.soak) {
+    if (property instanceof Access) {
       let name = property.name;
 
       if (!(name instanceof Literal)) {
         throw new Error(`unexpected non-Literal property access name: ${inspect(name)}`);
       }
 
-      let startToken = tokenAtLocation(context, property.locationData);
+      let startTokenIndex = tokenIndexAtLocation(context, property.locationData);
+      let startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
+
+      if (startToken && property.soak) {
+        if (startToken.type !== SourceType.EXISTENCE) {
+          throw new Error(`expected EXISTENCE token ('?') but got ${SourceType[startToken.type]}: ${inspect(startToken)}`);
+        }
+
+        startTokenIndex = startTokenIndex && startTokenIndex.next();
+        startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
+      }
 
       if (!startToken) {
         throw new Error(`cannot find token at start of property: ${inspect(property)}`);
@@ -32,7 +42,9 @@ export default function mapValue(context: ParseContext, node: Value): Node {
       let isPrototypeAccess = startToken.type === SourceType.PROTO;
 
       if (isPrototypeAccess) {
-        result = new ProtoMemberAccessOp(
+        let AccessOp = property.soak ? SoakedProtoMemberAccessOp : ProtoMemberAccessOp;
+
+        result = new AccessOp(
           result.line,
           result.column,
           result.start,
@@ -48,7 +60,9 @@ export default function mapValue(context: ParseContext, node: Value): Node {
           throw new Error(`unexpected non-Identifier access member: ${inspect(member)}`);
         }
 
-        result = new MemberAccessOp(
+        let AccessOp = property.soak ? SoakedMemberAccessOp : MemberAccessOp;
+
+        result = new AccessOp(
           result.line,
           result.column,
           result.start,
@@ -67,7 +81,7 @@ export default function mapValue(context: ParseContext, node: Value): Node {
   return result;
 }
 
-function tokenAtLocation(context: ParseContext, location: LocationData): SourceToken | null {
+function tokenIndexAtLocation(context: ParseContext, location: LocationData): SourceTokenListIndex | null {
   let start = context.linesAndColumns.indexForLocation({
     line: location.first_line,
     column: location.first_column
@@ -77,11 +91,5 @@ function tokenAtLocation(context: ParseContext, location: LocationData): SourceT
     return null;
   }
 
-  let startTokenIndex = context.sourceTokens.indexOfTokenContainingSourceIndex(start);
-
-  if (startTokenIndex === null) {
-    return null;
-  }
-
-  return context.sourceTokens.tokenAtIndex(startTokenIndex);
+  return context.sourceTokens.indexOfTokenContainingSourceIndex(start);
 }
