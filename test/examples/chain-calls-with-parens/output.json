@@ -100,7 +100,17 @@
             ],
             "raw": "angular\n  .module('app')"
           },
-          "memberName": "controller",
+          "member": {
+            "type": "Identifier",
+            "line": 3,
+            "column": 4,
+            "range": [
+              28,
+              38
+            ],
+            "raw": "controller",
+            "data": "controller"
+          },
           "raw": "angular\n  .module('app')\n  .controller"
         },
         "arguments": [
