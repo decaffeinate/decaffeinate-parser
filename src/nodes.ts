@@ -202,6 +202,38 @@ export class ProtoMemberAccessOp extends AccessOp {
   }
 }
 
+export class SoakedMemberAccessOp extends AccessOp {
+  readonly member: Identifier;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node,
+    member: Identifier
+  ) {
+    super('SoakedMemberAccessOp', line, column, start, end, raw, virtual, expression);
+    this.member = member;
+  }
+}
+
+export class SoakedProtoMemberAccessOp extends AccessOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('SoakedProtoMemberAccessOp', line, column, start, end, raw, virtual, expression);
+  }
+}
+
 export class Quasi extends Node {
   readonly data: string;
 

@@ -976,11 +976,27 @@ function convert(context) {
      */
     function accessOpForProperty(expression, prop, loc) {
       switch (type(prop)) {
-        case 'Access':
+        case 'Access': {
+          let member = convertChild(prop.name);
+          let accessTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(member.range[0]);
+          let accessToken = accessTokenIndex && context.sourceTokens.tokenAtIndex(accessTokenIndex);
+
+          if (prop.soak && accessToken && accessToken.type === SourceType.EXISTENCE) {
+            accessTokenIndex = accessTokenIndex.next();
+            accessToken = accessTokenIndex && context.sourceTokens.tokenAtIndex(accessTokenIndex);
+          }
+
+          if (accessToken && accessToken.type === SourceType.PROTO) {
+            return makeNode(context, prop.soak ? 'SoakedProtoMemberAccessOp' : 'ProtoMemberAccessOp', mergeLocations(loc, prop.locationData), {
+              expression
+            });
+          }
+
           return makeNode(context, prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
-            member: convertChild(prop.name)
+            member
           });
+        }
 
         case 'Index':
           return makeNode(context, prop.soak ? 'SoakedDynamicMemberAccessOp' : 'DynamicMemberAccessOp', mergeLocations(loc, prop.locationData), {
