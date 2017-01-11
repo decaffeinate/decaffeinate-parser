@@ -100,7 +100,17 @@
             ],
             "raw": "$stateProvider\n.state 'foo'"
           },
-          "memberName": "state",
+          "member": {
+            "type": "Identifier",
+            "line": 3,
+            "column": 2,
+            "range": [
+              29,
+              34
+            ],
+            "raw": "state",
+            "data": "state"
+          },
           "raw": "$stateProvider\n.state 'foo'\n.state"
         },
         "arguments": [

@@ -2,39 +2,64 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 6 ],
+  "range": [
+    0,
+    6
+  ],
   "raw": "a?.b()",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 6 ],
-    "raw": "a?.b()",
+    "range": [
+      0,
+      6
+    ],
     "statements": [
       {
         "type": "FunctionApplication",
         "line": 1,
         "column": 1,
-        "range": [ 0, 6 ],
-        "raw": "a?.b()",
-        "arguments": [],
+        "range": [
+          0,
+          6
+        ],
         "function": {
           "type": "SoakedMemberAccessOp",
           "line": 1,
           "column": 1,
-          "range": [ 0, 4 ],
-          "raw": "a?.b",
+          "range": [
+            0,
+            4
+          ],
           "expression": {
             "type": "Identifier",
             "line": 1,
             "column": 1,
-            "range": [ 0, 1 ],
+            "range": [
+              0,
+              1
+            ],
             "raw": "a",
             "data": "a"
           },
-          "memberName": "b"
-        }
+          "member": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 4,
+            "range": [
+              3,
+              4
+            ],
+            "raw": "b",
+            "data": "b"
+          },
+          "raw": "a?.b"
+        },
+        "arguments": [],
+        "raw": "a?.b()"
       }
-    ]
+    ],
+    "raw": "a?.b()"
   }
 }

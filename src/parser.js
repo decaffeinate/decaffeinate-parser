@@ -320,9 +320,8 @@ function convert(context) {
           node.properties.forEach(prop => {
             value = accessOpForProperty(value, prop, node.base.locationData);
             if (value.type === 'MemberAccessOp' && value.expression.type === 'MemberAccessOp') {
-              if (value.expression.memberName === 'prototype' && value.expression.raw.slice(-2) === '::') {
+              if (value.expression.member.data === 'prototype' && value.expression.raw.slice(-2) === '::') {
                 value.expression.type = 'ProtoMemberAccessOp';
-                delete value.expression.memberName;
               }
             }
           });
@@ -980,7 +979,7 @@ function convert(context) {
         case 'Access':
           return makeNode(context, prop.soak ? 'SoakedMemberAccessOp' : 'MemberAccessOp', mergeLocations(loc, prop.locationData), {
             expression,
-            memberName: prop.name.value.valueOf()
+            member: convertChild(prop.name)
           });
 
         case 'Index':
