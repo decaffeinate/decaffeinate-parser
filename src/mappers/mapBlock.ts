@@ -1,5 +1,5 @@
 import { SourceType } from 'coffee-lex';
-import { Block as CoffeeBlock } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Block as CoffeeBlock, Comment } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Block } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
@@ -18,7 +18,9 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
 
   return new Block(
     line, column, start, end, raw, virtual,
-    node.expressions.map(expression => mapAny(context, expression)),
+    node.expressions
+      .filter(expression => !(expression instanceof Comment))
+      .map(expression => mapAny(context, expression)),
     inline
   );
 }
