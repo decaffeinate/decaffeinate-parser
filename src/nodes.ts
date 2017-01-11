@@ -930,7 +930,7 @@ export class SeqOp extends BinaryOp {
   }
 }
 
-abstract class BaseFunction extends Node {
+export abstract class BaseFunction extends Node {
   readonly parameters: Array<Node>;
   readonly body: Block;
 
@@ -950,8 +950,6 @@ abstract class BaseFunction extends Node {
     this.body = body;
   }
 }
-
-export { BaseFunction };
 
 export class Function extends BaseFunction {
   constructor(
