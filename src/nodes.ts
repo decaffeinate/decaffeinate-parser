@@ -334,6 +334,23 @@ export class Conditional extends Node {
   }
 }
 
+export class Program extends Node {
+  readonly body: Block;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    body: Block
+  ) {
+    super('Program', line, column, start, end, raw, virtual);
+    this.body = body;
+  }
+}
+
 export class Block extends Node {
   readonly statements: Array<Node>;
   readonly inline: boolean;

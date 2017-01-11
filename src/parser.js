@@ -19,12 +19,10 @@ import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForInde
 import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
+import type { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import type { Node, Program } from './nodes';
 
-/**
- * @param {string} source
- * @returns {Program}
- */
-export function parse(source) {
+export function parse(source: string, { useFallback = true, useMappers = true } = {}): Program {
   patchCoffeeScript();
 
   let context = ParseContext.fromSource(source, lex, CoffeeScript.nodes);
@@ -41,17 +39,20 @@ export function parse(source) {
     };
 
     Object.defineProperty(program, 'context', { value: context });
-    return /** @type Program */ program;
+    return program;
   }
 
-  return /** @type Program */ convert(context);
+  return convert(
+    context,
+    useMappers ?
+      // Use mappers, with or without fallback.
+      (useFallback ? mapAnyWithFallback : mapAny) :
+      // No mappers, use only the fallback.
+      (context: ParseContext, node: Base, fallback: () => Node) => fallback()
+  );
 }
 
-/**
- * @param {ParseContext} context
- * @returns {Node}
- */
-function convert(context) {
+function convert(context: ParseContext, map: (context: ParseContext, node: Base, fallback: () => Node) => Node): Program {
   const { source, linesAndColumns } = context;
   fixLocations(context.ast);
   return convertNode(context.ast);
@@ -315,7 +316,7 @@ function convert(context) {
 
     switch (type(node)) {
       case 'Value': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           let value = convertChild(node.base);
           node.properties.forEach(prop => {
             value = accessOpForProperty(value, prop, node.base.locationData);
@@ -330,7 +331,7 @@ function convert(context) {
       }
 
       case 'Call':
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           if (isHeregexTemplateNode(node, context)) {
             let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
             let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
@@ -411,7 +412,7 @@ function convert(context) {
         });
 
       case 'Op': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           const op = convertOperator(node);
           if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
             return createTemplateLiteral(op, 'String');
@@ -426,7 +427,7 @@ function convert(context) {
       }
 
       case 'Assign':
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           if (node.context === 'object') {
             return makeNode(context, 'ObjectInitialiserMember', node.locationData, {
               key: convertChild(node.variable),
@@ -447,7 +448,7 @@ function convert(context) {
         });
 
       case 'Obj':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'ObjectInitialiser', node.locationData, {
             members: node.properties.map(property => {
               if (type(property) === 'Value') {
@@ -465,14 +466,14 @@ function convert(context) {
         );
 
       case 'Arr':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'ArrayInitialiser', node.locationData, {
             members: convertChild(node.objects)
           })
         );
 
       case 'Parens':
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           if (type(node.body) === 'Block') {
             const expressions = node.body.expressions;
             if (expressions.length === 1) {
@@ -495,7 +496,7 @@ function convert(context) {
         });
 
       case 'If': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           let condition = convertChild(node.condition);
           let consequent = convertChild(node.body);
           let alternate = convertChild(node.elseBody);
@@ -537,7 +538,7 @@ function convert(context) {
       }
 
       case 'Code': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           let fnType;
           if (node.bound) {
             if (node.isGenerator) {
@@ -560,7 +561,7 @@ function convert(context) {
       }
 
       case 'Param': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           const param = convertChild(node.name);
           if (node.value) {
             return makeNode(context, 'DefaultParam', node.locationData, {
@@ -578,36 +579,31 @@ function convert(context) {
       }
 
       case 'Block':
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           if (node.expressions.length === 0) {
             return null;
           } else {
             const block = makeNode(context, 'Block', node.locationData, {
               statements: convertChild(node.expressions)
             });
-            block.inline = false;
-            for (let i = block.range[0] - 1; i >= 0; i--) {
-              const char = source[i];
-              if (char === '\n') {
-                break;
-              } else if (char !== ' ' && char !== '\t') {
-                block.inline = true;
-                break;
-              }
-            }
+
+            let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(block.range[0] - 1);
+            let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
+            block.inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
+
             return block;
           }
         });
 
       case 'Return':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Return', node.locationData, {
             expression: node.expression ? convertChild(node.expression) : null
           })
         );
 
       case 'For':
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           if (locationsEqual(node.body.locationData, node.locationData)) {
             node.body.locationData = locationContainingNodes(...node.body.expressions);
           }
@@ -633,7 +629,7 @@ function convert(context) {
         });
 
       case 'While': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
           let tokens = context.sourceTokens;
           let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(start);
@@ -655,14 +651,14 @@ function convert(context) {
       }
 
       case 'Existence':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'UnaryExistsOp', node.locationData, {
             expression: convertChild(node.expression)
           })
         );
 
       case 'Class': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           const nameNode = node.variable ? convertChild(node.variable) : null;
 
           let ctor = null;
@@ -726,7 +722,7 @@ function convert(context) {
       }
 
       case 'Switch':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Switch', node.locationData, {
             expression: convertChild(node.subject),
             cases: node.cases.map(([conditions, body]) => {
@@ -748,21 +744,21 @@ function convert(context) {
         );
 
       case 'Splat':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Spread', node.locationData, {
             expression: convertChild(node.name)
           })
         );
 
       case 'Throw':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Throw', node.locationData, {
             expression: convertChild(node.expression)
           })
         );
 
       case 'Try':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Try', node.locationData, {
             body: convertChild(node.attempt),
             catchAssignee: convertChild(node.errorVariable),
@@ -772,7 +768,7 @@ function convert(context) {
         );
 
       case 'Range':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Range', node.locationData, {
             left: convertChild(node.from),
             right: convertChild(node.to),
@@ -781,7 +777,7 @@ function convert(context) {
         );
 
       case 'In': {
-        return mapAnyWithFallback(context, node, () => {
+        return map(context, node, () => {
           // We don't use the `negated` flag on `node` because it gets set to
           // `true` when a parent `If` is an `unless`.
           let left = convertChild(node.object);
@@ -807,15 +803,15 @@ function convert(context) {
       }
 
       case 'Expansion':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'Expansion', node.locationData)
         );
 
       case 'Comment':
-        return mapAnyWithFallback(context, node, () => null);
+        return map(context, node, () => null);
 
       case 'Extends':
-        return mapAnyWithFallback(context, node, () =>
+        return map(context, node, () =>
           makeNode(context, 'ExtendsOp', node.locationData, {
             left: convertChild(node.child),
             right: convertChild(node.parent)
@@ -823,6 +819,9 @@ function convert(context) {
         );
 
       default:
+        // We use `mapAny` here instead of `map` because we removed the
+        // fallbacks for terminal node types that had mappers (i.e. Literal),
+        // so we use mappers here regardless of whether the options said not to.
         return mapAny(context, node);
     }
 
