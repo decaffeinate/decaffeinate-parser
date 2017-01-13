@@ -2,120 +2,36 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 17 ],
+  "range": [
+    0,
+    17
+  ],
   "raw": "class A\n  a: => b",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 17 ],
-    "raw": "class A\n  a: => b",
+    "range": [
+      0,
+      17
+    ],
     "statements": [
       {
         "type": "Class",
         "line": 1,
         "column": 1,
-        "range": [ 0, 17 ],
-        "raw": "class A\n  a: => b",
-        "body": {
-          "type": "Block",
-          "line": 2,
-          "column": 3,
-          "range": [ 10, 17 ],
-          "raw": "a: => b",
-          "statements": [
-            {
-              "type": "ClassProtoAssignOp",
-              "line": 2,
-              "column": 3,
-              "range": [ 10, 17 ],
-              "raw": "a: => b",
-              "assignee": {
-                "type": "Identifier",
-                "line": 2,
-                "column": 3,
-                "range": [ 10, 11 ],
-                "raw": "a",
-                "data": "a"
-              },
-              "expression": {
-                "type": "BoundFunction",
-                "line": 2,
-                "column": 6,
-                "range": [ 13, 17 ],
-                "raw": "=> b",
-                "body": {
-                  "type": "Block",
-                  "line": 2,
-                  "column": 9,
-                  "range": [ 16, 17 ],
-                  "raw": "b",
-                  "inline": true,
-                  "statements": [
-                    {
-                      "type": "Identifier",
-                      "line": 2,
-                      "column": 9,
-                      "range": [ 16, 17 ],
-                      "raw": "b",
-                      "data": "b"
-                    }
-                  ]
-                },
-                "parameters": []
-              }
-            }
-          ]
-        },
-        "boundMembers": [
-          {
-            "type": "ClassProtoAssignOp",
-            "line": 2,
-            "column": 3,
-            "range": [ 10, 17 ],
-            "raw": "a: => b",
-            "assignee": {
-              "type": "Identifier",
-              "line": 2,
-              "column": 3,
-              "range": [ 10, 11 ],
-              "raw": "a",
-              "data": "a"
-            },
-            "expression": {
-              "type": "BoundFunction",
-              "line": 2,
-              "column": 6,
-              "range": [ 13, 17 ],
-              "raw": "=> b",
-              "body": {
-                "type": "Block",
-                "line": 2,
-                "column": 9,
-                "range": [ 16, 17 ],
-                "raw": "b",
-                "inline": true,
-                "statements": [
-                  {
-                    "type": "Identifier",
-                    "line": 2,
-                    "column": 9,
-                    "range": [ 16, 17 ],
-                    "raw": "b",
-                    "data": "b"
-                  }
-                ]
-              },
-              "parameters": []
-            }
-          }
+        "range": [
+          0,
+          17
         ],
-        "ctor": null,
         "name": {
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
           "data": "A"
         },
@@ -123,12 +39,145 @@
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
           "data": "A"
         },
-        "parent": null
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [
+            10,
+            17
+          ],
+          "statements": [
+            {
+              "type": "ClassProtoAssignOp",
+              "line": 2,
+              "column": 3,
+              "range": [
+                10,
+                17
+              ],
+              "assignee": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "range": [
+                  10,
+                  11
+                ],
+                "raw": "a",
+                "data": "a"
+              },
+              "expression": {
+                "type": "BoundFunction",
+                "line": 2,
+                "column": 6,
+                "range": [
+                  13,
+                  17
+                ],
+                "body": {
+                  "type": "Block",
+                  "line": 2,
+                  "column": 9,
+                  "range": [
+                    16,
+                    17
+                  ],
+                  "statements": [
+                    {
+                      "type": "Identifier",
+                      "line": 2,
+                      "column": 9,
+                      "range": [
+                        16,
+                        17
+                      ],
+                      "raw": "b",
+                      "data": "b"
+                    }
+                  ],
+                  "raw": "b",
+                  "inline": true
+                },
+                "parameters": [],
+                "raw": "=> b"
+              },
+              "raw": "a: => b"
+            }
+          ],
+          "inline": false,
+          "raw": "a: => b"
+        },
+        "boundMembers": [
+          {
+            "type": "ClassProtoAssignOp",
+            "line": 2,
+            "column": 3,
+            "range": [
+              10,
+              17
+            ],
+            "assignee": {
+              "type": "Identifier",
+              "line": 2,
+              "column": 3,
+              "range": [
+                10,
+                11
+              ],
+              "raw": "a",
+              "data": "a"
+            },
+            "expression": {
+              "type": "BoundFunction",
+              "line": 2,
+              "column": 6,
+              "range": [
+                13,
+                17
+              ],
+              "body": {
+                "type": "Block",
+                "line": 2,
+                "column": 9,
+                "range": [
+                  16,
+                  17
+                ],
+                "statements": [
+                  {
+                    "type": "Identifier",
+                    "line": 2,
+                    "column": 9,
+                    "range": [
+                      16,
+                      17
+                    ],
+                    "raw": "b",
+                    "data": "b"
+                  }
+                ],
+                "raw": "b",
+                "inline": true
+              },
+              "parameters": [],
+              "raw": "=> b"
+            },
+            "raw": "a: => b"
+          }
+        ],
+        "parent": null,
+        "ctor": null,
+        "raw": "class A\n  a: => b"
       }
-    ]
+    ],
+    "raw": "class A\n  a: => b"
   }
 }
