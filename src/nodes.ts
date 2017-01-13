@@ -880,10 +880,28 @@ export class InOp extends BinaryOp {
   }
 }
 
-export class AssignOp extends Node {
+export class BaseAssignOp extends Node {
   readonly assignee: Node;
   readonly expression: Node;
 
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    assignee: Node,
+    expression: Node
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.assignee = assignee;
+    this.expression = expression;
+  }
+}
+
+export class AssignOp extends BaseAssignOp {
   constructor(
     line: number,
     column: number,
@@ -894,9 +912,7 @@ export class AssignOp extends Node {
     assignee: Node,
     expression: Node
   ) {
-    super('AssignOp', line, column, start, end, raw, virtual);
-    this.assignee = assignee;
-    this.expression = expression;
+    super('AssignOp', line, column, start, end, raw, virtual, assignee, expression);
   }
 }
 
@@ -1034,6 +1050,68 @@ export class Try extends Node {
     this.catchAssignee = catchAssignee;
     this.catchBody = catchBody;
     this.finallyBody = finallyBody;
+  }
+}
+
+export class Constructor extends BaseAssignOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    assignee: Node,
+    expression: BaseFunction
+  ) {
+    super('Constructor', line, column, start, end, raw, virtual, assignee, expression);
+  }
+}
+
+export class ClassProtoAssignOp extends BaseAssignOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    assignee: Node,
+    expression: Node
+  ) {
+    super('ClassProtoAssignOp', line, column, start, end, raw, virtual, assignee, expression);
+  }
+}
+
+export class Class extends Node {
+  readonly nameAssignee: Node | null;
+  readonly name: Node | null;
+  readonly body: Block | null;
+  readonly boundMembers: Array<ClassProtoAssignOp>;
+  readonly parent: Node | null;
+  readonly ctor: Constructor | null;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    nameAssignee: Node | null,
+    name: Node | null,
+    body: Block | null,
+    boundMembers: Array<ClassProtoAssignOp>,
+    parent: Node | null,
+    ctor: Constructor | null
+  ) {
+    super('Class', line, column, start, end, raw, virtual);
+    this.nameAssignee = nameAssignee;
+    this.name = name;
+    this.body = body;
+    this.boundMembers = boundMembers;
+    this.parent = parent;
+    this.ctor = ctor;
   }
 }
 

@@ -71,7 +71,6 @@
                   10,
                   12
                 ],
-                "raw": "@b",
                 "expression": {
                   "type": "This",
                   "line": 2,
@@ -92,7 +91,8 @@
                   ],
                   "raw": "b",
                   "data": "b"
-                }
+                },
+                "raw": "@b"
               },
               "expression": {
                 "type": "Identifier",
@@ -108,6 +108,7 @@
               "raw": "@b: c"
             }
           ],
+          "inline": false,
           "raw": "@b: c"
         },
         "boundMembers": [],

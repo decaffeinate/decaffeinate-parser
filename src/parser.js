@@ -707,7 +707,8 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
                   statements.push(convertChild(expr));
                 }
                 return statements;
-              }, [])
+              }, []),
+              inline: false
             });
 
           return makeNode(context, 'Class', node.locationData, {

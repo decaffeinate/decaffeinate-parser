@@ -2,50 +2,75 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 76 ],
+  "range": [
+    0,
+    76
+  ],
+  "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 76 ],
+    "range": [
+      0,
+      76
+    ],
     "statements": [
       {
         "type": "Class",
         "line": 1,
         "column": 1,
-        "range": [ 0, 76 ],
+        "range": [
+          0,
+          76
+        ],
         "name": {
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 9 ],
-          "data": "Foo",
-          "raw": "Foo"
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "data": "Foo"
         },
         "nameAssignee": {
           "type": "Identifier",
           "line": 1,
           "column": 7,
-          "range": [ 6, 9 ],
-          "data": "Foo",
-          "raw": "Foo"
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "data": "Foo"
         },
         "body": {
           "type": "Block",
           "line": 2,
           "column": 3,
-          "range": [ 24, 76 ],
+          "range": [
+            24,
+            76
+          ],
           "statements": [
             {
               "type": "Constructor",
               "line": 2,
               "column": 3,
-              "range": [ 24, 49 ],
+              "range": [
+                24,
+                49
+              ],
               "assignee": {
                 "type": "Identifier",
                 "line": 2,
                 "column": 3,
-                "range": [ 24, 35 ],
+                "range": [
+                  24,
+                  35
+                ],
                 "raw": "constructor",
                 "data": "constructor"
               },
@@ -53,23 +78,35 @@
                 "type": "Function",
                 "line": 2,
                 "column": 16,
-                "range": [ 37, 49 ],
+                "range": [
+                  37,
+                  49
+                ],
                 "body": {
                   "type": "Block",
                   "line": 3,
                   "column": 5,
-                  "range": [ 44, 49 ],
+                  "range": [
+                    44,
+                    49
+                  ],
                   "statements": [
                     {
                       "type": "FunctionApplication",
                       "line": 3,
                       "column": 5,
-                      "range": [ 44, 49 ],
+                      "range": [
+                        44,
+                        49
+                      ],
                       "function": {
                         "type": "Super",
                         "line": 3,
                         "column": 5,
-                        "range": [ 44, 49 ],
+                        "range": [
+                          44,
+                          49
+                        ],
                         "raw": "super"
                       },
                       "arguments": [
@@ -98,36 +135,54 @@
               "type": "ClassProtoAssignOp",
               "line": 5,
               "column": 3,
-              "range": [ 53, 76 ],
+              "range": [
+                53,
+                76
+              ],
               "assignee": {
                 "type": "Identifier",
                 "line": 5,
                 "column": 3,
-                "range": [ 53, 56 ],
-                "data": "foo",
-                "raw": "foo"
+                "range": [
+                  53,
+                  56
+                ],
+                "raw": "foo",
+                "data": "foo"
               },
               "expression": {
                 "type": "Function",
                 "line": 5,
                 "column": 8,
-                "range": [ 58, 76 ],
+                "range": [
+                  58,
+                  76
+                ],
                 "body": {
                   "type": "Block",
                   "line": 6,
                   "column": 5,
-                  "range": [ 65, 76 ],
+                  "range": [
+                    65,
+                    76
+                  ],
                   "statements": [
                     {
                       "type": "FunctionApplication",
                       "line": 6,
                       "column": 5,
-                      "range": [ 65, 76 ],
+                      "range": [
+                        65,
+                        76
+                      ],
                       "function": {
                         "type": "Super",
                         "line": 6,
                         "column": 5,
-                        "range": [ 65, 70 ],
+                        "range": [
+                          65,
+                          70
+                        ],
                         "raw": "super"
                       },
                       "arguments": [
@@ -135,17 +190,23 @@
                           "type": "Int",
                           "line": 6,
                           "column": 11,
-                          "range": [ 71, 72 ],
-                          "data": 1,
-                          "raw": "1"
+                          "range": [
+                            71,
+                            72
+                          ],
+                          "raw": "1",
+                          "data": 1
                         },
                         {
                           "type": "Int",
                           "line": 6,
                           "column": 14,
-                          "range": [ 74, 75 ],
-                          "data": 2,
-                          "raw": "2"
+                          "range": [
+                            74,
+                            75
+                          ],
+                          "raw": "2",
+                          "data": 2
                         }
                       ],
                       "raw": "super(1, 2)"
@@ -160,6 +221,7 @@
               "raw": "foo: ->\n    super(1, 2)"
             }
           ],
+          "inline": false,
           "raw": "constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
         },
         "boundMembers": [],
@@ -167,20 +229,29 @@
           "type": "Identifier",
           "line": 1,
           "column": 19,
-          "range": [ 18, 21 ],
-          "data": "Bar",
-          "raw": "Bar"
+          "range": [
+            18,
+            21
+          ],
+          "raw": "Bar",
+          "data": "Bar"
         },
         "ctor": {
           "type": "Constructor",
           "line": 2,
           "column": 3,
-          "range": [ 24, 49 ],
+          "range": [
+            24,
+            49
+          ],
           "assignee": {
             "type": "Identifier",
             "line": 2,
             "column": 3,
-            "range": [ 24, 35 ],
+            "range": [
+              24,
+              35
+            ],
             "raw": "constructor",
             "data": "constructor"
           },
@@ -188,23 +259,35 @@
             "type": "Function",
             "line": 2,
             "column": 16,
-            "range": [ 37, 49 ],
+            "range": [
+              37,
+              49
+            ],
             "body": {
               "type": "Block",
               "line": 3,
               "column": 5,
-              "range": [ 44, 49 ],
+              "range": [
+                44,
+                49
+              ],
               "statements": [
                 {
                   "type": "FunctionApplication",
                   "line": 3,
                   "column": 5,
-                  "range": [ 44, 49 ],
+                  "range": [
+                    44,
+                    49
+                  ],
                   "function": {
                     "type": "Super",
                     "line": 3,
                     "column": 5,
-                    "range": [ 44, 49 ],
+                    "range": [
+                      44,
+                      49
+                    ],
                     "raw": "super"
                   },
                   "arguments": [
@@ -233,6 +316,5 @@
       }
     ],
     "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
-  },
-  "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
+  }
 }

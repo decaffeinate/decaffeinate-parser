@@ -4,16 +4,16 @@
   "column": 1,
   "range": [
     0,
-    22
+    18
   ],
-  "raw": "class A\n  a = 1\n  b: a",
+  "raw": "class A?.B\n  a: 1\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      22
+      17
     ],
     "statements": [
       {
@@ -22,54 +22,75 @@
         "column": 1,
         "range": [
           0,
-          22
+          17
         ],
         "name": {
           "type": "Identifier",
           "line": 1,
-          "column": 7,
+          "column": 10,
           "range": [
-            6,
-            7
+            9,
+            10
           ],
-          "raw": "A",
-          "data": "A"
+          "raw": "B",
+          "data": "B"
         },
         "nameAssignee": {
-          "type": "Identifier",
+          "type": "SoakedMemberAccessOp",
           "line": 1,
           "column": 7,
           "range": [
             6,
-            7
+            10
           ],
-          "raw": "A",
-          "data": "A"
+          "expression": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 7,
+            "range": [
+              6,
+              7
+            ],
+            "raw": "A",
+            "data": "A"
+          },
+          "member": {
+            "type": "Identifier",
+            "line": 1,
+            "column": 10,
+            "range": [
+              9,
+              10
+            ],
+            "raw": "B",
+            "data": "B"
+          },
+          "raw": "A?.B"
         },
         "body": {
           "type": "Block",
           "line": 2,
           "column": 3,
           "range": [
-            10,
-            22
+            13,
+            17
           ],
           "statements": [
             {
-              "type": "AssignOp",
+              "type": "ClassProtoAssignOp",
               "line": 2,
               "column": 3,
               "range": [
-                10,
-                15
+                13,
+                17
               ],
               "assignee": {
                 "type": "Identifier",
                 "line": 2,
                 "column": 3,
                 "range": [
-                  10,
-                  11
+                  13,
+                  14
                 ],
                 "raw": "a",
                 "data": "a"
@@ -77,58 +98,26 @@
               "expression": {
                 "type": "Int",
                 "line": 2,
-                "column": 7,
+                "column": 6,
                 "range": [
-                  14,
-                  15
+                  16,
+                  17
                 ],
                 "raw": "1",
                 "data": 1
               },
-              "raw": "a = 1"
-            },
-            {
-              "type": "ClassProtoAssignOp",
-              "line": 3,
-              "column": 3,
-              "range": [
-                18,
-                22
-              ],
-              "assignee": {
-                "type": "Identifier",
-                "line": 3,
-                "column": 3,
-                "range": [
-                  18,
-                  19
-                ],
-                "raw": "b",
-                "data": "b"
-              },
-              "expression": {
-                "type": "Identifier",
-                "line": 3,
-                "column": 6,
-                "range": [
-                  21,
-                  22
-                ],
-                "raw": "a",
-                "data": "a"
-              },
-              "raw": "b: a"
+              "raw": "a: 1"
             }
           ],
           "inline": false,
-          "raw": "a = 1\n  b: a"
+          "raw": "a: 1"
         },
         "boundMembers": [],
         "parent": null,
         "ctor": null,
-        "raw": "class A\n  a = 1\n  b: a"
+        "raw": "class A?.B\n  a: 1"
       }
     ],
-    "raw": "class A\n  a = 1\n  b: a"
+    "raw": "class A?.B\n  a: 1"
   }
 }
