@@ -23,7 +23,7 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         value,
         value
       );
-    } else if (property instanceof Assign) {
+    } else if (property instanceof Assign && property.context === 'object') {
       let key = mapAny(context, property.variable);
       let expression = mapAny(context, property.value);
 
