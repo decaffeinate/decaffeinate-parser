@@ -783,23 +783,6 @@ export class Continue extends Node {
   }
 }
 
-export class UnaryExistsOp extends Node {
-  readonly expression: Node;
-
-  constructor(
-    line: number,
-    column: number,
-    start: number,
-    end: number,
-    raw: string,
-    virtual: boolean,
-    expression: Node
-  ) {
-    super('UnaryExistsOp', line, column, start, end, raw, virtual);
-    this.expression = expression;
-  }
-}
-
 export class Spread extends Node {
   readonly expression: Node;
 
@@ -858,6 +841,84 @@ export class BinaryOp extends Node {
     super(type, line, column, start, end, raw, virtual);
     this.left = left;
     this.right = right;
+  }
+}
+
+export class UnaryOp extends Node {
+  readonly expression: Node;
+
+  constructor(
+    type: string,
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super(type, line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
+export type Op = UnaryOp | BinaryOp;
+
+export class SubtractOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super('SubtractOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
+
+export class MultiplyOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super('MultiplyOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
+
+export class UnaryExistsOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('UnaryExistsOp', line, column, start, end, raw, virtual, expression);
+  }
+}
+
+export class UnaryNegateOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node
+  ) {
+    super('UnaryNegateOp', line, column, start, end, raw, virtual, left);
   }
 }
 
