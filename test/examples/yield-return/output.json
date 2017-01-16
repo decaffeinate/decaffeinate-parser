@@ -1,0 +1,67 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    18
+  ],
+  "raw": "-> yield return 3\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      17
+    ],
+    "statements": [
+      {
+        "type": "GeneratorFunction",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          17
+        ],
+        "body": {
+          "type": "Block",
+          "line": 1,
+          "column": 4,
+          "range": [
+            3,
+            17
+          ],
+          "statements": [
+            {
+              "type": "YieldReturn",
+              "line": 1,
+              "column": 4,
+              "range": [
+                3,
+                17
+              ],
+              "expression": {
+                "type": "Int",
+                "line": 1,
+                "column": 17,
+                "range": [
+                  16,
+                  17
+                ],
+                "raw": "3",
+                "data": 3
+              },
+              "raw": "yield return 3"
+            }
+          ],
+          "raw": "yield return 3",
+          "inline": true
+        },
+        "parameters": [],
+        "raw": "-> yield return 3"
+      }
+    ],
+    "raw": "-> yield return 3"
+  }
+}

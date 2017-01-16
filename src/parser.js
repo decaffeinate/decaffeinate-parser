@@ -1171,10 +1171,17 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
               arguments: []
             });
 
-          case 'yield':
-            return makeNode(context, 'Yield', op.locationData, {
-              expression: convertChild(op.first)
-            });
+          case 'yield': {
+            if (type(op.first) === 'Return') {
+              return makeNode(context, 'YieldReturn', op.locationData, {
+                expression: convertChild(op.first.expression),
+              });
+            } else {
+              return makeNode(context, 'Yield', op.locationData, {
+                expression: convertChild(op.first)
+              });
+            }
+          }
 
           case 'yield*':
             return makeNode(context, 'YieldFrom', op.locationData, {
