@@ -1,18 +1,24 @@
-import { Op as CoffeeOp } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Op as CoffeeOp, Return as CoffeeReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { MultiplyOp, Op, SubtractOp, UnaryNegateOp } from '../nodes';
+import { MultiplyOp, Node, Op, SubtractOp, UnaryNegateOp, Yield, YieldFrom, YieldReturn } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
-export default function mapOp(context: ParseContext, node: CoffeeOp): Op {
+export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
   switch (node.operator) {
     case '-':
       return mapSubtractOp(context, node);
 
     case '*':
       return mapMultiplyOp(context, node);
+
+    case 'yield':
+      return mapYieldOp(context, node);
+
+    case 'yield*':
+      return mapYieldFromOp(context, node);
   }
 
   throw new UnsupportedNodeError(node);
@@ -46,5 +52,31 @@ function mapMultiplyOp(context: ParseContext, node: CoffeeOp) {
     line, column, start, end, raw, virtual,
     mapAny(context, node.first),
     mapAny(context, node.second)
+  );
+}
+
+function mapYieldOp(context: ParseContext, node: CoffeeOp) {
+  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+
+  if (node.first instanceof CoffeeReturn) {
+    let expression = node.first.expression;
+    return new YieldReturn(
+      line, column, start, end, raw, virtual,
+      expression ? mapAny(context, expression) : null,
+    );
+  } else {
+    return new Yield(
+      line, column, start, end, raw, virtual,
+      mapAny(context, node.first)
+    );
+  }
+}
+
+function mapYieldFromOp(context: ParseContext, node: CoffeeOp) {
+  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+
+  return new YieldFrom(
+    line, column, start, end, raw, virtual,
+    mapAny(context, node.first)
   );
 }

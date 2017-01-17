@@ -673,6 +673,23 @@ export class Return extends Node {
   }
 }
 
+export class YieldReturn extends Node {
+  readonly expression: Node | null;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node | null
+  ) {
+    super('YieldReturn', line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
 export class This extends Node {
   constructor(
     line: number,
@@ -1004,6 +1021,40 @@ export class SeqOp extends BinaryOp {
     right: Node
   ) {
     super('SeqOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
+
+export class Yield extends Node {
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('Yield', line, column, start, end, raw, virtual);
+    this.expression = expression;
+  }
+}
+
+export class YieldFrom extends Node {
+  readonly expression: Node;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    expression: Node
+  ) {
+    super('YieldFrom', line, column, start, end, raw, virtual);
+    this.expression = expression;
   }
 }
 
