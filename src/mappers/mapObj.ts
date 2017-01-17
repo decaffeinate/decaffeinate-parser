@@ -24,6 +24,8 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         value
       );
     } else if (property instanceof Assign && property.context === 'object') {
+      let { line, column, start, end, raw, virtual } = mapBase(context, property);
+
       let key = mapAny(context, property.variable);
       let expression = mapAny(context, property.value);
 
@@ -32,7 +34,7 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
       }
 
       return new ObjectInitialiserMember(
-        key.line, key.column, key.start, expression.end, context.source.slice(key.start, expression.end), false,
+        line, column, start, end, raw, virtual,
         key,
         expression
       );

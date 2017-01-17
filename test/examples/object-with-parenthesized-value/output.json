@@ -1,0 +1,98 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "{a: (b), c}\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      11
+    ],
+    "statements": [
+      {
+        "type": "ObjectInitialiser",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          11
+        ],
+        "members": [
+          {
+            "type": "ObjectInitialiserMember",
+            "line": 1,
+            "column": 2,
+            "range": [
+              1,
+              7
+            ],
+            "key": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 2,
+              "range": [
+                1,
+                2
+              ],
+              "raw": "a",
+              "data": "a"
+            },
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 6,
+              "range": [
+                5,
+                6
+              ],
+              "raw": "b",
+              "data": "b"
+            },
+            "raw": "a: (b)"
+          },
+          {
+            "type": "ObjectInitialiserMember",
+            "line": 1,
+            "column": 10,
+            "range": [
+              9,
+              10
+            ],
+            "key": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 10,
+              "range": [
+                9,
+                10
+              ],
+              "raw": "c",
+              "data": "c"
+            },
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 10,
+              "range": [
+                9,
+                10
+              ],
+              "raw": "c",
+              "data": "c"
+            },
+            "raw": "c"
+          }
+        ],
+        "raw": "{a: (b), c}"
+      }
+    ],
+    "raw": "{a: (b), c}"
+  }
+}
