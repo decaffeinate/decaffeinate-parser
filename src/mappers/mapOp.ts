@@ -41,7 +41,7 @@ function mapSubtractOp(context: ParseContext, node: CoffeeOp): Op {
   }
 }
 
-function mapMultiplyOp(context: ParseContext, node: CoffeeOp) {
+function mapMultiplyOp(context: ParseContext, node: CoffeeOp): Op {
   let { line, column, start, end, raw, virtual } = mapBase(context, node);
 
   if (!node.second) {
@@ -55,7 +55,7 @@ function mapMultiplyOp(context: ParseContext, node: CoffeeOp) {
   );
 }
 
-function mapYieldOp(context: ParseContext, node: CoffeeOp) {
+function mapYieldOp(context: ParseContext, node: CoffeeOp): Node {
   let { line, column, start, end, raw, virtual } = mapBase(context, node);
 
   if (node.first instanceof CoffeeReturn) {
@@ -72,7 +72,7 @@ function mapYieldOp(context: ParseContext, node: CoffeeOp) {
   }
 }
 
-function mapYieldFromOp(context: ParseContext, node: CoffeeOp) {
+function mapYieldFromOp(context: ParseContext, node: CoffeeOp): YieldFrom {
   let { line, column, start, end, raw, virtual } = mapBase(context, node);
 
   return new YieldFrom(
