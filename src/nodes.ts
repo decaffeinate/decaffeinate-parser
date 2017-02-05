@@ -1293,6 +1293,26 @@ export class FunctionApplication extends Node {
   }
 }
 
+export class NewOp extends Node {
+  readonly ctor: Node;
+  readonly arguments: Array<Node>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    ctor: Node,
+    args: Array<Node>
+  ) {
+    super('NewOp', line, column, start, end, raw, virtual);
+    this.ctor = ctor;
+    this.arguments = args;
+  }
+}
+
 export type DecaffeinateNode =
   Bool |
   Null |
