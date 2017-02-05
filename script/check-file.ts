@@ -1,17 +1,17 @@
-#!/usr/bin/env node -r babel-register
+#!/usr/bin/env node -r ts-node/register -r babel-register
 
+import { readdirSync, readFileSync, statSync } from 'fs';
 import { basename, extname, join } from 'path';
-import { parse } from '../src/parser';
-import { readFileSync, readdirSync, statSync } from 'fs';
+
+// TODO: Change to an import when parser is TypeScript.
+// tslint:disable-next-line:no-var-requires
+const parse = require('../src/parser').parse;
 
 for (let i = 2; i < process.argv.length; i++) {
   processPath(process.argv[i]);
 }
 
-/**
- * @param {string} path
- */
-function processPath(path) {
+function processPath(path: string) {
   const stat = statSync(path);
 
   if (stat.isDirectory()) {
@@ -21,10 +21,7 @@ function processPath(path) {
   }
 }
 
-/**
- * @param {string} path
- */
-function processFile(path) {
+function processFile(path: string) {
   const content = readFileSync(path, { encoding: 'utf8' });
   try {
     parse(content);
@@ -36,10 +33,7 @@ function processFile(path) {
   }
 }
 
-/**
- * @param {string} path
- */
-function processDirectory(path) {
+function processDirectory(path: string) {
   readdirSync(path).forEach(child => {
     if (child[0] === '.' || child === 'node_modules') {
       return;
@@ -49,9 +43,6 @@ function processDirectory(path) {
   });
 }
 
-/**
- * @param {string} path
- */
-function isCoffeeScriptFile(path) {
+function isCoffeeScriptFile(path: string) {
   return extname(path) === '.coffee' && basename(path, '.coffee').length > 0;
 }
