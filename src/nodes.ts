@@ -1273,6 +1273,26 @@ export class Class extends Node {
   }
 }
 
+export class FunctionApplication extends Node {
+  readonly function: Node;
+  readonly arguments: Array<Node>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    fn: Node,
+    args: Array<Node>
+  ) {
+    super('FunctionApplication', line, column, start, end, raw, virtual);
+    this.function = fn;
+    this.arguments = args;
+  }
+}
+
 export type DecaffeinateNode =
   Bool |
   Null |
