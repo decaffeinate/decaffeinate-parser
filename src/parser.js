@@ -2,6 +2,8 @@ import * as CoffeeScript from 'decaffeinate-coffeescript';
 import ParseContext from './util/ParseContext';
 import expandLocationLeftThrough from './util/expandLocationLeftThrough';
 import isChainedComparison from './util/isChainedComparison';
+import unwindChainedComparison from './util/unwindChainedComparison';
+import getOperatorInfoInRange from './util/getOperatorInfoInRange';
 import isHeregexTemplateNode from './util/isHeregexTemplateNode';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
 import isInterpolatedString from './util/isInterpolatedString';
@@ -417,9 +419,20 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
             return createTemplateLiteral(op, 'String');
           }
-          if (isChainedComparison(node) && !isChainedComparison(ancestors[ancestors.length - 1])) {
+          if (isChainedComparison(node)) {
+            let operands = unwindChainedComparison(node).map(convertChild);
+            let operators = [];
+
+            for (let i = 0; i < operands.length - 1; i++) {
+              let left = operands[i];
+              let right = operands[i + 1];
+
+              operators.push(getOperatorInfoInRange(context, left.range[1], right.range[0]));
+            }
+
             return makeNode(context, 'ChainedComparisonOp', node.locationData, {
-              expression: op
+              operands,
+              operators
             });
           }
           return op;

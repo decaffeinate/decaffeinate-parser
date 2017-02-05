@@ -31,7 +31,7 @@ function runWithOptions(parseOptions: { useMappers?: boolean, useFallback?: bool
 function stripExtraInfo(node) {
   if (node && typeof node === 'object') {
     for (let key in node) {
-      if (key === 'start' || key === 'end') {
+      if (node.range && (key === 'start' || key === 'end')) {
         delete node[key];
       } else if (key === 'virtual') {
         if (node[key] === false) {

@@ -24,47 +24,30 @@
           0,
           11
         ],
-        "expression": {
-          "type": "EQOp",
-          "line": 1,
-          "column": 1,
-          "range": [
-            0,
-            11
-          ],
-          "left": {
-            "type": "EQOp",
+        "operands": [
+          {
+            "type": "Identifier",
             "line": 1,
             "column": 1,
             "range": [
               0,
+              1
+            ],
+            "data": "a",
+            "raw": "a"
+          },
+          {
+            "type": "Identifier",
+            "line": 1,
+            "column": 6,
+            "range": [
+              5,
               6
             ],
-            "left": {
-              "type": "Identifier",
-              "line": 1,
-              "column": 1,
-              "range": [
-                0,
-                1
-              ],
-              "data": "a",
-              "raw": "a"
-            },
-            "right": {
-              "type": "Identifier",
-              "line": 1,
-              "column": 6,
-              "range": [
-                5,
-                6
-              ],
-              "data": "b",
-              "raw": "b"
-            },
-            "raw": "a == b"
+            "data": "b",
+            "raw": "b"
           },
-          "right": {
+          {
             "type": "Identifier",
             "line": 1,
             "column": 11,
@@ -74,9 +57,26 @@
             ],
             "data": "c",
             "raw": "c"
+          }
+        ],
+        "operators": [
+          {
+            "operator": "==",
+            "token": {
+              "type": 39,
+              "start": 2,
+              "end": 4
+            }
           },
-          "raw": "a == b == c"
-        },
+          {
+            "operator": "==",
+            "token": {
+              "type": 39,
+              "start": 7,
+              "end": 9
+            }
+          }
+        ],
         "raw": "a == b == c"
       }
     ],

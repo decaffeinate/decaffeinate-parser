@@ -1,4 +1,5 @@
 import { SourceType } from 'coffee-lex';
+import SourceToken from 'coffee-lex/dist/SourceToken';
 import { LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import ParseContext from './util/ParseContext';
@@ -840,7 +841,7 @@ export class Range extends Node {
   }
 }
 
-export class BinaryOp extends Node {
+export abstract class BinaryOp extends Node {
   readonly left: Node;
   readonly right: Node;
 
@@ -861,7 +862,7 @@ export class BinaryOp extends Node {
   }
 }
 
-export class UnaryOp extends Node {
+export abstract class UnaryOp extends Node {
   readonly expression: Node;
 
   constructor(
@@ -879,7 +880,52 @@ export class UnaryOp extends Node {
   }
 }
 
-export type Op = UnaryOp | BinaryOp;
+export class ChainedComparisonOp extends Node {
+  readonly operands: Array<Node>;
+  readonly operators: Array<OperatorInfo>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    operands: Array<Node>,
+    operators: Array<OperatorInfo>
+  ) {
+    super('ChainedComparisonOp', line, column, start, end, raw, virtual);
+    this.operands = operands;
+    this.operators = operators;
+  }
+}
+
+export class OperatorInfo {
+  readonly operator: string;
+  readonly token: SourceToken;
+
+  constructor(operator: string, token: SourceToken) {
+    this.operator = operator;
+    this.token = token;
+  }
+}
+
+export type Op = UnaryOp | BinaryOp | ChainedComparisonOp;
+
+export class EQOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    left: Node,
+    right: Node
+  ) {
+    super('EQOp', line, column, start, end, raw, virtual, left, right);
+  }
+}
 
 export class SubtractOp extends BinaryOp {
   constructor(

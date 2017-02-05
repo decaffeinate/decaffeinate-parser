@@ -17,36 +17,24 @@
         "column": 1,
         "range": [ 0, 9 ],
         "raw": "a < b < c",
-        "expression": {
-          "type": "LTOp",
-          "line": 1,
-          "column": 1,
-          "range": [ 0, 9 ],
-          "raw": "a < b < c",
-          "left": {
-            "type": "LTOp",
+        "operands": [
+          {
+            "type": "Identifier",
             "line": 1,
             "column": 1,
-            "range": [ 0, 5 ],
-            "raw": "a < b",
-            "left": {
-              "type": "Identifier",
-              "line": 1,
-              "column": 1,
-              "range": [ 0, 1 ],
-              "raw": "a",
-              "data": "a"
-            },
-            "right": {
-              "type": "Identifier",
-              "line": 1,
-              "column": 5,
-              "range": [ 4, 5 ],
-              "raw": "b",
-              "data": "b"
-            }
+            "range": [ 0, 1 ],
+            "raw": "a",
+            "data": "a"
           },
-          "right": {
+          {
+            "type": "Identifier",
+            "line": 1,
+            "column": 5,
+            "range": [ 4, 5 ],
+            "raw": "b",
+            "data": "b"
+          },
+          {
             "type": "Identifier",
             "line": 1,
             "column": 9,
@@ -54,7 +42,25 @@
             "raw": "c",
             "data": "c"
           }
-        }
+        ],
+        "operators": [
+          {
+            "operator": "<",
+            "token": {
+              "type": 39,
+              "start": 2,
+              "end": 3
+            }
+          },
+          {
+            "operator": "<",
+            "token": {
+              "type": 39,
+              "start": 6,
+              "end": 7
+            }
+          }
+        ]
       }
     ]
   }
