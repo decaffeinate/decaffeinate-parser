@@ -2,98 +2,103 @@
   "type": "Program",
   "line": 1,
   "column": 1,
-  "range": [ 0, 17 ],
-  "raw": "a < b < c < d < e",
+  "range": [
+    0,
+    17
+  ],
+  "raw": "a == b == c == d\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
-    "range": [ 0, 17 ],
-    "raw": "a < b < c < d < e",
+    "range": [
+      0,
+      16
+    ],
     "statements": [
       {
         "type": "ChainedComparisonOp",
         "line": 1,
         "column": 1,
-        "range": [ 0, 17 ],
-        "raw": "a < b < c < d < e",
+        "range": [
+          0,
+          16
+        ],
         "operands": [
           {
             "type": "Identifier",
             "line": 1,
             "column": 1,
-            "range": [ 0, 1 ],
+            "range": [
+              0,
+              1
+            ],
             "raw": "a",
             "data": "a"
           },
           {
             "type": "Identifier",
             "line": 1,
-            "column": 5,
-            "range": [ 4, 5 ],
+            "column": 6,
+            "range": [
+              5,
+              6
+            ],
             "raw": "b",
             "data": "b"
           },
           {
             "type": "Identifier",
             "line": 1,
-            "column": 9,
-            "range": [ 8, 9 ],
+            "column": 11,
+            "range": [
+              10,
+              11
+            ],
             "raw": "c",
             "data": "c"
           },
           {
             "type": "Identifier",
             "line": 1,
-            "column": 13,
-            "range": [ 12, 13 ],
+            "column": 16,
+            "range": [
+              15,
+              16
+            ],
             "raw": "d",
             "data": "d"
-          },
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 17,
-            "range": [ 16, 17 ],
-            "raw": "e",
-            "data": "e"
           }
         ],
         "operators": [
           {
-            "operator": "<",
+            "operator": "==",
             "token": {
               "type": 39,
               "start": 2,
-              "end": 3
+              "end": 4
             }
           },
           {
-            "operator": "<",
+            "operator": "==",
             "token": {
               "type": 39,
-              "start": 6,
-              "end": 7
+              "start": 7,
+              "end": 9
             }
           },
           {
-            "operator": "<",
+            "operator": "==",
             "token": {
               "type": 39,
-              "start": 10,
-              "end": 11
-            }
-          },
-          {
-            "operator": "<",
-            "token": {
-              "type": 39,
-              "start": 14,
-              "end": 15
+              "start": 12,
+              "end": 14
             }
           }
-        ]
+        ],
+        "raw": "a == b == c == d"
       }
-    ]
+    ],
+    "raw": "a == b == c == d"
   }
 }

@@ -1,0 +1,137 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    24
+  ],
+  "raw": "(a == b == c) == d == e\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      23
+    ],
+    "statements": [
+      {
+        "type": "ChainedComparisonOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          23
+        ],
+        "operands": [
+          {
+            "type": "ChainedComparisonOp",
+            "line": 1,
+            "column": 2,
+            "range": [
+              1,
+              12
+            ],
+            "operands": [
+              {
+                "type": "Identifier",
+                "line": 1,
+                "column": 2,
+                "range": [
+                  1,
+                  2
+                ],
+                "raw": "a",
+                "data": "a"
+              },
+              {
+                "type": "Identifier",
+                "line": 1,
+                "column": 7,
+                "range": [
+                  6,
+                  7
+                ],
+                "raw": "b",
+                "data": "b"
+              },
+              {
+                "type": "Identifier",
+                "line": 1,
+                "column": 12,
+                "range": [
+                  11,
+                  12
+                ],
+                "raw": "c",
+                "data": "c"
+              }
+            ],
+            "operators": [
+              {
+                "operator": "==",
+                "token": {
+                  "type": 39,
+                  "start": 3,
+                  "end": 5
+                }
+              },
+              {
+                "operator": "==",
+                "token": {
+                  "type": 39,
+                  "start": 8,
+                  "end": 10
+                }
+              }
+            ],
+            "raw": "a == b == c"
+          },
+          {
+            "type": "Identifier",
+            "line": 1,
+            "column": 18,
+            "range": [
+              17,
+              18
+            ],
+            "raw": "d",
+            "data": "d"
+          },
+          {
+            "type": "Identifier",
+            "line": 1,
+            "column": 23,
+            "range": [
+              22,
+              23
+            ],
+            "raw": "e",
+            "data": "e"
+          }
+        ],
+        "operators": [
+          {
+            "operator": "==",
+            "token": {
+              "type": 39,
+              "start": 14,
+              "end": 16
+            }
+          },
+          {
+            "operator": "==",
+            "token": {
+              "type": 39,
+              "start": 19,
+              "end": 21
+            }
+          }
+        ],
+        "raw": "(a == b == c) == d == e"
+      }
+    ],
+    "raw": "(a == b == c) == d == e"
+  }
+}
