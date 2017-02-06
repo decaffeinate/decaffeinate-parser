@@ -1,6 +1,6 @@
 import {
-  Arr, Assign, Base, Block, Bool, Class, Code, Existence, Extends, For, If, In, Literal, Null, Obj, Op, Param,
-  Parens, Range, Return, Splat, Switch, Throw, Try, Undefined, Value, While
+  Arr, Assign, Base, Block, Bool, Call, Class, Code, Existence, Extends, For, If, In, Literal, Null, Obj, Op,
+  Param, Parens, Range, Return, Splat, Switch, Throw, Try, Undefined, Value, While
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
@@ -9,6 +9,7 @@ import mapArr from './mapArr';
 import mapAssign from './mapAssign';
 import mapBlock from './mapBlock';
 import mapBool from './mapBool';
+import mapCall from './mapCall';
 import mapClass from './mapClass';
 import mapCode from './mapCode';
 import mapExistence from './mapExistence';
@@ -43,6 +44,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Op) {
     return mapOp(context, node);
+  }
+
+  if (node instanceof Call) {
+    return mapCall(context, node);
   }
 
   if (node instanceof Arr) {
