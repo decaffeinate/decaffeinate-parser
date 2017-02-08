@@ -1293,6 +1293,52 @@ export class FunctionApplication extends Node {
   }
 }
 
+export class SoakedFunctionApplication extends Node {
+  readonly function: Node;
+  readonly arguments: Array<Node>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean,
+    fn: Node,
+    args: Array<Node>
+  ) {
+    super('SoakedFunctionApplication', line, column, start, end, raw, virtual);
+    this.function = fn;
+    this.arguments = args;
+  }
+}
+
+export class Super extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean
+  ) {
+    super('Super', line, column, start, end, raw, virtual);
+  }
+}
+
+export class BareSuperFunctionApplication extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    virtual: boolean
+  ) {
+    super('BareSuperFunctionApplication', line, column, start, end, raw, virtual);
+  }
+}
+
 export class NewOp extends Node {
   readonly ctor: Node;
   readonly arguments: Array<Node>;

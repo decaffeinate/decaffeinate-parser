@@ -47,6 +47,10 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
             if (assignment instanceof ClassProtoAssignOp && (assignment.expression instanceof BoundFunction || assignment.expression instanceof BoundGeneratorFunction)) {
               boundMethods.push(assignment);
             }
+
+            if (assignment instanceof Constructor) {
+              ctor = assignment;
+            }
           } else {
             throw new Error(`unexpected class assignment: ${inspect(property)}`);
           }

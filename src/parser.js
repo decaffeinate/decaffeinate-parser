@@ -355,18 +355,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           } else if (node.isSuper) {
             if (node.args.length === 1 && type(node.args[0]) === 'Splat' && locationsEqual(node.args[0].locationData, node.locationData)) {
               // Virtual splat argument.
-              return makeNode(context, 'FunctionApplication', node.locationData, {
-                function: makeNode(context, 'Super', node.locationData),
-                arguments: [{
-                  type: 'Spread',
-                  virtual: true,
-                  expression: {
-                    type: 'Identifier',
-                    data: 'arguments',
-                    virtual: true
-                  }
-                }]
-              });
+              return makeNode(context, 'BareSuperFunctionApplication', node.locationData);
             }
             const superLocationData = {
               first_line: node.locationData.first_line,

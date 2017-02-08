@@ -92,33 +92,12 @@
                   ],
                   "statements": [
                     {
-                      "type": "FunctionApplication",
+                      "type": "BareSuperFunctionApplication",
                       "line": 3,
                       "column": 5,
                       "range": [
                         44,
                         49
-                      ],
-                      "function": {
-                        "type": "Super",
-                        "line": 3,
-                        "column": 5,
-                        "range": [
-                          44,
-                          49
-                        ],
-                        "raw": "super"
-                      },
-                      "arguments": [
-                        {
-                          "type": "Spread",
-                          "virtual": true,
-                          "expression": {
-                            "type": "Identifier",
-                            "data": "arguments",
-                            "virtual": true
-                          }
-                        }
                       ],
                       "raw": "super"
                     }
@@ -273,33 +252,12 @@
               ],
               "statements": [
                 {
-                  "type": "FunctionApplication",
+                  "type": "BareSuperFunctionApplication",
                   "line": 3,
                   "column": 5,
                   "range": [
                     44,
                     49
-                  ],
-                  "function": {
-                    "type": "Super",
-                    "line": 3,
-                    "column": 5,
-                    "range": [
-                      44,
-                      49
-                    ],
-                    "raw": "super"
-                  },
-                  "arguments": [
-                    {
-                      "type": "Spread",
-                      "virtual": true,
-                      "expression": {
-                        "type": "Identifier",
-                        "data": "arguments",
-                        "virtual": true
-                      }
-                    }
                   ],
                   "raw": "super"
                 }
