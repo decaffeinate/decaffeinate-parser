@@ -2,6 +2,11 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import { OperatorInfo } from '../nodes';
 import ParseContext from './ParseContext';
 
+/**
+ * Gets information about an operator token found between start and end source
+ * offsets, exclusive. When calling, make sure `start` is before the text of
+ * the operator in the range, and `end` is after it.
+ */
 export default function getOperatorInfoInRange(context: ParseContext, start: number, end: number): OperatorInfo {
   let startIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start);
   let endIndex = context.sourceTokens.indexOfTokenNearSourceIndex(end);
