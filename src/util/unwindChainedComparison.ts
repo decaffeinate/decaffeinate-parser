@@ -1,5 +1,4 @@
 import { Base, Op } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { inspect } from 'util';
 
 export default function unwindChainedComparison(node: Op): Array<Base> {
   let operands: Array<Base> = [];
@@ -9,7 +8,8 @@ export default function unwindChainedComparison(node: Op): Array<Base> {
       let { first, second } = link;
 
       if (!second) {
-        throw new Error(`unexpected unary operator inside chained comparison: ${inspect(node)}`);
+        operands = [link, ...operands];
+        break;
       }
 
       operands = [second, ...operands];
