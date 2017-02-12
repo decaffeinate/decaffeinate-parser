@@ -13,61 +13,44 @@ export interface RealNode {
 }
 
 export class Node {
-  readonly type: string;
-  readonly line: number;
-  readonly column: number;
-  readonly start: number;
-  readonly end: number;
   readonly range: [number, number];
-  readonly raw: string;
 
   constructor(
-    type: string,
-    line: number,
-    column: number,
-    start: number,
-    end: number,
-    raw: string,
+    readonly type: string,
+    readonly line: number,
+    readonly column: number,
+    readonly start: number,
+    readonly end: number,
+    readonly raw: string,
   ) {
-    this.type = type;
-    this.line = line;
-    this.column = column;
-    this.start = start;
-    this.end = end;
     this.range = [start, end];
     this.raw = raw;
   }
 }
 
 export class Identifier extends Node {
-  readonly data: string;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    data: string
+    readonly data: string,
   ) {
     super('Identifier', line, column, start, end, raw);
-    this.data = data;
   }
 }
 
 export class Bool extends Node {
-  readonly data: boolean;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    data: boolean
+    readonly data: boolean,
   ) {
     super('Bool', line, column, start, end, raw);
-    this.data = data;
   }
 
   static true(): Bool {
@@ -80,24 +63,19 @@ export class Bool extends Node {
 }
 
 export class JavaScript extends Node {
-  readonly data: string;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    data: string
+    readonly data: string,
   ) {
     super('JavaScript', line, column, start, end, raw);
-    this.data = data;
   }
 }
 
 export class Number extends Node {
-  readonly data: number;
-
   constructor(
     type: string,
     line: number,
@@ -105,10 +83,9 @@ export class Number extends Node {
     start: number,
     end: number,
     raw: string,
-    data: number
+    readonly data: number,
   ) {
     super(type, line, column, start, end, raw);
-    this.data = data;
   }
 }
 
@@ -139,8 +116,6 @@ export class Int extends Number {
 }
 
 export abstract class AccessOp extends Node {
-  readonly expression: Node;
-
   constructor(
     type: string,
     line: number,
@@ -148,16 +123,13 @@ export abstract class AccessOp extends Node {
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super(type, line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class MemberAccessOp extends AccessOp {
-  readonly member: Identifier;
-
   constructor(
     line: number,
     column: number,
@@ -165,10 +137,9 @@ export class MemberAccessOp extends AccessOp {
     end: number,
     raw: string,
     expression: Node,
-    member: Identifier
+    readonly member: Identifier,
   ) {
     super('MemberAccessOp', line, column, start, end, raw, expression);
-    this.member = member;
   }
 }
 
@@ -186,8 +157,6 @@ export class ProtoMemberAccessOp extends AccessOp {
 }
 
 export class SoakedMemberAccessOp extends AccessOp {
-  readonly member: Identifier;
-
   constructor(
     line: number,
     column: number,
@@ -195,10 +164,9 @@ export class SoakedMemberAccessOp extends AccessOp {
     end: number,
     raw: string,
     expression: Node,
-    member: Identifier
+    readonly member: Identifier,
   ) {
     super('SoakedMemberAccessOp', line, column, start, end, raw, expression);
-    this.member = member;
   }
 }
 
@@ -216,80 +184,60 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
 }
 
 export class Quasi extends Node {
-  readonly data: string;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    data: string
+    readonly data: string,
   ) {
     super('Quasi', line, column, start, end, raw);
-    this.data = data;
   }
 }
 
 export class String extends Node {
-  readonly quasis: Array<Quasi>;
-  readonly expressions: Array<Node>;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    quasis: Array<Quasi>,
-    expressions: Array<Node>
+    readonly quasis: Array<Quasi>,
+    readonly expressions: Array<Node>,
   ) {
     super('String', line, column, start, end, raw);
-    this.quasis = quasis;
-    this.expressions = expressions;
   }
 }
 
 export class ObjectInitialiser extends Node {
-  readonly members: Array<ObjectInitialiserMember>;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    members: Array<ObjectInitialiserMember>
+    readonly members: Array<ObjectInitialiserMember>,
   ) {
     super('ObjectInitialiser', line, column, start, end, raw);
-    this.members = members;
   }
 }
 
 export class ObjectInitialiserMember extends Node {
-  readonly key: String | Identifier;
-  readonly expression: Node;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    key: String | Identifier,
-    expression: Node
+    readonly key: String | Identifier,
+    readonly expression: Node,
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
-    this.key = key;
-    this.expression = expression;
   }
 }
 
 export class Conditional extends Node {
-  readonly condition: Node;
-  readonly consequent: Block;
-  readonly alternate: Block | null;
-  readonly isUnless: boolean;
 
   constructor(
     line: number,
@@ -297,102 +245,72 @@ export class Conditional extends Node {
     start: number,
     end: number,
     raw: string,
-    condition: Node,
-    consequent: Block,
-    alternate: Block | null,
-    isUnless: boolean
+    readonly condition: Node,
+    readonly consequent: Block,
+    readonly alternate: Block | null,
+    readonly isUnless: boolean,
   ) {
     super('Conditional', line, column, start, end, raw);
-    this.condition = condition;
-    this.consequent = consequent;
-    this.alternate = alternate;
-    this.isUnless = isUnless;
   }
 }
 
 export class Program extends Node {
-  readonly body: Block;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    body: Block
+    readonly body: Block,
   ) {
     super('Program', line, column, start, end, raw);
-    this.body = body;
   }
 }
 
 export class Block extends Node {
-  readonly statements: Array<Node>;
-  readonly inline: boolean;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    statements: Array<Node>,
-    inline: boolean
+    readonly statements: Array<Node>,
+    readonly inline: boolean,
   ) {
     super('Block', line, column, start, end, raw);
-    this.statements = statements;
-    this.inline = inline;
   }
 }
 
 export class Loop extends Node {
-  readonly body: Node | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    body: Node | null
+    readonly body: Node | null,
   ) {
     super('Loop', line, column, start, end, raw);
-    this.body = body;
   }
 }
 
 export class While extends Node {
-  readonly condition: Node;
-  readonly guard: Node | null;
-  readonly body: Node | null;
-  readonly isUntil: boolean;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    condition: Node,
-    guard: Node | null,
-    body: Node | null,
-    isUntil: boolean
+    readonly condition: Node,
+    readonly guard: Node | null,
+    readonly body: Node | null,
+    readonly isUntil: boolean,
   ) {
     super('While', line, column, start, end, raw);
-    this.condition = condition;
-    this.guard = guard;
-    this.body = body;
-    this.isUntil = isUntil;
   }
 }
 
 export abstract class For extends Node {
-  readonly keyAssignee: Node | null;
-  readonly valAssignee: Node | null;
-  readonly body: Block;
-  readonly target: Node;
-  readonly filter: Node | null;
-
   constructor(
     type: string,
     line: number,
@@ -400,24 +318,17 @@ export abstract class For extends Node {
     start: number,
     end: number,
     raw: string,
-    keyAssignee: Node | null,
-    valAssignee: Node | null,
-    target: Node,
-    filter: Node | null,
-    body: Block
+    readonly keyAssignee: Node | null,
+    readonly valAssignee: Node | null,
+    readonly target: Node,
+    readonly filter: Node | null,
+    readonly body: Block,
   ) {
     super(type, line, column, start, end, raw);
-    this.keyAssignee = keyAssignee;
-    this.valAssignee = valAssignee;
-    this.target = target;
-    this.filter = filter;
-    this.body = body;
   }
 }
 
 export class ForOf extends For {
-  readonly isOwn: boolean;
-
   constructor(
     line: number,
     column: number,
@@ -429,16 +340,13 @@ export class ForOf extends For {
     target: Node,
     filter: Node | null,
     body: Block,
-    isOwn: boolean,
+    readonly isOwn: boolean,
   ) {
     super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
-    this.isOwn = isOwn;
   }
 }
 
 export class ForIn extends For {
-  readonly step: Node | null;
-
   constructor(
     line: number,
     column: number,
@@ -450,71 +358,53 @@ export class ForIn extends For {
     target: Node,
     filter: Node | null,
     body: Block,
-    step: Node | null
+    readonly step: Node | null,
   ) {
     super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
-    this.step = step;
   }
 }
 
 export class Switch extends Node {
-  readonly expression: Node | null;
-  readonly cases: Array<SwitchCase>;
-  readonly alternate: Block | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node | null,
-    cases: Array<SwitchCase>,
-    alternate: Block | null
+    readonly expression: Node | null,
+    readonly cases: Array<SwitchCase>,
+    readonly alternate: Block | null,
   ) {
     super('Switch', line, column, start, end, raw);
-    this.expression = expression;
-    this.cases = cases;
-    this.alternate = alternate;
   }
 }
 
 export class SwitchCase extends Node {
-  readonly conditions: Array<Node>;
-  readonly consequent: Block;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    conditions: Array<Node>,
-    consequent: Block
+    readonly conditions: Array<Node>,
+    readonly consequent: Block,
   ) {
     super('SwitchCase', line, column, start, end, raw);
-    this.conditions = conditions;
-    this.consequent = consequent;
   }
 }
 
 export class RegexFlags {
-  readonly global: boolean;
-  readonly ignoreCase: boolean;
-  readonly multiline: boolean;
-  readonly sticky: boolean;
-
   readonly g: boolean;
   readonly i: boolean;
   readonly m: boolean;
   readonly y: boolean;
 
-  constructor(global: boolean, ignoreCase: boolean, multiline: boolean, sticky: boolean) {
-    this.global = global;
-    this.ignoreCase = ignoreCase;
-    this.multiline = multiline;
-    this.sticky = sticky;
-
+  constructor(
+    readonly global: boolean,
+    readonly ignoreCase: boolean,
+    readonly multiline: boolean,
+    readonly sticky: boolean,
+  ) {
     this.g = global;
     this.i = ignoreCase;
     this.m = multiline;
@@ -555,24 +445,17 @@ export class RegexFlags {
 }
 
 export class Heregex extends Node {
-  readonly quasis: Array<Quasi>;
-  readonly expressions: Array<Node>;
-  readonly flags: RegexFlags;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    quasis: Array<Quasi>,
-    expressions: Array<Node>,
-    flags: RegexFlags
+    readonly quasis: Array<Quasi>,
+    readonly expressions: Array<Node>,
+    readonly flags: RegexFlags,
   ) {
     super('Heregex', line, column, start, end, raw);
-    this.quasis = quasis;
-    this.expressions = expressions;
-    this.flags = flags;
   }
 }
 
@@ -601,53 +484,42 @@ export class Undefined extends Node {
 }
 
 export class Regex extends Node {
-  readonly pattern: string;
-  readonly flags: RegexFlags;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    pattern: string,
-    flags: RegexFlags
+    readonly pattern: string,
+    readonly flags: RegexFlags,
   ) {
     super('Regex', line, column, start, end, raw);
-    this.pattern = pattern;
-    this.flags = flags;
   }
 }
 
 export class Return extends Node {
-  readonly expression: Node | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node | null
+    readonly expression: Node | null,
   ) {
     super('Return', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class YieldReturn extends Node {
-  readonly expression: Node | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node | null
+    readonly expression: Node | null,
   ) {
     super('YieldReturn', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
@@ -664,34 +536,28 @@ export class This extends Node {
 }
 
 export class Throw extends Node {
-  readonly expression: Node | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node | null
+    readonly expression: Node | null,
   ) {
     super('Throw', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class ArrayInitialiser extends Node {
-  readonly members: Array<Node>;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    members: Array<Node>
+    readonly members: Array<Node>,
   ) {
     super('ArrayInitialiser', line, column, start, end, raw);
-    this.members = members;
   }
 }
 
@@ -715,18 +581,15 @@ export class DefaultParam extends Node {
 }
 
 export class Rest extends Node {
-  readonly expression: Node;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super('Rest', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
@@ -755,47 +618,34 @@ export class Continue extends Node {
 }
 
 export class Spread extends Node {
-  readonly expression: Node;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super('Spread', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class Range extends Node {
-  readonly left: Node;
-  readonly right: Node;
-  readonly isInclusive: boolean;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    left: Node,
-    right: Node,
-    isInclusive: boolean
+    readonly left: Node,
+    readonly right: Node,
+    readonly isInclusive: boolean,
   ) {
     super('Range', line, column, start, end, raw);
-    this.left = left;
-    this.right = right;
-    this.isInclusive = isInclusive;
   }
 }
 
 export abstract class BinaryOp extends Node {
-  readonly left: Node;
-  readonly right: Node;
-
   constructor(
     type: string,
     line: number,
@@ -803,18 +653,14 @@ export abstract class BinaryOp extends Node {
     start: number,
     end: number,
     raw: string,
-    left: Node,
-    right: Node
+    readonly left: Node,
+    readonly right: Node,
   ) {
     super(type, line, column, start, end, raw);
-    this.left = left;
-    this.right = right;
   }
 }
 
 export abstract class UnaryOp extends Node {
-  readonly expression: Node;
-
   constructor(
     type: string,
     line: number,
@@ -822,39 +668,31 @@ export abstract class UnaryOp extends Node {
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super(type, line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class ChainedComparisonOp extends Node {
-  readonly operands: Array<Node>;
-  readonly operators: Array<OperatorInfo>;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    operands: Array<Node>,
-    operators: Array<OperatorInfo>
+    readonly operands: Array<Node>,
+    readonly operators: Array<OperatorInfo>,
   ) {
     super('ChainedComparisonOp', line, column, start, end, raw);
-    this.operands = operands;
-    this.operators = operators;
   }
 }
 
 export class OperatorInfo {
-  readonly operator: string;
-  readonly token: SourceToken;
-
-  constructor(operator: string, token: SourceToken) {
-    this.operator = operator;
-    this.token = token;
+  constructor(
+    readonly operator: string,
+    readonly token: SourceToken,
+  ) {
   }
 }
 
@@ -929,8 +767,6 @@ export class UnaryNegateOp extends UnaryOp {
 }
 
 export class InOp extends BinaryOp {
-  readonly isNot: boolean;
-
   constructor(
     line: number,
     column: number,
@@ -939,17 +775,13 @@ export class InOp extends BinaryOp {
     raw: string,
     left: Node,
     right: Node,
-    isNot: boolean
+    readonly isNot: boolean,
   ) {
     super('InOp', line, column, start, end, raw, left, right);
-    this.isNot = isNot;
   }
 }
 
 export class BaseAssignOp extends Node {
-  readonly assignee: Node;
-  readonly expression: Node;
-
   constructor(
     type: string,
     line: number,
@@ -957,12 +789,10 @@ export class BaseAssignOp extends Node {
     start: number,
     end: number,
     raw: string,
-    assignee: Node,
-    expression: Node
+    readonly assignee: Node,
+    readonly expression: Node,
   ) {
     super(type, line, column, start, end, raw);
-    this.assignee = assignee;
-    this.expression = expression;
   }
 }
 
@@ -1009,41 +839,32 @@ export class SeqOp extends BinaryOp {
 }
 
 export class Yield extends Node {
-  readonly expression: Node;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super('Yield', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export class YieldFrom extends Node {
-  readonly expression: Node;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node
+    readonly expression: Node,
   ) {
     super('YieldFrom', line, column, start, end, raw);
-    this.expression = expression;
   }
 }
 
 export abstract class BaseFunction extends Node {
-  readonly parameters: Array<Node>;
-  readonly body: Block;
-
   constructor(
     type: string,
     line: number,
@@ -1051,12 +872,10 @@ export abstract class BaseFunction extends Node {
     start: number,
     end: number,
     raw: string,
-    parameters: Array<Node>,
-    body: Block
+    readonly parameters: Array<Node>,
+    readonly body: Block,
   ) {
     super(type, line, column, start, end, raw);
-    this.parameters = parameters;
-    this.body = body;
   }
 }
 
@@ -1117,27 +936,18 @@ export class BoundGeneratorFunction extends BaseFunction {
 }
 
 export class Try extends Node {
-  readonly body: Node | null;
-  readonly catchAssignee: Node | null;
-  readonly catchBody: Node | null;
-  readonly finallyBody: Node | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    body: Node | null,
-    catchAssignee: Node | null,
-    catchBody: Node | null,
-    finallyBody: Node | null
+    readonly body: Node | null,
+    readonly catchAssignee: Node | null,
+    readonly catchBody: Node | null,
+    readonly finallyBody: Node | null,
   ) {
     super('Try', line, column, start, end, raw);
-    this.body = body;
-    this.catchAssignee = catchAssignee;
-    this.catchBody = catchBody;
-    this.finallyBody = finallyBody;
   }
 }
 
@@ -1170,33 +980,20 @@ export class ClassProtoAssignOp extends BaseAssignOp {
 }
 
 export class Class extends Node {
-  readonly nameAssignee: Node | null;
-  readonly name: Node | null;
-  readonly body: Block | null;
-  readonly boundMembers: Array<ClassProtoAssignOp>;
-  readonly parent: Node | null;
-  readonly ctor: Constructor | null;
-
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    nameAssignee: Node | null,
-    name: Node | null,
-    body: Block | null,
-    boundMembers: Array<ClassProtoAssignOp>,
-    parent: Node | null,
-    ctor: Constructor | null
+    readonly nameAssignee: Node | null,
+    readonly name: Node | null,
+    readonly body: Block | null,
+    readonly boundMembers: Array<ClassProtoAssignOp>,
+    readonly parent: Node | null,
+    readonly ctor: Constructor | null,
   ) {
     super('Class', line, column, start, end, raw);
-    this.nameAssignee = nameAssignee;
-    this.name = name;
-    this.body = body;
-    this.boundMembers = boundMembers;
-    this.parent = parent;
-    this.ctor = ctor;
   }
 }
 
