@@ -416,7 +416,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
               let left = operands[i];
               let right = operands[i + 1];
 
-              operators.push(getOperatorInfoInRange(context, left.range[1], right.range[0]));
+              operators.push(getOperatorInfoInRange(context, left.range[1] - 1, right.range[0]));
             }
 
             return makeNode(context, 'ChainedComparisonOp', node.locationData, {

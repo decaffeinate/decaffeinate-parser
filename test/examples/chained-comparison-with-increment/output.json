@@ -4,16 +4,16 @@
   "column": 1,
   "range": [
     0,
-    12
+    8
   ],
-  "raw": "0 < ++c < 2\n",
+  "raw": "0<++c<2\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      11
+      7
     ],
     "statements": [
       {
@@ -22,7 +22,7 @@
         "column": 1,
         "range": [
           0,
-          11
+          7
         ],
         "operands": [
           {
@@ -39,18 +39,18 @@
           {
             "type": "PreIncrementOp",
             "line": 1,
-            "column": 5,
+            "column": 3,
             "range": [
-              4,
-              7
+              2,
+              5
             ],
             "expression": {
               "type": "Identifier",
               "line": 1,
-              "column": 7,
+              "column": 5,
               "range": [
-                6,
-                7
+                4,
+                5
               ],
               "raw": "c",
               "data": "c"
@@ -60,10 +60,10 @@
           {
             "type": "Int",
             "line": 1,
-            "column": 11,
+            "column": 7,
             "range": [
-              10,
-              11
+              6,
+              7
             ],
             "raw": "2",
             "data": 2
@@ -74,22 +74,22 @@
             "operator": "<",
             "token": {
               "type": 39,
-              "start": 2,
-              "end": 3
+              "start": 1,
+              "end": 2
             }
           },
           {
             "operator": "<",
             "token": {
               "type": 39,
-              "start": 8,
-              "end": 9
+              "start": 5,
+              "end": 6
             }
           }
         ],
-        "raw": "0 < ++c < 2"
+        "raw": "0<++c<2"
       }
     ],
-    "raw": "0 < ++c < 2"
+    "raw": "0<++c<2"
   }
 }
