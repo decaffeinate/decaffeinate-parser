@@ -4,6 +4,6 @@ import ParseContext from '../util/ParseContext';
 import mapBase from './mapBase';
 
 export default function mapBool(context: ParseContext, node: CoffeeBool): Bool {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
-  return new Bool(line, column, start, end, raw, virtual, JSON.parse(node.val));
+  let { line, column, start, end, raw } = mapBase(context, node);
+  return new Bool(line, column, start, end, raw, JSON.parse(node.val));
 }

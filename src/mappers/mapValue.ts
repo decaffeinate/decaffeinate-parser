@@ -50,7 +50,6 @@ export default function mapValue(context: ParseContext, node: Value): Node {
           result.start,
           last + 1,
           context.source.slice(result.start, last + 1),
-          false,
           result
         );
       } else {
@@ -68,7 +67,6 @@ export default function mapValue(context: ParseContext, node: Value): Node {
           result.start,
           last + 1,
           context.source.slice(result.start, last + 1),
-          false,
           result,
           member
         );

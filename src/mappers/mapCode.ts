@@ -6,12 +6,12 @@ import mapBase from './mapBase';
 import mapBlock from './mapBlock';
 
 export default function mapCode(context: ParseContext, node: Code): BaseFunction {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let Node = getNodeTypeForCode(node);
 
   return new Node(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     node.params.map(param => mapAny(context, param)),
     mapBlock(context, node.body)
   );

@@ -5,9 +5,9 @@ import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapExtends(context: ParseContext, node: Extends): ExtendsOp {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   return new ExtendsOp(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     mapAny(context, node.child),
     mapAny(context, node.parent)
   );

@@ -8,7 +8,7 @@ import mapBase from './mapBase';
 import mapBlock from './mapBlock';
 
 export default function mapIf(context: ParseContext, node: If): Conditional {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let condition = mapAny(context, node.condition);
   let consequent = mapBlock(context, node.body);
@@ -40,7 +40,7 @@ export default function mapIf(context: ParseContext, node: If): Conditional {
   }
 
   return new Conditional(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     condition,
     consequent,
     alternate,

@@ -7,7 +7,7 @@ import mapBase from './mapBase';
 import mapValue from './mapValue';
 
 export default function mapObj(context: ParseContext, node: Obj): ObjectInitialiser {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let members: Array<ObjectInitialiserMember> = node.properties.map(property => {
     if (property instanceof Value) {
@@ -19,12 +19,12 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
       }
 
       return new ObjectInitialiserMember(
-        value.line, value.column, value.start, value.end, value.raw, value.virtual,
+        value.line, value.column, value.start, value.end, value.raw,
         value,
         value
       );
     } else if (property instanceof Assign && property.context === 'object') {
-      let { line, column, start, end, raw, virtual } = mapBase(context, property);
+      let { line, column, start, end, raw } = mapBase(context, property);
 
       let key = mapAny(context, property.variable);
       let expression = mapAny(context, property.value);
@@ -34,7 +34,7 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
       }
 
       return new ObjectInitialiserMember(
-        line, column, start, end, raw, virtual,
+        line, column, start, end, raw,
         key,
         expression
       );
@@ -44,7 +44,7 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
   });
 
   return new ObjectInitialiser(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     members
   );
 }

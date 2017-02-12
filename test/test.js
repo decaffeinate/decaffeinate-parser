@@ -33,17 +33,6 @@ function stripExtraInfo(node) {
     for (let key in node) {
       if (node.range && (key === 'start' || key === 'end')) {
         delete node[key];
-      } else if (key === 'virtual') {
-        if (node[key] === false) {
-          delete node[key];
-        } else {
-          delete node.line;
-          delete node.column;
-          delete node.start;
-          delete node.end;
-          delete node.range;
-          delete node.raw;
-        }
       } else {
         stripExtraInfo(node[key]);
       }

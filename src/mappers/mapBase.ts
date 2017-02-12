@@ -48,5 +48,5 @@ export default function mapBase(context: ParseContext, node: Base): Node {
   end = lastTokenOfNode.end;
   let raw = context.source.slice(start, end);
 
-  return new Node('Node', line, column, start, end, raw, false);
+  return new Node('Node', line, column, start, end, raw);
 }

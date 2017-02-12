@@ -9,7 +9,7 @@ import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapClass(context: ParseContext, node: CoffeeClass): Class {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let body: Block | null = null;
   let ctor: Constructor | null = null;
@@ -37,7 +37,6 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
             let assignment = new Node(
               key.line, key.column, key.start, value.end,
               context.source.slice(key.start, value.end),
-              false,
               key,
               value
             );
@@ -70,7 +69,6 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
         firstStatement.start,
         lastStatement.end,
         context.source.slice(firstStatement.start, lastStatement.end),
-        false,
         statements,
         false
       );
@@ -81,7 +79,7 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
   let parent = node.parent ? mapAny(context, node.parent) : null;
 
   return new Class(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     nameAssignee,
     nameAssignee,
     body,

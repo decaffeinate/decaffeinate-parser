@@ -5,10 +5,10 @@ import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapTry(context: ParseContext, node: CoffeeTry): Try {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   return new Try(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     node.attempt ? mapAny(context, node.attempt) : null,
     node.errorVariable ? mapAny(context, node.errorVariable) : null,
     node.recovery ? mapAny(context, node.recovery) : null,

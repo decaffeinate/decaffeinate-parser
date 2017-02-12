@@ -11,13 +11,13 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start - 1);
   let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
   let inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
 
   return new Block(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     node.expressions
       .filter(expression => !(expression instanceof Comment))
       .map(expression => mapAny(context, expression)),

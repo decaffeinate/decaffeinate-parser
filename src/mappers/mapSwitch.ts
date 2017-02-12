@@ -8,7 +8,7 @@ import mapBase from './mapBase';
 import mapBlock from './mapBlock';
 
 export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Switch {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let expression = node.subject ? mapAny(context, node.subject) : null;
   let cases = node.cases.map(([conditions, body]) => {
@@ -29,14 +29,13 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
     return new SwitchCase(
       caseLine + 1, caseColumn + 1, whenToken.start, consequent.end,
       context.source.slice(whenToken.start, consequent.end),
-      false,
       switchConditions,
       consequent
     );
   });
 
   return new Switch(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     expression,
     cases,
     node.otherwise ? mapBlock(context, node.otherwise) : null

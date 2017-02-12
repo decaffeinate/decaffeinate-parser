@@ -8,7 +8,7 @@ import mapBase from './mapBase';
 export default function mapIn(context: ParseContext, node: CoffeeIn): InOp {
   // We don't use the `negated` flag on `node` because it gets set to
   // `true` when a parent `If` is an `unless`.
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let left = mapAny(context, node.object);
   let right = mapAny(context, node.array);
   let isNot = false;
@@ -28,7 +28,7 @@ export default function mapIn(context: ParseContext, node: CoffeeIn): InOp {
       isNot = context.source.slice(relationToken.start, relationToken.end) !== 'in';
 
       return new InOp(
-        line, column, start, end, raw, virtual,
+        line, column, start, end, raw,
         left,
         right,
         isNot

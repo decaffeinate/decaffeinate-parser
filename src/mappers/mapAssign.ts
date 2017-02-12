@@ -10,10 +10,10 @@ export default function mapAssign(context: ParseContext, node: Assign): AssignOp
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   return new AssignOp(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     mapAny(context, node.variable),
     mapAny(context, node.value)
   );

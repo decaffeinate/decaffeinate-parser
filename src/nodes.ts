@@ -10,12 +10,6 @@ export interface RealNode {
   column: number;
   range: [number, number];
   raw: string;
-  virtual: false;
-}
-
-export interface VirtualNode {
-  type: string;
-  virtual: true;
 }
 
 export class Node {
@@ -26,7 +20,6 @@ export class Node {
   readonly end: number;
   readonly range: [number, number];
   readonly raw: string;
-  readonly virtual: boolean;
 
   constructor(
     type: string,
@@ -35,7 +28,6 @@ export class Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
     this.type = type;
     this.line = line;
@@ -44,7 +36,6 @@ export class Node {
     this.end = end;
     this.range = [start, end];
     this.raw = raw;
-    this.virtual = virtual;
   }
 }
 
@@ -57,10 +48,9 @@ export class Identifier extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: string
   ) {
-    super('Identifier', line, column, start, end, raw, virtual);
+    super('Identifier', line, column, start, end, raw);
     this.data = data;
   }
 }
@@ -74,19 +64,18 @@ export class Bool extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: boolean
   ) {
-    super('Bool', line, column, start, end, raw, virtual);
+    super('Bool', line, column, start, end, raw);
     this.data = data;
   }
 
   static true(): Bool {
-    return new Bool(0, 0, 0, 0, '', true, true);
+    return new Bool(0, 0, 0, 0, '', true);
   }
 
   static false(): Bool {
-    return new Bool(0, 0, 0, 0, '', true, false);
+    return new Bool(0, 0, 0, 0, '', false);
   }
 }
 
@@ -99,10 +88,9 @@ export class JavaScript extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: string
   ) {
-    super('JavaScript', line, column, start, end, raw, virtual);
+    super('JavaScript', line, column, start, end, raw);
     this.data = data;
   }
 }
@@ -117,10 +105,9 @@ export class Number extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: number
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.data = data;
   }
 }
@@ -132,10 +119,9 @@ export class Float extends Number {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: number
   ) {
-    super('Float', line, column, start, end, raw, virtual, data);
+    super('Float', line, column, start, end, raw, data);
   }
 }
 
@@ -146,10 +132,9 @@ export class Int extends Number {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: number
   ) {
-    super('Int', line, column, start, end, raw, virtual, data);
+    super('Int', line, column, start, end, raw, data);
   }
 }
 
@@ -163,10 +148,9 @@ export abstract class AccessOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -180,11 +164,10 @@ export class MemberAccessOp extends AccessOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node,
     member: Identifier
   ) {
-    super('MemberAccessOp', line, column, start, end, raw, virtual, expression);
+    super('MemberAccessOp', line, column, start, end, raw, expression);
     this.member = member;
   }
 }
@@ -196,10 +179,9 @@ export class ProtoMemberAccessOp extends AccessOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('ProtoMemberAccessOp', line, column, start, end, raw, virtual, expression);
+    super('ProtoMemberAccessOp', line, column, start, end, raw, expression);
   }
 }
 
@@ -212,11 +194,10 @@ export class SoakedMemberAccessOp extends AccessOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node,
     member: Identifier
   ) {
-    super('SoakedMemberAccessOp', line, column, start, end, raw, virtual, expression);
+    super('SoakedMemberAccessOp', line, column, start, end, raw, expression);
     this.member = member;
   }
 }
@@ -228,10 +209,9 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('SoakedProtoMemberAccessOp', line, column, start, end, raw, virtual, expression);
+    super('SoakedProtoMemberAccessOp', line, column, start, end, raw, expression);
   }
 }
 
@@ -244,10 +224,9 @@ export class Quasi extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     data: string
   ) {
-    super('Quasi', line, column, start, end, raw, virtual);
+    super('Quasi', line, column, start, end, raw);
     this.data = data;
   }
 }
@@ -262,11 +241,10 @@ export class String extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     quasis: Array<Quasi>,
     expressions: Array<Node>
   ) {
-    super('String', line, column, start, end, raw, virtual);
+    super('String', line, column, start, end, raw);
     this.quasis = quasis;
     this.expressions = expressions;
   }
@@ -281,10 +259,9 @@ export class ObjectInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     members: Array<ObjectInitialiserMember>
   ) {
-    super('ObjectInitialiser', line, column, start, end, raw, virtual);
+    super('ObjectInitialiser', line, column, start, end, raw);
     this.members = members;
   }
 }
@@ -299,11 +276,10 @@ export class ObjectInitialiserMember extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     key: String | Identifier,
     expression: Node
   ) {
-    super('ObjectInitialiserMember', line, column, start, end, raw, virtual);
+    super('ObjectInitialiserMember', line, column, start, end, raw);
     this.key = key;
     this.expression = expression;
   }
@@ -321,13 +297,12 @@ export class Conditional extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     condition: Node,
     consequent: Block,
     alternate: Block | null,
     isUnless: boolean
   ) {
-    super('Conditional', line, column, start, end, raw, virtual);
+    super('Conditional', line, column, start, end, raw);
     this.condition = condition;
     this.consequent = consequent;
     this.alternate = alternate;
@@ -344,10 +319,9 @@ export class Program extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     body: Block
   ) {
-    super('Program', line, column, start, end, raw, virtual);
+    super('Program', line, column, start, end, raw);
     this.body = body;
   }
 }
@@ -362,11 +336,10 @@ export class Block extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     statements: Array<Node>,
     inline: boolean
   ) {
-    super('Block', line, column, start, end, raw, virtual);
+    super('Block', line, column, start, end, raw);
     this.statements = statements;
     this.inline = inline;
   }
@@ -381,10 +354,9 @@ export class Loop extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     body: Node | null
   ) {
-    super('Loop', line, column, start, end, raw, virtual);
+    super('Loop', line, column, start, end, raw);
     this.body = body;
   }
 }
@@ -401,13 +373,12 @@ export class While extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     condition: Node,
     guard: Node | null,
     body: Node | null,
     isUntil: boolean
   ) {
-    super('While', line, column, start, end, raw, virtual);
+    super('While', line, column, start, end, raw);
     this.condition = condition;
     this.guard = guard;
     this.body = body;
@@ -429,14 +400,13 @@ export abstract class For extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     keyAssignee: Node | null,
     valAssignee: Node | null,
     target: Node,
     filter: Node | null,
     body: Block
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.keyAssignee = keyAssignee;
     this.valAssignee = valAssignee;
     this.target = target;
@@ -454,7 +424,6 @@ export class ForOf extends For {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     keyAssignee: Node | null,
     valAssignee: Node | null,
     target: Node,
@@ -462,7 +431,7 @@ export class ForOf extends For {
     body: Block,
     isOwn: boolean,
   ) {
-    super('ForOf', line, column, start, end, raw, virtual, keyAssignee, valAssignee, target, filter, body);
+    super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
     this.isOwn = isOwn;
   }
 }
@@ -476,7 +445,6 @@ export class ForIn extends For {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     keyAssignee: Node | null,
     valAssignee: Node | null,
     target: Node,
@@ -484,7 +452,7 @@ export class ForIn extends For {
     body: Block,
     step: Node | null
   ) {
-    super('ForIn', line, column, start, end, raw, virtual, keyAssignee, valAssignee, target, filter, body);
+    super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
     this.step = step;
   }
 }
@@ -500,12 +468,11 @@ export class Switch extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node | null,
     cases: Array<SwitchCase>,
     alternate: Block | null
   ) {
-    super('Switch', line, column, start, end, raw, virtual);
+    super('Switch', line, column, start, end, raw);
     this.expression = expression;
     this.cases = cases;
     this.alternate = alternate;
@@ -522,11 +489,10 @@ export class SwitchCase extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     conditions: Array<Node>,
     consequent: Block
   ) {
-    super('SwitchCase', line, column, start, end, raw, virtual);
+    super('SwitchCase', line, column, start, end, raw);
     this.conditions = conditions;
     this.consequent = consequent;
   }
@@ -599,12 +565,11 @@ export class Heregex extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     quasis: Array<Quasi>,
     expressions: Array<Node>,
     flags: RegexFlags
   ) {
-    super('Heregex', line, column, start, end, raw, virtual);
+    super('Heregex', line, column, start, end, raw);
     this.quasis = quasis;
     this.expressions = expressions;
     this.flags = flags;
@@ -618,9 +583,8 @@ export class Null extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('Null', line, column, start, end, raw, virtual);
+    super('Null', line, column, start, end, raw);
   }
 }
 
@@ -631,9 +595,8 @@ export class Undefined extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('Undefined', line, column, start, end, raw, virtual);
+    super('Undefined', line, column, start, end, raw);
   }
 }
 
@@ -647,11 +610,10 @@ export class Regex extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     pattern: string,
     flags: RegexFlags
   ) {
-    super('Regex', line, column, start, end, raw, virtual);
+    super('Regex', line, column, start, end, raw);
     this.pattern = pattern;
     this.flags = flags;
   }
@@ -666,10 +628,9 @@ export class Return extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node | null
   ) {
-    super('Return', line, column, start, end, raw, virtual);
+    super('Return', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -683,10 +644,9 @@ export class YieldReturn extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node | null
   ) {
-    super('YieldReturn', line, column, start, end, raw, virtual);
+    super('YieldReturn', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -698,9 +658,8 @@ export class This extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('This', line, column, start, end, raw, virtual);
+    super('This', line, column, start, end, raw);
   }
 }
 
@@ -713,10 +672,9 @@ export class Throw extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node | null
   ) {
-    super('Throw', line, column, start, end, raw, virtual);
+    super('Throw', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -730,10 +688,9 @@ export class ArrayInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     members: Array<Node>
   ) {
-    super('ArrayInitialiser', line, column, start, end, raw, virtual);
+    super('ArrayInitialiser', line, column, start, end, raw);
     this.members = members;
   }
 }
@@ -748,11 +705,10 @@ export class DefaultParam extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     param: Node,
     defaultValue: Node
   ) {
-    super('DefaultParam', line, column, start, end, raw, virtual);
+    super('DefaultParam', line, column, start, end, raw);
     this.param = param;
     this.default = defaultValue;
   }
@@ -767,10 +723,9 @@ export class Rest extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('Rest', line, column, start, end, raw, virtual);
+    super('Rest', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -782,9 +737,8 @@ export class Break extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('Break', line, column, start, end, raw, virtual);
+    super('Break', line, column, start, end, raw);
   }
 }
 
@@ -795,9 +749,8 @@ export class Continue extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('Continue', line, column, start, end, raw, virtual);
+    super('Continue', line, column, start, end, raw);
   }
 }
 
@@ -810,10 +763,9 @@ export class Spread extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('Spread', line, column, start, end, raw, virtual);
+    super('Spread', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -829,12 +781,11 @@ export class Range extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node,
     isInclusive: boolean
   ) {
-    super('Range', line, column, start, end, raw, virtual);
+    super('Range', line, column, start, end, raw);
     this.left = left;
     this.right = right;
     this.isInclusive = isInclusive;
@@ -852,11 +803,10 @@ export abstract class BinaryOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.left = left;
     this.right = right;
   }
@@ -872,10 +822,9 @@ export abstract class UnaryOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -890,11 +839,10 @@ export class ChainedComparisonOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     operands: Array<Node>,
     operators: Array<OperatorInfo>
   ) {
-    super('ChainedComparisonOp', line, column, start, end, raw, virtual);
+    super('ChainedComparisonOp', line, column, start, end, raw);
     this.operands = operands;
     this.operators = operators;
   }
@@ -919,11 +867,10 @@ export class EQOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super('EQOp', line, column, start, end, raw, virtual, left, right);
+    super('EQOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -934,11 +881,10 @@ export class SubtractOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super('SubtractOp', line, column, start, end, raw, virtual, left, right);
+    super('SubtractOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -949,11 +895,10 @@ export class MultiplyOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super('MultiplyOp', line, column, start, end, raw, virtual, left, right);
+    super('MultiplyOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -964,10 +909,9 @@ export class UnaryExistsOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('UnaryExistsOp', line, column, start, end, raw, virtual, expression);
+    super('UnaryExistsOp', line, column, start, end, raw, expression);
   }
 }
 
@@ -978,10 +922,9 @@ export class UnaryNegateOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node
   ) {
-    super('UnaryNegateOp', line, column, start, end, raw, virtual, left);
+    super('UnaryNegateOp', line, column, start, end, raw, left);
   }
 }
 
@@ -994,12 +937,11 @@ export class InOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node,
     isNot: boolean
   ) {
-    super('InOp', line, column, start, end, raw, virtual, left, right);
+    super('InOp', line, column, start, end, raw, left, right);
     this.isNot = isNot;
   }
 }
@@ -1015,11 +957,10 @@ export class BaseAssignOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     assignee: Node,
     expression: Node
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.assignee = assignee;
     this.expression = expression;
   }
@@ -1032,11 +973,10 @@ export class AssignOp extends BaseAssignOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     assignee: Node,
     expression: Node
   ) {
-    super('AssignOp', line, column, start, end, raw, virtual, assignee, expression);
+    super('AssignOp', line, column, start, end, raw, assignee, expression);
   }
 }
 
@@ -1047,11 +987,10 @@ export class ExtendsOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super('ExtendsOp', line, column, start, end, raw, virtual, left, right);
+    super('ExtendsOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -1062,11 +1001,10 @@ export class SeqOp extends BinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ) {
-    super('SeqOp', line, column, start, end, raw, virtual, left, right);
+    super('SeqOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -1079,10 +1017,9 @@ export class Yield extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('Yield', line, column, start, end, raw, virtual);
+    super('Yield', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -1096,10 +1033,9 @@ export class YieldFrom extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     expression: Node
   ) {
-    super('YieldFrom', line, column, start, end, raw, virtual);
+    super('YieldFrom', line, column, start, end, raw);
     this.expression = expression;
   }
 }
@@ -1115,11 +1051,10 @@ export abstract class BaseFunction extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     parameters: Array<Node>,
     body: Block
   ) {
-    super(type, line, column, start, end, raw, virtual);
+    super(type, line, column, start, end, raw);
     this.parameters = parameters;
     this.body = body;
   }
@@ -1132,11 +1067,10 @@ export class Function extends BaseFunction {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     parameters: Array<Node>,
     body: Block
   ) {
-    super('Function', line, column, start, end, raw, virtual, parameters, body);
+    super('Function', line, column, start, end, raw, parameters, body);
   }
 }
 
@@ -1147,11 +1081,10 @@ export class BoundFunction extends BaseFunction {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     parameters: Array<Node>,
     body: Block
   ) {
-    super('BoundFunction', line, column, start, end, raw, virtual, parameters, body);
+    super('BoundFunction', line, column, start, end, raw, parameters, body);
   }
 }
 
@@ -1162,11 +1095,10 @@ export class GeneratorFunction extends BaseFunction {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     parameters: Array<Node>,
     body: Block
   ) {
-    super('GeneratorFunction', line, column, start, end, raw, virtual, parameters, body);
+    super('GeneratorFunction', line, column, start, end, raw, parameters, body);
   }
 }
 
@@ -1177,11 +1109,10 @@ export class BoundGeneratorFunction extends BaseFunction {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     parameters: Array<Node>,
     body: Block
   ) {
-    super('BoundGeneratorFunction', line, column, start, end, raw, virtual, parameters, body);
+    super('BoundGeneratorFunction', line, column, start, end, raw, parameters, body);
   }
 }
 
@@ -1197,13 +1128,12 @@ export class Try extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     body: Node | null,
     catchAssignee: Node | null,
     catchBody: Node | null,
     finallyBody: Node | null
   ) {
-    super('Try', line, column, start, end, raw, virtual);
+    super('Try', line, column, start, end, raw);
     this.body = body;
     this.catchAssignee = catchAssignee;
     this.catchBody = catchBody;
@@ -1218,11 +1148,10 @@ export class Constructor extends BaseAssignOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     assignee: Node,
     expression: BaseFunction
   ) {
-    super('Constructor', line, column, start, end, raw, virtual, assignee, expression);
+    super('Constructor', line, column, start, end, raw, assignee, expression);
   }
 }
 
@@ -1233,11 +1162,10 @@ export class ClassProtoAssignOp extends BaseAssignOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     assignee: Node,
     expression: Node
   ) {
-    super('ClassProtoAssignOp', line, column, start, end, raw, virtual, assignee, expression);
+    super('ClassProtoAssignOp', line, column, start, end, raw, assignee, expression);
   }
 }
 
@@ -1255,7 +1183,6 @@ export class Class extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     nameAssignee: Node | null,
     name: Node | null,
     body: Block | null,
@@ -1263,7 +1190,7 @@ export class Class extends Node {
     parent: Node | null,
     ctor: Constructor | null
   ) {
-    super('Class', line, column, start, end, raw, virtual);
+    super('Class', line, column, start, end, raw);
     this.nameAssignee = nameAssignee;
     this.name = name;
     this.body = body;
@@ -1283,11 +1210,10 @@ export class FunctionApplication extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     fn: Node,
     args: Array<Node>
   ) {
-    super('FunctionApplication', line, column, start, end, raw, virtual);
+    super('FunctionApplication', line, column, start, end, raw);
     this.function = fn;
     this.arguments = args;
   }
@@ -1303,11 +1229,10 @@ export class SoakedFunctionApplication extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     fn: Node,
     args: Array<Node>
   ) {
-    super('SoakedFunctionApplication', line, column, start, end, raw, virtual);
+    super('SoakedFunctionApplication', line, column, start, end, raw);
     this.function = fn;
     this.arguments = args;
   }
@@ -1320,9 +1245,8 @@ export class Super extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('Super', line, column, start, end, raw, virtual);
+    super('Super', line, column, start, end, raw);
   }
 }
 
@@ -1333,9 +1257,8 @@ export class BareSuperFunctionApplication extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean
   ) {
-    super('BareSuperFunctionApplication', line, column, start, end, raw, virtual);
+    super('BareSuperFunctionApplication', line, column, start, end, raw);
   }
 }
 
@@ -1349,24 +1272,17 @@ export class NewOp extends Node {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     ctor: Node,
     args: Array<Node>
   ) {
-    super('NewOp', line, column, start, end, raw, virtual);
+    super('NewOp', line, column, start, end, raw);
     this.ctor = ctor;
     this.arguments = args;
   }
 }
 
-export type DecaffeinateNode =
-  Bool |
-  Null |
-  RealNode |
-  VirtualNode;
-
 // tslint:disable-next-line:no-any
-export function makeRealNode(context: ParseContext, type: string, loc: LocationData, attrs: any = {}): RealNode {
+export function makeRealNode(context: ParseContext, type: string, loc: LocationData, attrs: any = {}): Node {
   // tslint:disable-next-line:no-any
   let result: any = { type };
   let start = context.linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
@@ -1435,41 +1351,10 @@ export function makeRealNode(context: ParseContext, type: string, loc: LocationD
 }
 
 // tslint:disable-next-line:no-any
-export function makeVirtualNode(type: string, attrs: any = {}): VirtualNode {
-  // tslint:disable-next-line:no-any
-  let result: any = {
-    type,
-    virtual: true
-  };
-
-  for (let key in attrs) {
-    if (attrs.hasOwnProperty(key)) {
-      let value = attrs[key];
-      result[key] = value;
-      if (value && result.range) {
-        (Array.isArray(value) ? value : [value]).forEach(node => {
-          if (node.range) {
-            // Expand the range to contain all the children.
-            if (result.range[0] > node.range[0]) {
-              result.range[0] = node.range[0];
-            }
-            if (result.range[1] < node.range[1]) {
-              result.range[1] = node.range[1];
-            }
-          }
-        });
-      }
-    }
+export default function makeNode(context: ParseContext, type: string, loc: LocationData, attrs: any = {}): Node {
+  if (!loc) {
+    throw new Error(`location data must be provided for node type: ${type}`);
   }
 
-  return result;
-}
-
-// tslint:disable-next-line:no-any
-export default function makeNode(context: ParseContext, type: string, loc: LocationData, attrs: any = {}): DecaffeinateNode {
-  if (loc) {
-    return makeRealNode(context, type, loc, attrs);
-  } else {
-    return makeVirtualNode(type, attrs);
-  }
+  return makeRealNode(context, type, loc, attrs);
 }

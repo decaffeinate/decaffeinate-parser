@@ -13,7 +13,7 @@ import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 export default function mapCall(context: ParseContext, node: Call): Node {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   if (node.do || isHeregexTemplateNode(node, context)) {
     throw new UnsupportedNodeError(node);
@@ -37,8 +37,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
         column,
         start,
         end,
-        raw,
-        virtual
+        raw
       );
     }
 
@@ -61,14 +60,12 @@ export default function mapCall(context: ParseContext, node: Call): Node {
       start,
       end,
       raw,
-      virtual,
       new Super(
         superLocation.line + 1,
         superLocation.column + 1,
         superToken.start,
         superToken.end,
-        context.source.slice(superToken.start, superToken.end),
-        false
+        context.source.slice(superToken.start, superToken.end)
       ),
       args
     );
@@ -87,7 +84,6 @@ export default function mapCall(context: ParseContext, node: Call): Node {
       start,
       end,
       raw,
-      virtual,
       callee,
       args
     );
@@ -99,7 +95,6 @@ export default function mapCall(context: ParseContext, node: Call): Node {
     start,
     end,
     raw,
-    virtual,
     callee,
     args
   );
@@ -111,7 +106,7 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { end, virtual } = mapBase(context, node);
+  let { end } = mapBase(context, node);
   let callee = mapAny(context, node.variable);
   let args = node.args.map(arg => mapAny(context, arg));
 
@@ -149,7 +144,6 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     newToken.start,
     end,
     context.source.slice(newToken.start, end),
-    virtual,
     callee,
     args
   );
