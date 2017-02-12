@@ -29,7 +29,7 @@ function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
     let left = operands[i];
     let right = operands[i + 1];
 
-    operators.push(getOperatorInfoInRange(context, left.end, right.start));
+    operators.push(getOperatorInfoInRange(context, left.end - 1, right.start));
   }
 
   return new ChainedComparisonOp(
