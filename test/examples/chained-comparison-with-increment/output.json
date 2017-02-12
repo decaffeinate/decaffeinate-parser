@@ -1,0 +1,95 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "0 < ++c < 2\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      11
+    ],
+    "statements": [
+      {
+        "type": "ChainedComparisonOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          11
+        ],
+        "operands": [
+          {
+            "type": "Int",
+            "line": 1,
+            "column": 1,
+            "range": [
+              0,
+              1
+            ],
+            "raw": "0",
+            "data": 0
+          },
+          {
+            "type": "PreIncrementOp",
+            "line": 1,
+            "column": 5,
+            "range": [
+              4,
+              7
+            ],
+            "expression": {
+              "type": "Identifier",
+              "line": 1,
+              "column": 7,
+              "range": [
+                6,
+                7
+              ],
+              "raw": "c",
+              "data": "c"
+            },
+            "raw": "++c"
+          },
+          {
+            "type": "Int",
+            "line": 1,
+            "column": 11,
+            "range": [
+              10,
+              11
+            ],
+            "raw": "2",
+            "data": 2
+          }
+        ],
+        "operators": [
+          {
+            "operator": "<",
+            "token": {
+              "type": 39,
+              "start": 2,
+              "end": 3
+            }
+          },
+          {
+            "operator": "<",
+            "token": {
+              "type": 39,
+              "start": 8,
+              "end": 9
+            }
+          }
+        ],
+        "raw": "0 < ++c < 2"
+      }
+    ],
+    "raw": "0 < ++c < 2"
+  }
+}
