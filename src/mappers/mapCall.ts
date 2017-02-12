@@ -106,44 +106,16 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { end } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let callee = mapAny(context, node.variable);
   let args = node.args.map(arg => mapAny(context, arg));
 
-  let calleeStartTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(callee.start);
-  let newTokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
-    token => {
-      if (token.type === SourceType.NEW) {
-        return true;
-      }
-
-      if (token.type !== SourceType.LPAREN) {
-        throw new Error(`cannot find 'new' before callee: ${inspect(callee)}`);
-      }
-
-      return false;
-    },
-    calleeStartTokenIndex && calleeStartTokenIndex.previous()
-  );
-
-  let newToken = newTokenIndex && context.sourceTokens.tokenAtIndex(newTokenIndex);
-
-  if (!newToken) {
-    throw new Error(`cannot find 'new' before callee: ${inspect(callee)}`);
-  }
-
-  let newTokenLocation = context.linesAndColumns.locationForIndex(newToken.start);
-
-  if (!newTokenLocation) {
-    throw new Error(`cannot find 'new' before callee: ${inspect(callee)}`);
-  }
-
   return new NewOp(
-    newTokenLocation.line + 1,
-    newTokenLocation.column + 1,
-    newToken.start,
+    line,
+    column,
+    start,
     end,
-    context.source.slice(newToken.start, end),
+    raw,
     callee,
     args
   );

@@ -348,7 +348,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           }
 
           if (node.isNew) {
-            return makeNode(context, 'NewOp', expandLocationLeftThrough(context, node.locationData, 'new'), {
+            return makeNode(context, 'NewOp', node.locationData, {
               ctor: convertChild(node.variable),
               arguments: convertChild(node.args)
             });

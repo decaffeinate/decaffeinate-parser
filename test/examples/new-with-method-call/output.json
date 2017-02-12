@@ -1,0 +1,112 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    16
+  ],
+  "raw": "-> new A().b(c)\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      15
+    ],
+    "statements": [
+      {
+        "type": "Function",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          15
+        ],
+        "body": {
+          "type": "Block",
+          "line": 1,
+          "column": 4,
+          "range": [
+            3,
+            15
+          ],
+          "statements": [
+            {
+              "type": "FunctionApplication",
+              "line": 1,
+              "column": 4,
+              "range": [
+                3,
+                15
+              ],
+              "function": {
+                "type": "MemberAccessOp",
+                "line": 1,
+                "column": 4,
+                "range": [
+                  3,
+                  12
+                ],
+                "expression": {
+                  "type": "NewOp",
+                  "line": 1,
+                  "column": 4,
+                  "range": [
+                    3,
+                    10
+                  ],
+                  "ctor": {
+                    "type": "Identifier",
+                    "line": 1,
+                    "column": 8,
+                    "range": [
+                      7,
+                      8
+                    ],
+                    "raw": "A",
+                    "data": "A"
+                  },
+                  "arguments": [],
+                  "raw": "new A()"
+                },
+                "member": {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 12,
+                  "range": [
+                    11,
+                    12
+                  ],
+                  "raw": "b",
+                  "data": "b"
+                },
+                "raw": "new A().b"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "line": 1,
+                  "column": 14,
+                  "range": [
+                    13,
+                    14
+                  ],
+                  "raw": "c",
+                  "data": "c"
+                }
+              ],
+              "raw": "new A().b(c)"
+            }
+          ],
+          "raw": "new A().b(c)",
+          "inline": true
+        },
+        "parameters": [],
+        "raw": "-> new A().b(c)"
+      }
+    ],
+    "raw": "-> new A().b(c)"
+  }
+}
