@@ -808,6 +808,12 @@ export class AssignOp extends BaseAssignOp {
   ) {
     super('AssignOp', line, column, start, end, raw, assignee, expression);
   }
+
+  withExpression(expression: Node): AssignOp {
+    return new AssignOp(
+      this.line, this.column, this.start, this.end, this.raw, this.assignee, expression
+    );
+  }
 }
 
 export class ExtendsOp extends BinaryOp {
