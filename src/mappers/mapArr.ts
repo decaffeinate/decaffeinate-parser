@@ -5,7 +5,7 @@ import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapArr(context: ParseContext, node: Arr): ArrayInitialiser {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let members = node.objects.map(object => mapAny(context, object));
-  return new ArrayInitialiser(line, column, start, end, raw, virtual, members);
+  return new ArrayInitialiser(line, column, start, end, raw, members);
 }

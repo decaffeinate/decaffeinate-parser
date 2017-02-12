@@ -6,7 +6,7 @@ import mapBase from './mapBase';
 import mapBlock from './mapBlock';
 
 export default function mapFor(context: ParseContext, node: CoffeeFor): For {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   let keyAssignee = node.index ? mapAny(context, node.index) : null;
   let valAssignee = node.name ? mapAny(context, node.name) : null;
@@ -18,7 +18,7 @@ export default function mapFor(context: ParseContext, node: CoffeeFor): For {
     let isOwn = node.own;
 
     return new ForOf(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       keyAssignee,
       valAssignee,
       target,
@@ -30,7 +30,7 @@ export default function mapFor(context: ParseContext, node: CoffeeFor): For {
     let step = node.step ? mapAny(context, node.step) : null;
 
     return new ForIn(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       keyAssignee,
       valAssignee,
       target,

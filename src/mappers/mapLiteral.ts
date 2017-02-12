@@ -12,10 +12,10 @@ import mapBase from './mapBase';
 const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimy]*)$/;
 
 export default function mapLiteral(context: ParseContext, node: Literal): Node {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   if (node.value === 'this') {
-    return new This(line, column, start, end, raw, virtual);
+    return new This(line, column, start, end, raw);
   }
 
   let startTokenIndex = context.sourceTokens.indexOfTokenContainingSourceIndex(start);
@@ -36,33 +36,33 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     // Sometimes the CoffeeScript AST contains a string object instead of a
     // string primitive. Convert to string primitive if necessary.
     let value = node.value.valueOf();
-    return new Identifier(line, column, start, end, raw, virtual, value);
+    return new Identifier(line, column, start, end, raw, value);
   }
 
   if (startToken.type === SourceType.JS) {
-    return new JavaScript(line, column, start, end, raw, virtual, node.value);
+    return new JavaScript(line, column, start, end, raw, node.value);
   }
 
   if (startToken.type === SourceType.NUMBER) {
     if (raw.includes('.')) {
-      return new Float(line, column, start, end, raw, virtual, parseNumber(node.value));
+      return new Float(line, column, start, end, raw, parseNumber(node.value));
     } else {
-      return new Int(line, column, start, end, raw, virtual, parseNumber(node.value));
+      return new Int(line, column, start, end, raw, parseNumber(node.value));
     }
   }
 
   if (startToken.type === SourceType.REGEXP) {
     let regExp = parseRegExp(node.value);
     return new Regex(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       regExp.pattern, RegexFlags.parse(regExp.flags)
     );
   }
 
   if (isStringAtPosition(start, end, context)) {
     return new String(
-      line, column, start, end, raw, virtual,
-      [new Quasi(line, column, start, end, raw, virtual, parseString(node.value))],
+      line, column, start, end, raw,
+      [new Quasi(line, column, start, end, raw, parseString(node.value))],
       []
     );
   }
@@ -77,8 +77,8 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     let flags = match[2];
 
     return new Heregex(
-      line, column, start, end, raw, virtual,
-      [new Quasi(line, column, start, end, raw, virtual, node.value)],
+      line, column, start, end, raw,
+      [new Quasi(line, column, start, end, raw, node.value)],
       [],
       RegexFlags.parse(flags)
     );
@@ -100,17 +100,17 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     // is actually a quasi that CoffeeScript is calling a string, then
     // just return a Quasi node, and higher-up code should insert it
     // into a string interpolation.
-    return new Quasi(line, column, start, end, raw, virtual, parseString(node.value));
+    return new Quasi(line, column, start, end, raw, parseString(node.value));
   }
 
   if (startToken.type === SourceType.BREAK) {
-    return new Break(line, column, start, end, raw, virtual);
+    return new Break(line, column, start, end, raw);
   }
 
   if (startToken.type === SourceType.CONTINUE) {
-    return new Continue(line, column, start, end, raw, virtual);
+    return new Continue(line, column, start, end, raw);
   }
 
   // Fall back to identifiers.
-  return new Identifier(line, column, start, end, raw, virtual, node.value);
+  return new Identifier(line, column, start, end, raw, node.value);
 }

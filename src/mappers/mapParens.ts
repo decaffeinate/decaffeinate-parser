@@ -23,7 +23,6 @@ export default function mapParens(context: ParseContext, node: Parens): Node {
         left.start,
         right.end,
         context.source.slice(left.start, right.end),
-        false,
         left,
         right
       )

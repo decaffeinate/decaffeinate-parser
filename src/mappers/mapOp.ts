@@ -20,7 +20,7 @@ export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
 }
 
 function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let coffeeOperands = unwindChainedComparison(node);
   let operands = coffeeOperands.map(operand => mapAny(context, operand));
   let operators: Array<OperatorInfo> = [];
@@ -38,7 +38,6 @@ function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
     start,
     end,
     raw,
-    virtual,
     operands,
     operators
   );
@@ -70,17 +69,17 @@ function mapEqualityOp(context: ParseContext, node: CoffeeOp) {
 }
 
 function mapSubtractOp(context: ParseContext, node: CoffeeOp): Op {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   if (node.second) {
     return new SubtractOp(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       mapAny(context, node.first),
       mapAny(context, node.second)
     );
   } else {
     return new UnaryNegateOp(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       mapAny(context, node.first)
     );
   }
@@ -93,21 +92,20 @@ interface IBinaryOp {
     start: number,
     end: number,
     raw: string,
-    virtual: boolean,
     left: Node,
     right: Node
   ): BinaryOp;
 }
 
 function mapBinaryOp<T extends IBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   if (!node.second) {
     throw new Error(`unexpected '${node.operator}' operator with only one operand: ${inspect(node)}`);
   }
 
   return new Op(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     mapAny(context, node.first),
     mapAny(context, node.second)
   );
@@ -118,27 +116,27 @@ function mapMultiplyOp(context: ParseContext, node: CoffeeOp): MultiplyOp {
 }
 
 function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   if (node.first instanceof CoffeeReturn) {
     let expression = node.first.expression;
     return new YieldReturn(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       expression ? mapAny(context, expression) : null,
     );
   } else {
     return new Yield(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       mapAny(context, node.first)
     );
   }
 }
 
 function mapYieldFromOp(context: ParseContext, node: CoffeeOp): YieldFrom {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
 
   return new YieldFrom(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     mapAny(context, node.first)
   );
 }

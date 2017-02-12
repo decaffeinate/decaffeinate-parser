@@ -6,19 +6,19 @@ import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapWhile(context: ParseContext, node: CoffeeWhile): While | Loop {
-  let { line, column, start, end, raw, virtual } = mapBase(context, node);
+  let { line, column, start, end, raw } = mapBase(context, node);
   let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
   let startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
 
   if (startToken && startToken.type === SourceType.LOOP) {
     return new Loop(
-      line, column, start, end, raw, virtual,
+      line, column, start, end, raw,
       node.body ? mapAny(context, node.body) : null
     );
   }
 
   return new While(
-    line, column, start, end, raw, virtual,
+    line, column, start, end, raw,
     mapAny(context, node.condition),
     node.guard ? mapAny(context, node.guard) : null,
     node.body ? mapAny(context, node.body) : null,
