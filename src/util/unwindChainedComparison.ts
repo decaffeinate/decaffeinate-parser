@@ -11,11 +11,6 @@ export default function unwindChainedComparison(node: Op): Array<Base> {
       let { first, second } = link;
 
       if (!second) {
-        operands = [link, ...operands];
-        break;
-      }
-
-      if (!second) {
         throw new Error(`unexpected unary operator inside chained comparison: ${inspect(node)}`);
       }
 
