@@ -6,8 +6,10 @@ import { Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, SoakedMemberAcce
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
+import mapBase from './mapBase';
 
 export default function mapValue(context: ParseContext, node: Value): Node {
+  let { line, column, start } = mapBase(context, node);
   let result = mapAny(context, node.base);
 
   for (let property of node.properties) {
@@ -45,11 +47,11 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         let AccessOp = property.soak ? SoakedProtoMemberAccessOp : ProtoMemberAccessOp;
 
         result = new AccessOp(
-          result.line,
-          result.column,
-          result.start,
+          line,
+          column,
+          start,
           last + 1,
-          context.source.slice(result.start, last + 1),
+          context.source.slice(start, last + 1),
           result
         );
       } else {
@@ -62,11 +64,11 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         let AccessOp = property.soak ? SoakedMemberAccessOp : MemberAccessOp;
 
         result = new AccessOp(
-          result.line,
-          result.column,
-          result.start,
+          line,
+          column,
+          start,
           last + 1,
-          context.source.slice(result.start, last + 1),
+          context.source.slice(start, last + 1),
           result,
           member
         );

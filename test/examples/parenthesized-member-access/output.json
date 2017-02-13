@@ -1,0 +1,54 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    6
+  ],
+  "raw": "(a).b\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      5
+    ],
+    "statements": [
+      {
+        "type": "MemberAccessOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          5
+        ],
+        "expression": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 2,
+          "raw": "a",
+          "range": [
+            1,
+            2
+          ],
+          "data": "a"
+        },
+        "member": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "raw": "b",
+          "range": [
+            4,
+            5
+          ],
+          "data": "b"
+        },
+        "raw": "(a).b"
+      }
+    ],
+    "raw": "(a).b"
+  }
+}
