@@ -1,0 +1,102 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    17
+  ],
+  "raw": "class A\n  b: (c)\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      16
+    ],
+    "statements": [
+      {
+        "type": "Class",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          16
+        ],
+        "name": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "raw": "A",
+          "range": [
+            6,
+            7
+          ],
+          "data": "A"
+        },
+        "nameAssignee": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 7,
+          "raw": "A",
+          "range": [
+            6,
+            7
+          ],
+          "data": "A"
+        },
+        "body": {
+          "type": "Block",
+          "line": 2,
+          "column": 3,
+          "range": [
+            10,
+            16
+          ],
+          "statements": [
+            {
+              "type": "ClassProtoAssignOp",
+              "line": 2,
+              "column": 3,
+              "range": [
+                10,
+                16
+              ],
+              "assignee": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 3,
+                "raw": "b",
+                "range": [
+                  10,
+                  11
+                ],
+                "data": "b"
+              },
+              "expression": {
+                "type": "Identifier",
+                "line": 2,
+                "column": 7,
+                "raw": "c",
+                "range": [
+                  14,
+                  15
+                ],
+                "data": "c"
+              },
+              "raw": "b: (c)"
+            }
+          ],
+          "inline": false,
+          "raw": "b: (c)"
+        },
+        "boundMembers": [],
+        "parent": null,
+        "ctor": null,
+        "raw": "class A\n  b: (c)"
+      }
+    ],
+    "raw": "class A\n  b: (c)"
+  }
+}
