@@ -24,6 +24,7 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
           if (property instanceof Comment) {
             continue;
           } else if (property instanceof Assign) {
+            let { line, column, start, end, raw } = mapBase(context, property);
             let key = mapAny(context, property.variable);
             let value = mapAny(context, property.value);
             let Node = ClassProtoAssignOp;
@@ -35,8 +36,7 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
             }
 
             let assignment = new Node(
-              key.line, key.column, key.start, value.end,
-              context.source.slice(key.start, value.end),
+              line, column, start, end, raw,
               key,
               value
             );
