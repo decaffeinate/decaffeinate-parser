@@ -2,8 +2,8 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import { Call, Splat } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  BareSuperFunctionApplication, FunctionApplication, NewOp, Node, SoakedFunctionApplication,
-  Super
+  BareSuperFunctionApplication, BaseFunction, DefaultParam, DoOp, FunctionApplication, Identifier, NewOp,
+  Node, SoakedFunctionApplication, Super
 } from '../nodes';
 import isHeregexTemplateNode from '../util/isHeregexTemplateNode';
 import locationsEqual from '../util/locationsEqual';
@@ -15,7 +15,7 @@ import mapBase from './mapBase';
 export default function mapCall(context: ParseContext, node: Call): Node {
   let { line, column, start, end, raw } = mapBase(context, node);
 
-  if (node.do || isHeregexTemplateNode(node, context)) {
+  if (isHeregexTemplateNode(node, context)) {
     throw new UnsupportedNodeError(node);
   }
 
@@ -89,6 +89,10 @@ export default function mapCall(context: ParseContext, node: Call): Node {
     );
   }
 
+  if (node.do) {
+    return mapDoOp(context, node);
+  }
+
   return new FunctionApplication(
     line,
     column,
@@ -119,4 +123,40 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     callee,
     args
   );
+}
+
+function mapDoOp(context: ParseContext, node: Call): DoOp {
+  if (!node.variable) {
+    // This should only happen when `isSuper` is true.
+    throw new UnsupportedNodeError(node);
+  }
+
+  let { line, column, start, end, raw } = mapBase(context, node);
+
+  let expression = mapAny(context, node.variable);
+
+  // The argument to `do` may not always be a function literal.
+  if (expression instanceof BaseFunction) {
+    let args = node.args.map((arg) => mapAny(context, arg));
+    let newParameters = expression.parameters.map((param, i) => {
+      const arg = args[i];
+
+      // If there's a parameter with no default, CoffeeScript will insert a fake
+      // arg with the same value and location.
+      if (arg instanceof Identifier && param instanceof Identifier &&
+          arg.data === param.data &&
+          arg.start === param.start && arg.end === param.end) {
+        return param;
+      }
+
+      return new DefaultParam(
+        param.line, param.column, param.start, arg.end,
+        context.source.slice(param.start, arg.end),
+        param, arg);
+    });
+
+    expression = expression.withParameters(newParameters);
+  }
+
+  return new DoOp(line, column, start, end, raw, expression);
 }
