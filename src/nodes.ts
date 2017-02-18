@@ -877,6 +877,8 @@ export abstract class BaseFunction extends Node {
   ) {
     super(type, line, column, start, end, raw);
   }
+
+  abstract withParameters(parameters: Array<Node>): BaseFunction;
 }
 
 export class Function extends BaseFunction {
@@ -890,6 +892,12 @@ export class Function extends BaseFunction {
     body: Block
   ) {
     super('Function', line, column, start, end, raw, parameters, body);
+  }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new Function(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
   }
 }
 
@@ -905,6 +913,12 @@ export class BoundFunction extends BaseFunction {
   ) {
     super('BoundFunction', line, column, start, end, raw, parameters, body);
   }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new BoundFunction(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
+  }
 }
 
 export class GeneratorFunction extends BaseFunction {
@@ -919,6 +933,12 @@ export class GeneratorFunction extends BaseFunction {
   ) {
     super('GeneratorFunction', line, column, start, end, raw, parameters, body);
   }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new GeneratorFunction(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
+  }
 }
 
 export class BoundGeneratorFunction extends BaseFunction {
@@ -932,6 +952,12 @@ export class BoundGeneratorFunction extends BaseFunction {
     body: Block
   ) {
     super('BoundGeneratorFunction', line, column, start, end, raw, parameters, body);
+  }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new BoundGeneratorFunction(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
   }
 }
 
@@ -1075,6 +1101,19 @@ export class NewOp extends Node {
     super('NewOp', line, column, start, end, raw);
     this.ctor = ctor;
     this.arguments = args;
+  }
+}
+
+export class DoOp extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node
+  ) {
+    super('DoOp', line, column, start, end, raw);
   }
 }
 
