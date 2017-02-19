@@ -1,7 +1,7 @@
 import { Assign, Class as CoffeeClass, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  AssignOp, Block, BoundFunction, BoundGeneratorFunction, Class, ClassProtoAssignOp, Constructor, Function,
+  AssignOp, Block, BoundFunction, BoundGeneratorFunction, Class, ClassProtoAssignOp, Constructor,
   Identifier, MemberAccessOp, Node, This
 } from '../nodes';
 import ParseContext from '../util/ParseContext';
@@ -29,7 +29,7 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
             let value = mapAny(context, property.value);
             let Node = ClassProtoAssignOp;
 
-            if (key instanceof Identifier && key.data === 'constructor' && value instanceof Function) {
+            if (key instanceof Identifier && key.data === 'constructor') {
               Node = Constructor;
             } else if (key instanceof MemberAccessOp && key.expression instanceof This) {
               Node = AssignOp;
