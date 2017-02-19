@@ -167,7 +167,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
 
       case 'Call':
       {
-        if (node.variable) {
+        if (node.variable && !node.do) {
           // `super` won't have a callee (i.e. `node.variable`)
           let calleeLoc = node.variable.locationData;
           let calleeEnd = linesAndColumns.indexForLocation({ line: calleeLoc.last_line, column: calleeLoc.last_column }) + 1;
@@ -376,23 +376,15 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
             if (node.do) {
               result.type = 'DoOp';
               result.expression = result.function;
+
               // The argument to `do` may not always be a function literal.
               if (result.expression.parameters) {
-                result.expression.parameters = result.expression.parameters.map((param, i) => {
-                  const arg = result.arguments[i];
-
-                  // If there's a parameter with no default, CoffeeScript will insert a fake
-                  // arg with the same value and location.
-                  if (arg.type === 'Identifier' && arg.data === param.data &&
-                    arg.range[0] === param.range[0] && arg.range[1] === param.range[1]) {
-                    return param;
-                  }
-
-                  return makeNode(context, 'DefaultParam', locationContainingNodes(node.args[i], node.variable.params[i]), {
-                    param,
-                    default: arg
-                  });
-                });
+                augmentDoFunctionWithArgs(
+                  node, result, result.expression, node.variable);
+              } else if (result.expression.type === 'AssignOp' &&
+                  result.expression.expression.parameters) {
+                augmentDoFunctionWithArgs(
+                  node, result, result.expression.expression, node.variable.value);
               }
               delete result.function;
               delete result.arguments;
@@ -1199,5 +1191,27 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
         });
       }
     }
+  }
+
+  function augmentDoFunctionWithArgs(csDoNode, doResult, func, csFuncNode) {
+    func.parameters = func.parameters.map((param, i) => {
+      const arg = doResult.arguments[i];
+
+      // If there's a parameter with no default, CoffeeScript will insert a fake
+      // arg with the same value and location.
+      if (arg.type === 'Identifier' && arg.data === param.data &&
+        arg.range[0] === param.range[0] && arg.range[1] === param.range[1]) {
+        return param;
+      }
+
+      return makeNode(
+        context,
+        'DefaultParam',
+        locationContainingNodes(csDoNode.args[i], csFuncNode.params[i]),
+        {
+          param,
+          default: arg
+        });
+    });
   }
 }

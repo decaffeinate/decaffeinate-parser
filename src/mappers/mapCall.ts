@@ -2,6 +2,7 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import { Call, Splat } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
+  AssignOp,
   BareSuperFunctionApplication, BaseFunction, DefaultParam, DoOp, FunctionApplication, Identifier, NewOp,
   Node, SoakedFunctionApplication, Super
 } from '../nodes';
@@ -135,28 +136,38 @@ function mapDoOp(context: ParseContext, node: Call): DoOp {
 
   let expression = mapAny(context, node.variable);
 
-  // The argument to `do` may not always be a function literal.
+
+  let args = node.args.map((arg) => mapAny(context, arg));
+
   if (expression instanceof BaseFunction) {
-    let args = node.args.map((arg) => mapAny(context, arg));
-    let newParameters = expression.parameters.map((param, i) => {
-      const arg = args[i];
-
-      // If there's a parameter with no default, CoffeeScript will insert a fake
-      // arg with the same value and location.
-      if (arg instanceof Identifier && param instanceof Identifier &&
-          arg.data === param.data &&
-          arg.start === param.start && arg.end === param.end) {
-        return param;
-      }
-
-      return new DefaultParam(
-        param.line, param.column, param.start, arg.end,
-        context.source.slice(param.start, arg.end),
-        param, arg);
-    });
-
-    expression = expression.withParameters(newParameters);
+    expression = augmentDoFunctionWithArgs(context, expression, args);
+  } else if (expression instanceof AssignOp &&
+      expression.expression instanceof BaseFunction) {
+    let newRhs = augmentDoFunctionWithArgs(context, expression.expression, args);
+    expression = expression.withExpression(newRhs);
   }
 
   return new DoOp(line, column, start, end, raw, expression);
+}
+
+function augmentDoFunctionWithArgs(
+    context: ParseContext, func: BaseFunction, args: Array<Node>): BaseFunction {
+  let newParameters = func.parameters.map((param, i) => {
+    const arg = args[i];
+
+    // If there's a parameter with no default, CoffeeScript will insert a fake
+    // arg with the same value and location.
+    if (arg instanceof Identifier && param instanceof Identifier &&
+        arg.data === param.data &&
+        arg.start === param.start && arg.end === param.end) {
+      return param;
+    }
+
+    return new DefaultParam(
+      param.line, param.column, param.start, arg.end,
+      context.source.slice(param.start, arg.end),
+      param, arg);
+  });
+
+  return func.withParameters(newParameters);
 }
