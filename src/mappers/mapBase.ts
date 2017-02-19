@@ -30,8 +30,7 @@ export default function mapBase(context: ParseContext, node: Base): Node {
     return (
       token.end <= end &&
       token.type !== SourceType.NEWLINE &&
-      token.type !== SourceType.COMMENT &&
-      token.type !== SourceType.HERECOMMENT
+      token.type !== SourceType.COMMENT
     );
   }, context.sourceTokens.indexOfTokenNearSourceIndex(end));
 
