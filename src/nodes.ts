@@ -991,7 +991,7 @@ export class Constructor extends BaseAssignOp {
     end: number,
     raw: string,
     assignee: Node,
-    expression: BaseFunction
+    expression: Node
   ) {
     super('Constructor', line, column, start, end, raw, assignee, expression);
   }
