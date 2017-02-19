@@ -13,7 +13,7 @@
     "column": 1,
     "range": [
       0,
-      2
+      18
     ],
     "statements": [
       {
@@ -22,7 +22,7 @@
         "column": 1,
         "range": [
           0,
-          2
+          18
         ],
         "body": {
           "type": "Block",
@@ -30,16 +30,16 @@
           "column": 3,
           "range": [
             5,
-            2
+            18
           ],
           "statements": [],
-          "raw": "",
+          "raw": "###\n  a\n  ###",
           "inline": false
         },
         "parameters": [],
-        "raw": "->"
+        "raw": "->\n  ###\n  a\n  ###"
       }
     ],
-    "raw": "->"
+    "raw": "->\n  ###\n  a\n  ###"
   }
 }

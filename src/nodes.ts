@@ -1171,8 +1171,7 @@ export function makeRealNode(context: ParseContext, type: string, loc: LocationD
     return (
       token.end <= result.range[1] &&
       token.type !== SourceType.NEWLINE &&
-      token.type !== SourceType.COMMENT &&
-      token.type !== SourceType.HERECOMMENT
+      token.type !== SourceType.COMMENT
     );
   }, context.sourceTokens.indexOfTokenNearSourceIndex(result.range[1]));
 

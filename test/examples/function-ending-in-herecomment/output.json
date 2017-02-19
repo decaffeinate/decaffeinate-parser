@@ -1,0 +1,80 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    21
+  ],
+  "raw": "a ->\n  b\n  ### c ###\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      20
+    ],
+    "statements": [
+      {
+        "type": "FunctionApplication",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          20
+        ],
+        "function": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 1,
+          "raw": "a",
+          "range": [
+            0,
+            1
+          ],
+          "data": "a"
+        },
+        "arguments": [
+          {
+            "type": "Function",
+            "line": 1,
+            "column": 3,
+            "range": [
+              2,
+              20
+            ],
+            "body": {
+              "type": "Block",
+              "line": 2,
+              "column": 3,
+              "range": [
+                7,
+                20
+              ],
+              "statements": [
+                {
+                  "type": "Identifier",
+                  "line": 2,
+                  "column": 3,
+                  "raw": "b",
+                  "range": [
+                    7,
+                    8
+                  ],
+                  "data": "b"
+                }
+              ],
+              "raw": "b\n  ### c ###",
+              "inline": false
+            },
+            "parameters": [],
+            "raw": "->\n  b\n  ### c ###"
+          }
+        ],
+        "raw": "a ->\n  b\n  ### c ###"
+      }
+    ],
+    "raw": "a ->\n  b\n  ### c ###"
+  }
+}
