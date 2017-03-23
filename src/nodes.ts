@@ -726,6 +726,33 @@ export class SubtractOp extends BinaryOp {
   }
 }
 
+export class PlusOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('PlusOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class UnaryPlusOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node
+  ) {
+    super('UnaryPlusOp', line, column, start, end, raw, expression);
+  }
+}
+
 export class MultiplyOp extends BinaryOp {
   constructor(
     line: number,
@@ -760,9 +787,106 @@ export class UnaryNegateOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    left: Node
+    expression: Node,
   ) {
-    super('UnaryNegateOp', line, column, start, end, raw, left);
+    super('UnaryNegateOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class BitNotOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('BitNotOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class BitAndOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('BitAndOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class BitOrOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('BitOrOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class BitXorOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('BitXorOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class LeftShiftOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('LeftShiftOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class SignedRightShiftOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('SignedRightShiftOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class UnsignedRightShiftOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('UnsignedRightShiftOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -844,29 +968,57 @@ export class SeqOp extends BinaryOp {
   }
 }
 
-export class Yield extends Node {
+export class TypeofOp extends UnaryOp {
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    expression: Node,
   ) {
-    super('Yield', line, column, start, end, raw);
+    super('TypeofOp', line, column, start, end, raw, expression);
   }
 }
 
-export class YieldFrom extends Node {
+export class InstanceofOp extends BinaryOp {
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    left: Node,
+    right: Node,
+    readonly isNot: boolean,
   ) {
-    super('YieldFrom', line, column, start, end, raw);
+    super('InstanceofOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class Yield extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('Yield', line, column, start, end, raw, expression);
+  }
+}
+
+export class YieldFrom extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('YieldFrom', line, column, start, end, raw, expression);
   }
 }
 
