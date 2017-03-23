@@ -41,6 +41,10 @@ export default function mapValue(context: ParseContext, node: Value): Node {
         column: property.locationData.last_column
       });
 
+      if (last === null) {
+        throw new Error(`cannot find offset of last character of property: ${inspect(property)}`);
+      }
+
       let isPrototypeAccess = startToken.type === SourceType.PROTO;
 
       if (isPrototypeAccess) {
