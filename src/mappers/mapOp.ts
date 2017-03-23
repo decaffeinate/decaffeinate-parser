@@ -1,7 +1,8 @@
 import { Op as CoffeeOp, Return as CoffeeReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  BinaryOp, ChainedComparisonOp, EQOp, MultiplyOp, Node, Op, OperatorInfo, SubtractOp, UnaryNegateOp, Yield, YieldFrom, YieldReturn
+  BinaryOp, ChainedComparisonOp, EQOp, MultiplyOp, Node, Op, OperatorInfo, SubtractOp, UnaryNegateOp, UnaryOp, Yield,
+  YieldFrom, YieldReturn
 } from '../nodes';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
 import isChainedComparison from '../util/isChainedComparison';
@@ -46,39 +47,35 @@ function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
 function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): Node {
   switch (node.operator) {
     case '===':
-      return mapEqualityOp(context, node);
+      return mapBinaryOp(context, node, EQOp);
 
     case '-':
-      return mapSubtractOp(context, node);
+      return mapBinaryOrUnaryOp(context, node, SubtractOp, UnaryNegateOp);
 
     case '*':
-      return mapMultiplyOp(context, node);
+      return mapBinaryOp(context, node, MultiplyOp);
 
     case 'yield':
       return mapYieldOp(context, node);
 
     case 'yield*':
-      return mapYieldFromOp(context, node);
+      return mapUnaryOp(context, node, YieldFrom);
   }
 
   throw new UnsupportedNodeError(node);
 }
 
-function mapEqualityOp(context: ParseContext, node: CoffeeOp) {
-  return mapBinaryOp(context, node, EQOp);
-}
-
-function mapSubtractOp(context: ParseContext, node: CoffeeOp): Op {
+function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
   let { line, column, start, end, raw } = mapBase(context, node);
 
-  if (node.second) {
-    return new SubtractOp(
+  if (node.first instanceof CoffeeReturn) {
+    let expression = node.first.expression;
+    return new YieldReturn(
       line, column, start, end, raw,
-      mapAny(context, node.first),
-      mapAny(context, node.second)
+      expression ? mapAny(context, expression) : null,
     );
   } else {
-    return new UnaryNegateOp(
+    return new Yield(
       line, column, start, end, raw,
       mapAny(context, node.first)
     );
@@ -111,32 +108,34 @@ function mapBinaryOp<T extends IBinaryOp>(context: ParseContext, node: CoffeeOp,
   );
 }
 
-function mapMultiplyOp(context: ParseContext, node: CoffeeOp): MultiplyOp {
-  return mapBinaryOp(context, node, MultiplyOp);
+interface IUnaryOp {
+  new(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ): UnaryOp;
 }
 
-function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
+function mapUnaryOp<T extends IUnaryOp>(context: ParseContext, node: CoffeeOp, Op: T): UnaryOp {
   let { line, column, start, end, raw } = mapBase(context, node);
 
-  if (node.first instanceof CoffeeReturn) {
-    let expression = node.first.expression;
-    return new YieldReturn(
-      line, column, start, end, raw,
-      expression ? mapAny(context, expression) : null,
-    );
-  } else {
-    return new Yield(
-      line, column, start, end, raw,
-      mapAny(context, node.first)
-    );
+  if (node.second) {
+    throw new Error(`unexpected '${node.operator}' operator with two operands: ${inspect(node)}`);
   }
-}
 
-function mapYieldFromOp(context: ParseContext, node: CoffeeOp): YieldFrom {
-  let { line, column, start, end, raw } = mapBase(context, node);
-
-  return new YieldFrom(
+  return new Op(
     line, column, start, end, raw,
     mapAny(context, node.first)
   );
+}
+
+function mapBinaryOrUnaryOp<B extends IBinaryOp, U extends IUnaryOp>(context: ParseContext, node: CoffeeOp, BinaryOp: B, UnaryOp: U): Op {
+  if (node.second) {
+    return mapBinaryOp(context, node, BinaryOp);
+  } else {
+    return mapUnaryOp(context, node, UnaryOp);
+  }
 }
