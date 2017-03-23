@@ -52,8 +52,8 @@
     "semantic-release": "^6.3.2",
     "string-repeat": "^1.1.1",
     "ts-node": "^3.0.0",
-    "tslint": "^4.2.0",
-    "typescript": "^2.1.4"
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
