@@ -712,6 +712,117 @@ export class EQOp extends BinaryOp {
   }
 }
 
+export class NEQOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('NEQOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class LTOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('LTOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class LTEOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('LTEOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class GTOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('GTOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class GTEOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('GTEOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class LogicalNotOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('LogicalNotOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class LogicalAndOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('LogicalAndOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class LogicalOrOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('LogicalOrOp', line, column, start, end, raw, left, right);
+  }
+}
+
 export class SubtractOp extends BinaryOp {
   constructor(
     line: number,
@@ -764,6 +875,20 @@ export class MultiplyOp extends BinaryOp {
     right: Node
   ) {
     super('MultiplyOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class DivideOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('DivideOp', line, column, start, end, raw, left, right);
   }
 }
 
@@ -890,6 +1015,100 @@ export class UnsignedRightShiftOp extends BinaryOp {
   }
 }
 
+export class PreDecrementOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('PreDecrementOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class PreIncrementOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('PreIncrementOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class PostDecrementOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('PostDecrementOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class PostIncrementOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('PostIncrementOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class ExpOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('ExpOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class RemOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('RemOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class ModuloOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+  ) {
+    super('ModuloOp', line, column, start, end, raw, left, right);
+  }
+}
+
 export class InOp extends BinaryOp {
   constructor(
     line: number,
@@ -993,6 +1212,34 @@ export class InstanceofOp extends BinaryOp {
     readonly isNot: boolean,
   ) {
     super('InstanceofOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class OfOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+    readonly isNot: boolean,
+  ) {
+    super('OfOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class DeleteOp extends UnaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+  ) {
+    super('DeleteOp', line, column, start, end, raw, expression);
   }
 }
 

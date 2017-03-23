@@ -2,9 +2,11 @@ import { SourceType } from 'coffee-lex';
 import { Op as CoffeeOp, Return as CoffeeReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, EQOp, InstanceofOp, LeftShiftOp, MultiplyOp,
-  Node, Op, OperatorInfo, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnsignedRightShiftOp, Yield,
-  YieldFrom, YieldReturn
+  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExpOp, EQOp, GTEOp, GTOp,
+  InstanceofOp, LeftShiftOp, LogicalAndOp, LogicalNotOp, LogicalOrOp, LTEOp, LTOp, ModuloOp, MultiplyOp, NewOp, Node,
+  NEQOp, OfOp, Op, OperatorInfo, PostDecrementOp, PostIncrementOp, PreDecrementOp, PreIncrementOp, RemOp,
+  SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp, UnsignedRightShiftOp, Yield, YieldFrom,
+  YieldReturn
 } from '../nodes';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
 import isChainedComparison from '../util/isChainedComparison';
@@ -51,17 +53,71 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
     case '===':
       return mapBinaryOp(context, node, EQOp);
 
+    case '!==':
+      return mapBinaryOp(context, node, NEQOp);
+
+    case '!':
+      return mapUnaryOp(context, node, LogicalNotOp);
+
+    case '+':
+      return mapPlusOp(context, node);
+
     case '-':
       return mapBinaryOrUnaryOp(context, node, SubtractOp, UnaryNegateOp);
 
+    case '&&':
+      return mapBinaryOp(context, node, LogicalAndOp);
+
+    case '||':
+      return mapBinaryOp(context, node, LogicalOrOp);
+
     case '*':
       return mapBinaryOp(context, node, MultiplyOp);
+
+    case '/':
+      return mapBinaryOp(context, node, DivideOp);
+
+    case '<':
+      return mapBinaryOp(context, node, LTOp);
+
+    case '<=':
+      return mapBinaryOp(context, node, LTEOp);
+
+    case '>':
+      return mapBinaryOp(context, node, GTOp);
+
+    case '>=':
+      return mapBinaryOp(context, node, GTEOp);
+
+    case '++':
+      return mapUnaryOp(context, node, node.flip ? PostIncrementOp : PreIncrementOp);
+
+    case '--':
+      return mapUnaryOp(context, node, node.flip ? PostDecrementOp : PreDecrementOp);
 
     case 'typeof':
       return mapUnaryOp(context, node, TypeofOp);
 
     case 'instanceof':
       return mapNegateableBinaryOp(context, node, InstanceofOp);
+
+    case 'delete':
+      return mapUnaryOp(context, node, DeleteOp);
+
+    case 'in':
+      return mapNegateableBinaryOp(context, node, OfOp);
+
+    case 'new':
+      return mapNewOp(context, node);
+
+    case '**':
+      return mapBinaryOp(context, node, ExpOp);
+
+    case '%':
+      return mapBinaryOp(context, node, RemOp);
+
+    case '%%':
+      return mapBinaryOp(context, node, ModuloOp);
 
     case '&':
       return mapBinaryOp(context, node, BitAndOp);
@@ -92,6 +148,29 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
   }
 
   throw new UnsupportedNodeError(node);
+}
+
+function mapPlusOp(context: ParseContext, node: CoffeeOp): Op {
+  if (node.second) {
+    // TODO: string interpolations and binary addition
+    throw new UnsupportedNodeError(node);
+  }
+
+  return mapUnaryOp(context, node, UnaryPlusOp);
+}
+
+function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
+  if (node.second) {
+    throw new Error(`unexpected 'new' operator with multiple operands: ${inspect(node)}`);
+  }
+
+  let { line, column, start, end, raw } = mapBase(context, node);
+
+  return new NewOp(
+    line, column, start, end, raw,
+    mapAny(context, node.first),
+    []
+  );
 }
 
 function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
