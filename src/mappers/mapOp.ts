@@ -1,7 +1,9 @@
+import { SourceType } from 'coffee-lex';
 import { Op as CoffeeOp, Return as CoffeeReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  BinaryOp, ChainedComparisonOp, EQOp, MultiplyOp, Node, Op, OperatorInfo, SubtractOp, UnaryNegateOp, UnaryOp, Yield,
+  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, EQOp, InstanceofOp, LeftShiftOp, MultiplyOp,
+  Node, Op, OperatorInfo, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnsignedRightShiftOp, Yield,
   YieldFrom, YieldReturn
 } from '../nodes';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
@@ -54,6 +56,33 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
 
     case '*':
       return mapBinaryOp(context, node, MultiplyOp);
+
+    case 'typeof':
+      return mapUnaryOp(context, node, TypeofOp);
+
+    case 'instanceof':
+      return mapNegateableBinaryOp(context, node, InstanceofOp);
+
+    case '&':
+      return mapBinaryOp(context, node, BitAndOp);
+
+    case '|':
+      return mapBinaryOp(context, node, BitOrOp);
+
+    case '^':
+      return mapBinaryOp(context, node, BitXorOp);
+
+    case '<<':
+      return mapBinaryOp(context, node, LeftShiftOp);
+
+    case '>>':
+      return mapBinaryOp(context, node, SignedRightShiftOp);
+
+    case '>>>':
+      return mapBinaryOp(context, node, UnsignedRightShiftOp);
+
+    case '~':
+      return mapUnaryOp(context, node, BitNotOp);
 
     case 'yield':
       return mapYieldOp(context, node);
@@ -138,4 +167,57 @@ function mapBinaryOrUnaryOp<B extends IBinaryOp, U extends IUnaryOp>(context: Pa
   } else {
     return mapUnaryOp(context, node, UnaryOp);
   }
+}
+
+interface INegateableBinaryOp {
+  new(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node,
+    isNot: boolean,
+  ): BinaryOp;
+}
+
+/**
+ * This class exists only to serve as a temporary binary operator, do not use.
+ */
+class TemporaryBinaryOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('TEMPORARY', line, column, start, end, raw, left, right);
+  }
+}
+
+function mapNegateableBinaryOp<T extends INegateableBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
+  let { line, column, start, end, raw, left, right } = mapBinaryOp(context, node, TemporaryBinaryOp);
+
+  let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
+  let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
+  let isNot = false;
+
+  if (lastTokenIndexOfLeft) {
+    for (let i = lastTokenIndexOfLeft.next(); i && i !== firstTokenIndexOfRight; i = i.next()) {
+      let token = context.sourceTokens.tokenAtIndex(i);
+      if (token && (token.type === SourceType.OPERATOR || token.type === SourceType.RELATION)) {
+        isNot = context.source.slice(token.start, token.start + 'not'.length) === 'not';
+        break;
+      }
+    }
+  }
+
+  return new Op(
+    line, column, start, end, raw,
+    left, right, isNot
+  );
 }
