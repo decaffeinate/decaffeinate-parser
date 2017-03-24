@@ -104,8 +104,8 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
       last + 1,
       context.source.slice(base.start, last + 1),
       reduced,
-      mapAny(context, property.range.from),
-      mapAny(context, property.range.to),
+      property.range.from ? mapAny(context, property.range.from) : null,
+      property.range.to ? mapAny(context, property.range.to) : null,
       !property.range.exclusive
     );
   } else {

@@ -1277,8 +1277,8 @@ export class Slice extends Node {
     end: number,
     raw: string,
     readonly expression: Node,
-    readonly left: Node,
-    readonly right: Node,
+    readonly left: Node | null,
+    readonly right: Node | null,
     readonly isInclusive: boolean,
   ) {
     super('Slice', line, column, start, end, raw);
