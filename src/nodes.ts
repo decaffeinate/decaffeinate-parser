@@ -1269,6 +1269,22 @@ export class YieldFrom extends UnaryOp {
   }
 }
 
+export class Slice extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node,
+    readonly left: Node,
+    readonly right: Node,
+    readonly isInclusive: boolean,
+  ) {
+    super('Slice', line, column, start, end, raw);
+  }
+}
+
 export abstract class BaseFunction extends Node {
   constructor(
     type: string,
