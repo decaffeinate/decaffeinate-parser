@@ -1,0 +1,56 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "new A? b\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      8
+    ],
+    "statements": [
+      {
+        "type": "SoakedNewOp",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          8
+        ],
+        "ctor": {
+          "type": "Identifier",
+          "line": 1,
+          "column": 5,
+          "raw": "A",
+          "range": [
+            4,
+            5
+          ],
+          "data": "A"
+        },
+        "arguments": [
+          {
+            "type": "Identifier",
+            "line": 1,
+            "column": 8,
+            "raw": "b",
+            "range": [
+              7,
+              8
+            ],
+            "data": "b"
+          }
+        ],
+        "raw": "new A? b"
+      }
+    ],
+    "raw": "new A? b"
+  }
+}
