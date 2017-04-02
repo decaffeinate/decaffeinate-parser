@@ -6,7 +6,7 @@ import {
 import { inspect } from 'util';
 import {
   Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, Slice, SoakedMemberAccessOp,
-  SoakedProtoMemberAccessOp
+  SoakedProtoMemberAccessOp, SoakedSlice
 } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
@@ -97,7 +97,8 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
       throw new Error(`cannot find offset of last character of slice: ${inspect(property)}`);
     }
 
-    return new Slice(
+    let SliceClass = property.soak ? SoakedSlice : Slice;
+    return new SliceClass(
       base.line,
       base.column,
       base.start,

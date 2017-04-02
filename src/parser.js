@@ -348,7 +348,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           }
 
           if (node.isNew) {
-            return makeNode(context, 'NewOp', node.locationData, {
+            return makeNode(context, node.soak ? 'SoakedNewOp' : 'NewOp', node.locationData, {
               ctor: convertChild(node.variable),
               arguments: convertChild(node.args)
             });
@@ -999,7 +999,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           });
 
         case 'Slice':
-          return makeNode(context, 'Slice', mergeLocations(loc, prop.locationData), {
+          return makeNode(context, prop.soak ? 'SoakedSlice' : 'Slice', mergeLocations(loc, prop.locationData), {
             expression,
             left: convertChild(prop.range.from),
             right: convertChild(prop.range.to),

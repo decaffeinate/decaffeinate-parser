@@ -1285,6 +1285,22 @@ export class Slice extends Node {
   }
 }
 
+export class SoakedSlice extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node,
+    readonly left: Node | null,
+    readonly right: Node | null,
+    readonly isInclusive: boolean,
+  ) {
+    super('SoakedSlice', line, column, start, end, raw);
+  }
+}
+
 export abstract class BaseFunction extends Node {
   constructor(
     type: string,
@@ -1520,6 +1536,25 @@ export class NewOp extends Node {
     args: Array<Node>
   ) {
     super('NewOp', line, column, start, end, raw);
+    this.ctor = ctor;
+    this.arguments = args;
+  }
+}
+
+export class SoakedNewOp extends Node {
+  readonly ctor: Node;
+  readonly arguments: Array<Node>;
+
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    ctor: Node,
+    args: Array<Node>
+  ) {
+    super('SoakedNewOp', line, column, start, end, raw);
     this.ctor = ctor;
     this.arguments = args;
   }

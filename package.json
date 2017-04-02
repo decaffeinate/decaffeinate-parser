@@ -26,7 +26,7 @@
   "dependencies": {
     "babylon": "^6.14.1",
     "coffee-lex": "^7.0.0",
-    "decaffeinate-coffeescript": "1.10.0-patch21",
+    "decaffeinate-coffeescript": "1.10.0-patch22",
     "lines-and-columns": "^1.1.6"
   },
   "devDependencies": {

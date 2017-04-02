@@ -4,7 +4,7 @@ import { inspect } from 'util';
 import {
   AssignOp,
   BareSuperFunctionApplication, BaseFunction, DefaultParam, DoOp, FunctionApplication, Identifier, NewOp,
-  Node, SoakedFunctionApplication, Super
+  Node, SoakedFunctionApplication, SoakedNewOp, Super
 } from '../nodes';
 import isHeregexTemplateNode from '../util/isHeregexTemplateNode';
 import locationsEqual from '../util/locationsEqual';
@@ -115,15 +115,28 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
   let callee = mapAny(context, node.variable);
   let args = node.args.map(arg => mapAny(context, arg));
 
-  return new NewOp(
-    line,
-    column,
-    start,
-    end,
-    raw,
-    callee,
-    args
-  );
+  if (node.soak) {
+    return new SoakedNewOp(
+      line,
+      column,
+      start,
+      end,
+      raw,
+      callee,
+      args
+    );
+
+  } else {
+    return new NewOp(
+      line,
+      column,
+      start,
+      end,
+      raw,
+      callee,
+      args
+    );
+  }
 }
 
 function mapDoOp(context: ParseContext, node: Call): DoOp {
