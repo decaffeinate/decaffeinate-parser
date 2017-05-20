@@ -24,29 +24,28 @@
           0,
           13
         ],
-        "raw": "\"a#{\"b#{c}\"}\"",
         "quasis": [
           {
             "type": "Quasi",
             "line": 1,
-            "column": 1,
+            "column": 2,
+            "raw": "a",
             "range": [
-              0,
+              1,
               2
             ],
-            "data": "a",
-            "raw": "\"a"
+            "data": "a"
           },
           {
             "type": "Quasi",
-            "data": "",
-            "raw": "\"",
             "line": 1,
             "column": 13,
+            "raw": "",
             "range": [
               12,
-              13
-            ]
+              12
+            ],
+            "data": ""
           }
         ],
         "expressions": [
@@ -58,29 +57,28 @@
               4,
               11
             ],
-            "raw": "\"b#{c}\"",
             "quasis": [
               {
                 "type": "Quasi",
                 "line": 1,
-                "column": 5,
+                "column": 6,
+                "raw": "b",
                 "range": [
-                  4,
+                  5,
                   6
                 ],
-                "data": "b",
-                "raw": "\"b"
+                "data": "b"
               },
               {
                 "type": "Quasi",
-                "data": "",
-                "raw": "\"",
                 "line": 1,
                 "column": 11,
+                "raw": "",
                 "range": [
                   10,
-                  11
-                ]
+                  10
+                ],
+                "data": ""
               }
             ],
             "expressions": [
@@ -88,16 +86,18 @@
                 "type": "Identifier",
                 "line": 1,
                 "column": 9,
+                "raw": "c",
                 "range": [
                   8,
                   9
                 ],
-                "data": "c",
-                "raw": "c"
+                "data": "c"
               }
-            ]
+            ],
+            "raw": "\"b#{c}\""
           }
-        ]
+        ],
+        "raw": "\"a#{\"b#{c}\"}\""
       }
     ],
     "raw": "\"a#{\"b#{c}\"}\""

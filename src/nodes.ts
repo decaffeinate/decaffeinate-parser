@@ -204,7 +204,7 @@ export class String extends Node {
     end: number,
     raw: string,
     readonly quasis: Array<Quasi>,
-    readonly expressions: Array<Node>,
+    readonly expressions: Array<Node | null>,
   ) {
     super('String', line, column, start, end, raw);
   }
@@ -452,7 +452,7 @@ export class Heregex extends Node {
     end: number,
     raw: string,
     readonly quasis: Array<Quasi>,
-    readonly expressions: Array<Node>,
+    readonly expressions: Array<Node | null>,
     readonly flags: RegexFlags,
   ) {
     super('Heregex', line, column, start, end, raw);
@@ -1594,7 +1594,7 @@ export function makeRealNode(context: ParseContext, type: string, loc: LocationD
       result[key] = value;
       if (value && result.range) {
         (Array.isArray(value) ? value : [value]).forEach(node => {
-          if (node.range) {
+          if (node && node.range) {
             // Expand the range to contain all the children.
             if (result.range[0] > node.range[0]) {
               result.range[0] = node.range[0];
@@ -1648,4 +1648,29 @@ export default function makeNode(context: ParseContext, type: string, loc: Locat
   }
 
   return makeRealNode(context, type, loc, attrs);
+}
+
+// tslint:disable-next-line:no-any
+export function makeNodeFromSourceRange(context: ParseContext, type: string, start: number, end: number, attrs: any = {}): Node {
+  // tslint:disable-next-line:no-any
+  let result: any = { type };
+  let startLoc = context.linesAndColumns.locationForIndex(start);
+  if (!startLoc) {
+    throw new Error('Unable to determine');
+  }
+  result.line = startLoc.line + 1;
+  result.column = startLoc.column + 1;
+  result.range = [start, end];
+
+  for (let key in attrs) {
+    if (attrs.hasOwnProperty(key)) {
+      let value = attrs[key];
+      result[key] = value;
+    }
+  }
+
+  result.start = start;
+  result.end = end;
+  result.raw = context.source.slice(result.range[0], result.range[1]);
+  return result;
 }

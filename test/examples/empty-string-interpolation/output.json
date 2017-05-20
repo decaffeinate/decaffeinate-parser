@@ -6,14 +6,14 @@
     0,
     8
   ],
-  "raw": "\"a#{b}c\"",
+  "raw": "\"a#{}b\"\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      8
+      7
     ],
     "statements": [
       {
@@ -22,7 +22,7 @@
         "column": 1,
         "range": [
           0,
-          8
+          7
         ],
         "quasis": [
           {
@@ -39,31 +39,21 @@
           {
             "type": "Quasi",
             "line": 1,
-            "column": 7,
-            "raw": "c",
-            "range": [
-              6,
-              7
-            ],
-            "data": "c"
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 5,
+            "column": 6,
             "raw": "b",
             "range": [
-              4,
-              5
+              5,
+              6
             ],
             "data": "b"
           }
         ],
-        "raw": "\"a#{b}c\""
+        "expressions": [
+          null
+        ],
+        "raw": "\"a#{}b\""
       }
     ],
-    "raw": "\"a#{b}c\""
+    "raw": "\"a#{}b\""
   }
 }

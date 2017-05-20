@@ -24,29 +24,28 @@
           58,
           65
         ],
-        "raw": "\"(#{a}\"",
         "quasis": [
           {
             "type": "Quasi",
             "line": 2,
-            "column": 1,
+            "column": 2,
+            "raw": "(",
             "range": [
-              58,
+              59,
               60
             ],
-            "data": "(",
-            "raw": "\"("
+            "data": "("
           },
           {
             "type": "Quasi",
-            "data": "",
-            "raw": "\"",
             "line": 2,
             "column": 7,
+            "raw": "",
             "range": [
               64,
-              65
-            ]
+              64
+            ],
+            "data": ""
           }
         ],
         "expressions": [
@@ -54,14 +53,15 @@
             "type": "Identifier",
             "line": 2,
             "column": 5,
+            "raw": "a",
             "range": [
               62,
               63
             ],
-            "data": "a",
-            "raw": "a"
+            "data": "a"
           }
-        ]
+        ],
+        "raw": "\"(#{a}\""
       }
     ],
     "raw": "\"(#{a}\""
