@@ -28,17 +28,18 @@
           "type": "Identifier",
           "line": 1,
           "column": 1,
+          "raw": "OPERATOR",
           "range": [
             0,
             8
           ],
-          "data": "OPERATOR",
-          "raw": "OPERATOR"
+          "data": "OPERATOR"
         },
         "expression": {
           "type": "Heregex",
           "line": 1,
           "column": 12,
+          "raw": "/// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///",
           "range": [
             11,
             305
@@ -47,13 +48,13 @@
             {
               "type": "Quasi",
               "line": 1,
-              "column": 12,
+              "column": 15,
+              "raw": " ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ",
               "range": [
-                11,
-                305
+                14,
+                302
               ],
-              "data": "/^(?:[-=]>|[-+*\\/%<>&|^!?=]=|>>>=?|([-+:])\\1|([&|<>])\\2=?|\\?\\.|\\.{2,3})/",
-              "raw": "/// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
+              "data": "/^(?:[-=]>|[-+*\\/%<>&|^!?=]=|>>>=?|([-+:])\\1|([&|<>])\\2=?|\\?\\.|\\.{2,3})/"
             }
           ],
           "expressions": [],
@@ -66,8 +67,7 @@
             "i": false,
             "m": false,
             "y": false
-          },
-          "raw": "/// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
+          }
         },
         "raw": "OPERATOR = /// ^ (\n  ?: [-=]>             # function\n   | [-+*/%<>&|^!?=]=  # compound assign / compare\n   | >>>=?             # zero-fill right shift\n   | ([-+:])\\1         # doubles\n   | ([&|<>])\\2=?      # logic / shift\n   | \\?\\.              # soak access\n   | \\.{2,3}           # range or splat\n) ///"
       }

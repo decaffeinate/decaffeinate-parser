@@ -84,11 +84,11 @@
             {
               "type": "Quasi",
               "line": 1,
-              "column": 10,
-              "raw": "\"b\"",
+              "column": 11,
+              "raw": "b",
               "range": [
-                9,
-                12
+                10,
+                11
               ],
               "data": "b"
             }

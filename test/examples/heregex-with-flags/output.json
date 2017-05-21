@@ -20,6 +20,7 @@
         "type": "Heregex",
         "line": 1,
         "column": 1,
+        "raw": "///a/b/c///gimy",
         "range": [
           0,
           15
@@ -28,13 +29,13 @@
           {
             "type": "Quasi",
             "line": 1,
-            "column": 1,
+            "column": 4,
+            "raw": "a/b/c",
             "range": [
-              0,
-              15
+              3,
+              8
             ],
-            "data": "/a\\/b\\/c/gimy",
-            "raw": "///a/b/c///gimy"
+            "data": "/a\\/b\\/c/gimy"
           }
         ],
         "expressions": [],
@@ -47,8 +48,7 @@
           "i": true,
           "m": true,
           "y": true
-        },
-        "raw": "///a/b/c///gimy"
+        }
       }
     ],
     "raw": "///a/b/c///gimy"

@@ -32,26 +32,25 @@
             0,
             14
           ],
-          "raw": "///foo///.test",
           "expression": {
             "type": "Heregex",
             "line": 1,
             "column": 1,
+            "raw": "///foo///",
             "range": [
               0,
               9
             ],
-            "raw": "///foo///",
             "quasis": [
               {
                 "type": "Quasi",
                 "line": 1,
-                "column": 1,
+                "column": 4,
+                "raw": "foo",
                 "range": [
-                  0,
-                  9
+                  3,
+                  6
                 ],
-                "raw": "///foo///",
                 "data": "/foo/"
               }
             ],
@@ -71,34 +70,35 @@
             "type": "Identifier",
             "line": 1,
             "column": 11,
+            "raw": "test",
             "range": [
               10,
               14
             ],
-            "raw": "test",
             "data": "test"
-          }
+          },
+          "raw": "///foo///.test"
         },
         "arguments": [
           {
             "type": "String",
             "line": 1,
             "column": 16,
+            "raw": "'a'",
             "range": [
               15,
               18
             ],
-            "raw": "'a'",
             "quasis": [
               {
                 "type": "Quasi",
                 "line": 1,
-                "column": 16,
+                "column": 17,
+                "raw": "a",
                 "range": [
-                  15,
-                  18
+                  16,
+                  17
                 ],
-                "raw": "'a'",
                 "data": "a"
               }
             ],

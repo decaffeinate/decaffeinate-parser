@@ -4,9 +4,9 @@
   "column": 1,
   "range": [
     0,
-    5
+    6
   ],
-  "raw": "\"( a\"",
+  "raw": "\"#{}\"\n",
   "body": {
     "type": "Block",
     "line": 1,
@@ -20,7 +20,7 @@
         "type": "String",
         "line": 1,
         "column": 1,
-        "raw": "\"( a\"",
+        "raw": "\"#{}\"",
         "range": [
           0,
           5
@@ -30,17 +30,30 @@
             "type": "Quasi",
             "line": 1,
             "column": 2,
-            "raw": "( a",
+            "raw": "",
             "range": [
               1,
+              1
+            ],
+            "data": ""
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 5,
+            "raw": "",
+            "range": [
+              4,
               4
             ],
-            "data": "( a"
+            "data": ""
           }
         ],
-        "expressions": []
+        "expressions": [
+          null
+        ]
       }
     ],
-    "raw": "\"( a\""
+    "raw": "\"#{}\""
   }
 }

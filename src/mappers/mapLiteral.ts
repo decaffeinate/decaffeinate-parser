@@ -1,12 +1,13 @@
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Literal } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Break, Continue, Float, Heregex, Identifier, Int, JavaScript, Node, Quasi, Regex, RegexFlags, String, This } from '../nodes';
+import { Break, Continue, Float, Identifier, Int, JavaScript, Node, Regex, RegexFlags, This } from '../nodes';
 import isStringAtPosition from '../util/isStringAtPosition';
+import makeHeregex from '../util/makeHeregex';
+import makeString from '../util/makeString';
 import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
 import parseRegExp from '../util/parseRegExp';
-import parseString from '../util/parseString';
 import mapBase from './mapBase';
 
 const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimy]*)$/;
@@ -60,11 +61,7 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
   }
 
   if (isStringAtPosition(start, end, context)) {
-    return new String(
-      line, column, start, end, raw,
-      [new Quasi(line, column, start, end, raw, parseString(node.value))],
-      []
-    );
+    return makeString(context, node);
   }
 
   if (startToken.type === SourceType.HEREGEXP_START && lastToken.type === SourceType.HEREGEXP_END) {
@@ -75,13 +72,7 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     }
 
     let flags = match[2];
-
-    return new Heregex(
-      line, column, start, end, raw,
-      [new Quasi(line, column, start, end, raw, node.value)],
-      [],
-      RegexFlags.parse(flags)
-    );
+    return makeHeregex(context, node, flags);
   }
 
   if (
@@ -89,18 +80,14 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     startToken.type === SourceType.DSTRING_START ||
     startToken.type === SourceType.TSSTRING_START ||
     startToken.type === SourceType.TDSTRING_START ||
-    startToken.type === SourceType.HEREGEXP_START ||
     startToken.type === SourceType.STRING_CONTENT ||
     startToken.type === SourceType.STRING_PADDING ||
     startToken.type === SourceType.STRING_LINE_SEPARATOR
   ) {
-    // Top-level strings should all be in the same format: an array of
-    // quasis and expressions. For a normal string literal, this is the
-    // simple case of one quasi and no expressions. But if this string
-    // is actually a quasi that CoffeeScript is calling a string, then
-    // just return a Quasi node, and higher-up code should insert it
-    // into a string interpolation.
-    return new Quasi(line, column, start, end, raw, parseString(node.value));
+    // In rare cases (a string with only an empty interpolation), a quasi can
+    // live by itself in the CoffeeScript AST. In that case, turn it into a
+    // string by analyzing the tokens.
+    return makeString(context, node);
   }
 
   if (startToken.type === SourceType.BREAK) {
