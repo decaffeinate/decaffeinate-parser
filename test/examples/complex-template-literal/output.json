@@ -1,0 +1,107 @@
+{
+  "type": "Program",
+  "line": 1,
+  "column": 1,
+  "range": [
+    0,
+    22
+  ],
+  "raw": "\"#{}A#{} #{} #{}B#{}\"\n",
+  "body": {
+    "type": "Block",
+    "line": 1,
+    "column": 1,
+    "range": [
+      0,
+      21
+    ],
+    "statements": [
+      {
+        "type": "String",
+        "line": 1,
+        "column": 1,
+        "range": [
+          0,
+          21
+        ],
+        "quasis": [
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 2,
+            "raw": "",
+            "range": [
+              1,
+              1
+            ],
+            "data": ""
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 5,
+            "raw": "A",
+            "range": [
+              4,
+              5
+            ],
+            "data": "A"
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 9,
+            "raw": " ",
+            "range": [
+              8,
+              9
+            ],
+            "data": " "
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 13,
+            "raw": " ",
+            "range": [
+              12,
+              13
+            ],
+            "data": " "
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 17,
+            "raw": "B",
+            "range": [
+              16,
+              17
+            ],
+            "data": "B"
+          },
+          {
+            "type": "Quasi",
+            "line": 1,
+            "column": 21,
+            "raw": "",
+            "range": [
+              20,
+              20
+            ],
+            "data": ""
+          }
+        ],
+        "expressions": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "raw": "\"#{}A#{} #{} #{}B#{}\""
+      }
+    ],
+    "raw": "\"#{}A#{} #{} #{}B#{}\""
+  }
+}
