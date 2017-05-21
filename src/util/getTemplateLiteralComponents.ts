@@ -1,9 +1,11 @@
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Node, PlusOp, Quasi } from '../nodes';
+import { Base, Literal, Op, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Node, Quasi } from '../nodes';
 import isImplicitPlusOp from './isImplicitPlusOp';
 import ParseContext from './ParseContext';
+import parseString from './parseString';
 
 /**
  * Reconstruct template literal information given the coffee-lex tokens and the
@@ -11,14 +13,18 @@ import ParseContext from './ParseContext';
  * template literal (it's a bunch of + operations instead), the source locations
  * are generally unreliable and we need to rely on the token locations instead.
  */
-export default function getTemplateLiteralComponents(context: ParseContext, node: Node) {
+export default function getTemplateLiteralComponents(context: ParseContext, node: Base) {
   let tokens = context.sourceTokens;
 
   let quasis: Array<Node> = [];
-  let expressions: Array<Node | null> = [];
+  let unmappedExpressions: Array<Base | null> = [];
 
   let elements = getElements(node, context);
-  let { startTokenIndex, startToken } = getStartToken(node.range[0], tokens);
+  let nodeRange = context.getRange(node);
+  if (!nodeRange) {
+    throw new Error('Expected valid range on template literal node.');
+  }
+  let { startTokenIndex, startToken } = getStartToken(nodeRange[0], tokens);
 
   let depth = 0;
   let lastToken = startToken;
@@ -32,7 +38,7 @@ export default function getTemplateLiteralComponents(context: ParseContext, node
     } else if (token.type === SourceType.INTERPOLATION_END) {
       depth--;
       if (depth === 0) {
-        expressions.push(findExpression(lastToken, token, elements));
+        unmappedExpressions.push(findExpression(lastToken, token, context, elements));
         lastToken = token;
       }
     } else if (depth === 0 && isTemplateLiteralEnd(token)) {
@@ -43,16 +49,18 @@ export default function getTemplateLiteralComponents(context: ParseContext, node
   }
   return {
     quasis,
-    expressions,
+    unmappedExpressions,
     start: startToken.start,
     end: lastToken.end,
   };
 }
 
-function getElements(node: Node, context: ParseContext): Array<Node> {
-  if (node.type === 'PlusOp' && isImplicitPlusOp(node as PlusOp, context)) {
-    let { left, right } = node as PlusOp;
-    return [...getElements(left, context), ...getElements(right, context)];
+function getElements(node: Base, context: ParseContext): Array<Base> {
+  if (node instanceof Op && isImplicitPlusOp(node, context)) {
+    if (!node.second) {
+      throw new Error('Expected second operand on plus op.');
+    }
+    return [...getElements(node.first, context), ...getElements(node.second, context)];
   }
   return [node];
 }
@@ -81,9 +89,14 @@ function getStartToken(start: number, tokens: SourceTokenList) {
   throw new Error('Expected a template literal start token.');
 }
 
-function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Node>): Node {
-  let matchingElements = elements.filter(elem =>
-    elem.range[0] >= leftToken.start && elem.range[1] <= rightToken.end);
+function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Node {
+  let matchingElements = elements.filter(elem => {
+    let range = context.getRange(elem);
+    if (!range) {
+      throw new Error('Unexpected invalid range.');
+    }
+    return range[0] >= leftToken.start && range[1] <= rightToken.end;
+  });
 
   let start = leftToken.end;
   let end = rightToken.start;
@@ -97,18 +110,26 @@ function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: Par
     return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, '');
   } else if (matchingElements.length === 1) {
     let element = matchingElements[0];
-    if (element.type !== 'Quasi') {
-      throw new Error('Expected matching element to be a quasi.');
+    if (!(element instanceof Value) ||
+        element.properties.length !== 0 ||
+        !(element.base instanceof Literal)) {
+      throw new Error('Expected quasi element to be a value containing only a literal.');
     }
-    return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, (element as Quasi).data);
+    return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, parseString(element.base.value));
   } else {
     throw new Error('Unexpectedly found multiple elements in string interpolation.');
   }
 }
 
-function findExpression(leftToken: SourceToken, rightToken: SourceToken, elements: Array<Node>): Node | null {
-  let matchingElements = elements.filter(elem =>
-    elem.range[0] >= leftToken.start && elem.range[1] <= rightToken.end);
+function findExpression(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Base | null {
+  let matchingElements = elements.filter(elem => {
+    let range = context.getRange(elem);
+    if (!range) {
+      throw new Error('Unexpected invalid range.');
+    }
+    return range[0] >= leftToken.start && range[1] <= rightToken.end;
+  });
+
   if (matchingElements.length === 0) {
     return null;
   } else if (matchingElements.length === 1) {
