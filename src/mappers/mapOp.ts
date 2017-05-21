@@ -4,12 +4,14 @@ import { inspect } from 'util';
 import {
   BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExpOp, EQOp, GTEOp, GTOp,
   InstanceofOp, LeftShiftOp, LogicalAndOp, LogicalNotOp, LogicalOrOp, LTEOp, LTOp, ModuloOp, MultiplyOp, NewOp, Node,
-  NEQOp, OfOp, Op, OperatorInfo, PostDecrementOp, PostIncrementOp, PreDecrementOp, PreIncrementOp, RemOp,
-  SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp, UnsignedRightShiftOp, Yield, YieldFrom,
-  YieldReturn
+  NEQOp, OfOp, Op, OperatorInfo, PlusOp, PostDecrementOp, PostIncrementOp, PreDecrementOp, PreIncrementOp,
+  RemOp, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp, UnsignedRightShiftOp, Yield,
+  YieldFrom, YieldReturn
 } from '../nodes';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
 import isChainedComparison from '../util/isChainedComparison';
+import isImplicitPlusOp from '../util/isImplicitPlusOp';
+import makeString from '../util/makeString';
 import ParseContext from '../util/ParseContext';
 import unwindChainedComparison from '../util/unwindChainedComparison';
 import mapAny from './mapAny';
@@ -150,12 +152,14 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
   throw new UnsupportedNodeError(node);
 }
 
-function mapPlusOp(context: ParseContext, node: CoffeeOp): Op {
+function mapPlusOp(context: ParseContext, node: CoffeeOp): Node {
   if (node.second) {
-    // TODO: string interpolations and binary addition
-    throw new UnsupportedNodeError(node);
+    if (isImplicitPlusOp(node, context)) {
+      return makeString(context, node);
+    } else {
+      return mapBinaryOp(context, node, PlusOp);
+    }
   }
-
   return mapUnaryOp(context, node, UnaryPlusOp);
 }
 

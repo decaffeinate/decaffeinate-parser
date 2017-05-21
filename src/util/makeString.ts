@@ -4,7 +4,7 @@ import { String } from '../nodes';
 import getTemplateLiteralComponents from './getTemplateLiteralComponents';
 import ParseContext from './ParseContext';
 
-export default function makeString(context: ParseContext, node: Base) {
+export default function makeString(context: ParseContext, node: Base): String {
   let { quasis, unmappedExpressions, start, end } = getTemplateLiteralComponents(context, node);
   let startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {

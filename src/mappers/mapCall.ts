@@ -1,5 +1,5 @@
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Call, Splat } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Call, Literal, Parens, Splat, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
   AssignOp,
@@ -8,7 +8,9 @@ import {
 } from '../nodes';
 import isHeregexTemplateNode from '../util/isHeregexTemplateNode';
 import locationsEqual from '../util/locationsEqual';
+import makeHeregex from '../util/makeHeregex';
 import ParseContext from '../util/ParseContext';
+import parseString from '../util/parseString';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
@@ -17,7 +19,22 @@ export default function mapCall(context: ParseContext, node: Call): Node {
   let { line, column, start, end, raw } = mapBase(context, node);
 
   if (isHeregexTemplateNode(node, context)) {
-    throw new UnsupportedNodeError(node);
+    let firstArg = node.args[0];
+    if (!(firstArg instanceof Value) || !(firstArg.base instanceof Parens)) {
+      throw new Error('Expected a valid first heregex arg in the AST.');
+    }
+    let strNode = firstArg.base.body.expressions[0];
+    let flags;
+    if (node.args.length > 1) {
+      let secondArg = node.args[1];
+      if (!(secondArg instanceof Value) || !(secondArg.base instanceof Literal)) {
+        throw new Error('Expected a string flags value in the heregex AST.');
+      }
+      flags = parseString(secondArg.base.value);
+    } else {
+      flags = '';
+    }
+    return makeHeregex(context, strNode, flags);
   }
 
   let args = node.args.map(arg => mapAny(context, arg));
