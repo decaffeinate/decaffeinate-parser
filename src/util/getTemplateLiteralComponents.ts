@@ -2,7 +2,7 @@ import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Base, Literal, Op, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { Node, Quasi } from '../nodes';
+import { Quasi } from '../nodes';
 import isImplicitPlusOp from './isImplicitPlusOp';
 import ParseContext from './ParseContext';
 import parseString from './parseString';
@@ -16,7 +16,7 @@ import parseString from './parseString';
 export default function getTemplateLiteralComponents(context: ParseContext, node: Base) {
   let tokens = context.sourceTokens;
 
-  let quasis: Array<Node> = [];
+  let quasis: Array<Quasi> = [];
   let unmappedExpressions: Array<Base | null> = [];
 
   let elements = getElements(node, context);
@@ -89,7 +89,7 @@ function getStartToken(start: number, tokens: SourceTokenList) {
   throw new Error('Expected a template literal start token.');
 }
 
-function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Node {
+function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Quasi {
   let matchingElements = elements.filter(elem => {
     let range = context.getRange(elem);
     if (!range) {
@@ -110,12 +110,18 @@ function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: Par
     return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, '');
   } else if (matchingElements.length === 1) {
     let element = matchingElements[0];
-    if (!(element instanceof Value) ||
-        element.properties.length !== 0 ||
-        !(element.base instanceof Literal)) {
-      throw new Error('Expected quasi element to be a value containing only a literal.');
+    let literal;
+    if (element instanceof Literal) {
+      literal = element;
+    } else if (element instanceof Value && element.properties.length === 0 && element.base instanceof Literal) {
+      literal = element.base;
+    } else {
+      throw new Error('Expected quasi element to be either a literal or a value containing only a literal.');
     }
-    return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, parseString(element.base.value));
+    let stringValue = parseString(literal.value);
+    return new Quasi(
+      startLoc.line + 1, startLoc.column + 1, start, end, raw,
+      stringValue !== undefined ? stringValue : literal.value);
   } else {
     throw new Error('Unexpectedly found multiple elements in string interpolation.');
   }

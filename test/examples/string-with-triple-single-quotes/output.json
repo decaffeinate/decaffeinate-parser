@@ -20,6 +20,7 @@
         "type": "String",
         "line": 1,
         "column": 1,
+        "raw": "'''\nmulti-line strings\n'''",
         "range": [
           0,
           26
@@ -28,17 +29,16 @@
           {
             "type": "Quasi",
             "line": 1,
-            "column": 1,
+            "column": 4,
+            "raw": "\nmulti-line strings\n",
             "range": [
-              0,
-              26
+              3,
+              23
             ],
-            "data": "multi-line strings",
-            "raw": "'''\nmulti-line strings\n'''"
+            "data": "multi-line strings"
           }
         ],
-        "expressions": [],
-        "raw": "'''\nmulti-line strings\n'''"
+        "expressions": []
       }
     ],
     "raw": "'''\nmulti-line strings\n'''"

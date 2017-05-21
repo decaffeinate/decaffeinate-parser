@@ -20,21 +20,21 @@
         "type": "Heregex",
         "line": 2,
         "column": 1,
+        "raw": "/// ///",
         "range": [
           37,
           44
         ],
-        "raw": "/// ///",
         "quasis": [
           {
             "type": "Quasi",
             "line": 2,
-            "column": 1,
+            "column": 4,
+            "raw": " ",
             "range": [
-              37,
-              44
+              40,
+              41
             ],
-            "raw": "/// ///",
             "data": "/(?:)/"
           }
         ],
