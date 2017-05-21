@@ -72,7 +72,7 @@ function getElements(node: Base, context: ParseContext): Array<Base> {
  */
 function getStartToken(start: number, tokens: SourceTokenList) {
   let tokenIndex = tokens.indexOfTokenNearSourceIndex(start);
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     let token = tokens.tokenAtIndex(tokenIndex);
     if (!token) {
       throw new Error('Expected to find a start token in a template literal.');
