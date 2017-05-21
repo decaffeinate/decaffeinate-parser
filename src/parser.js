@@ -12,9 +12,10 @@ import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
 import locationContainingNodes from './util/locationContainingNodes';
 import locationWithLastPosition from './util/locationWithLastPosition';
-import makeNode, { RegexFlags } from './nodes';
+import makeNode, { makeNodeFromSourceRange, RegexFlags } from './nodes';
 import mapAny from './mappers/mapAny';
 import mapAnyWithFallback from './mappers/mapAnyWithFallback';
+import getTemplateLiteralComponents from './util/getTemplateLiteralComponents';
 import mergeLocations from './util/mergeLocations';
 import parseString from './util/parseString';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
@@ -336,15 +337,18 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
         return map(context, node, () => {
           if (isHeregexTemplateNode(node, context)) {
             let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
-            let heregexResult = createTemplateLiteral(firstArgOp, 'Heregex');
+            let { quasis, expressions, start, end } = getTemplateLiteralComponents(context, firstArgOp);
             let flags;
             if (node.args.length > 1) {
               flags = parseString(node.args[1].base.value);
             } else {
               flags = '';
             }
-            heregexResult.flags = RegexFlags.parse(flags);
-            return heregexResult;
+            return makeNodeFromSourceRange(context, 'Heregex', start, end, {
+              quasis,
+              expressions,
+              flags: RegexFlags.parse(flags),
+            })
           }
 
           if (node.isNew) {
@@ -398,7 +402,11 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
         return map(context, node, () => {
           const op = convertOperator(node);
           if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
-            return createTemplateLiteral(op, 'String');
+            let { quasis, expressions, start, end } = getTemplateLiteralComponents(context, op);
+            return makeNodeFromSourceRange(context, 'String', start, end, {
+              quasis,
+              expressions,
+            })
           }
           if (isChainedComparison(node)) {
             let operands = unwindChainedComparison(node).map(convertChild);
@@ -828,139 +836,6 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
       } else {
         return convertNode(child, [...ancestors, node]);
       }
-    }
-
-    function createTemplateLiteral(op, nodeType) {
-      let tokens = context.sourceTokens;
-      let startTokenIndex = tokens.indexOfTokenContainingSourceIndex(op.range[0]);
-      let interpolatedStringTokenRange = tokens.rangeOfInterpolatedStringTokensContainingTokenIndex(startTokenIndex);
-      if (!interpolatedStringTokenRange) {
-        throw new Error('cannot find interpolation end for node');
-      }
-      let firstToken = tokens.tokenAtIndex(interpolatedStringTokenRange[0]);
-      let lastToken = tokens.tokenAtIndex(interpolatedStringTokenRange[1].previous());
-      op.type = nodeType;
-      op.range = [firstToken.start, lastToken.end];
-      op.raw = source.slice(...op.range);
-
-      let elements = [];
-
-      function addElements({ left, right }) {
-        if (isImplicitPlusOp(left, context)) {
-          addElements(left);
-        } else {
-          elements.push(left);
-        }
-        elements.push(right);
-      }
-      addElements(op);
-
-      let quasis = [];
-      let expressions = [];
-      let quote = op.raw.slice(0, 3) === '"""' ? '"""' : '"';
-
-      function findNextToken(position, tokenType) {
-        let tokens = context.sourceTokens;
-        let startTokenIndex = tokens.indexOfTokenNearSourceIndex(position);
-        let tokenIndex = tokens.indexOfTokenMatchingPredicate(
-          token => token.type === tokenType, startTokenIndex);
-        return tokens.tokenAtIndex(tokenIndex);
-      }
-
-      function findPrevToken(position, tokenType) {
-        let tokens = context.sourceTokens;
-        let startTokenIndex = tokens.indexOfTokenNearSourceIndex(position);
-        let tokenIndex = tokens.lastIndexOfTokenMatchingPredicate(
-          token => token.type === tokenType, startTokenIndex);
-        return tokens.tokenAtIndex(tokenIndex);
-      }
-
-      function buildFirstQuasi() {
-        // Find the start of the first interpolation, i.e. "#{a}".
-        //                                                  ^
-        let interpolationStart = findNextToken(op.range[0], SourceType.INTERPOLATION_START);
-        let range = [op.range[0], interpolationStart.start];
-        return buildQuasi(range);
-      }
-
-      function buildLastQuasi() {
-        // Find the close of the last interpolation, i.e. "a#{b}".
-        //                                                     ^
-        let interpolationEnd = findPrevToken(op.range[1] - 1, SourceType.INTERPOLATION_END);
-        return buildQuasi([interpolationEnd.end, op.range[1]]);
-      }
-
-      function buildQuasi(range) {
-        let loc = linesAndColumns.locationForIndex(range[0]);
-        return {
-          type: 'Quasi',
-          data: '',
-          raw: source.slice(...range),
-          line: loc.line + 1,
-          column: loc.column + 1,
-          range
-        };
-      }
-
-      function buildQuasiWithString(range, raw){
-        let loc = linesAndColumns.locationForIndex(range[0]);
-        return {
-          type: 'Quasi',
-          data: raw,
-          raw: source.slice(...range),
-          line: loc.line + 1,
-          column: loc.column ,
-          range
-        };
-      }
-
-      elements.forEach((element, i) => {
-        if (i === 0) {
-          if (element.type === 'String') {
-            if (element.range[0] === op.range[0]) {
-              // This string is not interpolated, it's part of the string interpolation.
-              if (element.data === '' && element.raw.length > quote.length) {
-                // CoffeeScript includes the `#` in the raw value of a leading
-                // empty quasi string, but it shouldn't be there.
-                element = buildFirstQuasi();
-              }
-              quasis.push(element);
-              return;
-            }
-          }
-        }
-
-        if (element.type === 'Quasi') {
-          quasis.push(element);
-        } else {
-          if (quasis.length === 0) {
-            // This element is interpolated and is first, i.e. "#{a}".
-            quasis.push(buildFirstQuasi());
-            expressions.push(element);
-          } else if (/^"(.*?)"$/.test(element.data)) {
-            quasis.push(buildQuasiWithString(element.range, element.raw));
-          } else if (quasis.length < expressions.length + 1) {
-            let lastInterpolationEnd = findPrevToken(element.range[0], SourceType.INTERPOLATION_END);
-            let lastInterpolationStart = findPrevToken(element.range[0], SourceType.INTERPOLATION_START);
-            quasis.push(buildQuasi([lastInterpolationEnd.end, lastInterpolationStart.start]));
-            expressions.push(element);
-          } else {
-            expressions.push(element);
-          }
-        }
-
-
-      });
-
-      if (quasis.length < expressions.length + 1) {
-        quasis.push(buildLastQuasi());
-      }
-
-      op.quasis = quasis;
-      op.expressions = expressions;
-      delete op.left;
-      delete op.right;
-      return op;
     }
 
     /**

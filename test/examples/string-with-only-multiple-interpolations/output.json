@@ -24,51 +24,50 @@
           0,
           14
         ],
-        "raw": "\"#{a}#{b}#{c}\"",
         "quasis": [
           {
             "type": "Quasi",
             "line": 1,
-            "column": 1,
+            "column": 2,
+            "raw": "",
             "range": [
-              0,
+              1,
               1
             ],
-            "data": "",
-            "raw": "\""
+            "data": ""
           },
           {
             "type": "Quasi",
-            "data": "",
-            "raw": "",
             "line": 1,
             "column": 6,
+            "raw": "",
             "range": [
               5,
               5
-            ]
+            ],
+            "data": ""
           },
           {
             "type": "Quasi",
-            "data": "",
-            "raw": "",
             "line": 1,
             "column": 10,
+            "raw": "",
             "range": [
               9,
               9
-            ]
+            ],
+            "data": ""
           },
           {
             "type": "Quasi",
-            "data": "",
-            "raw": "\"",
             "line": 1,
             "column": 14,
+            "raw": "",
             "range": [
               13,
-              14
-            ]
+              13
+            ],
+            "data": ""
           }
         ],
         "expressions": [
@@ -76,36 +75,37 @@
             "type": "Identifier",
             "line": 1,
             "column": 4,
+            "raw": "a",
             "range": [
               3,
               4
             ],
-            "data": "a",
-            "raw": "a"
+            "data": "a"
           },
           {
             "type": "Identifier",
             "line": 1,
             "column": 8,
+            "raw": "b",
             "range": [
               7,
               8
             ],
-            "data": "b",
-            "raw": "b"
+            "data": "b"
           },
           {
             "type": "Identifier",
             "line": 1,
             "column": 12,
+            "raw": "c",
             "range": [
               11,
               12
             ],
-            "data": "c",
-            "raw": "c"
+            "data": "c"
           }
-        ]
+        ],
+        "raw": "\"#{a}#{b}#{c}\""
       }
     ],
     "raw": "\"#{a}#{b}#{c}\""

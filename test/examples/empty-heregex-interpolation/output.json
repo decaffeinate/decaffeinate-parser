@@ -4,66 +4,66 @@
   "column": 1,
   "range": [
     0,
-    8
+    12
   ],
-  "raw": "\"a#{b}c\"",
+  "raw": "///a#{}b///\n",
   "body": {
     "type": "Block",
     "line": 1,
     "column": 1,
     "range": [
       0,
-      8
+      11
     ],
     "statements": [
       {
-        "type": "String",
+        "type": "Heregex",
         "line": 1,
         "column": 1,
         "range": [
           0,
-          8
+          11
         ],
         "quasis": [
           {
             "type": "Quasi",
             "line": 1,
-            "column": 2,
+            "column": 4,
             "raw": "a",
             "range": [
-              1,
-              2
+              3,
+              4
             ],
             "data": "a"
           },
           {
             "type": "Quasi",
             "line": 1,
-            "column": 7,
-            "raw": "c",
-            "range": [
-              6,
-              7
-            ],
-            "data": "c"
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 5,
+            "column": 8,
             "raw": "b",
             "range": [
-              4,
-              5
+              7,
+              8
             ],
             "data": "b"
           }
         ],
-        "raw": "\"a#{b}c\""
+        "expressions": [
+          null
+        ],
+        "flags": {
+          "global": false,
+          "ignoreCase": false,
+          "multiline": false,
+          "sticky": false,
+          "g": false,
+          "i": false,
+          "m": false,
+          "y": false
+        },
+        "raw": "///a#{}b///"
       }
     ],
-    "raw": "\"a#{b}c\""
+    "raw": "///a#{}b///"
   }
 }

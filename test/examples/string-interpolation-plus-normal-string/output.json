@@ -32,29 +32,28 @@
             0,
             6
           ],
-          "raw": "\"#{a}\"",
           "quasis": [
             {
               "type": "Quasi",
               "line": 1,
-              "column": 1,
+              "column": 2,
+              "raw": "",
               "range": [
-                0,
+                1,
                 1
               ],
-              "data": "",
-              "raw": "\""
+              "data": ""
             },
             {
               "type": "Quasi",
-              "data": "",
-              "raw": "\"",
               "line": 1,
               "column": 6,
+              "raw": "",
               "range": [
                 5,
-                6
-              ]
+                5
+              ],
+              "data": ""
             }
           ],
           "expressions": [
@@ -62,19 +61,21 @@
               "type": "Identifier",
               "line": 1,
               "column": 4,
+              "raw": "a",
               "range": [
                 3,
                 4
               ],
-              "data": "a",
-              "raw": "a"
+              "data": "a"
             }
-          ]
+          ],
+          "raw": "\"#{a}\""
         },
         "right": {
           "type": "String",
           "line": 1,
           "column": 10,
+          "raw": "\"b\"",
           "range": [
             9,
             12
@@ -84,16 +85,15 @@
               "type": "Quasi",
               "line": 1,
               "column": 10,
+              "raw": "\"b\"",
               "range": [
                 9,
                 12
               ],
-              "data": "b",
-              "raw": "\"b\""
+              "data": "b"
             }
           ],
-          "expressions": [],
-          "raw": "\"b\""
+          "expressions": []
         },
         "raw": "\"#{a}\" + \"b\""
       }
