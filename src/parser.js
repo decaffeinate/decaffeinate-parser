@@ -6,7 +6,6 @@ import unwindChainedComparison from './util/unwindChainedComparison';
 import getOperatorInfoInRange from './util/getOperatorInfoInRange';
 import isHeregexTemplateNode from './util/isHeregexTemplateNode';
 import isImplicitPlusOp from './util/isImplicitPlusOp';
-import isInterpolatedString from './util/isInterpolatedString';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex, { SourceType } from 'coffee-lex';
 import locationsEqual from './util/locationsEqual';
@@ -400,7 +399,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
 
       case 'Op': {
         return map(context, node, () => {
-          if (isImplicitPlusOp(node, context) && isInterpolatedString(node, ancestors, context)) {
+          if (isImplicitPlusOp(node, context)) {
             let { quasis, unmappedExpressions, start, end } = getTemplateLiteralComponents(context, node);
             return makeNodeFromSourceRange(context, 'String', start, end, {
               quasis,
