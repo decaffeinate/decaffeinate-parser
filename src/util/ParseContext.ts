@@ -39,7 +39,7 @@ export default class ParseContext {
         return null;
       }
 
-      return [start, end];
+      return [start, end + 1];
     }
   }
 

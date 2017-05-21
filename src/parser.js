@@ -336,8 +336,8 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
       case 'Call':
         return map(context, node, () => {
           if (isHeregexTemplateNode(node, context)) {
-            let firstArgOp = convertOperator(node.args[0].base.body.expressions[0]);
-            let { quasis, expressions, start, end } = getTemplateLiteralComponents(context, firstArgOp);
+            let { quasis, unmappedExpressions, start, end } = getTemplateLiteralComponents(
+              context, node.args[0].base.body.expressions[0]);
             let flags;
             if (node.args.length > 1) {
               flags = parseString(node.args[1].base.value);
@@ -346,7 +346,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
             }
             return makeNodeFromSourceRange(context, 'Heregex', start, end, {
               quasis,
-              expressions,
+              expressions: unmappedExpressions.map(expr => expr ? convertChild(expr) : null),
               flags: RegexFlags.parse(flags),
             })
           }
@@ -400,14 +400,15 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
 
       case 'Op': {
         return map(context, node, () => {
-          const op = convertOperator(node);
-          if (isImplicitPlusOp(op, context) && isInterpolatedString(node, ancestors, context)) {
-            let { quasis, expressions, start, end } = getTemplateLiteralComponents(context, op);
+          if (isImplicitPlusOp(node, context) && isInterpolatedString(node, ancestors, context)) {
+            let { quasis, unmappedExpressions, start, end } = getTemplateLiteralComponents(context, node);
             return makeNodeFromSourceRange(context, 'String', start, end, {
               quasis,
-              expressions,
+              expressions: unmappedExpressions.map(expr => expr ? convertChild(expr) : null),
             })
           }
+
+          const op = convertOperator(node);
           if (isChainedComparison(node)) {
             let operands = unwindChainedComparison(node).map(convertChild);
             let operators = [];

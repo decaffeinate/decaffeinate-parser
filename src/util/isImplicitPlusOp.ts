@@ -1,23 +1,18 @@
+import { Op } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import isPlusTokenBetweenRanges from './isPlusTokenBetweenRanges';
 import ParseContext from './ParseContext';
-
-export type Op = {
-  type: string;
-  left: {
-    range: [number, number];
-  };
-  right: {
-    range: [number, number];
-  };
-};
 
 /**
  * Determine if the operator is a fake + operator for string interpolation.
  */
 export default function isImplicitPlusOp(op: Op, context: ParseContext): boolean {
-  if (op.type !== 'PlusOp') {
+  if (op.operator !== '+' || !op.second) {
     return false;
   }
-
-  return !isPlusTokenBetweenRanges(op.left.range, op.right.range, context);
+  let firstRange = context.getRange(op.first);
+  let secondRange = context.getRange(op.second);
+  if (!firstRange || !secondRange) {
+    throw new Error('Expected valid location data on plus operation.');
+  }
+  return !isPlusTokenBetweenRanges(firstRange, secondRange, context);
 }
