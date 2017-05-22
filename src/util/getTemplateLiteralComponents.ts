@@ -1,5 +1,6 @@
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
+import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Base, Literal, Op, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Quasi } from '../nodes';
@@ -28,7 +29,16 @@ export default function getTemplateLiteralComponents(context: ParseContext, node
 
   let depth = 0;
   let lastToken = startToken;
-  for (let token of tokens.slice(startTokenIndex, tokens.endIndex).toArray()) {
+
+  for (
+      let tokenIndex: SourceTokenListIndex | null = startTokenIndex;
+      tokenIndex;
+      tokenIndex = tokenIndex.next()
+  ) {
+    let token = tokens.tokenAtIndex(tokenIndex);
+    if (!token) {
+      break;
+    }
     if (token.type === SourceType.INTERPOLATION_START) {
       depth++;
       if (depth === 1) {
