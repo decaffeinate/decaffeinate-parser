@@ -6,12 +6,10 @@
   "scripts": {
     "prebuild": "rm -rf dist/",
     "build": "rollup -c",
-    "prepublish": "npm run build",
     "lint": "eslint src test && tslint --config tslint.json --project tsconfig.json --type-check",
     "lint-fix": "eslint src test --fix && tslint --config tslint.json --project tsconfig.json --type-check --fix",
     "pretest": "npm run lint",
-    "test": "mocha",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "mocha"
   },
   "keywords": [
     "coffeescript",

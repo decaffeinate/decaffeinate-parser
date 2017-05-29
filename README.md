@@ -1,4 +1,4 @@
-# decaffeinate-parser [![Build Status](https://travis-ci.org/decaffeinate/decaffeinate-parser.svg?branch=master)](https://travis-ci.org/decaffeinate/decaffeinate-parser) [![npm version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/decaffeinate/decaffeinate-parser.svg)](https://greenkeeper.io/)
+# decaffeinate-parser [![Build Status](https://travis-ci.org/decaffeinate/decaffeinate-parser.svg?branch=master)](https://travis-ci.org/decaffeinate/decaffeinate-parser) [![package version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/decaffeinate/decaffeinate-parser.svg)](https://greenkeeper.io/)
 
 This project uses the [official CoffeeScript
 parser](https://github.com/jashkenas/coffeescript) to parse CoffeeScript source
@@ -12,8 +12,11 @@ AST and prefers working with a saner AST.
 
 ## Install
 
-```
-$ npm install --save-dev decaffeinate-parser
+```bash
+# via yarn
+$ yarn add decaffeinate-parser
+# via npm
+$ npm install decaffeinate-parser
 ```
 
 ## Usage
