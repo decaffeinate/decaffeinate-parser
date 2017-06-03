@@ -1,69 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 2,
+    "range": [
+      58,
+      65
+    ],
+    "raw": "\"(#{a}\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 5,
+            "data": "a",
+            "line": 2,
+            "range": [
+              62,
+              63
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          }
+        ],
+        "line": 2,
+        "quasis": [
+          {
+            "column": 2,
+            "data": "(",
+            "line": 2,
+            "range": [
+              59,
+              60
+            ],
+            "raw": "(",
+            "type": "Quasi"
+          },
+          {
+            "column": 7,
+            "data": "",
+            "line": 2,
+            "range": [
+              64,
+              64
+            ],
+            "raw": "",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          58,
+          65
+        ],
+        "raw": "\"(#{a}\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     66
   ],
   "raw": "# https://github.com/decaffeinate/decaffeinate/issues/212\n\"(#{a}\"\n",
-  "body": {
-    "type": "Block",
-    "line": 2,
-    "column": 1,
-    "range": [
-      58,
-      65
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 2,
-        "column": 1,
-        "range": [
-          58,
-          65
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 2,
-            "column": 2,
-            "raw": "(",
-            "range": [
-              59,
-              60
-            ],
-            "data": "("
-          },
-          {
-            "type": "Quasi",
-            "line": 2,
-            "column": 7,
-            "raw": "",
-            "range": [
-              64,
-              64
-            ],
-            "data": ""
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 2,
-            "column": 5,
-            "raw": "a",
-            "range": [
-              62,
-              63
-            ],
-            "data": "a"
-          }
-        ],
-        "raw": "\"(#{a}\""
-      }
-    ],
-    "raw": "\"(#{a}\""
-  }
+  "type": "Program"
 }

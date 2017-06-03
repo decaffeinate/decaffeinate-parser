@@ -1,183 +1,185 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    17
-  ],
-  "raw": "class A\n  a: => b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       17
     ],
+    "raw": "class A\n  a: => b",
     "statements": [
       {
-        "type": "Class",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          17
-        ],
-        "name": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            7
-          ],
-          "raw": "A",
-          "data": "A"
-        },
-        "nameAssignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            7
-          ],
-          "raw": "A",
-          "data": "A"
-        },
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
+          "inline": false,
+          "line": 2,
           "range": [
             10,
             17
           ],
+          "raw": "a: => b",
           "statements": [
             {
-              "type": "ClassProtoAssignOp",
-              "line": 2,
-              "column": 3,
-              "range": [
-                10,
-                17
-              ],
               "assignee": {
-                "type": "Identifier",
-                "line": 2,
                 "column": 3,
+                "data": "a",
+                "line": 2,
                 "range": [
                   10,
                   11
                 ],
                 "raw": "a",
-                "data": "a"
+                "type": "Identifier"
               },
+              "column": 3,
               "expression": {
-                "type": "BoundFunction",
-                "line": 2,
-                "column": 6,
-                "range": [
-                  13,
-                  17
-                ],
                 "body": {
-                  "type": "Block",
-                  "line": 2,
                   "column": 9,
+                  "inline": true,
+                  "line": 2,
                   "range": [
                     16,
                     17
                   ],
+                  "raw": "b",
                   "statements": [
                     {
-                      "type": "Identifier",
-                      "line": 2,
                       "column": 9,
+                      "data": "b",
+                      "line": 2,
                       "range": [
                         16,
                         17
                       ],
                       "raw": "b",
-                      "data": "b"
+                      "type": "Identifier"
                     }
                   ],
-                  "raw": "b",
-                  "inline": true
+                  "type": "Block"
                 },
-                "parameters": [],
-                "raw": "=> b"
+                "column": 6,
+                "line": 2,
+                "parameters": [
+                ],
+                "range": [
+                  13,
+                  17
+                ],
+                "raw": "=> b",
+                "type": "BoundFunction"
               },
-              "raw": "a: => b"
+              "line": 2,
+              "range": [
+                10,
+                17
+              ],
+              "raw": "a: => b",
+              "type": "ClassProtoAssignOp"
             }
           ],
-          "inline": false,
-          "raw": "a: => b"
+          "type": "Block"
         },
         "boundMembers": [
           {
-            "type": "ClassProtoAssignOp",
-            "line": 2,
-            "column": 3,
-            "range": [
-              10,
-              17
-            ],
             "assignee": {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
+              "data": "a",
+              "line": 2,
               "range": [
                 10,
                 11
               ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             },
+            "column": 3,
             "expression": {
-              "type": "BoundFunction",
-              "line": 2,
-              "column": 6,
-              "range": [
-                13,
-                17
-              ],
               "body": {
-                "type": "Block",
-                "line": 2,
                 "column": 9,
+                "inline": true,
+                "line": 2,
                 "range": [
                   16,
                   17
                 ],
+                "raw": "b",
                 "statements": [
                   {
-                    "type": "Identifier",
-                    "line": 2,
                     "column": 9,
+                    "data": "b",
+                    "line": 2,
                     "range": [
                       16,
                       17
                     ],
                     "raw": "b",
-                    "data": "b"
+                    "type": "Identifier"
                   }
                 ],
-                "raw": "b",
-                "inline": true
+                "type": "Block"
               },
-              "parameters": [],
-              "raw": "=> b"
+              "column": 6,
+              "line": 2,
+              "parameters": [
+              ],
+              "range": [
+                13,
+                17
+              ],
+              "raw": "=> b",
+              "type": "BoundFunction"
             },
-            "raw": "a: => b"
+            "line": 2,
+            "range": [
+              10,
+              17
+            ],
+            "raw": "a: => b",
+            "type": "ClassProtoAssignOp"
           }
         ],
-        "parent": null,
+        "column": 1,
         "ctor": null,
-        "raw": "class A\n  a: => b"
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          17
+        ],
+        "raw": "class A\n  a: => b",
+        "type": "Class"
       }
     ],
-    "raw": "class A\n  a: => b"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    17
+  ],
+  "raw": "class A\n  a: => b",
+  "type": "Program"
 }

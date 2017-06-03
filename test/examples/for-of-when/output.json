@@ -1,67 +1,91 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 21 ],
-  "raw": "for a of b when c\n  d",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 21 ],
+    "line": 1,
+    "range": [
+      0,
+      21
+    ],
     "raw": "for a of b when c\n  d",
     "statements": [
       {
-        "type": "ForOf",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 21 ],
-        "raw": "for a of b when c\n  d",
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 20, 21 ],
-          "raw": "d",
           "inline": false,
+          "line": 2,
+          "range": [
+            20,
+            21
+          ],
+          "raw": "d",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 20, 21 ],
+              "data": "d",
+              "line": 2,
+              "range": [
+                20,
+                21
+              ],
               "raw": "d",
-              "data": "d"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
+        "column": 1,
         "filter": {
-          "type": "Identifier",
-          "line": 1,
           "column": 17,
-          "range": [ 16, 17 ],
+          "data": "c",
+          "line": 1,
+          "range": [
+            16,
+            17
+          ],
           "raw": "c",
-          "data": "c"
+          "type": "Identifier"
         },
         "isOwn": false,
         "keyAssignee": {
-          "type": "Identifier",
-          "line": 1,
           "column": 5,
-          "range": [ 4, 5 ],
-          "raw": "a",
-          "data": "a"
-        },
-        "target": {
-          "type": "Identifier",
+          "data": "a",
           "line": 1,
-          "column": 10,
-          "range": [ 9, 10 ],
-          "raw": "b",
-          "data": "b"
+          "range": [
+            4,
+            5
+          ],
+          "raw": "a",
+          "type": "Identifier"
         },
+        "line": 1,
+        "range": [
+          0,
+          21
+        ],
+        "raw": "for a of b when c\n  d",
+        "target": {
+          "column": 10,
+          "data": "b",
+          "line": 1,
+          "range": [
+            9,
+            10
+          ],
+          "raw": "b",
+          "type": "Identifier"
+        },
+        "type": "ForOf",
         "valAssignee": null
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    21
+  ],
+  "raw": "for a of b when c\n  d",
+  "type": "Program"
 }

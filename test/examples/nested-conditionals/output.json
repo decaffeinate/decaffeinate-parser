@@ -1,112 +1,151 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 31 ],
-  "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 31 ],
+    "line": 1,
+    "range": [
+      0,
+      31
+    ],
     "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 31 ],
-        "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
         "alternate": {
-          "type": "Block",
-          "line": 3,
           "column": 6,
-          "range": [ 14, 31 ],
-          "raw": "if c\n  d\nelse\n  e",
           "inline": true,
+          "line": 3,
+          "range": [
+            14,
+            31
+          ],
+          "raw": "if c\n  d\nelse\n  e",
           "statements": [
             {
-              "type": "Conditional",
-              "line": 3,
-              "column": 6,
-              "range": [ 14, 31 ],
-              "raw": "if c\n  d\nelse\n  e",
               "alternate": {
-                "type": "Block",
-                "line": 6,
                 "column": 3,
-                "range": [ 30, 31 ],
-                "raw": "e",
                 "inline": false,
+                "line": 6,
+                "range": [
+                  30,
+                  31
+                ],
+                "raw": "e",
                 "statements": [
                   {
-                    "type": "Identifier",
-                    "line": 6,
                     "column": 3,
-                    "range": [ 30, 31 ],
+                    "data": "e",
+                    "line": 6,
+                    "range": [
+                      30,
+                      31
+                    ],
                     "raw": "e",
-                    "data": "e"
+                    "type": "Identifier"
                   }
-                ]
+                ],
+                "type": "Block"
               },
+              "column": 6,
               "condition": {
-                "type": "Identifier",
-                "line": 3,
                 "column": 9,
-                "range": [ 17, 18 ],
+                "data": "c",
+                "line": 3,
+                "range": [
+                  17,
+                  18
+                ],
                 "raw": "c",
-                "data": "c"
+                "type": "Identifier"
               },
               "consequent": {
-                "type": "Block",
-                "line": 4,
                 "column": 3,
-                "range": [ 21, 22 ],
-                "raw": "d",
                 "inline": false,
+                "line": 4,
+                "range": [
+                  21,
+                  22
+                ],
+                "raw": "d",
                 "statements": [
                   {
-                    "type": "Identifier",
-                    "line": 4,
                     "column": 3,
-                    "range": [ 21, 22 ],
+                    "data": "d",
+                    "line": 4,
+                    "range": [
+                      21,
+                      22
+                    ],
                     "raw": "d",
-                    "data": "d"
+                    "type": "Identifier"
                   }
-                ]
+                ],
+                "type": "Block"
               },
-              "isUnless": false
+              "isUnless": false,
+              "line": 3,
+              "range": [
+                14,
+                31
+              ],
+              "raw": "if c\n  d\nelse\n  e",
+              "type": "Conditional"
             }
-          ]
+          ],
+          "type": "Block"
         },
+        "column": 1,
         "condition": {
-          "type": "Identifier",
-          "line": 1,
           "column": 4,
-          "range": [ 3, 4 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            3,
+            4
+          ],
           "raw": "a",
-          "data": "a"
+          "type": "Identifier"
         },
         "consequent": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 7, 8 ],
-          "raw": "b",
           "inline": false,
+          "line": 2,
+          "range": [
+            7,
+            8
+          ],
+          "raw": "b",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 7, 8 ],
+              "data": "b",
+              "line": 2,
+              "range": [
+                7,
+                8
+              ],
               "raw": "b",
-              "data": "b"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
-        "isUnless": false
+        "isUnless": false,
+        "line": 1,
+        "range": [
+          0,
+          31
+        ],
+        "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
+        "type": "Conditional"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    31
+  ],
+  "raw": "if a\n  b\nelse if c\n  d\nelse\n  e",
+  "type": "Program"
 }

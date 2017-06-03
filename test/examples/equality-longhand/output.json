@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 6 ],
-  "raw": "a is b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 6 ],
+    "line": 1,
+    "range": [
+      0,
+      6
+    ],
     "raw": "a is b",
     "statements": [
       {
-        "type": "EQOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 6 ],
-        "raw": "a is b",
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
-          "data": "a"
-        },
-        "right": {
-          "type": "Identifier",
+          "data": "a",
           "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          6
+        ],
+        "raw": "a is b",
+        "right": {
           "column": 6,
-          "range": [ 5, 6 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            5,
+            6
+          ],
           "raw": "b",
-          "data": "b"
-        }
+          "type": "Identifier"
+        },
+        "type": "EQOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    6
+  ],
+  "raw": "a is b",
+  "type": "Program"
 }

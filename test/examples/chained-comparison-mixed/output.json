@@ -1,67 +1,85 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 9 ],
-  "raw": "a < b > c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 9 ],
+    "line": 1,
+    "range": [
+      0,
+      9
+    ],
     "raw": "a < b > c",
     "statements": [
       {
-        "type": "ChainedComparisonOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 9 ],
-        "raw": "a < b > c",
+        "line": 1,
         "operands": [
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 1,
-            "range": [ 0, 1 ],
+            "data": "a",
+            "line": 1,
+            "range": [
+              0,
+              1
+            ],
             "raw": "a",
-            "data": "a"
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 5,
-            "range": [ 4, 5 ],
+            "data": "b",
+            "line": 1,
+            "range": [
+              4,
+              5
+            ],
             "raw": "b",
-            "data": "b"
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 9,
-            "range": [ 8, 9 ],
+            "data": "c",
+            "line": 1,
+            "range": [
+              8,
+              9
+            ],
             "raw": "c",
-            "data": "c"
+            "type": "Identifier"
           }
         ],
         "operators": [
           {
             "operator": "<",
             "token": {
-              "type": 39,
+              "end": 3,
               "start": 2,
-              "end": 3
+              "type": 39
             }
           },
           {
             "operator": ">",
             "token": {
-              "type": 39,
+              "end": 7,
               "start": 6,
-              "end": 7
+              "type": 39
             }
           }
-        ]
+        ],
+        "range": [
+          0,
+          9
+        ],
+        "raw": "a < b > c",
+        "type": "ChainedComparisonOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "a < b > c",
+  "type": "Program"
 }

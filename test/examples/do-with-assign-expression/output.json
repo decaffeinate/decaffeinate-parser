@@ -1,72 +1,101 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 22 ],
-  "raw": "do wait = ->\n  wait()\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 21 ],
+    "line": 1,
+    "range": [
+      0,
+      21
+    ],
     "raw": "do wait = ->\n  wait()",
     "statements": [
       {
-        "type": "DoOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 21 ],
-        "raw": "do wait = ->\n  wait()",
         "expression": {
-          "type": "AssignOp",
-          "line": 1,
-          "column": 4,
-          "range": [ 3, 21 ],
-          "raw": "wait = ->\n  wait()",
           "assignee": {
-            "type": "Identifier",
-            "line": 1,
             "column": 4,
-            "range": [ 3, 7 ],
-            "raw": "wait",
-            "data": "wait"
-          },
-          "expression": {
-            "type": "Function",
+            "data": "wait",
             "line": 1,
-            "column": 11,
-            "range": [ 10, 21 ],
-            "raw": "->\n  wait()",
+            "range": [
+              3,
+              7
+            ],
+            "raw": "wait",
+            "type": "Identifier"
+          },
+          "column": 4,
+          "expression": {
             "body": {
-              "type": "Block",
-              "line": 2,
               "column": 3,
-              "range": [ 15, 21 ],
-              "raw": "wait()",
               "inline": false,
+              "line": 2,
+              "range": [
+                15,
+                21
+              ],
+              "raw": "wait()",
               "statements": [
                 {
-                  "type": "FunctionApplication",
-                  "line": 2,
+                  "arguments": [
+                  ],
                   "column": 3,
-                  "range": [ 15, 21 ],
-                  "raw": "wait()",
-                  "arguments": [],
                   "function": {
-                    "type": "Identifier",
-                    "line": 2,
                     "column": 3,
-                    "range": [ 15, 19 ],
+                    "data": "wait",
+                    "line": 2,
+                    "range": [
+                      15,
+                      19
+                    ],
                     "raw": "wait",
-                    "data": "wait"
-                  }
+                    "type": "Identifier"
+                  },
+                  "line": 2,
+                  "range": [
+                    15,
+                    21
+                  ],
+                  "raw": "wait()",
+                  "type": "FunctionApplication"
                 }
-              ]
+              ],
+              "type": "Block"
             },
-            "parameters": []
-          }
-        }
+            "column": 11,
+            "line": 1,
+            "parameters": [
+            ],
+            "range": [
+              10,
+              21
+            ],
+            "raw": "->\n  wait()",
+            "type": "Function"
+          },
+          "line": 1,
+          "range": [
+            3,
+            21
+          ],
+          "raw": "wait = ->\n  wait()",
+          "type": "AssignOp"
+        },
+        "line": 1,
+        "range": [
+          0,
+          21
+        ],
+        "raw": "do wait = ->\n  wait()",
+        "type": "DoOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    22
+  ],
+  "raw": "do wait = ->\n  wait()\n",
+  "type": "Program"
 }

@@ -1,113 +1,113 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      14
+    ],
+    "raw": "\"#{a}#{b}#{c}\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 4,
+            "data": "a",
+            "line": 1,
+            "range": [
+              3,
+              4
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          {
+            "column": 8,
+            "data": "b",
+            "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          },
+          {
+            "column": 12,
+            "data": "c",
+            "line": 1,
+            "range": [
+              11,
+              12
+            ],
+            "raw": "c",
+            "type": "Identifier"
+          }
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 2,
+            "data": "",
+            "line": 1,
+            "range": [
+              1,
+              1
+            ],
+            "raw": "",
+            "type": "Quasi"
+          },
+          {
+            "column": 6,
+            "data": "",
+            "line": 1,
+            "range": [
+              5,
+              5
+            ],
+            "raw": "",
+            "type": "Quasi"
+          },
+          {
+            "column": 10,
+            "data": "",
+            "line": 1,
+            "range": [
+              9,
+              9
+            ],
+            "raw": "",
+            "type": "Quasi"
+          },
+          {
+            "column": 14,
+            "data": "",
+            "line": 1,
+            "range": [
+              13,
+              13
+            ],
+            "raw": "",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          14
+        ],
+        "raw": "\"#{a}#{b}#{c}\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     14
   ],
   "raw": "\"#{a}#{b}#{c}\"",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      14
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          14
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 2,
-            "raw": "",
-            "range": [
-              1,
-              1
-            ],
-            "data": ""
-          },
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 6,
-            "raw": "",
-            "range": [
-              5,
-              5
-            ],
-            "data": ""
-          },
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 10,
-            "raw": "",
-            "range": [
-              9,
-              9
-            ],
-            "data": ""
-          },
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 14,
-            "raw": "",
-            "range": [
-              13,
-              13
-            ],
-            "data": ""
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 4,
-            "raw": "a",
-            "range": [
-              3,
-              4
-            ],
-            "data": "a"
-          },
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 8,
-            "raw": "b",
-            "range": [
-              7,
-              8
-            ],
-            "data": "b"
-          },
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 12,
-            "raw": "c",
-            "range": [
-              11,
-              12
-            ],
-            "data": "c"
-          }
-        ],
-        "raw": "\"#{a}#{b}#{c}\""
-      }
-    ],
-    "raw": "\"#{a}#{b}#{c}\""
-  }
+  "type": "Program"
 }

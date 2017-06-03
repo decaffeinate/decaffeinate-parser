@@ -1,54 +1,75 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 10 ],
-  "raw": "a + (b; c)",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 10 ],
+    "line": 1,
+    "range": [
+      0,
+      10
+    ],
     "raw": "a + (b; c)",
     "statements": [
       {
-        "type": "PlusOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 10 ],
-        "raw": "a + (b; c)",
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
-          "data": "a"
-        },
-        "right": {
-          "type": "SeqOp",
+          "data": "a",
           "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          10
+        ],
+        "raw": "a + (b; c)",
+        "right": {
           "column": 6,
-          "range": [ 5, 9 ],
-          "raw": "b; c",
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 6,
-            "range": [ 5, 6 ],
-            "raw": "b",
-            "data": "b"
-          },
-          "right": {
-            "type": "Identifier",
+            "data": "b",
             "line": 1,
+            "range": [
+              5,
+              6
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          },
+          "line": 1,
+          "range": [
+            5,
+            9
+          ],
+          "raw": "b; c",
+          "right": {
             "column": 9,
-            "range": [ 8, 9 ],
+            "data": "c",
+            "line": 1,
+            "range": [
+              8,
+              9
+            ],
             "raw": "c",
-            "data": "c"
-          }
-        }
+            "type": "Identifier"
+          },
+          "type": "SeqOp"
+        },
+        "type": "PlusOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    10
+  ],
+  "raw": "a + (b; c)",
+  "type": "Program"
 }

@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 6 ],
-  "raw": "a or b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 6 ],
+    "line": 1,
+    "range": [
+      0,
+      6
+    ],
     "raw": "a or b",
     "statements": [
       {
-        "type": "LogicalOrOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 6 ],
-        "raw": "a or b",
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
-          "data": "a"
-        },
-        "right": {
-          "type": "Identifier",
+          "data": "a",
           "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          6
+        ],
+        "raw": "a or b",
+        "right": {
           "column": 6,
-          "range": [ 5, 6 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            5,
+            6
+          ],
           "raw": "b",
-          "data": "b"
-        }
+          "type": "Identifier"
+        },
+        "type": "LogicalOrOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    6
+  ],
+  "raw": "a or b",
+  "type": "Program"
 }

@@ -1,56 +1,77 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "[a, b..., c]",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
     "raw": "[a, b..., c]",
     "statements": [
       {
-        "type": "ArrayInitialiser",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 12 ],
-        "raw": "[a, b..., c]",
+        "line": 1,
         "members": [
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 2 ],
+            "data": "a",
+            "line": 1,
+            "range": [
+              1,
+              2
+            ],
             "raw": "a",
-            "data": "a"
+            "type": "Identifier"
           },
           {
-            "type": "Spread",
-            "line": 1,
             "column": 5,
-            "range": [ 4, 8 ],
-            "raw": "b...",
             "expression": {
-              "type": "Identifier",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 5 ],
+              "data": "b",
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
               "raw": "b",
-              "data": "b"
-            }
+              "type": "Identifier"
+            },
+            "line": 1,
+            "range": [
+              4,
+              8
+            ],
+            "raw": "b...",
+            "type": "Spread"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 11,
-            "range": [ 10, 11 ],
+            "data": "c",
+            "line": 1,
+            "range": [
+              10,
+              11
+            ],
             "raw": "c",
-            "data": "c"
+            "type": "Identifier"
           }
-        ]
+        ],
+        "range": [
+          0,
+          12
+        ],
+        "raw": "[a, b..., c]",
+        "type": "ArrayInitialiser"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "[a, b..., c]",
+  "type": "Program"
 }

@@ -1,113 +1,115 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      19
+    ],
+    "raw": "///foo///.test('a')",
+    "statements": [
+      {
+        "arguments": [
+          {
+            "column": 16,
+            "expressions": [
+            ],
+            "line": 1,
+            "quasis": [
+              {
+                "column": 17,
+                "data": "a",
+                "line": 1,
+                "range": [
+                  16,
+                  17
+                ],
+                "raw": "a",
+                "type": "Quasi"
+              }
+            ],
+            "range": [
+              15,
+              18
+            ],
+            "raw": "'a'",
+            "type": "String"
+          }
+        ],
+        "column": 1,
+        "function": {
+          "column": 1,
+          "expression": {
+            "column": 1,
+            "expressions": [
+            ],
+            "flags": {
+              "g": false,
+              "global": false,
+              "i": false,
+              "ignoreCase": false,
+              "m": false,
+              "multiline": false,
+              "sticky": false,
+              "y": false
+            },
+            "line": 1,
+            "quasis": [
+              {
+                "column": 4,
+                "data": "/foo/",
+                "line": 1,
+                "range": [
+                  3,
+                  6
+                ],
+                "raw": "foo",
+                "type": "Quasi"
+              }
+            ],
+            "range": [
+              0,
+              9
+            ],
+            "raw": "///foo///",
+            "type": "Heregex"
+          },
+          "line": 1,
+          "member": {
+            "column": 11,
+            "data": "test",
+            "line": 1,
+            "range": [
+              10,
+              14
+            ],
+            "raw": "test",
+            "type": "Identifier"
+          },
+          "range": [
+            0,
+            14
+          ],
+          "raw": "///foo///.test",
+          "type": "MemberAccessOp"
+        },
+        "line": 1,
+        "range": [
+          0,
+          19
+        ],
+        "raw": "///foo///.test('a')",
+        "type": "FunctionApplication"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     20
   ],
   "raw": "///foo///.test('a')\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      19
-    ],
-    "statements": [
-      {
-        "type": "FunctionApplication",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          19
-        ],
-        "function": {
-          "type": "MemberAccessOp",
-          "line": 1,
-          "column": 1,
-          "range": [
-            0,
-            14
-          ],
-          "expression": {
-            "type": "Heregex",
-            "line": 1,
-            "column": 1,
-            "raw": "///foo///",
-            "range": [
-              0,
-              9
-            ],
-            "quasis": [
-              {
-                "type": "Quasi",
-                "line": 1,
-                "column": 4,
-                "raw": "foo",
-                "range": [
-                  3,
-                  6
-                ],
-                "data": "/foo/"
-              }
-            ],
-            "expressions": [],
-            "flags": {
-              "global": false,
-              "ignoreCase": false,
-              "multiline": false,
-              "sticky": false,
-              "g": false,
-              "i": false,
-              "m": false,
-              "y": false
-            }
-          },
-          "member": {
-            "type": "Identifier",
-            "line": 1,
-            "column": 11,
-            "raw": "test",
-            "range": [
-              10,
-              14
-            ],
-            "data": "test"
-          },
-          "raw": "///foo///.test"
-        },
-        "arguments": [
-          {
-            "type": "String",
-            "line": 1,
-            "column": 16,
-            "raw": "'a'",
-            "range": [
-              15,
-              18
-            ],
-            "quasis": [
-              {
-                "type": "Quasi",
-                "line": 1,
-                "column": 17,
-                "raw": "a",
-                "range": [
-                  16,
-                  17
-                ],
-                "data": "a"
-              }
-            ],
-            "expressions": []
-          }
-        ],
-        "raw": "///foo///.test('a')"
-      }
-    ],
-    "raw": "///foo///.test('a')"
-  }
+  "type": "Program"
 }

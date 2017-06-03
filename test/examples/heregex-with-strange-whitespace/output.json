@@ -1,56 +1,57 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 2,
+    "range": [
+      37,
+      44
+    ],
+    "raw": "/// ///",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+        ],
+        "flags": {
+          "g": false,
+          "global": false,
+          "i": false,
+          "ignoreCase": false,
+          "m": false,
+          "multiline": false,
+          "sticky": false,
+          "y": false
+        },
+        "line": 2,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "/(?:)/",
+            "line": 2,
+            "range": [
+              40,
+              41
+            ],
+            "raw": " ",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          37,
+          44
+        ],
+        "raw": "/// ///",
+        "type": "Heregex"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     45
   ],
   "raw": "# This has a \\u2028 character in it.\n/// ///\n",
-  "body": {
-    "type": "Block",
-    "line": 2,
-    "column": 1,
-    "range": [
-      37,
-      44
-    ],
-    "statements": [
-      {
-        "type": "Heregex",
-        "line": 2,
-        "column": 1,
-        "raw": "/// ///",
-        "range": [
-          37,
-          44
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 2,
-            "column": 4,
-            "raw": " ",
-            "range": [
-              40,
-              41
-            ],
-            "data": "/(?:)/"
-          }
-        ],
-        "expressions": [],
-        "flags": {
-          "global": false,
-          "ignoreCase": false,
-          "multiline": false,
-          "sticky": false,
-          "g": false,
-          "i": false,
-          "m": false,
-          "y": false
-        }
-      }
-    ],
-    "raw": "/// ///"
-  }
+  "type": "Program"
 }

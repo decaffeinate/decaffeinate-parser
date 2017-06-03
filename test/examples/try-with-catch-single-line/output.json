@@ -1,51 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 13 ],
-  "raw": "try a catch b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 13 ],
+    "line": 1,
+    "range": [
+      0,
+      13
+    ],
     "raw": "try a catch b",
     "statements": [
       {
-        "type": "Try",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 13 ],
-        "raw": "try a catch b",
         "body": {
-          "type": "Block",
-          "line": 1,
           "column": 5,
-          "range": [ 4, 5 ],
-          "raw": "a",
           "inline": true,
+          "line": 1,
+          "range": [
+            4,
+            5
+          ],
+          "raw": "a",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 5 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
         "catchAssignee": {
-          "type": "Identifier",
-          "line": 1,
           "column": 13,
-          "range": [ 12, 13 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            12,
+            13
+          ],
           "raw": "b",
-          "data": "b"
+          "type": "Identifier"
         },
         "catchBody": null,
-        "finallyBody": null
+        "column": 1,
+        "finallyBody": null,
+        "line": 1,
+        "range": [
+          0,
+          13
+        ],
+        "raw": "try a catch b",
+        "type": "Try"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    13
+  ],
+  "raw": "try a catch b",
+  "type": "Program"
 }

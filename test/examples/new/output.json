@@ -1,65 +1,66 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    9
-  ],
-  "raw": "new a.B()",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       9
     ],
+    "raw": "new a.B()",
     "statements": [
       {
-        "type": "NewOp",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          9
+        "arguments": [
         ],
+        "column": 1,
         "ctor": {
-          "type": "MemberAccessOp",
-          "line": 1,
           "column": 5,
-          "range": [
-            4,
-            7
-          ],
-          "raw": "a.B",
           "expression": {
-            "type": "Identifier",
-            "line": 1,
             "column": 5,
+            "data": "a",
+            "line": 1,
             "range": [
               4,
               5
             ],
             "raw": "a",
-            "data": "a"
+            "type": "Identifier"
           },
+          "line": 1,
           "member": {
-            "type": "Identifier",
-            "line": 1,
             "column": 7,
+            "data": "B",
+            "line": 1,
             "range": [
               6,
               7
             ],
             "raw": "B",
-            "data": "B"
-          }
+            "type": "Identifier"
+          },
+          "range": [
+            4,
+            7
+          ],
+          "raw": "a.B",
+          "type": "MemberAccessOp"
         },
-        "arguments": [],
-        "raw": "new a.B()"
+        "line": 1,
+        "range": [
+          0,
+          9
+        ],
+        "raw": "new a.B()",
+        "type": "NewOp"
       }
     ],
-    "raw": "new a.B()"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "new a.B()",
+  "type": "Program"
 }

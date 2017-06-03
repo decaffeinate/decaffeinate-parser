@@ -1,69 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      20
+    ],
+    "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 8,
+            "data": "bar",
+            "line": 2,
+            "range": [
+              11,
+              14
+            ],
+            "raw": "bar",
+            "type": "Identifier"
+          }
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "bar=\"",
+            "line": 1,
+            "range": [
+              3,
+              9
+            ],
+            "raw": "\nbar=\"",
+            "type": "Quasi"
+          },
+          {
+            "column": 12,
+            "data": "\"",
+            "line": 2,
+            "range": [
+              15,
+              17
+            ],
+            "raw": "\"\n",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          20
+        ],
+        "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     20
   ],
   "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      20
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          20
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "\nbar=\"",
-            "range": [
-              3,
-              9
-            ],
-            "data": "bar=\""
-          },
-          {
-            "type": "Quasi",
-            "line": 2,
-            "column": 12,
-            "raw": "\"\n",
-            "range": [
-              15,
-              17
-            ],
-            "data": "\""
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 2,
-            "column": 8,
-            "raw": "bar",
-            "range": [
-              11,
-              14
-            ],
-            "data": "bar"
-          }
-        ],
-        "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\""
-      }
-    ],
-    "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\""
-  }
+  "type": "Program"
 }

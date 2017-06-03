@@ -1,5 +1,6 @@
 import { deepEqual } from 'assert';
 import { join } from 'path';
+import stringify from 'json-stable-stringify';
 import { inspect } from 'util';
 import { parse } from '../src/parser';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
@@ -20,7 +21,10 @@ function runWithOptions(parseOptions: { useMappers?: boolean, useFallback?: bool
       testFn(config.description || entry, () => {
         let input = readFileSync(join(dir, 'input.coffee'), { encoding: 'utf8' });
         let actual = stripExtraInfo(parse(input, parseOptions));
-        writeFileSync(join(dir, '_actual.json'), JSON.stringify(actual, null, 2), { encoding: 'utf8' });
+        writeFileSync(join(dir, '_actual.json'), stringify(actual, {space: 2}), { encoding: 'utf8' });
+        if (process.env['OVERWRITE_EXPECTED_OUTPUT'] === 'true') {
+          writeFileSync(join(dir, 'output.json'), stringify(actual, {space: 2}), { encoding: 'utf8' });
+        }
         let expected = JSON.parse(readFileSync(join(dir, 'output.json'), { encoding: 'utf8' }));
         deepEqual(actual, expected);
       });

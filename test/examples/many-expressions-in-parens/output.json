@@ -1,99 +1,138 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 19 ],
-  "raw": "(a; b; c; d; e) + f",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 19 ],
+    "line": 1,
+    "range": [
+      0,
+      19
+    ],
     "raw": "(a; b; c; d; e) + f",
     "statements": [
       {
-        "type": "PlusOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 19 ],
-        "raw": "(a; b; c; d; e) + f",
         "left": {
-          "type": "SeqOp",
-          "line": 1,
           "column": 2,
-          "range": [ 1, 14 ],
-          "raw": "a; b; c; d; e",
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 2 ],
-            "raw": "a",
-            "data": "a"
-          },
-          "right": {
-            "type": "SeqOp",
+            "data": "a",
             "line": 1,
-            "column": 5,
-            "range": [ 4, 14 ],
-            "raw": "b; c; d; e",
-            "left": {
-              "type": "Identifier",
-              "line": 1,
-              "column": 5,
-              "range": [ 4, 5 ],
-              "raw": "b",
-              "data": "b"
-            },
-            "right": {
-              "type": "SeqOp",
-              "line": 1,
-              "column": 8,
-              "range": [ 7, 14 ],
-              "raw": "c; d; e",
-              "left": {
-                "type": "Identifier",
-                "line": 1,
-                "column": 8,
-                "range": [ 7, 8 ],
-                "raw": "c",
-                "data": "c"
-              },
-              "right": {
-                "type": "SeqOp",
-                "line": 1,
-                "column": 11,
-                "range": [ 10, 14 ],
-                "raw": "d; e",
-                "left": {
-                  "type": "Identifier",
-                  "line": 1,
-                  "column": 11,
-                  "range": [ 10, 11 ],
-                  "raw": "d",
-                  "data": "d"
-                },
-                "right": {
-                  "type": "Identifier",
-                  "line": 1,
-                  "column": 14,
-                  "range": [ 13, 14 ],
-                  "raw": "e",
-                  "data": "e"
-                }
-              }
-            }
-          }
-        },
-        "right": {
-          "type": "Identifier",
+            "range": [
+              1,
+              2
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
           "line": 1,
+          "range": [
+            1,
+            14
+          ],
+          "raw": "a; b; c; d; e",
+          "right": {
+            "column": 5,
+            "left": {
+              "column": 5,
+              "data": "b",
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
+              "raw": "b",
+              "type": "Identifier"
+            },
+            "line": 1,
+            "range": [
+              4,
+              14
+            ],
+            "raw": "b; c; d; e",
+            "right": {
+              "column": 8,
+              "left": {
+                "column": 8,
+                "data": "c",
+                "line": 1,
+                "range": [
+                  7,
+                  8
+                ],
+                "raw": "c",
+                "type": "Identifier"
+              },
+              "line": 1,
+              "range": [
+                7,
+                14
+              ],
+              "raw": "c; d; e",
+              "right": {
+                "column": 11,
+                "left": {
+                  "column": 11,
+                  "data": "d",
+                  "line": 1,
+                  "range": [
+                    10,
+                    11
+                  ],
+                  "raw": "d",
+                  "type": "Identifier"
+                },
+                "line": 1,
+                "range": [
+                  10,
+                  14
+                ],
+                "raw": "d; e",
+                "right": {
+                  "column": 14,
+                  "data": "e",
+                  "line": 1,
+                  "range": [
+                    13,
+                    14
+                  ],
+                  "raw": "e",
+                  "type": "Identifier"
+                },
+                "type": "SeqOp"
+              },
+              "type": "SeqOp"
+            },
+            "type": "SeqOp"
+          },
+          "type": "SeqOp"
+        },
+        "line": 1,
+        "range": [
+          0,
+          19
+        ],
+        "raw": "(a; b; c; d; e) + f",
+        "right": {
           "column": 19,
-          "range": [ 18, 19 ],
+          "data": "f",
+          "line": 1,
+          "range": [
+            18,
+            19
+          ],
           "raw": "f",
-          "data": "f"
-        }
+          "type": "Identifier"
+        },
+        "type": "PlusOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    19
+  ],
+  "raw": "(a; b; c; d; e) + f",
+  "type": "Program"
 }

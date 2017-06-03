@@ -1,64 +1,88 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "a b, c..., d",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
     "raw": "a b, c..., d",
     "statements": [
       {
-        "type": "FunctionApplication",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 12 ],
-        "raw": "a b, c..., d",
         "arguments": [
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 3,
-            "range": [ 2, 3 ],
+            "data": "b",
+            "line": 1,
+            "range": [
+              2,
+              3
+            ],
             "raw": "b",
-            "data": "b"
+            "type": "Identifier"
           },
           {
-            "type": "Spread",
-            "line": 1,
             "column": 6,
-            "range": [ 5, 9 ],
-            "raw": "c...",
             "expression": {
-              "type": "Identifier",
-              "line": 1,
               "column": 6,
-              "range": [ 5, 6 ],
+              "data": "c",
+              "line": 1,
+              "range": [
+                5,
+                6
+              ],
               "raw": "c",
-              "data": "c"
-            }
+              "type": "Identifier"
+            },
+            "line": 1,
+            "range": [
+              5,
+              9
+            ],
+            "raw": "c...",
+            "type": "Spread"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 12,
-            "range": [ 11, 12 ],
+            "data": "d",
+            "line": 1,
+            "range": [
+              11,
+              12
+            ],
             "raw": "d",
-            "data": "d"
+            "type": "Identifier"
           }
         ],
+        "column": 1,
         "function": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
           "raw": "a",
-          "data": "a"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "a b, c..., d",
+        "type": "FunctionApplication"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "a b, c..., d",
+  "type": "Program"
 }

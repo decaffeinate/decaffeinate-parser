@@ -1,31 +1,43 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 2 ],
-  "raw": "~a",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 2 ],
+    "line": 1,
+    "range": [
+      0,
+      2
+    ],
     "raw": "~a",
     "statements": [
       {
-        "type": "BitNotOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 2 ],
-        "raw": "~a",
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 2,
-          "range": [ 1, 2 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            1,
+            2
+          ],
           "raw": "a",
-          "data": "a"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          2
+        ],
+        "raw": "~a",
+        "type": "BitNotOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    2
+  ],
+  "raw": "~a",
+  "type": "Program"
 }

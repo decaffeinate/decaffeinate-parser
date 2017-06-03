@@ -1,85 +1,85 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    12
-  ],
-  "raw": "a != b != c\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       11
     ],
+    "raw": "a != b != c",
     "statements": [
       {
-        "type": "ChainedComparisonOp",
-        "line": 1,
         "column": 1,
-        "range": [
-          0,
-          11
-        ],
+        "line": 1,
         "operands": [
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 1,
+            "data": "a",
+            "line": 1,
             "range": [
               0,
               1
             ],
-            "data": "a",
-            "raw": "a"
+            "raw": "a",
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 6,
+            "data": "b",
+            "line": 1,
             "range": [
               5,
               6
             ],
-            "data": "b",
-            "raw": "b"
+            "raw": "b",
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 11,
+            "data": "c",
+            "line": 1,
             "range": [
               10,
               11
             ],
-            "data": "c",
-            "raw": "c"
+            "raw": "c",
+            "type": "Identifier"
           }
         ],
         "operators": [
           {
             "operator": "!=",
             "token": {
-              "type": 39,
+              "end": 4,
               "start": 2,
-              "end": 4
+              "type": 39
             }
           },
           {
             "operator": "!=",
             "token": {
-              "type": 39,
+              "end": 9,
               "start": 7,
-              "end": 9
+              "type": 39
             }
           }
         ],
-        "raw": "a != b != c"
+        "range": [
+          0,
+          11
+        ],
+        "raw": "a != b != c",
+        "type": "ChainedComparisonOp"
       }
     ],
-    "raw": "a != b != c"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "a != b != c\n",
+  "type": "Program"
 }

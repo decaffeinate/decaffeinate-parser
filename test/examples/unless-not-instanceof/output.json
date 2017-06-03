@@ -1,67 +1,91 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 30 ],
-  "raw": "unless a not instanceof b\n  c\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 29 ],
+    "line": 1,
+    "range": [
+      0,
+      29
+    ],
+    "raw": "unless a not instanceof b\n  c",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
+        "alternate": null,
         "column": 1,
-        "range": [ 0, 29 ],
-        "isUnless": true,
         "condition": {
-          "type": "InstanceofOp",
-          "line": 1,
           "column": 8,
-          "range": [ 7, 25 ],
+          "isNot": true,
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 8,
-            "range": [ 7, 8 ],
             "data": "a",
-            "raw": "a"
-          },
-          "right": {
-            "type": "Identifier",
             "line": 1,
-            "column": 25,
-            "range": [ 24, 25 ],
-            "data": "b",
-            "raw": "b"
+            "range": [
+              7,
+              8
+            ],
+            "raw": "a",
+            "type": "Identifier"
           },
+          "line": 1,
+          "range": [
+            7,
+            25
+          ],
           "raw": "a not instanceof b",
-          "isNot": true
+          "right": {
+            "column": 25,
+            "data": "b",
+            "line": 1,
+            "range": [
+              24,
+              25
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          },
+          "type": "InstanceofOp"
         },
         "consequent": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 28, 29 ],
-          "statements": [
-            {
-              "type": "Identifier",
-              "line": 2,
-              "column": 3,
-              "range": [ 28, 29 ],
-              "data": "c",
-              "raw": "c"
-            }
+          "inline": false,
+          "line": 2,
+          "range": [
+            28,
+            29
           ],
           "raw": "c",
-          "inline": false
+          "statements": [
+            {
+              "column": 3,
+              "data": "c",
+              "line": 2,
+              "range": [
+                28,
+                29
+              ],
+              "raw": "c",
+              "type": "Identifier"
+            }
+          ],
+          "type": "Block"
         },
-        "alternate": null,
-        "raw": "unless a not instanceof b\n  c"
+        "isUnless": true,
+        "line": 1,
+        "range": [
+          0,
+          29
+        ],
+        "raw": "unless a not instanceof b\n  c",
+        "type": "Conditional"
       }
     ],
-    "raw": "unless a not instanceof b\n  c"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    30
+  ],
+  "raw": "unless a not instanceof b\n  c\n",
+  "type": "Program"
 }

@@ -1,63 +1,87 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 15 ],
-  "raw": "[a, ..., b] = c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 15 ],
+    "line": 1,
+    "range": [
+      0,
+      15
+    ],
     "raw": "[a, ..., b] = c",
     "statements": [
       {
-        "type": "AssignOp",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 15 ],
-        "raw": "[a, ..., b] = c",
         "assignee": {
-          "type": "ArrayInitialiser",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 11 ],
-          "raw": "[a, ..., b]",
+          "line": 1,
           "members": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 2,
-              "range": [ 1, 2 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                1,
+                2
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             },
             {
-              "type": "Expansion",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 7 ],
-              "raw": "..."
+              "line": 1,
+              "range": [
+                4,
+                7
+              ],
+              "raw": "...",
+              "type": "Expansion"
             },
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 10,
-              "range": [ 9, 10 ],
+              "data": "b",
+              "line": 1,
+              "range": [
+                9,
+                10
+              ],
               "raw": "b",
-              "data": "b"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "range": [
+            0,
+            11
+          ],
+          "raw": "[a, ..., b]",
+          "type": "ArrayInitialiser"
         },
+        "column": 1,
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 15,
-          "range": [ 14, 15 ],
+          "data": "c",
+          "line": 1,
+          "range": [
+            14,
+            15
+          ],
           "raw": "c",
-          "data": "c"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          15
+        ],
+        "raw": "[a, ..., b] = c",
+        "type": "AssignOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    15
+  ],
+  "raw": "[a, ..., b] = c",
+  "type": "Program"
 }

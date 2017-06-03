@@ -1,132 +1,132 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    25
-  ],
-  "raw": "do a = (b = c, d) ->\n  e\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       24
     ],
+    "raw": "do a = (b = c, d) ->\n  e",
     "statements": [
       {
-        "type": "DoOp",
-        "line": 1,
         "column": 1,
+        "expression": {
+          "assignee": {
+            "column": 4,
+            "data": "a",
+            "line": 1,
+            "range": [
+              3,
+              4
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          "column": 4,
+          "expression": {
+            "body": {
+              "column": 3,
+              "inline": false,
+              "line": 2,
+              "range": [
+                23,
+                24
+              ],
+              "raw": "e",
+              "statements": [
+                {
+                  "column": 3,
+                  "data": "e",
+                  "line": 2,
+                  "range": [
+                    23,
+                    24
+                  ],
+                  "raw": "e",
+                  "type": "Identifier"
+                }
+              ],
+              "type": "Block"
+            },
+            "column": 8,
+            "line": 1,
+            "parameters": [
+              {
+                "column": 9,
+                "default": {
+                  "column": 13,
+                  "data": "c",
+                  "line": 1,
+                  "range": [
+                    12,
+                    13
+                  ],
+                  "raw": "c",
+                  "type": "Identifier"
+                },
+                "line": 1,
+                "param": {
+                  "column": 9,
+                  "data": "b",
+                  "line": 1,
+                  "range": [
+                    8,
+                    9
+                  ],
+                  "raw": "b",
+                  "type": "Identifier"
+                },
+                "range": [
+                  8,
+                  13
+                ],
+                "raw": "b = c",
+                "type": "DefaultParam"
+              },
+              {
+                "column": 16,
+                "data": "d",
+                "line": 1,
+                "range": [
+                  15,
+                  16
+                ],
+                "raw": "d",
+                "type": "Identifier"
+              }
+            ],
+            "range": [
+              7,
+              24
+            ],
+            "raw": "(b = c, d) ->\n  e",
+            "type": "Function"
+          },
+          "line": 1,
+          "range": [
+            3,
+            24
+          ],
+          "raw": "a = (b = c, d) ->\n  e",
+          "type": "AssignOp"
+        },
+        "line": 1,
         "range": [
           0,
           24
         ],
         "raw": "do a = (b = c, d) ->\n  e",
-        "expression": {
-          "type": "AssignOp",
-          "line": 1,
-          "column": 4,
-          "range": [
-            3,
-            24
-          ],
-          "assignee": {
-            "type": "Identifier",
-            "line": 1,
-            "column": 4,
-            "raw": "a",
-            "range": [
-              3,
-              4
-            ],
-            "data": "a"
-          },
-          "expression": {
-            "type": "Function",
-            "line": 1,
-            "column": 8,
-            "range": [
-              7,
-              24
-            ],
-            "body": {
-              "type": "Block",
-              "line": 2,
-              "column": 3,
-              "range": [
-                23,
-                24
-              ],
-              "statements": [
-                {
-                  "type": "Identifier",
-                  "line": 2,
-                  "column": 3,
-                  "raw": "e",
-                  "range": [
-                    23,
-                    24
-                  ],
-                  "data": "e"
-                }
-              ],
-              "raw": "e",
-              "inline": false
-            },
-            "parameters": [
-              {
-                "type": "DefaultParam",
-                "line": 1,
-                "column": 9,
-                "range": [
-                  8,
-                  13
-                ],
-                "param": {
-                  "type": "Identifier",
-                  "line": 1,
-                  "column": 9,
-                  "raw": "b",
-                  "range": [
-                    8,
-                    9
-                  ],
-                  "data": "b"
-                },
-                "default": {
-                  "type": "Identifier",
-                  "line": 1,
-                  "column": 13,
-                  "raw": "c",
-                  "range": [
-                    12,
-                    13
-                  ],
-                  "data": "c"
-                },
-                "raw": "b = c"
-              },
-              {
-                "type": "Identifier",
-                "line": 1,
-                "column": 16,
-                "raw": "d",
-                "range": [
-                  15,
-                  16
-                ],
-                "data": "d"
-              }
-            ],
-            "raw": "(b = c, d) ->\n  e"
-          },
-          "raw": "a = (b = c, d) ->\n  e"
-        }
+        "type": "DoOp"
       }
     ],
-    "raw": "do a = (b = c, d) ->\n  e"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    25
+  ],
+  "raw": "do a = (b = c, d) ->\n  e\n",
+  "type": "Program"
 }

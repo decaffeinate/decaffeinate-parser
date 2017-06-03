@@ -1,103 +1,105 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    39
-  ],
-  "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       39
     ],
+    "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
     "statements": [
       {
-        "type": "Class",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          39
-        ],
-        "name": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            9
-          ],
-          "raw": "Foo",
-          "data": "Foo"
-        },
-        "nameAssignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            9
-          ],
-          "raw": "Foo",
-          "data": "Foo"
-        },
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
+          "inline": false,
+          "line": 2,
           "range": [
             12,
             39
           ],
+          "raw": "###\n  # foo\n  ###\n  foo: ->",
           "statements": [
             {
-              "type": "ClassProtoAssignOp",
-              "line": 5,
-              "column": 3,
-              "range": [
-                32,
-                39
-              ],
               "assignee": {
-                "type": "Identifier",
-                "line": 5,
                 "column": 3,
+                "data": "foo",
+                "line": 5,
                 "range": [
                   32,
                   35
                 ],
                 "raw": "foo",
-                "data": "foo"
+                "type": "Identifier"
               },
+              "column": 3,
               "expression": {
-                "type": "Function",
-                "line": 5,
+                "body": null,
                 "column": 8,
+                "line": 5,
+                "parameters": [
+                ],
                 "range": [
                   37,
                   39
                 ],
-                "body": null,
-                "parameters": [],
-                "raw": "->"
+                "raw": "->",
+                "type": "Function"
               },
-              "raw": "foo: ->"
+              "line": 5,
+              "range": [
+                32,
+                39
+              ],
+              "raw": "foo: ->",
+              "type": "ClassProtoAssignOp"
             }
           ],
-          "inline": false,
-          "raw": "###\n  # foo\n  ###\n  foo: ->"
+          "type": "Block"
         },
-        "boundMembers": [],
-        "parent": null,
+        "boundMembers": [
+        ],
+        "column": 1,
         "ctor": null,
-        "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->"
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "Foo",
+          "line": 1,
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "Foo",
+          "line": 1,
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          39
+        ],
+        "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
+        "type": "Class"
       }
     ],
-    "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    39
+  ],
+  "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
+  "type": "Program"
 }

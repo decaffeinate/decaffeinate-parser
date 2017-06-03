@@ -1,24 +1,33 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 5 ],
-  "raw": "false",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 5 ],
+    "line": 1,
+    "range": [
+      0,
+      5
+    ],
     "raw": "false",
     "statements": [
       {
-        "type": "Bool",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 5 ],
+        "data": false,
+        "line": 1,
+        "range": [
+          0,
+          5
+        ],
         "raw": "false",
-        "data": false
+        "type": "Bool"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    5
+  ],
+  "raw": "false",
+  "type": "Program"
 }

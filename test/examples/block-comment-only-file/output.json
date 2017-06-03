@@ -1,11 +1,11 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": null,
   "column": 1,
-  "raw": "###\n# hey there\n###\n",
+  "line": 1,
   "range": [
     0,
     0
   ],
-  "body": null
+  "raw": "###\n# hey there\n###\n",
+  "type": "Program"
 }

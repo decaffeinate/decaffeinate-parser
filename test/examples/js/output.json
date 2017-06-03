@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
+    "raw": "a = `void 0`",
     "statements": [
       {
-        "type": "AssignOp",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 12 ],
         "assignee": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
           "data": "a",
-          "raw": "a"
-        },
-        "expression": {
-          "type": "JavaScript",
           "line": 1,
-          "column": 5,
-          "range": [ 4, 12 ],
-          "data": "void 0",
-          "raw": "`void 0`"
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "type": "Identifier"
         },
-        "raw": "a = `void 0`"
+        "column": 1,
+        "expression": {
+          "column": 5,
+          "data": "void 0",
+          "line": 1,
+          "range": [
+            4,
+            12
+          ],
+          "raw": "`void 0`",
+          "type": "JavaScript"
+        },
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "a = `void 0`",
+        "type": "AssignOp"
       }
     ],
-    "raw": "a = `void 0`"
+    "type": "Block"
   },
-  "raw": "a = `void 0`"
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "a = `void 0`",
+  "type": "Program"
 }

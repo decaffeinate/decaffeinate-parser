@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 11 ],
-  "raw": "A extends B",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 11 ],
+    "line": 1,
+    "range": [
+      0,
+      11
+    ],
     "raw": "A extends B",
     "statements": [
       {
-        "type": "ExtendsOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 11 ],
-        "raw": "A extends B",
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "A",
-          "data": "A"
-        },
-        "right": {
-          "type": "Identifier",
+          "data": "A",
           "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          11
+        ],
+        "raw": "A extends B",
+        "right": {
           "column": 11,
-          "range": [ 10, 11 ],
+          "data": "B",
+          "line": 1,
+          "range": [
+            10,
+            11
+          ],
           "raw": "B",
-          "data": "B"
-        }
+          "type": "Identifier"
+        },
+        "type": "ExtendsOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    11
+  ],
+  "raw": "A extends B",
+  "type": "Program"
 }

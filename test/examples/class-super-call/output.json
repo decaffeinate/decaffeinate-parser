@@ -1,278 +1,282 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    76
-  ],
-  "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       76
     ],
+    "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
     "statements": [
       {
-        "type": "Class",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          76
-        ],
-        "name": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            9
-          ],
-          "raw": "Foo",
-          "data": "Foo"
-        },
-        "nameAssignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            9
-          ],
-          "raw": "Foo",
-          "data": "Foo"
-        },
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
+          "inline": false,
+          "line": 2,
           "range": [
             24,
             76
           ],
+          "raw": "constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
           "statements": [
             {
-              "type": "Constructor",
-              "line": 2,
-              "column": 3,
-              "range": [
-                24,
-                49
-              ],
               "assignee": {
-                "type": "Identifier",
-                "line": 2,
                 "column": 3,
+                "data": "constructor",
+                "line": 2,
                 "range": [
                   24,
                   35
                 ],
                 "raw": "constructor",
-                "data": "constructor"
+                "type": "Identifier"
               },
+              "column": 3,
               "expression": {
-                "type": "Function",
-                "line": 2,
-                "column": 16,
-                "range": [
-                  37,
-                  49
-                ],
                 "body": {
-                  "type": "Block",
-                  "line": 3,
                   "column": 5,
+                  "inline": false,
+                  "line": 3,
                   "range": [
                     44,
                     49
                   ],
+                  "raw": "super",
                   "statements": [
                     {
-                      "type": "BareSuperFunctionApplication",
-                      "line": 3,
                       "column": 5,
+                      "line": 3,
                       "range": [
                         44,
                         49
                       ],
-                      "raw": "super"
+                      "raw": "super",
+                      "type": "BareSuperFunctionApplication"
                     }
                   ],
-                  "raw": "super",
-                  "inline": false
+                  "type": "Block"
                 },
-                "parameters": [],
-                "raw": "->\n    super"
+                "column": 16,
+                "line": 2,
+                "parameters": [
+                ],
+                "range": [
+                  37,
+                  49
+                ],
+                "raw": "->\n    super",
+                "type": "Function"
               },
-              "raw": "constructor: ->\n    super"
+              "line": 2,
+              "range": [
+                24,
+                49
+              ],
+              "raw": "constructor: ->\n    super",
+              "type": "Constructor"
             },
             {
-              "type": "ClassProtoAssignOp",
-              "line": 5,
-              "column": 3,
-              "range": [
-                53,
-                76
-              ],
               "assignee": {
-                "type": "Identifier",
-                "line": 5,
                 "column": 3,
+                "data": "foo",
+                "line": 5,
                 "range": [
                   53,
                   56
                 ],
                 "raw": "foo",
-                "data": "foo"
+                "type": "Identifier"
               },
+              "column": 3,
               "expression": {
-                "type": "Function",
-                "line": 5,
-                "column": 8,
-                "range": [
-                  58,
-                  76
-                ],
                 "body": {
-                  "type": "Block",
-                  "line": 6,
                   "column": 5,
+                  "inline": false,
+                  "line": 6,
                   "range": [
                     65,
                     76
                   ],
+                  "raw": "super(1, 2)",
                   "statements": [
                     {
-                      "type": "FunctionApplication",
-                      "line": 6,
-                      "column": 5,
-                      "range": [
-                        65,
-                        76
-                      ],
-                      "function": {
-                        "type": "Super",
-                        "line": 6,
-                        "column": 5,
-                        "range": [
-                          65,
-                          70
-                        ],
-                        "raw": "super"
-                      },
                       "arguments": [
                         {
-                          "type": "Int",
-                          "line": 6,
                           "column": 11,
+                          "data": 1,
+                          "line": 6,
                           "range": [
                             71,
                             72
                           ],
                           "raw": "1",
-                          "data": 1
+                          "type": "Int"
                         },
                         {
-                          "type": "Int",
-                          "line": 6,
                           "column": 14,
+                          "data": 2,
+                          "line": 6,
                           "range": [
                             74,
                             75
                           ],
                           "raw": "2",
-                          "data": 2
+                          "type": "Int"
                         }
                       ],
-                      "raw": "super(1, 2)"
+                      "column": 5,
+                      "function": {
+                        "column": 5,
+                        "line": 6,
+                        "range": [
+                          65,
+                          70
+                        ],
+                        "raw": "super",
+                        "type": "Super"
+                      },
+                      "line": 6,
+                      "range": [
+                        65,
+                        76
+                      ],
+                      "raw": "super(1, 2)",
+                      "type": "FunctionApplication"
                     }
                   ],
-                  "raw": "super(1, 2)",
-                  "inline": false
+                  "type": "Block"
                 },
-                "parameters": [],
-                "raw": "->\n    super(1, 2)"
+                "column": 8,
+                "line": 5,
+                "parameters": [
+                ],
+                "range": [
+                  58,
+                  76
+                ],
+                "raw": "->\n    super(1, 2)",
+                "type": "Function"
               },
-              "raw": "foo: ->\n    super(1, 2)"
+              "line": 5,
+              "range": [
+                53,
+                76
+              ],
+              "raw": "foo: ->\n    super(1, 2)",
+              "type": "ClassProtoAssignOp"
             }
           ],
-          "inline": false,
-          "raw": "constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
+          "type": "Block"
         },
-        "boundMembers": [],
-        "parent": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 19,
-          "range": [
-            18,
-            21
-          ],
-          "raw": "Bar",
-          "data": "Bar"
-        },
+        "boundMembers": [
+        ],
+        "column": 1,
         "ctor": {
-          "type": "Constructor",
-          "line": 2,
-          "column": 3,
-          "range": [
-            24,
-            49
-          ],
           "assignee": {
-            "type": "Identifier",
-            "line": 2,
             "column": 3,
+            "data": "constructor",
+            "line": 2,
             "range": [
               24,
               35
             ],
             "raw": "constructor",
-            "data": "constructor"
+            "type": "Identifier"
           },
+          "column": 3,
           "expression": {
-            "type": "Function",
-            "line": 2,
-            "column": 16,
-            "range": [
-              37,
-              49
-            ],
             "body": {
-              "type": "Block",
-              "line": 3,
               "column": 5,
+              "inline": false,
+              "line": 3,
               "range": [
                 44,
                 49
               ],
+              "raw": "super",
               "statements": [
                 {
-                  "type": "BareSuperFunctionApplication",
-                  "line": 3,
                   "column": 5,
+                  "line": 3,
                   "range": [
                     44,
                     49
                   ],
-                  "raw": "super"
+                  "raw": "super",
+                  "type": "BareSuperFunctionApplication"
                 }
               ],
-              "raw": "super",
-              "inline": false
+              "type": "Block"
             },
-            "parameters": [],
-            "raw": "->\n    super"
+            "column": 16,
+            "line": 2,
+            "parameters": [
+            ],
+            "range": [
+              37,
+              49
+            ],
+            "raw": "->\n    super",
+            "type": "Function"
           },
-          "raw": "constructor: ->\n    super"
+          "line": 2,
+          "range": [
+            24,
+            49
+          ],
+          "raw": "constructor: ->\n    super",
+          "type": "Constructor"
         },
-        "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "Foo",
+          "line": 1,
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "Foo",
+          "line": 1,
+          "range": [
+            6,
+            9
+          ],
+          "raw": "Foo",
+          "type": "Identifier"
+        },
+        "parent": {
+          "column": 19,
+          "data": "Bar",
+          "line": 1,
+          "range": [
+            18,
+            21
+          ],
+          "raw": "Bar",
+          "type": "Identifier"
+        },
+        "range": [
+          0,
+          76
+        ],
+        "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
+        "type": "Class"
       }
     ],
-    "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    76
+  ],
+  "raw": "class Foo extends Bar\n  constructor: ->\n    super\n\n  foo: ->\n    super(1, 2)",
+  "type": "Program"
 }

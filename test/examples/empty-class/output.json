@@ -1,43 +1,59 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 7 ],
-  "raw": "class A",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 7 ],
+    "line": 1,
+    "range": [
+      0,
+      7
+    ],
     "raw": "class A",
     "statements": [
       {
-        "type": "Class",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 7 ],
-        "raw": "class A",
         "body": null,
-        "boundMembers": [],
+        "boundMembers": [
+        ],
+        "column": 1,
         "ctor": null,
+        "line": 1,
         "name": {
-          "type": "Identifier",
-          "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
-          "data": "A"
+          "type": "Identifier"
         },
         "nameAssignee": {
-          "type": "Identifier",
-          "line": 1,
           "column": 7,
-          "range": [ 6, 7 ],
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
           "raw": "A",
-          "data": "A"
+          "type": "Identifier"
         },
-        "parent": null
+        "parent": null,
+        "range": [
+          0,
+          7
+        ],
+        "raw": "class A",
+        "type": "Class"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    7
+  ],
+  "raw": "class A",
+  "type": "Program"
 }

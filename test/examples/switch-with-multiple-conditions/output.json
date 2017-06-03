@@ -1,77 +1,104 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 26 ],
-  "raw": "switch a\n  when b, c\n    d",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 26 ],
+    "line": 1,
+    "range": [
+      0,
+      26
+    ],
     "raw": "switch a\n  when b, c\n    d",
     "statements": [
       {
-        "type": "Switch",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 26 ],
-        "raw": "switch a\n  when b, c\n    d",
         "alternate": null,
         "cases": [
           {
-            "type": "SwitchCase",
-            "line": 2,
             "column": 3,
-            "range": [ 11, 26 ],
-            "raw": "when b, c\n    d",
             "conditions": [
               {
-                "type": "Identifier",
-                "line": 2,
                 "column": 8,
-                "range": [ 16, 17 ],
+                "data": "b",
+                "line": 2,
+                "range": [
+                  16,
+                  17
+                ],
                 "raw": "b",
-                "data": "b"
+                "type": "Identifier"
               },
               {
-                "type": "Identifier",
-                "line": 2,
                 "column": 11,
-                "range": [ 19, 20 ],
+                "data": "c",
+                "line": 2,
+                "range": [
+                  19,
+                  20
+                ],
                 "raw": "c",
-                "data": "c"
+                "type": "Identifier"
               }
             ],
             "consequent": {
-              "type": "Block",
-              "line": 3,
               "column": 5,
-              "range": [ 25, 26 ],
-              "raw": "d",
               "inline": false,
+              "line": 3,
+              "range": [
+                25,
+                26
+              ],
+              "raw": "d",
               "statements": [
                 {
-                  "type": "Identifier",
-                  "line": 3,
                   "column": 5,
-                  "range": [ 25, 26 ],
+                  "data": "d",
+                  "line": 3,
+                  "range": [
+                    25,
+                    26
+                  ],
                   "raw": "d",
-                  "data": "d"
+                  "type": "Identifier"
                 }
-              ]
-            }
+              ],
+              "type": "Block"
+            },
+            "line": 2,
+            "range": [
+              11,
+              26
+            ],
+            "raw": "when b, c\n    d",
+            "type": "SwitchCase"
           }
         ],
+        "column": 1,
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 8,
-          "range": [ 7, 8 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            7,
+            8
+          ],
           "raw": "a",
-          "data": "a"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          26
+        ],
+        "raw": "switch a\n  when b, c\n    d",
+        "type": "Switch"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    26
+  ],
+  "raw": "switch a\n  when b, c\n    d",
+  "type": "Program"
 }

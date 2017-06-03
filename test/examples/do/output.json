@@ -1,49 +1,68 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 9 ],
-  "raw": "do ->\n  a",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 9 ],
+    "line": 1,
+    "range": [
+      0,
+      9
+    ],
     "raw": "do ->\n  a",
     "statements": [
       {
-        "type": "DoOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 9 ],
-        "raw": "do ->\n  a",
         "expression": {
-          "type": "Function",
-          "line": 1,
-          "column": 4,
-          "range": [ 3, 9 ],
-          "raw": "->\n  a",
           "body": {
-            "type": "Block",
-            "line": 2,
             "column": 3,
-            "range": [ 8, 9 ],
-            "raw": "a",
             "inline": false,
+            "line": 2,
+            "range": [
+              8,
+              9
+            ],
+            "raw": "a",
             "statements": [
               {
-                "type": "Identifier",
-                "line": 2,
                 "column": 3,
-                "range": [ 8, 9 ],
+                "data": "a",
+                "line": 2,
+                "range": [
+                  8,
+                  9
+                ],
                 "raw": "a",
-                "data": "a"
+                "type": "Identifier"
               }
-            ]
+            ],
+            "type": "Block"
           },
-          "parameters": []
-        }
+          "column": 4,
+          "line": 1,
+          "parameters": [
+          ],
+          "range": [
+            3,
+            9
+          ],
+          "raw": "->\n  a",
+          "type": "Function"
+        },
+        "line": 1,
+        "range": [
+          0,
+          9
+        ],
+        "raw": "do ->\n  a",
+        "type": "DoOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "do ->\n  a",
+  "type": "Program"
 }

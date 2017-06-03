@@ -1,54 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    4
-  ],
-  "raw": "a?.b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       4
     ],
+    "raw": "a?.b",
     "statements": [
       {
-        "type": "SoakedMemberAccessOp",
-        "line": 1,
         "column": 1,
-        "range": [
-          0,
-          4
-        ],
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
+          "data": "a",
+          "line": 1,
           "range": [
             0,
             1
           ],
           "raw": "a",
-          "data": "a"
+          "type": "Identifier"
         },
+        "line": 1,
         "member": {
-          "type": "Identifier",
-          "line": 1,
           "column": 4,
+          "data": "b",
+          "line": 1,
           "range": [
             3,
             4
           ],
           "raw": "b",
-          "data": "b"
+          "type": "Identifier"
         },
-        "raw": "a?.b"
+        "range": [
+          0,
+          4
+        ],
+        "raw": "a?.b",
+        "type": "SoakedMemberAccessOp"
       }
     ],
-    "raw": "a?.b"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    4
+  ],
+  "raw": "a?.b",
+  "type": "Program"
 }

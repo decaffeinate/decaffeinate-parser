@@ -1,122 +1,123 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    15
-  ],
-  "raw": "class A\n  @b: c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       15
     ],
+    "raw": "class A\n  @b: c",
     "statements": [
       {
-        "type": "Class",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          15
-        ],
-        "name": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            7
-          ],
-          "raw": "A",
-          "data": "A"
-        },
-        "nameAssignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            7
-          ],
-          "raw": "A",
-          "data": "A"
-        },
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
+          "inline": false,
+          "line": 2,
           "range": [
             10,
             15
           ],
+          "raw": "@b: c",
           "statements": [
             {
-              "type": "AssignOp",
-              "line": 2,
-              "column": 3,
-              "range": [
-                10,
-                15
-              ],
               "assignee": {
-                "type": "MemberAccessOp",
-                "line": 2,
                 "column": 3,
-                "range": [
-                  10,
-                  12
-                ],
                 "expression": {
-                  "type": "This",
-                  "line": 2,
                   "column": 3,
+                  "line": 2,
                   "range": [
                     10,
                     11
                   ],
-                  "raw": "@"
+                  "raw": "@",
+                  "type": "This"
                 },
+                "line": 2,
                 "member": {
-                  "type": "Identifier",
-                  "line": 2,
                   "column": 4,
+                  "data": "b",
+                  "line": 2,
                   "range": [
                     11,
                     12
                   ],
                   "raw": "b",
-                  "data": "b"
+                  "type": "Identifier"
                 },
-                "raw": "@b"
+                "range": [
+                  10,
+                  12
+                ],
+                "raw": "@b",
+                "type": "MemberAccessOp"
               },
+              "column": 3,
               "expression": {
-                "type": "Identifier",
-                "line": 2,
                 "column": 7,
+                "data": "c",
+                "line": 2,
                 "range": [
                   14,
                   15
                 ],
                 "raw": "c",
-                "data": "c"
+                "type": "Identifier"
               },
-              "raw": "@b: c"
+              "line": 2,
+              "range": [
+                10,
+                15
+              ],
+              "raw": "@b: c",
+              "type": "AssignOp"
             }
           ],
-          "inline": false,
-          "raw": "@b: c"
+          "type": "Block"
         },
-        "boundMembers": [],
-        "parent": null,
+        "boundMembers": [
+        ],
+        "column": 1,
         "ctor": null,
-        "raw": "class A\n  @b: c"
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          15
+        ],
+        "raw": "class A\n  @b: c",
+        "type": "Class"
       }
     ],
-    "raw": "class A\n  @b: c"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    15
+  ],
+  "raw": "class A\n  @b: c",
+  "type": "Program"
 }

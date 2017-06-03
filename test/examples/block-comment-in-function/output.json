@@ -1,45 +1,47 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      18
+    ],
+    "raw": "->\n  ###\n  a\n  ###",
+    "statements": [
+      {
+        "body": {
+          "column": 3,
+          "inline": false,
+          "line": 2,
+          "range": [
+            5,
+            18
+          ],
+          "raw": "###\n  a\n  ###",
+          "statements": [
+          ],
+          "type": "Block"
+        },
+        "column": 1,
+        "line": 1,
+        "parameters": [
+        ],
+        "range": [
+          0,
+          18
+        ],
+        "raw": "->\n  ###\n  a\n  ###",
+        "type": "Function"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     19
   ],
   "raw": "->\n  ###\n  a\n  ###\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      18
-    ],
-    "statements": [
-      {
-        "type": "Function",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          18
-        ],
-        "body": {
-          "type": "Block",
-          "line": 2,
-          "column": 3,
-          "range": [
-            5,
-            18
-          ],
-          "statements": [],
-          "raw": "###\n  a\n  ###",
-          "inline": false
-        },
-        "parameters": [],
-        "raw": "->\n  ###\n  a\n  ###"
-      }
-    ],
-    "raw": "->\n  ###\n  a\n  ###"
-  }
+  "type": "Program"
 }

@@ -1,42 +1,57 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 9 ],
-  "raw": "(a, b) ->",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 9 ],
+    "line": 1,
+    "range": [
+      0,
+      9
+    ],
     "raw": "(a, b) ->",
     "statements": [
       {
-        "type": "Function",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 9 ],
-        "raw": "(a, b) ->",
         "body": null,
+        "column": 1,
+        "line": 1,
         "parameters": [
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 2 ],
+            "data": "a",
+            "line": 1,
+            "range": [
+              1,
+              2
+            ],
             "raw": "a",
-            "data": "a"
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 5,
-            "range": [ 4, 5 ],
+            "data": "b",
+            "line": 1,
+            "range": [
+              4,
+              5
+            ],
             "raw": "b",
-            "data": "b"
+            "type": "Identifier"
           }
-        ]
+        ],
+        "range": [
+          0,
+          9
+        ],
+        "raw": "(a, b) ->",
+        "type": "Function"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "(a, b) ->",
+  "type": "Program"
 }

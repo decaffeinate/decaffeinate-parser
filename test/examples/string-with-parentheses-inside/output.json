@@ -1,46 +1,47 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      5
+    ],
+    "raw": "\"( a\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 2,
+            "data": "( a",
+            "line": 1,
+            "range": [
+              1,
+              4
+            ],
+            "raw": "( a",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          5
+        ],
+        "raw": "\"( a\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     5
   ],
   "raw": "\"( a\"",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      5
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "raw": "\"( a\"",
-        "range": [
-          0,
-          5
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 2,
-            "raw": "( a",
-            "range": [
-              1,
-              4
-            ],
-            "data": "( a"
-          }
-        ],
-        "expressions": []
-      }
-    ],
-    "raw": "\"( a\""
-  }
+  "type": "Program"
 }

@@ -1,56 +1,56 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    8
-  ],
-  "raw": "loop\n  a",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       8
     ],
+    "raw": "loop\n  a",
     "statements": [
       {
-        "type": "Loop",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          8
-        ],
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
+          "inline": false,
+          "line": 2,
           "range": [
             7,
             8
           ],
+          "raw": "a",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
+              "data": "a",
+              "line": 2,
               "range": [
                 7,
                 8
               ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             }
           ],
-          "raw": "a",
-          "inline": false
+          "type": "Block"
         },
-        "raw": "loop\n  a"
+        "column": 1,
+        "line": 1,
+        "range": [
+          0,
+          8
+        ],
+        "raw": "loop\n  a",
+        "type": "Loop"
       }
     ],
-    "raw": "loop\n  a"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    8
+  ],
+  "raw": "loop\n  a",
+  "type": "Program"
 }

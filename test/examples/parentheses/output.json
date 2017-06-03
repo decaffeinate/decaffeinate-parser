@@ -1,54 +1,75 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 11 ],
-  "raw": "(a + b) * c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 11 ],
+    "line": 1,
+    "range": [
+      0,
+      11
+    ],
     "raw": "(a + b) * c",
     "statements": [
       {
-        "type": "MultiplyOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 11 ],
-        "raw": "(a + b) * c",
         "left": {
-          "type": "PlusOp",
-          "line": 1,
           "column": 2,
-          "range": [ 1, 6 ],
-          "raw": "a + b",
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 2 ],
-            "raw": "a",
-            "data": "a"
-          },
-          "right": {
-            "type": "Identifier",
+            "data": "a",
             "line": 1,
-            "column": 6,
-            "range": [ 5, 6 ],
-            "raw": "b",
-            "data": "b"
-          }
-        },
-        "right": {
-          "type": "Identifier",
+            "range": [
+              1,
+              2
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
           "line": 1,
+          "range": [
+            1,
+            6
+          ],
+          "raw": "a + b",
+          "right": {
+            "column": 6,
+            "data": "b",
+            "line": 1,
+            "range": [
+              5,
+              6
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          },
+          "type": "PlusOp"
+        },
+        "line": 1,
+        "range": [
+          0,
+          11
+        ],
+        "raw": "(a + b) * c",
+        "right": {
           "column": 11,
-          "range": [ 10, 11 ],
+          "data": "c",
+          "line": 1,
+          "range": [
+            10,
+            11
+          ],
           "raw": "c",
-          "data": "c"
-        }
+          "type": "Identifier"
+        },
+        "type": "MultiplyOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    11
+  ],
+  "raw": "(a + b) * c",
+  "type": "Program"
 }
