@@ -1,67 +1,91 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 21 ],
-  "raw": "for a in b when c\n  d",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 21 ],
+    "line": 1,
+    "range": [
+      0,
+      21
+    ],
     "raw": "for a in b when c\n  d",
     "statements": [
       {
-        "type": "ForIn",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 21 ],
-        "raw": "for a in b when c\n  d",
         "body": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 20, 21 ],
-          "raw": "d",
           "inline": false,
+          "line": 2,
+          "range": [
+            20,
+            21
+          ],
+          "raw": "d",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 20, 21 ],
+              "data": "d",
+              "line": 2,
+              "range": [
+                20,
+                21
+              ],
               "raw": "d",
-              "data": "d"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
+        "column": 1,
         "filter": {
-          "type": "Identifier",
-          "line": 1,
           "column": 17,
-          "range": [ 16, 17 ],
+          "data": "c",
+          "line": 1,
+          "range": [
+            16,
+            17
+          ],
           "raw": "c",
-          "data": "c"
+          "type": "Identifier"
         },
         "keyAssignee": null,
+        "line": 1,
+        "range": [
+          0,
+          21
+        ],
+        "raw": "for a in b when c\n  d",
         "step": null,
         "target": {
-          "type": "Identifier",
-          "line": 1,
           "column": 10,
-          "range": [ 9, 10 ],
-          "raw": "b",
-          "data": "b"
-        },
-        "valAssignee": {
-          "type": "Identifier",
+          "data": "b",
           "line": 1,
+          "range": [
+            9,
+            10
+          ],
+          "raw": "b",
+          "type": "Identifier"
+        },
+        "type": "ForIn",
+        "valAssignee": {
           "column": 5,
-          "range": [ 4, 5 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            4,
+            5
+          ],
           "raw": "a",
-          "data": "a"
+          "type": "Identifier"
         }
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    21
+  ],
+  "raw": "for a in b when c\n  d",
+  "type": "Program"
 }

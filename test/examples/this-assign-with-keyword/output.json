@@ -1,66 +1,66 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    11
-  ],
-  "raw": "(@case) ->\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       10
     ],
+    "raw": "(@case) ->",
     "statements": [
       {
-        "type": "Function",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          10
-        ],
         "body": null,
+        "column": 1,
+        "line": 1,
         "parameters": [
           {
-            "type": "MemberAccessOp",
-            "line": 1,
             "column": 2,
-            "range": [
-              1,
-              6
-            ],
-            "raw": "@case",
             "expression": {
-              "type": "This",
-              "line": 1,
               "column": 2,
+              "line": 1,
               "range": [
                 1,
                 2
               ],
-              "raw": "@"
+              "raw": "@",
+              "type": "This"
             },
+            "line": 1,
             "member": {
-              "type": "Identifier",
-              "line": 1,
               "column": 3,
+              "data": "case",
+              "line": 1,
               "range": [
                 2,
                 6
               ],
               "raw": "case",
-              "data": "case"
-            }
+              "type": "Identifier"
+            },
+            "range": [
+              1,
+              6
+            ],
+            "raw": "@case",
+            "type": "MemberAccessOp"
           }
         ],
-        "raw": "(@case) ->"
+        "range": [
+          0,
+          10
+        ],
+        "raw": "(@case) ->",
+        "type": "Function"
       }
     ],
-    "raw": "(@case) ->"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    11
+  ],
+  "raw": "(@case) ->\n",
+  "type": "Program"
 }

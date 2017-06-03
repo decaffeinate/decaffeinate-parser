@@ -1,31 +1,43 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 3 ],
-  "raw": "a++",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 3 ],
+    "line": 1,
+    "range": [
+      0,
+      3
+    ],
     "raw": "a++",
     "statements": [
       {
-        "type": "PostIncrementOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 3 ],
-        "raw": "a++",
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
           "raw": "a",
-          "data": "a"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          3
+        ],
+        "raw": "a++",
+        "type": "PostIncrementOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    3
+  ],
+  "raw": "a++",
+  "type": "Program"
 }

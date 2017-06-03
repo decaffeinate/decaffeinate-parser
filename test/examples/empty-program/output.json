@@ -1,8 +1,11 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": null,
   "column": 1,
-  "range": [ 0, 0 ],
+  "line": 1,
+  "range": [
+    0,
+    0
+  ],
   "raw": "",
-  "body": null
+  "type": "Program"
 }

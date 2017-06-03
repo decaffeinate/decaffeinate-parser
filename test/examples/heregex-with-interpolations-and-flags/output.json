@@ -1,79 +1,79 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      30
+    ],
+    "raw": "///\n  abc # def #{ghi} j\n///gi",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 15,
+            "data": "ghi",
+            "line": 2,
+            "range": [
+              18,
+              21
+            ],
+            "raw": "ghi",
+            "type": "Identifier"
+          }
+        ],
+        "flags": {
+          "g": true,
+          "global": true,
+          "i": true,
+          "ignoreCase": true,
+          "m": false,
+          "multiline": false,
+          "sticky": false,
+          "y": false
+        },
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "abc",
+            "line": 1,
+            "range": [
+              3,
+              16
+            ],
+            "raw": "\n  abc # def ",
+            "type": "Quasi"
+          },
+          {
+            "column": 19,
+            "data": "j",
+            "line": 2,
+            "range": [
+              22,
+              25
+            ],
+            "raw": " j\n",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          30
+        ],
+        "raw": "///\n  abc # def #{ghi} j\n///gi",
+        "type": "Heregex"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     31
   ],
   "raw": "///\n  abc # def #{ghi} j\n///gi\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      30
-    ],
-    "statements": [
-      {
-        "type": "Heregex",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          30
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "\n  abc # def ",
-            "range": [
-              3,
-              16
-            ],
-            "data": "abc"
-          },
-          {
-            "type": "Quasi",
-            "line": 2,
-            "column": 19,
-            "raw": " j\n",
-            "range": [
-              22,
-              25
-            ],
-            "data": "j"
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 2,
-            "column": 15,
-            "raw": "ghi",
-            "range": [
-              18,
-              21
-            ],
-            "data": "ghi"
-          }
-        ],
-        "flags": {
-          "global": true,
-          "ignoreCase": true,
-          "multiline": false,
-          "sticky": false,
-          "g": true,
-          "i": true,
-          "m": false,
-          "y": false
-        },
-        "raw": "///\n  abc # def #{ghi} j\n///gi"
-      }
-    ],
-    "raw": "///\n  abc # def #{ghi} j\n///gi"
-  }
+  "type": "Program"
 }

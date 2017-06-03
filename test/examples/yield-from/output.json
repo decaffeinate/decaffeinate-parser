@@ -1,78 +1,80 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      18
+    ],
+    "raw": "-> yield from fn()",
+    "statements": [
+      {
+        "body": {
+          "column": 4,
+          "inline": true,
+          "line": 1,
+          "range": [
+            3,
+            18
+          ],
+          "raw": "yield from fn()",
+          "statements": [
+            {
+              "column": 4,
+              "expression": {
+                "arguments": [
+                ],
+                "column": 15,
+                "function": {
+                  "column": 15,
+                  "data": "fn",
+                  "line": 1,
+                  "range": [
+                    14,
+                    16
+                  ],
+                  "raw": "fn",
+                  "type": "Identifier"
+                },
+                "line": 1,
+                "range": [
+                  14,
+                  18
+                ],
+                "raw": "fn()",
+                "type": "FunctionApplication"
+              },
+              "line": 1,
+              "range": [
+                3,
+                18
+              ],
+              "raw": "yield from fn()",
+              "type": "YieldFrom"
+            }
+          ],
+          "type": "Block"
+        },
+        "column": 1,
+        "line": 1,
+        "parameters": [
+        ],
+        "range": [
+          0,
+          18
+        ],
+        "raw": "-> yield from fn()",
+        "type": "GeneratorFunction"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     18
   ],
   "raw": "-> yield from fn()",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      18
-    ],
-    "statements": [
-      {
-        "type": "GeneratorFunction",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          18
-        ],
-        "body": {
-          "type": "Block",
-          "line": 1,
-          "column": 4,
-          "range": [
-            3,
-            18
-          ],
-          "statements": [
-            {
-              "type": "YieldFrom",
-              "line": 1,
-              "column": 4,
-              "range": [
-                3,
-                18
-              ],
-              "expression": {
-                "type": "FunctionApplication",
-                "line": 1,
-                "column": 15,
-                "range": [
-                  14,
-                  18
-                ],
-                "function": {
-                  "type": "Identifier",
-                  "line": 1,
-                  "column": 15,
-                  "range": [
-                    14,
-                    16
-                  ],
-                  "data": "fn",
-                  "raw": "fn"
-                },
-                "arguments": [],
-                "raw": "fn()"
-              },
-              "raw": "yield from fn()"
-            }
-          ],
-          "raw": "yield from fn()",
-          "inline": true
-        },
-        "parameters": [],
-        "raw": "-> yield from fn()"
-      }
-    ],
-    "raw": "-> yield from fn()"
-  }
+  "type": "Program"
 }

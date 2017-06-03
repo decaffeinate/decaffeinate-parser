@@ -1,48 +1,66 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 6 ],
-  "raw": "{a: 1}",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 6 ],
+    "line": 1,
+    "range": [
+      0,
+      6
+    ],
     "raw": "{a: 1}",
     "statements": [
       {
-        "type": "ObjectInitialiser",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 6 ],
-        "raw": "{a: 1}",
+        "line": 1,
         "members": [
           {
-            "type": "ObjectInitialiserMember",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 5 ],
-            "raw": "a: 1",
             "expression": {
-              "type": "Int",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 5 ],
+              "data": 1,
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
               "raw": "1",
-              "data": 1
+              "type": "Int"
             },
             "key": {
-              "type": "Identifier",
-              "line": 1,
               "column": 2,
-              "range": [ 1, 2 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                1,
+                2
+              ],
               "raw": "a",
-              "data": "a"
-            }
+              "type": "Identifier"
+            },
+            "line": 1,
+            "range": [
+              1,
+              5
+            ],
+            "raw": "a: 1",
+            "type": "ObjectInitialiserMember"
           }
-        ]
+        ],
+        "range": [
+          0,
+          6
+        ],
+        "raw": "{a: 1}",
+        "type": "ObjectInitialiser"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    6
+  ],
+  "raw": "{a: 1}",
+  "type": "Program"
 }

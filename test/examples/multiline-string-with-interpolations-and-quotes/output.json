@@ -1,91 +1,91 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      39
+    ],
+    "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 9,
+            "data": "c",
+            "line": 3,
+            "range": [
+              16,
+              17
+            ],
+            "raw": "c",
+            "type": "Identifier"
+          },
+          {
+            "column": 9,
+            "data": "e",
+            "line": 4,
+            "range": [
+              28,
+              29
+            ],
+            "raw": "e",
+            "type": "Identifier"
+          }
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "a\n  b\"",
+            "line": 1,
+            "range": [
+              3,
+              14
+            ],
+            "raw": "\n  a\n    b\"",
+            "type": "Quasi"
+          },
+          {
+            "column": 11,
+            "data": "\"\n  d\"",
+            "line": 3,
+            "range": [
+              18,
+              26
+            ],
+            "raw": "\"\n    d\"",
+            "type": "Quasi"
+          },
+          {
+            "column": 11,
+            "data": "\"\nf",
+            "line": 4,
+            "range": [
+              30,
+              36
+            ],
+            "raw": "\"\n  f\n",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          39
+        ],
+        "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     40
   ],
   "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      39
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          39
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "\n  a\n    b\"",
-            "range": [
-              3,
-              14
-            ],
-            "data": "a\n  b\""
-          },
-          {
-            "type": "Quasi",
-            "line": 3,
-            "column": 11,
-            "raw": "\"\n    d\"",
-            "range": [
-              18,
-              26
-            ],
-            "data": "\"\n  d\""
-          },
-          {
-            "type": "Quasi",
-            "line": 4,
-            "column": 11,
-            "raw": "\"\n  f\n",
-            "range": [
-              30,
-              36
-            ],
-            "data": "\"\nf"
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 3,
-            "column": 9,
-            "raw": "c",
-            "range": [
-              16,
-              17
-            ],
-            "data": "c"
-          },
-          {
-            "type": "Identifier",
-            "line": 4,
-            "column": 9,
-            "raw": "e",
-            "range": [
-              28,
-              29
-            ],
-            "data": "e"
-          }
-        ],
-        "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\""
-      }
-    ],
-    "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\""
-  }
+  "type": "Program"
 }

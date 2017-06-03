@@ -1,147 +1,149 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      40
+    ],
+    "raw": "$stateProvider\n.state 'foo'\n.state 'bar'",
+    "statements": [
+      {
+        "arguments": [
+          {
+            "column": 8,
+            "expressions": [
+            ],
+            "line": 3,
+            "quasis": [
+              {
+                "column": 9,
+                "data": "bar",
+                "line": 3,
+                "range": [
+                  36,
+                  39
+                ],
+                "raw": "bar",
+                "type": "Quasi"
+              }
+            ],
+            "range": [
+              35,
+              40
+            ],
+            "raw": "'bar'",
+            "type": "String"
+          }
+        ],
+        "column": 1,
+        "function": {
+          "column": 1,
+          "expression": {
+            "arguments": [
+              {
+                "column": 8,
+                "expressions": [
+                ],
+                "line": 2,
+                "quasis": [
+                  {
+                    "column": 9,
+                    "data": "foo",
+                    "line": 2,
+                    "range": [
+                      23,
+                      26
+                    ],
+                    "raw": "foo",
+                    "type": "Quasi"
+                  }
+                ],
+                "range": [
+                  22,
+                  27
+                ],
+                "raw": "'foo'",
+                "type": "String"
+              }
+            ],
+            "column": 1,
+            "function": {
+              "column": 1,
+              "expression": {
+                "column": 1,
+                "data": "$stateProvider",
+                "line": 1,
+                "range": [
+                  0,
+                  14
+                ],
+                "raw": "$stateProvider",
+                "type": "Identifier"
+              },
+              "line": 1,
+              "member": {
+                "column": 2,
+                "data": "state",
+                "line": 2,
+                "range": [
+                  16,
+                  21
+                ],
+                "raw": "state",
+                "type": "Identifier"
+              },
+              "range": [
+                0,
+                21
+              ],
+              "raw": "$stateProvider\n.state",
+              "type": "MemberAccessOp"
+            },
+            "line": 1,
+            "range": [
+              0,
+              27
+            ],
+            "raw": "$stateProvider\n.state 'foo'",
+            "type": "FunctionApplication"
+          },
+          "line": 1,
+          "member": {
+            "column": 2,
+            "data": "state",
+            "line": 3,
+            "range": [
+              29,
+              34
+            ],
+            "raw": "state",
+            "type": "Identifier"
+          },
+          "range": [
+            0,
+            34
+          ],
+          "raw": "$stateProvider\n.state 'foo'\n.state",
+          "type": "MemberAccessOp"
+        },
+        "line": 1,
+        "range": [
+          0,
+          40
+        ],
+        "raw": "$stateProvider\n.state 'foo'\n.state 'bar'",
+        "type": "FunctionApplication"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     40
   ],
   "raw": "$stateProvider\n.state 'foo'\n.state 'bar'",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      40
-    ],
-    "statements": [
-      {
-        "type": "FunctionApplication",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          40
-        ],
-        "function": {
-          "type": "MemberAccessOp",
-          "line": 1,
-          "column": 1,
-          "range": [
-            0,
-            34
-          ],
-          "expression": {
-            "type": "FunctionApplication",
-            "line": 1,
-            "column": 1,
-            "range": [
-              0,
-              27
-            ],
-            "function": {
-              "type": "MemberAccessOp",
-              "line": 1,
-              "column": 1,
-              "range": [
-                0,
-                21
-              ],
-              "expression": {
-                "type": "Identifier",
-                "line": 1,
-                "column": 1,
-                "raw": "$stateProvider",
-                "range": [
-                  0,
-                  14
-                ],
-                "data": "$stateProvider"
-              },
-              "member": {
-                "type": "Identifier",
-                "line": 2,
-                "column": 2,
-                "raw": "state",
-                "range": [
-                  16,
-                  21
-                ],
-                "data": "state"
-              },
-              "raw": "$stateProvider\n.state"
-            },
-            "arguments": [
-              {
-                "type": "String",
-                "line": 2,
-                "column": 8,
-                "raw": "'foo'",
-                "range": [
-                  22,
-                  27
-                ],
-                "quasis": [
-                  {
-                    "type": "Quasi",
-                    "line": 2,
-                    "column": 9,
-                    "raw": "foo",
-                    "range": [
-                      23,
-                      26
-                    ],
-                    "data": "foo"
-                  }
-                ],
-                "expressions": []
-              }
-            ],
-            "raw": "$stateProvider\n.state 'foo'"
-          },
-          "member": {
-            "type": "Identifier",
-            "line": 3,
-            "column": 2,
-            "raw": "state",
-            "range": [
-              29,
-              34
-            ],
-            "data": "state"
-          },
-          "raw": "$stateProvider\n.state 'foo'\n.state"
-        },
-        "arguments": [
-          {
-            "type": "String",
-            "line": 3,
-            "column": 8,
-            "raw": "'bar'",
-            "range": [
-              35,
-              40
-            ],
-            "quasis": [
-              {
-                "type": "Quasi",
-                "line": 3,
-                "column": 9,
-                "raw": "bar",
-                "range": [
-                  36,
-                  39
-                ],
-                "data": "bar"
-              }
-            ],
-            "expressions": []
-          }
-        ],
-        "raw": "$stateProvider\n.state 'foo'\n.state 'bar'"
-      }
-    ],
-    "raw": "$stateProvider\n.state 'foo'\n.state 'bar'"
-  }
+  "type": "Program"
 }

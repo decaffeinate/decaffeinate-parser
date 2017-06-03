@@ -1,46 +1,47 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      26
+    ],
+    "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "multi-line strings",
+            "line": 1,
+            "range": [
+              3,
+              23
+            ],
+            "raw": "\nmulti-line strings\n",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          26
+        ],
+        "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     26
   ],
   "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      26
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
-        "range": [
-          0,
-          26
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "\nmulti-line strings\n",
-            "range": [
-              3,
-              23
-            ],
-            "data": "multi-line strings"
-          }
-        ],
-        "expressions": []
-      }
-    ],
-    "raw": "\"\"\"\nmulti-line strings\n\"\"\""
-  }
+  "type": "Program"
 }

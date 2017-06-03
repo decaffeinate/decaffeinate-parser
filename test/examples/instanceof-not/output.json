@@ -1,55 +1,55 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    18
-  ],
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       18
     ],
+    "raw": "a not instanceof b",
     "statements": [
       {
-        "type": "InstanceofOp",
-        "line": 1,
         "column": 1,
-        "range": [
-          0,
-          18
-        ],
+        "isNot": true,
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
+          "data": "a",
+          "line": 1,
           "range": [
             0,
             1
           ],
-          "data": "a",
-          "raw": "a"
+          "raw": "a",
+          "type": "Identifier"
         },
+        "line": 1,
+        "range": [
+          0,
+          18
+        ],
+        "raw": "a not instanceof b",
         "right": {
-          "type": "Identifier",
-          "line": 1,
           "column": 18,
+          "data": "b",
+          "line": 1,
           "range": [
             17,
             18
           ],
-          "data": "b",
-          "raw": "b"
+          "raw": "b",
+          "type": "Identifier"
         },
-        "raw": "a not instanceof b",
-        "isNot": true
+        "type": "InstanceofOp"
       }
     ],
-    "raw": "a not instanceof b"
+    "type": "Block"
   },
-  "raw": "a not instanceof b"
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    18
+  ],
+  "raw": "a not instanceof b",
+  "type": "Program"
 }

@@ -1,66 +1,90 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 16 ],
-  "raw": "unless a + b\n  c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 16 ],
+    "line": 1,
+    "range": [
+      0,
+      16
+    ],
     "raw": "unless a + b\n  c",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 16 ],
-        "raw": "unless a + b\n  c",
         "alternate": null,
+        "column": 1,
         "condition": {
-          "type": "PlusOp",
-          "line": 1,
           "column": 8,
-          "range": [ 7, 12 ],
-          "raw": "a + b",
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 8,
-            "range": [ 7, 8 ],
-            "raw": "a",
-            "data": "a"
-          },
-          "right": {
-            "type": "Identifier",
+            "data": "a",
             "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          "line": 1,
+          "range": [
+            7,
+            12
+          ],
+          "raw": "a + b",
+          "right": {
             "column": 12,
-            "range": [ 11, 12 ],
+            "data": "b",
+            "line": 1,
+            "range": [
+              11,
+              12
+            ],
             "raw": "b",
-            "data": "b"
-          }
+            "type": "Identifier"
+          },
+          "type": "PlusOp"
         },
         "consequent": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 15, 16 ],
-          "raw": "c",
           "inline": false,
+          "line": 2,
+          "range": [
+            15,
+            16
+          ],
+          "raw": "c",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 15, 16 ],
+              "data": "c",
+              "line": 2,
+              "range": [
+                15,
+                16
+              ],
               "raw": "c",
-              "data": "c"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
-        "isUnless": true
+        "isUnless": true,
+        "line": 1,
+        "range": [
+          0,
+          16
+        ],
+        "raw": "unless a + b\n  c",
+        "type": "Conditional"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    16
+  ],
+  "raw": "unless a + b\n  c",
+  "type": "Program"
 }

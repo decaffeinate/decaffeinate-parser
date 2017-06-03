@@ -1,75 +1,75 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    5
-  ],
-  "raw": "a.b.c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       5
     ],
+    "raw": "a.b.c",
     "statements": [
       {
-        "type": "MemberAccessOp",
-        "line": 1,
         "column": 1,
-        "range": [
-          0,
-          5
-        ],
-        "raw": "a.b.c",
         "expression": {
-          "type": "MemberAccessOp",
-          "line": 1,
           "column": 1,
-          "range": [
-            0,
-            3
-          ],
-          "raw": "a.b",
           "expression": {
-            "type": "Identifier",
-            "line": 1,
             "column": 1,
+            "data": "a",
+            "line": 1,
             "range": [
               0,
               1
             ],
             "raw": "a",
-            "data": "a"
+            "type": "Identifier"
           },
+          "line": 1,
           "member": {
-            "type": "Identifier",
-            "line": 1,
             "column": 3,
+            "data": "b",
+            "line": 1,
             "range": [
               2,
               3
             ],
             "raw": "b",
-            "data": "b"
-          }
+            "type": "Identifier"
+          },
+          "range": [
+            0,
+            3
+          ],
+          "raw": "a.b",
+          "type": "MemberAccessOp"
         },
+        "line": 1,
         "member": {
-          "type": "Identifier",
-          "line": 1,
           "column": 5,
+          "data": "c",
+          "line": 1,
           "range": [
             4,
             5
           ],
           "raw": "c",
-          "data": "c"
-        }
+          "type": "Identifier"
+        },
+        "range": [
+          0,
+          5
+        ],
+        "raw": "a.b.c",
+        "type": "MemberAccessOp"
       }
     ],
-    "raw": "a.b.c"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    5
+  ],
+  "raw": "a.b.c",
+  "type": "Program"
 }

@@ -1,81 +1,81 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
+    "raw": "a for a in b",
+    "statements": [
+      {
+        "body": {
+          "column": 1,
+          "inline": true,
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "statements": [
+            {
+              "column": 1,
+              "data": "a",
+              "line": 1,
+              "range": [
+                0,
+                1
+              ],
+              "raw": "a",
+              "type": "Identifier"
+            }
+          ],
+          "type": "Block"
+        },
+        "column": 1,
+        "filter": null,
+        "keyAssignee": null,
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "a for a in b",
+        "step": null,
+        "target": {
+          "column": 12,
+          "data": "b",
+          "line": 1,
+          "range": [
+            11,
+            12
+          ],
+          "raw": "b",
+          "type": "Identifier"
+        },
+        "type": "ForIn",
+        "valAssignee": {
+          "column": 7,
+          "data": "a",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "a",
+          "type": "Identifier"
+        }
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     13
   ],
   "raw": "a for a in b\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      12
-    ],
-    "statements": [
-      {
-        "type": "ForIn",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          12
-        ],
-        "keyAssignee": null,
-        "valAssignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 7,
-          "range": [
-            6,
-            7
-          ],
-          "data": "a",
-          "raw": "a"
-        },
-        "body": {
-          "type": "Block",
-          "line": 1,
-          "column": 1,
-          "range": [
-            0,
-            1
-          ],
-          "statements": [
-            {
-              "type": "Identifier",
-              "line": 1,
-              "column": 1,
-              "range": [
-                0,
-                1
-              ],
-              "data": "a",
-              "raw": "a"
-            }
-          ],
-          "raw": "a",
-          "inline": true
-        },
-        "target": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 12,
-          "range": [
-            11,
-            12
-          ],
-          "data": "b",
-          "raw": "b"
-        },
-        "filter": null,
-        "step": null,
-        "raw": "a for a in b"
-      }
-    ],
-    "raw": "a for a in b"
-  }
+  "type": "Program"
 }

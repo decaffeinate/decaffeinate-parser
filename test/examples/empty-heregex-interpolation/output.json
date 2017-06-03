@@ -1,69 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      11
+    ],
+    "raw": "///a#{}b///",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          null
+        ],
+        "flags": {
+          "g": false,
+          "global": false,
+          "i": false,
+          "ignoreCase": false,
+          "m": false,
+          "multiline": false,
+          "sticky": false,
+          "y": false
+        },
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "a",
+            "line": 1,
+            "range": [
+              3,
+              4
+            ],
+            "raw": "a",
+            "type": "Quasi"
+          },
+          {
+            "column": 8,
+            "data": "b",
+            "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "b",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          11
+        ],
+        "raw": "///a#{}b///",
+        "type": "Heregex"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     12
   ],
   "raw": "///a#{}b///\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      11
-    ],
-    "statements": [
-      {
-        "type": "Heregex",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          11
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "a",
-            "range": [
-              3,
-              4
-            ],
-            "data": "a"
-          },
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 8,
-            "raw": "b",
-            "range": [
-              7,
-              8
-            ],
-            "data": "b"
-          }
-        ],
-        "expressions": [
-          null
-        ],
-        "flags": {
-          "global": false,
-          "ignoreCase": false,
-          "multiline": false,
-          "sticky": false,
-          "g": false,
-          "i": false,
-          "m": false,
-          "y": false
-        },
-        "raw": "///a#{}b///"
-      }
-    ],
-    "raw": "///a#{}b///"
-  }
+  "type": "Program"
 }

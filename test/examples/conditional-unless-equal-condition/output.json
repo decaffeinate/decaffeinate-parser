@@ -1,66 +1,90 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 17 ],
-  "raw": "unless a == b\n  c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 17 ],
+    "line": 1,
+    "range": [
+      0,
+      17
+    ],
     "raw": "unless a == b\n  c",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 17 ],
-        "raw": "unless a == b\n  c",
         "alternate": null,
+        "column": 1,
         "condition": {
-          "type": "EQOp",
-          "line": 1,
           "column": 8,
-          "range": [ 7, 13 ],
-          "raw": "a == b",
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 8,
-            "range": [ 7, 8 ],
-            "raw": "a",
-            "data": "a"
-          },
-          "right": {
-            "type": "Identifier",
+            "data": "a",
             "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          "line": 1,
+          "range": [
+            7,
+            13
+          ],
+          "raw": "a == b",
+          "right": {
             "column": 13,
-            "range": [ 12, 13 ],
+            "data": "b",
+            "line": 1,
+            "range": [
+              12,
+              13
+            ],
             "raw": "b",
-            "data": "b"
-          }
+            "type": "Identifier"
+          },
+          "type": "EQOp"
         },
         "consequent": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 16, 17 ],
-          "raw": "c",
           "inline": false,
+          "line": 2,
+          "range": [
+            16,
+            17
+          ],
+          "raw": "c",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 16, 17 ],
+              "data": "c",
+              "line": 2,
+              "range": [
+                16,
+                17
+              ],
               "raw": "c",
-              "data": "c"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
-        "isUnless": true
+        "isUnless": true,
+        "line": 1,
+        "range": [
+          0,
+          17
+        ],
+        "raw": "unless a == b\n  c",
+        "type": "Conditional"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    17
+  ],
+  "raw": "unless a == b\n  c",
+  "type": "Program"
 }

@@ -1,79 +1,79 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      29
+    ],
+    "raw": "///\n  foo\n  #{bar}  # baz\n///",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 5,
+            "data": "bar",
+            "line": 3,
+            "range": [
+              14,
+              17
+            ],
+            "raw": "bar",
+            "type": "Identifier"
+          }
+        ],
+        "flags": {
+          "g": false,
+          "global": false,
+          "i": false,
+          "ignoreCase": false,
+          "m": false,
+          "multiline": false,
+          "sticky": false,
+          "y": false
+        },
+        "line": 1,
+        "quasis": [
+          {
+            "column": 4,
+            "data": "foo",
+            "line": 1,
+            "range": [
+              3,
+              12
+            ],
+            "raw": "\n  foo\n  ",
+            "type": "Quasi"
+          },
+          {
+            "column": 9,
+            "data": "",
+            "line": 3,
+            "range": [
+              18,
+              26
+            ],
+            "raw": "  # baz\n",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          29
+        ],
+        "raw": "///\n  foo\n  #{bar}  # baz\n///",
+        "type": "Heregex"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     30
   ],
   "raw": "///\n  foo\n  #{bar}  # baz\n///\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      29
-    ],
-    "statements": [
-      {
-        "type": "Heregex",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          29
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 4,
-            "raw": "\n  foo\n  ",
-            "range": [
-              3,
-              12
-            ],
-            "data": "foo"
-          },
-          {
-            "type": "Quasi",
-            "line": 3,
-            "column": 9,
-            "raw": "  # baz\n",
-            "range": [
-              18,
-              26
-            ],
-            "data": ""
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 3,
-            "column": 5,
-            "raw": "bar",
-            "range": [
-              14,
-              17
-            ],
-            "data": "bar"
-          }
-        ],
-        "flags": {
-          "global": false,
-          "ignoreCase": false,
-          "multiline": false,
-          "sticky": false,
-          "g": false,
-          "i": false,
-          "m": false,
-          "y": false
-        },
-        "raw": "///\n  foo\n  #{bar}  # baz\n///"
-      }
-    ],
-    "raw": "///\n  foo\n  #{bar}  # baz\n///"
-  }
+  "type": "Program"
 }

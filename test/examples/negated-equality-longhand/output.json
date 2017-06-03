@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 8 ],
-  "raw": "a isnt b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 8 ],
+    "line": 1,
+    "range": [
+      0,
+      8
+    ],
     "raw": "a isnt b",
     "statements": [
       {
-        "type": "NEQOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 8 ],
-        "raw": "a isnt b",
         "left": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
-          "data": "a"
-        },
-        "right": {
-          "type": "Identifier",
+          "data": "a",
           "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          8
+        ],
+        "raw": "a isnt b",
+        "right": {
           "column": 8,
-          "range": [ 7, 8 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            7,
+            8
+          ],
           "raw": "b",
-          "data": "b"
-        }
+          "type": "Identifier"
+        },
+        "type": "NEQOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    8
+  ],
+  "raw": "a isnt b",
+  "type": "Program"
 }

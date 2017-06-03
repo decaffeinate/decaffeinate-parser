@@ -1,166 +1,168 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      31
+    ],
+    "raw": "f = ->\nclass A\n  constructor: f",
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "f",
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "f",
+          "type": "Identifier"
+        },
+        "column": 1,
+        "expression": {
+          "body": null,
+          "column": 5,
+          "line": 1,
+          "parameters": [
+          ],
+          "range": [
+            4,
+            6
+          ],
+          "raw": "->",
+          "type": "Function"
+        },
+        "line": 1,
+        "range": [
+          0,
+          6
+        ],
+        "raw": "f = ->",
+        "type": "AssignOp"
+      },
+      {
+        "body": {
+          "column": 3,
+          "inline": false,
+          "line": 3,
+          "range": [
+            17,
+            31
+          ],
+          "raw": "constructor: f",
+          "statements": [
+            {
+              "assignee": {
+                "column": 3,
+                "data": "constructor",
+                "line": 3,
+                "range": [
+                  17,
+                  28
+                ],
+                "raw": "constructor",
+                "type": "Identifier"
+              },
+              "column": 3,
+              "expression": {
+                "column": 16,
+                "data": "f",
+                "line": 3,
+                "range": [
+                  30,
+                  31
+                ],
+                "raw": "f",
+                "type": "Identifier"
+              },
+              "line": 3,
+              "range": [
+                17,
+                31
+              ],
+              "raw": "constructor: f",
+              "type": "Constructor"
+            }
+          ],
+          "type": "Block"
+        },
+        "boundMembers": [
+        ],
+        "column": 1,
+        "ctor": {
+          "assignee": {
+            "column": 3,
+            "data": "constructor",
+            "line": 3,
+            "range": [
+              17,
+              28
+            ],
+            "raw": "constructor",
+            "type": "Identifier"
+          },
+          "column": 3,
+          "expression": {
+            "column": 16,
+            "data": "f",
+            "line": 3,
+            "range": [
+              30,
+              31
+            ],
+            "raw": "f",
+            "type": "Identifier"
+          },
+          "line": 3,
+          "range": [
+            17,
+            31
+          ],
+          "raw": "constructor: f",
+          "type": "Constructor"
+        },
+        "line": 2,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 2,
+          "range": [
+            13,
+            14
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 2,
+          "range": [
+            13,
+            14
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          7,
+          31
+        ],
+        "raw": "class A\n  constructor: f",
+        "type": "Class"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     32
   ],
   "raw": "f = ->\nclass A\n  constructor: f\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      31
-    ],
-    "statements": [
-      {
-        "type": "AssignOp",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          6
-        ],
-        "assignee": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 1,
-          "raw": "f",
-          "range": [
-            0,
-            1
-          ],
-          "data": "f"
-        },
-        "expression": {
-          "type": "Function",
-          "line": 1,
-          "column": 5,
-          "range": [
-            4,
-            6
-          ],
-          "body": null,
-          "parameters": [],
-          "raw": "->"
-        },
-        "raw": "f = ->"
-      },
-      {
-        "type": "Class",
-        "line": 2,
-        "column": 1,
-        "range": [
-          7,
-          31
-        ],
-        "name": {
-          "type": "Identifier",
-          "line": 2,
-          "column": 7,
-          "raw": "A",
-          "range": [
-            13,
-            14
-          ],
-          "data": "A"
-        },
-        "nameAssignee": {
-          "type": "Identifier",
-          "line": 2,
-          "column": 7,
-          "raw": "A",
-          "range": [
-            13,
-            14
-          ],
-          "data": "A"
-        },
-        "body": {
-          "type": "Block",
-          "line": 3,
-          "column": 3,
-          "range": [
-            17,
-            31
-          ],
-          "statements": [
-            {
-              "type": "Constructor",
-              "line": 3,
-              "column": 3,
-              "range": [
-                17,
-                31
-              ],
-              "assignee": {
-                "type": "Identifier",
-                "line": 3,
-                "column": 3,
-                "raw": "constructor",
-                "range": [
-                  17,
-                  28
-                ],
-                "data": "constructor"
-              },
-              "expression": {
-                "type": "Identifier",
-                "line": 3,
-                "column": 16,
-                "raw": "f",
-                "range": [
-                  30,
-                  31
-                ],
-                "data": "f"
-              },
-              "raw": "constructor: f"
-            }
-          ],
-          "inline": false,
-          "raw": "constructor: f"
-        },
-        "boundMembers": [],
-        "parent": null,
-        "ctor": {
-          "type": "Constructor",
-          "line": 3,
-          "column": 3,
-          "range": [
-            17,
-            31
-          ],
-          "assignee": {
-            "type": "Identifier",
-            "line": 3,
-            "column": 3,
-            "raw": "constructor",
-            "range": [
-              17,
-              28
-            ],
-            "data": "constructor"
-          },
-          "expression": {
-            "type": "Identifier",
-            "line": 3,
-            "column": 16,
-            "raw": "f",
-            "range": [
-              30,
-              31
-            ],
-            "data": "f"
-          },
-          "raw": "constructor: f"
-        },
-        "raw": "class A\n  constructor: f"
-      }
-    ],
-    "raw": "f = ->\nclass A\n  constructor: f"
-  }
+  "type": "Program"
 }

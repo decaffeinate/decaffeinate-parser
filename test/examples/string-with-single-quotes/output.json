@@ -1,46 +1,47 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      15
+    ],
+    "raw": "'coffee script'",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 2,
+            "data": "coffee script",
+            "line": 1,
+            "range": [
+              1,
+              14
+            ],
+            "raw": "coffee script",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          15
+        ],
+        "raw": "'coffee script'",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     15
   ],
   "raw": "'coffee script'",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      15
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "raw": "'coffee script'",
-        "range": [
-          0,
-          15
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 2,
-            "raw": "coffee script",
-            "range": [
-              1,
-              14
-            ],
-            "data": "coffee script"
-          }
-        ],
-        "expressions": []
-      }
-    ],
-    "raw": "'coffee script'"
-  }
+  "type": "Program"
 }

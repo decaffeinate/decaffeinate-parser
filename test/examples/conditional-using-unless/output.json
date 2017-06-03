@@ -1,51 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "unless a\n  b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
     "raw": "unless a\n  b",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 12 ],
-        "raw": "unless a\n  b",
         "alternate": null,
+        "column": 1,
         "condition": {
-          "type": "Identifier",
-          "line": 1,
           "column": 8,
-          "range": [ 7, 8 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            7,
+            8
+          ],
           "raw": "a",
-          "data": "a"
+          "type": "Identifier"
         },
         "consequent": {
-          "type": "Block",
-          "line": 2,
           "column": 3,
-          "range": [ 11, 12 ],
-          "raw": "b",
           "inline": false,
+          "line": 2,
+          "range": [
+            11,
+            12
+          ],
+          "raw": "b",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 2,
               "column": 3,
-              "range": [ 11, 12 ],
+              "data": "b",
+              "line": 2,
+              "range": [
+                11,
+                12
+              ],
               "raw": "b",
-              "data": "b"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
-        "isUnless": true
+        "isUnless": true,
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "unless a\n  b",
+        "type": "Conditional"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "unless a\n  b",
+  "type": "Program"
 }

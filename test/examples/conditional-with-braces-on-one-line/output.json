@@ -1,66 +1,90 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [0, 15 ],
-  "raw": "a if (b and c)\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [0, 14 ],
+    "line": 1,
+    "range": [
+      0,
+      14
+    ],
+    "raw": "a if (b and c)",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
+        "alternate": null,
         "column": 1,
-        "range": [0, 14 ],
-        "isUnless": false,
         "condition": {
-          "type": "LogicalAndOp",
-          "line": 1,
           "column": 7,
-          "range": [6, 13 ],
           "left": {
-            "type": "Identifier",
-            "line": 1,
             "column": 7,
-            "range": [6, 7 ],
             "data": "b",
-            "raw": "b"
-          },
-          "right": {
-            "type": "Identifier",
             "line": 1,
-            "column": 13,
-            "range": [12, 13 ],
-            "data": "c",
-            "raw": "c"
+            "range": [
+              6,
+              7
+            ],
+            "raw": "b",
+            "type": "Identifier"
           },
-          "raw": "b and c"
+          "line": 1,
+          "range": [
+            6,
+            13
+          ],
+          "raw": "b and c",
+          "right": {
+            "column": 13,
+            "data": "c",
+            "line": 1,
+            "range": [
+              12,
+              13
+            ],
+            "raw": "c",
+            "type": "Identifier"
+          },
+          "type": "LogicalAndOp"
         },
         "consequent": {
-          "type": "Block",
-          "line": 1,
           "column": 1,
-          "range": [0, 1 ],
-          "statements": [
-            {
-              "type": "Identifier",
-              "line": 1,
-              "column": 1,
-              "range": [0, 1 ],
-              "data": "a",
-              "raw": "a"
-            }
+          "inline": true,
+          "line": 1,
+          "range": [
+            0,
+            1
           ],
           "raw": "a",
-          "inline": true
+          "statements": [
+            {
+              "column": 1,
+              "data": "a",
+              "line": 1,
+              "range": [
+                0,
+                1
+              ],
+              "raw": "a",
+              "type": "Identifier"
+            }
+          ],
+          "type": "Block"
         },
-        "alternate": null,
-          "raw": "a if (b and c)"
+        "isUnless": false,
+        "line": 1,
+        "range": [
+          0,
+          14
+        ],
+        "raw": "a if (b and c)",
+        "type": "Conditional"
       }
     ],
-    "raw": "a if (b and c)"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    15
+  ],
+  "raw": "a if (b and c)\n",
+  "type": "Program"
 }

@@ -1,81 +1,111 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 20 ],
-  "raw": "do (a, b) ->\n  a + b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 20 ],
+    "line": 1,
+    "range": [
+      0,
+      20
+    ],
     "raw": "do (a, b) ->\n  a + b",
     "statements": [
       {
-        "type": "DoOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 20 ],
-        "raw": "do (a, b) ->\n  a + b",
         "expression": {
-          "type": "Function",
-          "line": 1,
-          "column": 4,
-          "range": [ 3, 20 ],
-          "raw": "(a, b) ->\n  a + b",
           "body": {
-            "type": "Block",
-            "line": 2,
             "column": 3,
-            "range": [ 15, 20 ],
-            "raw": "a + b",
             "inline": false,
+            "line": 2,
+            "range": [
+              15,
+              20
+            ],
+            "raw": "a + b",
             "statements": [
               {
-                "type": "PlusOp",
-                "line": 2,
                 "column": 3,
-                "range": [ 15, 20 ],
-                "raw": "a + b",
                 "left": {
-                  "type": "Identifier",
-                  "line": 2,
                   "column": 3,
-                  "range": [ 15, 16 ],
-                  "raw": "a",
-                  "data": "a"
-                },
-                "right": {
-                  "type": "Identifier",
+                  "data": "a",
                   "line": 2,
+                  "range": [
+                    15,
+                    16
+                  ],
+                  "raw": "a",
+                  "type": "Identifier"
+                },
+                "line": 2,
+                "range": [
+                  15,
+                  20
+                ],
+                "raw": "a + b",
+                "right": {
                   "column": 7,
-                  "range": [ 19, 20 ],
+                  "data": "b",
+                  "line": 2,
+                  "range": [
+                    19,
+                    20
+                  ],
                   "raw": "b",
-                  "data": "b"
-                }
+                  "type": "Identifier"
+                },
+                "type": "PlusOp"
               }
-            ]
+            ],
+            "type": "Block"
           },
+          "column": 4,
+          "line": 1,
           "parameters": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 5 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             },
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 8,
-              "range": [ 7, 8 ],
+              "data": "b",
+              "line": 1,
+              "range": [
+                7,
+                8
+              ],
               "raw": "b",
-              "data": "b"
+              "type": "Identifier"
             }
-          ]
-        }
+          ],
+          "range": [
+            3,
+            20
+          ],
+          "raw": "(a, b) ->\n  a + b",
+          "type": "Function"
+        },
+        "line": 1,
+        "range": [
+          0,
+          20
+        ],
+        "raw": "do (a, b) ->\n  a + b",
+        "type": "DoOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    20
+  ],
+  "raw": "do (a, b) ->\n  a + b",
+  "type": "Program"
 }

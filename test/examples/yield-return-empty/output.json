@@ -1,57 +1,58 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      15
+    ],
+    "raw": "-> yield return",
+    "statements": [
+      {
+        "body": {
+          "column": 4,
+          "inline": true,
+          "line": 1,
+          "range": [
+            3,
+            15
+          ],
+          "raw": "yield return",
+          "statements": [
+            {
+              "column": 4,
+              "expression": null,
+              "line": 1,
+              "range": [
+                3,
+                15
+              ],
+              "raw": "yield return",
+              "type": "YieldReturn"
+            }
+          ],
+          "type": "Block"
+        },
+        "column": 1,
+        "line": 1,
+        "parameters": [
+        ],
+        "range": [
+          0,
+          15
+        ],
+        "raw": "-> yield return",
+        "type": "GeneratorFunction"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     16
   ],
   "raw": "-> yield return\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      15
-    ],
-    "statements": [
-      {
-        "type": "GeneratorFunction",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          15
-        ],
-        "body": {
-          "type": "Block",
-          "line": 1,
-          "column": 4,
-          "range": [
-            3,
-            15
-          ],
-          "statements": [
-            {
-              "type": "YieldReturn",
-              "line": 1,
-              "column": 4,
-              "range": [
-                3,
-                15
-              ],
-              "expression": null,
-              "raw": "yield return"
-            }
-          ],
-          "raw": "yield return",
-          "inline": true
-        },
-        "parameters": [],
-        "raw": "-> yield return"
-      }
-    ],
-    "raw": "-> yield return"
-  }
+  "type": "Program"
 }

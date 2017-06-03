@@ -1,60 +1,81 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "a for b in c",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
     "raw": "a for b in c",
     "statements": [
       {
-        "type": "ForIn",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 12 ],
-        "raw": "a for b in c",
         "body": {
-          "type": "Block",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
           "inline": true,
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 1,
-              "range": [ 0, 1 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                0,
+                1
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
+        "column": 1,
         "filter": null,
         "keyAssignee": null,
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "a for b in c",
         "step": null,
         "target": {
-          "type": "Identifier",
-          "line": 1,
           "column": 12,
-          "range": [ 11, 12 ],
-          "raw": "c",
-          "data": "c"
-        },
-        "valAssignee": {
-          "type": "Identifier",
+          "data": "c",
           "line": 1,
+          "range": [
+            11,
+            12
+          ],
+          "raw": "c",
+          "type": "Identifier"
+        },
+        "type": "ForIn",
+        "valAssignee": {
           "column": 7,
-          "range": [ 6, 7 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
           "raw": "b",
-          "data": "b"
+          "type": "Identifier"
         }
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "a for b in c",
+  "type": "Program"
 }

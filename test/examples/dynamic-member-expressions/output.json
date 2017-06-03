@@ -1,39 +1,54 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 4 ],
-  "raw": "a[b]",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 4 ],
+    "line": 1,
+    "range": [
+      0,
+      4
+    ],
     "raw": "a[b]",
     "statements": [
       {
-        "type": "DynamicMemberAccessOp",
-        "line": 1,
         "column": 1,
-        "range": [ 0, 4 ],
-        "raw": "a[b]",
         "expression": {
-          "type": "Identifier",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
+          "data": "a",
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
           "raw": "a",
-          "data": "a"
+          "type": "Identifier"
         },
         "indexingExpr": {
-          "type": "Identifier",
-          "line": 1,
           "column": 3,
-          "range": [ 2, 3 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            2,
+            3
+          ],
           "raw": "b",
-          "data": "b"
-        }
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          4
+        ],
+        "raw": "a[b]",
+        "type": "DynamicMemberAccessOp"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    4
+  ],
+  "raw": "a[b]",
+  "type": "Program"
 }

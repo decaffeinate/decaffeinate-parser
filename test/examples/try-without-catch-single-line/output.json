@@ -1,44 +1,59 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 5 ],
-  "raw": "try a",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 5 ],
+    "line": 1,
+    "range": [
+      0,
+      5
+    ],
     "raw": "try a",
     "statements": [
       {
-        "type": "Try",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 5 ],
-        "raw": "try a",
         "body": {
-          "type": "Block",
-          "line": 1,
           "column": 5,
-          "range": [ 4, 5 ],
-          "raw": "a",
           "inline": true,
+          "line": 1,
+          "range": [
+            4,
+            5
+          ],
+          "raw": "a",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 5,
-              "range": [ 4, 5 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                4,
+                5
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
         "catchAssignee": null,
         "catchBody": null,
-        "finallyBody": null
+        "column": 1,
+        "finallyBody": null,
+        "line": 1,
+        "range": [
+          0,
+          5
+        ],
+        "raw": "try a",
+        "type": "Try"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    5
+  ],
+  "raw": "try a",
+  "type": "Program"
 }

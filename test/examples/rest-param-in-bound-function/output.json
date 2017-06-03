@@ -1,41 +1,56 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 12 ],
-  "raw": "(rest...) =>",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 12 ],
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
     "raw": "(rest...) =>",
     "statements": [
       {
-        "type": "BoundFunction",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 12 ],
-        "raw": "(rest...) =>",
         "body": null,
+        "column": 1,
+        "line": 1,
         "parameters": [
           {
-            "type": "Rest",
-            "line": 1,
             "column": 2,
-            "range": [ 1, 8 ],
-            "raw": "rest...",
             "expression": {
-              "type": "Identifier",
-              "line": 1,
               "column": 2,
-              "range": [ 1, 5 ],
+              "data": "rest",
+              "line": 1,
+              "range": [
+                1,
+                5
+              ],
               "raw": "rest",
-              "data": "rest"
-            }
+              "type": "Identifier"
+            },
+            "line": 1,
+            "range": [
+              1,
+              8
+            ],
+            "raw": "rest...",
+            "type": "Rest"
           }
-        ]
+        ],
+        "range": [
+          0,
+          12
+        ],
+        "raw": "(rest...) =>",
+        "type": "BoundFunction"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    12
+  ],
+  "raw": "(rest...) =>",
+  "type": "Program"
 }

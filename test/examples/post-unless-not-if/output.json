@@ -1,67 +1,91 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 20 ],
-  "raw": "c unless a not in b\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 19 ],
+    "line": 1,
+    "range": [
+      0,
+      19
+    ],
+    "raw": "c unless a not in b",
     "statements": [
       {
-        "type": "Conditional",
-        "line": 1,
+        "alternate": null,
         "column": 1,
-        "range": [ 0, 19 ],
-        "isUnless": true,
         "condition": {
-          "type": "InOp",
-          "line": 1,
           "column": 10,
-          "range": [ 9, 19 ],
-          "left": {
-            "type": "Identifier",
-            "line": 1,
-            "column": 10,
-            "range": [ 9, 10 ],
-            "data": "a",
-            "raw": "a"
-          },
-          "right": {
-            "type": "Identifier",
-            "line": 1,
-            "column": 19,
-            "range": [ 18, 19 ],
-            "data": "b",
-            "raw": "b"
-          },
           "isNot": true,
-          "raw": "a not in b"
+          "left": {
+            "column": 10,
+            "data": "a",
+            "line": 1,
+            "range": [
+              9,
+              10
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          "line": 1,
+          "range": [
+            9,
+            19
+          ],
+          "raw": "a not in b",
+          "right": {
+            "column": 19,
+            "data": "b",
+            "line": 1,
+            "range": [
+              18,
+              19
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          },
+          "type": "InOp"
         },
         "consequent": {
-          "type": "Block",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "statements": [
-            {
-              "type": "Identifier",
-              "line": 1,
-              "column": 1,
-              "range": [ 0, 1 ],
-              "data": "c",
-              "raw": "c"
-            }
+          "inline": true,
+          "line": 1,
+          "range": [
+            0,
+            1
           ],
           "raw": "c",
-          "inline": true
+          "statements": [
+            {
+              "column": 1,
+              "data": "c",
+              "line": 1,
+              "range": [
+                0,
+                1
+              ],
+              "raw": "c",
+              "type": "Identifier"
+            }
+          ],
+          "type": "Block"
         },
-        "alternate": null,
-        "raw": "c unless a not in b"
+        "isUnless": true,
+        "line": 1,
+        "range": [
+          0,
+          19
+        ],
+        "raw": "c unless a not in b",
+        "type": "Conditional"
       }
     ],
-    "raw": "c unless a not in b"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    20
+  ],
+  "raw": "c unless a not in b\n",
+  "type": "Program"
 }

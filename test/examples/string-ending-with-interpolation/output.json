@@ -1,69 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      7
+    ],
+    "raw": "\"a#{b}\"",
+    "statements": [
+      {
+        "column": 1,
+        "expressions": [
+          {
+            "column": 5,
+            "data": "b",
+            "line": 1,
+            "range": [
+              4,
+              5
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          }
+        ],
+        "line": 1,
+        "quasis": [
+          {
+            "column": 2,
+            "data": "a",
+            "line": 1,
+            "range": [
+              1,
+              2
+            ],
+            "raw": "a",
+            "type": "Quasi"
+          },
+          {
+            "column": 7,
+            "data": "",
+            "line": 1,
+            "range": [
+              6,
+              6
+            ],
+            "raw": "",
+            "type": "Quasi"
+          }
+        ],
+        "range": [
+          0,
+          7
+        ],
+        "raw": "\"a#{b}\"",
+        "type": "String"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     7
   ],
   "raw": "\"a#{b}\"",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      7
-    ],
-    "statements": [
-      {
-        "type": "String",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          7
-        ],
-        "quasis": [
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 2,
-            "raw": "a",
-            "range": [
-              1,
-              2
-            ],
-            "data": "a"
-          },
-          {
-            "type": "Quasi",
-            "line": 1,
-            "column": 7,
-            "raw": "",
-            "range": [
-              6,
-              6
-            ],
-            "data": ""
-          }
-        ],
-        "expressions": [
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 5,
-            "raw": "b",
-            "range": [
-              4,
-              5
-            ],
-            "data": "b"
-          }
-        ],
-        "raw": "\"a#{b}\""
-      }
-    ],
-    "raw": "\"a#{b}\""
-  }
+  "type": "Program"
 }

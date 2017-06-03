@@ -1,137 +1,137 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [
-    0,
-    24
-  ],
-  "raw": "(a == b == c) == d == e\n",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
+    "line": 1,
     "range": [
       0,
       23
     ],
+    "raw": "(a == b == c) == d == e",
     "statements": [
       {
-        "type": "ChainedComparisonOp",
-        "line": 1,
         "column": 1,
-        "range": [
-          0,
-          23
-        ],
+        "line": 1,
         "operands": [
           {
-            "type": "ChainedComparisonOp",
-            "line": 1,
             "column": 2,
-            "range": [
-              1,
-              12
-            ],
+            "line": 1,
             "operands": [
               {
-                "type": "Identifier",
-                "line": 1,
                 "column": 2,
+                "data": "a",
+                "line": 1,
                 "range": [
                   1,
                   2
                 ],
                 "raw": "a",
-                "data": "a"
+                "type": "Identifier"
               },
               {
-                "type": "Identifier",
-                "line": 1,
                 "column": 7,
+                "data": "b",
+                "line": 1,
                 "range": [
                   6,
                   7
                 ],
                 "raw": "b",
-                "data": "b"
+                "type": "Identifier"
               },
               {
-                "type": "Identifier",
-                "line": 1,
                 "column": 12,
+                "data": "c",
+                "line": 1,
                 "range": [
                   11,
                   12
                 ],
                 "raw": "c",
-                "data": "c"
+                "type": "Identifier"
               }
             ],
             "operators": [
               {
                 "operator": "==",
                 "token": {
-                  "type": 39,
+                  "end": 5,
                   "start": 3,
-                  "end": 5
+                  "type": 39
                 }
               },
               {
                 "operator": "==",
                 "token": {
-                  "type": 39,
+                  "end": 10,
                   "start": 8,
-                  "end": 10
+                  "type": 39
                 }
               }
             ],
-            "raw": "a == b == c"
+            "range": [
+              1,
+              12
+            ],
+            "raw": "a == b == c",
+            "type": "ChainedComparisonOp"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 18,
+            "data": "d",
+            "line": 1,
             "range": [
               17,
               18
             ],
             "raw": "d",
-            "data": "d"
+            "type": "Identifier"
           },
           {
-            "type": "Identifier",
-            "line": 1,
             "column": 23,
+            "data": "e",
+            "line": 1,
             "range": [
               22,
               23
             ],
             "raw": "e",
-            "data": "e"
+            "type": "Identifier"
           }
         ],
         "operators": [
           {
             "operator": "==",
             "token": {
-              "type": 39,
+              "end": 16,
               "start": 14,
-              "end": 16
+              "type": 39
             }
           },
           {
             "operator": "==",
             "token": {
-              "type": 39,
+              "end": 21,
               "start": 19,
-              "end": 21
+              "type": 39
             }
           }
         ],
-        "raw": "(a == b == c) == d == e"
+        "range": [
+          0,
+          23
+        ],
+        "raw": "(a == b == c) == d == e",
+        "type": "ChainedComparisonOp"
       }
     ],
-    "raw": "(a == b == c) == d == e"
-  }
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    24
+  ],
+  "raw": "(a == b == c) == d == e\n",
+  "type": "Program"
 }

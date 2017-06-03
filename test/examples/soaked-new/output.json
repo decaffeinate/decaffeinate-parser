@@ -1,56 +1,56 @@
 {
-  "type": "Program",
-  "line": 1,
+  "body": {
+    "column": 1,
+    "line": 1,
+    "range": [
+      0,
+      8
+    ],
+    "raw": "new A? b",
+    "statements": [
+      {
+        "arguments": [
+          {
+            "column": 8,
+            "data": "b",
+            "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "b",
+            "type": "Identifier"
+          }
+        ],
+        "column": 1,
+        "ctor": {
+          "column": 5,
+          "data": "A",
+          "line": 1,
+          "range": [
+            4,
+            5
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "line": 1,
+        "range": [
+          0,
+          8
+        ],
+        "raw": "new A? b",
+        "type": "SoakedNewOp"
+      }
+    ],
+    "type": "Block"
+  },
   "column": 1,
+  "line": 1,
   "range": [
     0,
     9
   ],
   "raw": "new A? b\n",
-  "body": {
-    "type": "Block",
-    "line": 1,
-    "column": 1,
-    "range": [
-      0,
-      8
-    ],
-    "statements": [
-      {
-        "type": "SoakedNewOp",
-        "line": 1,
-        "column": 1,
-        "range": [
-          0,
-          8
-        ],
-        "ctor": {
-          "type": "Identifier",
-          "line": 1,
-          "column": 5,
-          "raw": "A",
-          "range": [
-            4,
-            5
-          ],
-          "data": "A"
-        },
-        "arguments": [
-          {
-            "type": "Identifier",
-            "line": 1,
-            "column": 8,
-            "raw": "b",
-            "range": [
-              7,
-              8
-            ],
-            "data": "b"
-          }
-        ],
-        "raw": "new A? b"
-      }
-    ],
-    "raw": "new A? b"
-  }
+  "type": "Program"
 }

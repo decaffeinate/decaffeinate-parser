@@ -1,51 +1,69 @@
 {
-  "type": "Program",
-  "line": 1,
-  "column": 1,
-  "range": [ 0, 9 ],
-  "raw": "a while b",
   "body": {
-    "type": "Block",
-    "line": 1,
     "column": 1,
-    "range": [ 0, 9 ],
+    "line": 1,
+    "range": [
+      0,
+      9
+    ],
     "raw": "a while b",
     "statements": [
       {
-        "type": "While",
-        "line": 1,
-        "column": 1,
-        "range": [ 0, 9 ],
-        "raw": "a while b",
-        "isUntil": false,
-        "guard": null,
         "body": {
-          "type": "Block",
-          "line": 1,
           "column": 1,
-          "range": [ 0, 1 ],
-          "raw": "a",
           "inline": true,
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "a",
           "statements": [
             {
-              "type": "Identifier",
-              "line": 1,
               "column": 1,
-              "range": [ 0, 1 ],
+              "data": "a",
+              "line": 1,
+              "range": [
+                0,
+                1
+              ],
               "raw": "a",
-              "data": "a"
+              "type": "Identifier"
             }
-          ]
+          ],
+          "type": "Block"
         },
+        "column": 1,
         "condition": {
-          "type": "Identifier",
-          "line": 1,
           "column": 9,
-          "range": [ 8, 9 ],
+          "data": "b",
+          "line": 1,
+          "range": [
+            8,
+            9
+          ],
           "raw": "b",
-          "data": "b"
-        }
+          "type": "Identifier"
+        },
+        "guard": null,
+        "isUntil": false,
+        "line": 1,
+        "range": [
+          0,
+          9
+        ],
+        "raw": "a while b",
+        "type": "While"
       }
-    ]
-  }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    9
+  ],
+  "raw": "a while b",
+  "type": "Program"
 }
