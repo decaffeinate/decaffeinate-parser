@@ -1,6 +1,7 @@
 {
   "body": {
     "column": 1,
+    "inline": false,
     "line": 1,
     "range": [
       0,

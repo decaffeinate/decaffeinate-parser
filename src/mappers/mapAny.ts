@@ -1,6 +1,7 @@
 import {
-  Arr, Assign, Base, Block, Bool, Call, Class, Code, Existence, Extends, For, If, In, Literal, Null, Obj, Op,
-  Param, Parens, Range, Return, Splat, Switch, Throw, Try, Undefined, Value, While
+  Arr, Assign, Base, Block, Bool, Call, Class, Code, Comment, Existence, Extends,
+  For, If, In, Literal, Null, Obj, Op, Param, Parens, Range, Return, Splat, Switch,
+  Throw, Try, Undefined, Value, While
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
@@ -140,6 +141,11 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Extends) {
     return mapExtends(context, node);
+  }
+
+  if (node instanceof Comment) {
+    throw new UnsupportedNodeError(
+      node, 'Expected comment notes to be filtered out by mapBlock rather than processed directly.');
   }
 
   throw new UnsupportedNodeError(node);

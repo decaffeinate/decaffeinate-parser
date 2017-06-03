@@ -19,6 +19,7 @@ export default function mapIf(context: ParseContext, node: If): Conditional {
   let right: SourceTokenListIndex | null = null;
 
   if (consequent.start < condition.start) {
+    consequent = consequent.withInline(true);
     // POST-if, so look for tokens between the consequent and the condition
     left = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.end);
     right = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.start);

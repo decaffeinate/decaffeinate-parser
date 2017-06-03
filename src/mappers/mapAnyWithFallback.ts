@@ -7,8 +7,9 @@ import mapAny from './mapAny';
 export class UnsupportedNodeError extends Error {
   readonly node: Base;
 
-  constructor(node: Base) {
-    super(`node type '${node.constructor.name}' is not supported: ${inspect(node)}`);
+  constructor(node: Base, message: string | null = null) {
+    let prefix = message ? `${message}\n\n` : '';
+    super(`${prefix}node type '${node.constructor.name}' is not supported: ${inspect(node)}`);
 
     // https://github.com/Microsoft/TypeScript/wiki/Breaking-Changes#extending-built-ins-like-error-array-and-map-may-no-longer-work
     Object.setPrototypeOf(this, UnsupportedNodeError.prototype);

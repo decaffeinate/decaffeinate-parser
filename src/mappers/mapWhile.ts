@@ -1,6 +1,6 @@
 import { SourceType } from 'coffee-lex';
 import { While as CoffeeWhile } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { Loop, While } from '../nodes';
+import { Block, Loop, While } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
@@ -17,11 +17,17 @@ export default function mapWhile(context: ParseContext, node: CoffeeWhile): Whil
     );
   }
 
+  let condition = mapAny(context, node.condition);
+  let guard = node.guard ? mapAny(context, node.guard) : null;
+  let body = node.body ? mapAny(context, node.body) : null;
+
+  if (body instanceof Block && body.start < condition.start) {
+    body = body.withInline(true);
+  }
+
   return new While(
     line, column, start, end, raw,
-    mapAny(context, node.condition),
-    node.guard ? mapAny(context, node.guard) : null,
-    node.body ? mapAny(context, node.body) : null,
+    condition, guard, body,
     node.condition.inverted === true
   );
 }
