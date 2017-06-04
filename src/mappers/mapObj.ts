@@ -1,5 +1,5 @@
 import { Assign, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { AssignOp, Identifier, ObjectInitialiser, ObjectInitialiserMember, String } from '../nodes';
+import { AssignOp, ObjectInitialiser, ObjectInitialiserMember } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import { UnsupportedNodeError } from './mapAnyWithFallback';
@@ -12,28 +12,20 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
   let members: Array<ObjectInitialiserMember | AssignOp> = [];
 
   for (let property of node.properties) {
+    let { line, column, start, end, raw } = mapBase(context, property);
+
     if (property instanceof Value) {
       // shorthand property
       let value = mapValue(context, property);
 
-      if (!(value instanceof Identifier)) {
-        throw new UnsupportedNodeError(property);
-      }
-
       members.push(new ObjectInitialiserMember(
-        value.line, value.column, value.start, value.end, value.raw,
+        line, column, start, end, raw,
         value,
         value
       ));
     } else if (property instanceof Assign && property.context === 'object') {
-      let { line, column, start, end, raw } = mapBase(context, property);
-
       let key = mapAny(context, property.variable);
       let expression = mapAny(context, property.value);
-
-      if (!(key instanceof Identifier) && !(key instanceof String)) {
-        throw new UnsupportedNodeError(property);
-      }
 
       members.push(new ObjectInitialiserMember(
         line, column, start, end, raw,
@@ -41,7 +33,6 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         expression
       ));
     } else if (property instanceof Assign) {
-      let { line, column, start, end, raw } = mapBase(context, property);
       let assignee = mapAny(context, property.variable);
       let expression = mapAny(context, property.value);
 
