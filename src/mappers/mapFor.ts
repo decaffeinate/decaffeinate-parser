@@ -3,18 +3,18 @@ import { For, ForIn, ForOf } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
-import mapBlock from './mapBlock';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapFor(context: ParseContext, node: CoffeeFor): For {
   let { line, column, start, end, raw } = mapBase(context, node);
 
   let keyAssignee = node.index ? mapAny(context, node.index) : null;
   let valAssignee = node.name ? mapAny(context, node.name) : null;
-  let body = mapBlock(context, node.body);
+  let body = mapPossiblyEmptyBlock(context, node.body);
   let target = mapAny(context, node.source);
   let filter = node.guard ? mapAny(context, node.guard) : null;
 
-  if (body.start < target.start) {
+  if (body && body.start < target.start) {
     body = body.withInline(true);
   }
 

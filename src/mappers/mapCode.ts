@@ -3,7 +3,7 @@ import { BaseFunction, BoundFunction, BoundGeneratorFunction, Function, Generato
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
-import mapBlock from './mapBlock';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapCode(context: ParseContext, node: Code): BaseFunction {
   let { line, column, start, end, raw } = mapBase(context, node);
@@ -13,7 +13,7 @@ export default function mapCode(context: ParseContext, node: Code): BaseFunction
   return new Node(
     line, column, start, end, raw,
     node.params.map(param => mapAny(context, param)),
-    mapBlock(context, node.body)
+    mapPossiblyEmptyBlock(context, node.body)
   );
 }
 

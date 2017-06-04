@@ -3,15 +3,16 @@ import { Try } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapTry(context: ParseContext, node: CoffeeTry): Try {
   let { line, column, start, end, raw } = mapBase(context, node);
 
   return new Try(
     line, column, start, end, raw,
-    node.attempt ? mapAny(context, node.attempt) : null,
+    mapPossiblyEmptyBlock(context, node.attempt),
     node.errorVariable ? mapAny(context, node.errorVariable) : null,
-    node.recovery ? mapAny(context, node.recovery) : null,
-    node.ensure ? mapAny(context, node.ensure) : null
+    mapPossiblyEmptyBlock(context, node.recovery),
+    mapPossiblyEmptyBlock(context, node.ensure)
   );
 }

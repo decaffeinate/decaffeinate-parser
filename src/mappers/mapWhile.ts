@@ -4,6 +4,7 @@ import { Block, Loop, While } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapWhile(context: ParseContext, node: CoffeeWhile): While | Loop {
   let { line, column, start, end, raw } = mapBase(context, node);
@@ -19,7 +20,7 @@ export default function mapWhile(context: ParseContext, node: CoffeeWhile): Whil
 
   let condition = mapAny(context, node.condition);
   let guard = node.guard ? mapAny(context, node.guard) : null;
-  let body = node.body ? mapAny(context, node.body) : null;
+  let body = mapPossiblyEmptyBlock(context, node.body);
 
   if (body instanceof Block && body.start < condition.start) {
     body = body.withInline(true);

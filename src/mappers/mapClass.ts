@@ -60,15 +60,9 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
     }
 
     if (statements.length > 0) {
-      let firstStatement = statements[0];
-      let lastStatement = statements[statements.length - 1];
-
+      let { line, column, start, end, raw } = mapBase(context, node.body);
       body = new Block(
-        firstStatement.line,
-        firstStatement.column,
-        firstStatement.start,
-        lastStatement.end,
-        context.source.slice(firstStatement.start, lastStatement.end),
+        line, column, start, end, raw,
         statements,
         false
       );

@@ -8,7 +8,7 @@ import mapBase from './mapBase';
 
 export default function mapBlock(context: ParseContext, node: CoffeeBlock): Block {
   if (node.expressions.length === 0) {
-    throw new UnsupportedNodeError(node);
+    throw new UnsupportedNodeError(node, 'Unexpected mapBlock call with an empty block.');
   }
 
   let { line, column, start, end, raw } = mapBase(context, node);

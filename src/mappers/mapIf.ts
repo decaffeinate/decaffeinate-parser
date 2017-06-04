@@ -5,20 +5,20 @@ import { Conditional } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
-import mapBlock from './mapBlock';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapIf(context: ParseContext, node: If): Conditional {
   let { line, column, start, end, raw } = mapBase(context, node);
 
   let condition = mapAny(context, node.condition);
-  let consequent = mapBlock(context, node.body);
-  let alternate = node.elseBody ? mapBlock(context, node.elseBody) : null;
+  let consequent = mapPossiblyEmptyBlock(context, node.body);
+  let alternate = mapPossiblyEmptyBlock(context, node.elseBody);
   let isUnless = false;
 
   let left: SourceTokenListIndex | null = null;
   let right: SourceTokenListIndex | null = null;
 
-  if (consequent.start < condition.start) {
+  if (consequent && consequent.start < condition.start) {
     consequent = consequent.withInline(true);
     // POST-if, so look for tokens between the consequent and the condition
     left = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.end);
