@@ -599,6 +599,18 @@ export class Rest extends Node {
   }
 }
 
+export class Expansion extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+  ) {
+    super('Expansion', line, column, start, end, raw);
+  }
+}
+
 export class Break extends Node {
   constructor(
     line: number,
