@@ -1,0 +1,107 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      4
+    ],
+    "raw": "{@a}",
+    "statements": [
+      {
+        "column": 1,
+        "line": 1,
+        "members": [
+          {
+            "column": 2,
+            "expression": {
+              "column": 2,
+              "expression": {
+                "column": 2,
+                "line": 1,
+                "range": [
+                  1,
+                  2
+                ],
+                "raw": "@",
+                "type": "This"
+              },
+              "line": 1,
+              "member": {
+                "column": 3,
+                "data": "a",
+                "line": 1,
+                "range": [
+                  2,
+                  3
+                ],
+                "raw": "a",
+                "type": "Identifier"
+              },
+              "range": [
+                1,
+                3
+              ],
+              "raw": "@a",
+              "type": "MemberAccessOp"
+            },
+            "key": {
+              "column": 2,
+              "expression": {
+                "column": 2,
+                "line": 1,
+                "range": [
+                  1,
+                  2
+                ],
+                "raw": "@",
+                "type": "This"
+              },
+              "line": 1,
+              "member": {
+                "column": 3,
+                "data": "a",
+                "line": 1,
+                "range": [
+                  2,
+                  3
+                ],
+                "raw": "a",
+                "type": "Identifier"
+              },
+              "range": [
+                1,
+                3
+              ],
+              "raw": "@a",
+              "type": "MemberAccessOp"
+            },
+            "line": 1,
+            "range": [
+              1,
+              3
+            ],
+            "raw": "@a",
+            "type": "ObjectInitialiserMember"
+          }
+        ],
+        "range": [
+          0,
+          4
+        ],
+        "raw": "{@a}",
+        "type": "ObjectInitialiser"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    5
+  ],
+  "raw": "{@a}\n",
+  "type": "Program"
+}
