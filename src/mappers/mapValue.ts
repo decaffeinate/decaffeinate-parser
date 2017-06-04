@@ -10,8 +10,8 @@ import {
   SoakedProtoMemberAccessOp, SoakedSlice
 } from '../nodes';
 import ParseContext from '../util/ParseContext';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 export default function mapValue(context: ParseContext, node: Value): Node {

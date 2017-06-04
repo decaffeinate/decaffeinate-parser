@@ -1,10 +1,7 @@
 import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Node } from '../nodes';
-import ParseContext from '../util/ParseContext';
-import mapAny from './mapAny';
 
-export class UnsupportedNodeError extends Error {
+export default class UnsupportedNodeError extends Error {
   readonly node: Base;
 
   constructor(node: Base, message: string | null = null) {
@@ -15,17 +12,5 @@ export class UnsupportedNodeError extends Error {
     Object.setPrototypeOf(this, UnsupportedNodeError.prototype);
 
     this.node = node;
-  }
-}
-
-export default function mapAnyWithFallback(context: ParseContext, node: Base, fallback: () => Node): Node {
-  try {
-    return mapAny(context, node);
-  } catch (err) {
-    if (err instanceof UnsupportedNodeError) {
-      return fallback();
-    } else {
-      throw err;
-    }
   }
 }

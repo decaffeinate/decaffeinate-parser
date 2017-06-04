@@ -2,8 +2,8 @@ import { SourceType } from 'coffee-lex';
 import { Block as CoffeeBlock, Comment } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Block } from '../nodes';
 import ParseContext from '../util/ParseContext';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 export default function mapBlock(context: ParseContext, node: CoffeeBlock): Block {
