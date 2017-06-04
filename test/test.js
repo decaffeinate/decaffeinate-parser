@@ -14,7 +14,7 @@ readdirSync(examplesPath).forEach(entry => {
 
   testFn(config.description || entry, () => {
     let input = readFileSync(join(dir, 'input.coffee'), { encoding: 'utf8' });
-    let actual = stripExtraInfo(parse(input));
+    let actual = stripExtraInfo(stripContext(parse(input)));
     writeFileSync(join(dir, '_actual.json'), stringify(actual, {space: 2}), { encoding: 'utf8' });
     if (process.env['OVERWRITE_EXPECTED_OUTPUT'] === 'true') {
       writeFileSync(join(dir, 'output.json'), stringify(actual, {space: 2}), { encoding: 'utf8' });
@@ -23,6 +23,11 @@ readdirSync(examplesPath).forEach(entry => {
     deepEqual(actual, expected);
   });
 });
+
+function stripContext(programNode) {
+  delete programNode.context;
+  return programNode;
+}
 
 function stripExtraInfo(node) {
   if (node && typeof node === 'object') {

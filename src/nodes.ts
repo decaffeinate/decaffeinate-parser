@@ -289,7 +289,8 @@ export class Program extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly body: Block,
+    readonly body: Block | null,
+    readonly context: ParseContext
   ) {
     super('Program', line, column, start, end, raw);
   }

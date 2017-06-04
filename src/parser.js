@@ -3,41 +3,24 @@ import ParseContext from './util/ParseContext';
 import fixInvalidLocationData from './util/fixInvalidLocationData';
 import lex from 'coffee-lex';
 import locationWithLastPosition from './util/locationWithLastPosition';
-import mapAny from './mappers/mapAny';
 import mergeLocations from './util/mergeLocations';
 import rangeOfBracketTokensForIndexNode from './util/rangeOfBracketTokensForIndexNode';
 import type from './util/type';
 import { inspect } from 'util';
 import { patchCoffeeScript } from './ext/coffee-script';
+import mapProgram from './mappers/mapProgram';
 import type { Program } from './nodes';
 
 export function parse(source: string): Program {
   patchCoffeeScript();
-
   let context = ParseContext.fromSource(source, lex, CoffeeScript.nodes);
-
-  let ast = context.ast;
-  if (type(ast) === 'Block' && ast.expressions.every(e => type(e) === 'Comment')) {
-    let program = {
-      type: 'Program',
-      line: 1,
-      column: 1,
-      raw: source,
-      range: [0, 0],
-      body: null
-    };
-
-    Object.defineProperty(program, 'context', { value: context });
-    return program;
-  }
-
   return convert(context);
 }
 
 function convert(context: ParseContext): Program {
   const { source, linesAndColumns } = context;
   fixLocations(context.ast);
-  return makeProgramNode(context.ast);
+  return mapProgram(context);
 
   /**
    * @param {Object} node
@@ -270,21 +253,5 @@ function convert(context: ParseContext): Program {
           inspect(node)
         );
     }
-  }
-
-  function makeProgramNode(blockNode) {
-    let programNode = {
-      type: 'Program',
-      line: 1,
-      column: 1,
-      range: [0, source.length],
-      raw: source,
-      body: mapAny(context, blockNode),
-    };
-    Object.defineProperty(programNode, 'context', {
-      value: context,
-      enumerable: false
-    });
-    return programNode;
   }
 }

@@ -1,10 +1,22 @@
 {
-  "body": null,
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      19
+    ],
+    "raw": "###\n# hey there\n###",
+    "statements": [
+    ],
+    "type": "Block"
+  },
   "column": 1,
   "line": 1,
   "range": [
     0,
-    0
+    20
   ],
   "raw": "###\n# hey there\n###\n",
   "type": "Program"
