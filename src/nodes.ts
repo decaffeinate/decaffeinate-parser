@@ -183,6 +183,34 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
   }
 }
 
+export class DynamicMemberAccessOp extends AccessOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+    readonly indexingExpr: Node
+  ) {
+    super('DynamicMemberAccessOp', line, column, start, end, raw, expression);
+  }
+}
+
+export class SoakedDynamicMemberAccessOp extends AccessOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    expression: Node,
+    readonly indexingExpr: Node
+  ) {
+    super('SoakedDynamicMemberAccessOp', line, column, start, end, raw, expression);
+  }
+}
+
 export class Quasi extends Node {
   constructor(
     line: number,
