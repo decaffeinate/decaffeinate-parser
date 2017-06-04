@@ -246,7 +246,7 @@ export class Conditional extends Node {
     end: number,
     raw: string,
     readonly condition: Node,
-    readonly consequent: Block,
+    readonly consequent: Block | null,
     readonly alternate: Block | null,
     readonly isUnless: boolean,
   ) {
@@ -328,7 +328,7 @@ export abstract class For extends Node {
     readonly valAssignee: Node | null,
     readonly target: Node,
     readonly filter: Node | null,
-    readonly body: Block,
+    readonly body: Block | null,
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -345,7 +345,7 @@ export class ForOf extends For {
     valAssignee: Node | null,
     target: Node,
     filter: Node | null,
-    body: Block,
+    body: Block | null,
     readonly isOwn: boolean,
   ) {
     super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
@@ -363,7 +363,7 @@ export class ForIn extends For {
     valAssignee: Node | null,
     target: Node,
     filter: Node | null,
-    body: Block,
+    body: Block | null,
     readonly step: Node | null,
   ) {
     super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
@@ -393,7 +393,7 @@ export class SwitchCase extends Node {
     end: number,
     raw: string,
     readonly conditions: Array<Node>,
-    readonly consequent: Block,
+    readonly consequent: Block | null,
   ) {
     super('SwitchCase', line, column, start, end, raw);
   }
@@ -1316,7 +1316,7 @@ export abstract class BaseFunction extends Node {
     end: number,
     raw: string,
     readonly parameters: Array<Node>,
-    readonly body: Block,
+    readonly body: Block | null,
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -1332,7 +1332,7 @@ export class Function extends BaseFunction {
     end: number,
     raw: string,
     parameters: Array<Node>,
-    body: Block
+    body: Block | null
   ) {
     super('Function', line, column, start, end, raw, parameters, body);
   }
@@ -1352,7 +1352,7 @@ export class BoundFunction extends BaseFunction {
     end: number,
     raw: string,
     parameters: Array<Node>,
-    body: Block
+    body: Block | null
   ) {
     super('BoundFunction', line, column, start, end, raw, parameters, body);
   }
@@ -1372,7 +1372,7 @@ export class GeneratorFunction extends BaseFunction {
     end: number,
     raw: string,
     parameters: Array<Node>,
-    body: Block
+    body: Block | null
   ) {
     super('GeneratorFunction', line, column, start, end, raw, parameters, body);
   }
@@ -1392,7 +1392,7 @@ export class BoundGeneratorFunction extends BaseFunction {
     end: number,
     raw: string,
     parameters: Array<Node>,
-    body: Block
+    body: Block | null
   ) {
     super('BoundGeneratorFunction', line, column, start, end, raw, parameters, body);
   }

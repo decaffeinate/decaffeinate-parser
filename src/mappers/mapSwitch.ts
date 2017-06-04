@@ -5,7 +5,7 @@ import { Switch, SwitchCase } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
-import mapBlock from './mapBlock';
+import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Switch {
   let { line, column, start, end, raw } = mapBase(context, node);
@@ -16,7 +16,7 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
       conditions = [conditions];
     }
     let switchConditions = conditions.map(condition => mapAny(context, condition));
-    let consequent = mapBlock(context, body);
+    let consequent = mapPossiblyEmptyBlock(context, body);
     let whenToken = getWhenTokenBeforeOffset(context, switchConditions[0].start, start);
     let locationForIndex = context.linesAndColumns.locationForIndex(whenToken.start);
 
@@ -25,10 +25,10 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
     }
 
     let { line: caseLine, column: caseColumn } = locationForIndex;
-
+    let { end } = mapBase(context, body);
     return new SwitchCase(
-      caseLine + 1, caseColumn + 1, whenToken.start, consequent.end,
-      context.source.slice(whenToken.start, consequent.end),
+      caseLine + 1, caseColumn + 1, whenToken.start, end,
+      context.source.slice(whenToken.start, end),
       switchConditions,
       consequent
     );
@@ -38,7 +38,7 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
     line, column, start, end, raw,
     expression,
     cases,
-    node.otherwise ? mapBlock(context, node.otherwise) : null
+    mapPossiblyEmptyBlock(context, node.otherwise)
   );
 }
 
