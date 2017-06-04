@@ -1,8 +1,8 @@
 import { Assign } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { AssignOp, BaseAssignOp, BitAndOp, BitOrOp, BitXorOp, CompoundAssignOp, DivideOp, ExistsOp, ExpOp, FloorDivideOp, LeftShiftOp, LogicalAndOp, LogicalOrOp, ModuloOp, MultiplyOp, PlusOp, RemOp, SignedRightShiftOp, SubtractOp, UnsignedRightShiftOp } from '../nodes';
 import ParseContext from '../util/ParseContext';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 const COMPOUND_ASSIGN_OPS = {

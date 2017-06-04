@@ -1,8 +1,8 @@
 import { Assign, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { AssignOp, ObjectInitialiser, ObjectInitialiserMember } from '../nodes';
 import ParseContext from '../util/ParseContext';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 import mapValue from './mapValue';
 

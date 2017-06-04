@@ -11,8 +11,8 @@ import locationsEqual from '../util/locationsEqual';
 import makeHeregex from '../util/makeHeregex';
 import ParseContext from '../util/ParseContext';
 import parseString from '../util/parseString';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 export default function mapCall(context: ParseContext, node: Call): Node {

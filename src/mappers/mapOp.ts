@@ -13,9 +13,9 @@ import isChainedComparison from '../util/isChainedComparison';
 import isImplicitPlusOp from '../util/isImplicitPlusOp';
 import makeString from '../util/makeString';
 import ParseContext from '../util/ParseContext';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import unwindChainedComparison from '../util/unwindChainedComparison';
 import mapAny from './mapAny';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
 import mapBase from './mapBase';
 
 export default function mapOp(context: ParseContext, node: CoffeeOp): Node {

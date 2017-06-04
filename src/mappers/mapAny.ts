@@ -5,7 +5,7 @@ import {
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
-import { UnsupportedNodeError } from './mapAnyWithFallback';
+import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapArr from './mapArr';
 import mapAssign from './mapAssign';
 import mapBlock from './mapBlock';
