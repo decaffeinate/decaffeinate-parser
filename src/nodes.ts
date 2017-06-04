@@ -898,6 +898,34 @@ export class DivideOp extends BinaryOp {
   }
 }
 
+export class FloorDivideOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('FloorDivideOp', line, column, start, end, raw, left, right);
+  }
+}
+
+export class ExistsOp extends BinaryOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    left: Node,
+    right: Node
+  ) {
+    super('ExistsOp', line, column, start, end, raw, left, right);
+  }
+}
+
 export class UnaryExistsOp extends UnaryOp {
   constructor(
     line: number,
@@ -1162,6 +1190,21 @@ export class AssignOp extends BaseAssignOp {
     return new AssignOp(
       this.line, this.column, this.start, this.end, this.raw, this.assignee, expression
     );
+  }
+}
+
+export class CompoundAssignOp extends BaseAssignOp {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    assignee: Node,
+    expression: Node,
+    readonly op: string,
+  ) {
+    super('CompoundAssignOp', line, column, start, end, raw, assignee, expression);
   }
 }
 
