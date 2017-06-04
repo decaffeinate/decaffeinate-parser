@@ -217,7 +217,7 @@ export class ObjectInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly members: Array<ObjectInitialiserMember>,
+    readonly members: Array<ObjectInitialiserMember | AssignOp>,
   ) {
     super('ObjectInitialiser', line, column, start, end, raw);
   }
