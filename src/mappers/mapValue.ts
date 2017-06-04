@@ -5,7 +5,8 @@ import {
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, Slice, SoakedMemberAccessOp,
+  DynamicMemberAccessOp,
+  Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, Slice, SoakedDynamicMemberAccessOp, SoakedMemberAccessOp,
   SoakedProtoMemberAccessOp, SoakedSlice
 } from '../nodes';
 import ParseContext from '../util/ParseContext';
@@ -87,6 +88,21 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
         member
       );
     }
+  } else if (property instanceof Index) {
+    let NodeClass = property.soak ? SoakedDynamicMemberAccessOp : DynamicMemberAccessOp;
+    let last = context.linesAndColumns.indexForLocation({
+      line: property.locationData.last_line,
+      column: property.locationData.last_column
+    });
+    if (last === null) {
+      throw new Error(`cannot find offset of last character of index: ${inspect(property)}`);
+    }
+
+    return new NodeClass(
+      base.line, base.column, base.start, last + 1, context.source.slice(base.start, last + 1),
+      reduced,
+      mapAny(context, property.index)
+    );
   } else if (property instanceof CoffeeSlice) {
     let last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
@@ -110,7 +126,7 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
       !property.range.exclusive
     );
   } else {
-    throw new UnsupportedNodeError(property);
+    throw new UnsupportedNodeError(property, 'Unexpected property access.');
   }
 }
 
