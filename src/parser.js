@@ -24,7 +24,7 @@ import { patchCoffeeScript } from './ext/coffee-script';
 import type { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import type { Node, Program } from './nodes';
 
-export function parse(source: string, { useFallback = true, useMappers = true } = {}): Program {
+export function parse(source: string, { useFallback = false, useMappers = true } = {}): Program {
   patchCoffeeScript();
 
   let context = ParseContext.fromSource(source, lex, CoffeeScript.nodes);
