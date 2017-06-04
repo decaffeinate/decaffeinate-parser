@@ -258,7 +258,7 @@ export class ObjectInitialiserMember extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly key: String | Identifier,
+    readonly key: Node,
     readonly expression: Node,
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
