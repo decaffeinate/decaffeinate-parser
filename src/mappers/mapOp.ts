@@ -2,11 +2,11 @@ import { SourceType } from 'coffee-lex';
 import { Op as CoffeeOp, Return as CoffeeReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
-  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExpOp, EQOp, GTEOp, GTOp,
-  InstanceofOp, LeftShiftOp, LogicalAndOp, LogicalNotOp, LogicalOrOp, LTEOp, LTOp, ModuloOp, MultiplyOp, NewOp, Node,
-  NEQOp, OfOp, Op, OperatorInfo, PlusOp, PostDecrementOp, PostIncrementOp, PreDecrementOp, PreIncrementOp,
-  RemOp, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp, UnsignedRightShiftOp, Yield,
-  YieldFrom, YieldReturn
+  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExistsOp, ExpOp, EQOp, FloorDivideOp,
+  GTEOp, GTOp, InstanceofOp, LeftShiftOp, LogicalAndOp, LogicalNotOp, LogicalOrOp, LTEOp, LTOp, ModuloOp, MultiplyOp,
+  NewOp, Node, NEQOp, OfOp, Op, OperatorInfo, PlusOp, PostDecrementOp, PostIncrementOp,
+  PreDecrementOp, PreIncrementOp, RemOp, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp,
+  UnsignedRightShiftOp, Yield, YieldFrom, YieldReturn
 } from '../nodes';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
 import isChainedComparison from '../util/isChainedComparison';
@@ -78,6 +78,12 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
 
     case '/':
       return mapBinaryOp(context, node, DivideOp);
+
+    case '//':
+      return mapBinaryOp(context, node, FloorDivideOp);
+
+    case '?':
+      return mapBinaryOp(context, node, ExistsOp);
 
     case '<':
       return mapBinaryOp(context, node, LTOp);
