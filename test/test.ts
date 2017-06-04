@@ -1,8 +1,9 @@
 import { deepEqual } from 'assert';
 import { join } from 'path';
-import stringify from 'json-stable-stringify';
+import stringify = require('json-stable-stringify');
+import { readdirSync, readFileSync, writeFileSync } from 'fs';
+import { Node, Program } from '../src/nodes';
 import { parse } from '../src/parser';
-import { readFileSync, readdirSync, writeFileSync } from 'fs';
 
 let examplesPath = join(__dirname, 'examples');
 
@@ -24,12 +25,12 @@ readdirSync(examplesPath).forEach(entry => {
   });
 });
 
-function stripContext(programNode) {
+function stripContext(programNode: Program) {
   delete programNode.context;
   return programNode;
 }
 
-function stripExtraInfo(node) {
+function stripExtraInfo(node: Node) {
   if (node && typeof node === 'object') {
     for (let key in node) {
       if (node.range && (key === 'start' || key === 'end')) {
@@ -47,7 +48,7 @@ function stripExtraInfo(node) {
   return node;
 }
 
-function requireOptional(path) {
+function requireOptional(path: string) {
   try {
     return require(path);
   } catch (err) {
