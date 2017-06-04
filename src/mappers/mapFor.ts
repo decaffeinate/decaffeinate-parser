@@ -14,6 +14,10 @@ export default function mapFor(context: ParseContext, node: CoffeeFor): For {
   let target = mapAny(context, node.source);
   let filter = node.guard ? mapAny(context, node.guard) : null;
 
+  if (body.start < target.start) {
+    body = body.withInline(true);
+  }
+
   if (node.object) {
     let isOwn = node.own;
 

@@ -57,7 +57,7 @@ export function parse(source: string, { useFallback = true, useMappers = true } 
 function convert(context: ParseContext, map: (context: ParseContext, node: Base, fallback: () => Node) => Node): Program {
   const { source, linesAndColumns } = context;
   fixLocations(context.ast);
-  return convertNode(context.ast);
+  return makeProgramNode(context.ast);
 
   /**
    * @param {Object} node
@@ -292,30 +292,28 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
     }
   }
 
+  function makeProgramNode(blockNode) {
+    let programNode = {
+      type: 'Program',
+      line: 1,
+      column: 1,
+      range: [0, source.length],
+      raw: source,
+      body: convertNode(blockNode, []),
+    };
+    Object.defineProperty(programNode, 'context', {
+      value: context,
+      enumerable: false
+    });
+    return programNode;
+  }
+
   /**
    * @param {Object} node
    * @param ancestors
    * @returns {Node}
    */
   function convertNode(node, ancestors = []) {
-    if (ancestors.length === 0) {
-      let programNode = {
-        type: 'Program',
-        line: 1,
-        column: 1,
-        range: [0, source.length],
-        raw: source,
-        body: makeNode(context, 'Block', node.locationData, {
-          statements: convertChild(node.expressions)
-        })
-      };
-      Object.defineProperty(programNode, 'context', {
-        value: context,
-        enumerable: false
-      });
-      return programNode;
-    }
-
     switch (type(node)) {
       case 'Value': {
         return map(context, node, () => {
@@ -589,7 +587,7 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
               statements: convertChild(node.expressions)
             });
 
-            let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(block.range[0] - 1);
+            let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(block.range[0]).previous();
             let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
             block.inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
 
@@ -609,12 +607,17 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
           if (locationsEqual(node.body.locationData, node.locationData)) {
             node.body.locationData = locationContainingNodes(...node.body.expressions);
           }
+          let body = convertChild(node.body);
+          let target = convertChild(node.source);
+          if (body.range[0] < target.range[0]) {
+            body.inline = true;
+          }
           if (node.object) {
             return makeNode(context, 'ForOf', node.locationData, {
               keyAssignee: convertChild(node.index),
               valAssignee: convertChild(node.name),
-              body: convertChild(node.body),
-              target: convertChild(node.source),
+              body,
+              target,
               filter: convertChild(node.guard),
               isOwn: node.own
             });
@@ -622,8 +625,8 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
             return makeNode(context, 'ForIn', node.locationData, {
               keyAssignee: convertChild(node.index),
               valAssignee: convertChild(node.name),
-              body: convertChild(node.body),
-              target: convertChild(node.source),
+              body,
+              target,
               filter: convertChild(node.guard),
               step: convertChild(node.step)
             });
@@ -643,10 +646,16 @@ function convert(context: ParseContext, map: (context: ParseContext, node: Base,
             });
           }
 
+          let body = convertChild(node.body);
+          let condition = convertChild(node.condition);
+          if (body && body.type === 'Block' && body.range[0] < condition.range[0]) {
+            body.inline = true;
+          }
+
           return makeNode(context, 'While', locationContainingNodes(node, node.condition, node.body), {
-            condition: convertChild(node.condition),
+            condition,
             guard: convertChild(node.guard),
-            body: convertChild(node.body),
+            body,
             isUntil: node.condition.inverted === true
           });
         });

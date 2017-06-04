@@ -279,6 +279,12 @@ export class Block extends Node {
   ) {
     super('Block', line, column, start, end, raw);
   }
+
+  withInline(inline: boolean): Block {
+    return new Block(
+      this.line, this.column, this.start, this.end, this.raw, this.statements, inline
+    );
+  }
 }
 
 export class Loop extends Node {

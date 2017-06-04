@@ -12,7 +12,7 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
   }
 
   let { line, column, start, end, raw } = mapBase(context, node);
-  let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start - 1);
+  let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start).previous();
   let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
   let inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
 
