@@ -283,6 +283,8 @@ export class Conditional extends Node {
 }
 
 export class Program extends Node {
+  context: ParseContext;
+
   constructor(
     line: number,
     column: number,
@@ -290,9 +292,10 @@ export class Program extends Node {
     end: number,
     raw: string,
     readonly body: Block | null,
-    readonly context: ParseContext
+    context: ParseContext
   ) {
     super('Program', line, column, start, end, raw);
+    this.context = context;
   }
 }
 
