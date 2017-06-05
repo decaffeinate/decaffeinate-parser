@@ -1,10 +1,10 @@
 import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
-import { Index } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Index, Slice } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import ParseContext from './ParseContext';
 
-export default function rangeOfBracketTokensForIndexNode(context: ParseContext, indexNode: Index): [SourceTokenListIndex, SourceTokenListIndex] {
+export default function rangeOfBracketTokensForIndexNode(context: ParseContext, indexNode: Index | Slice): [SourceTokenListIndex, SourceTokenListIndex] {
   let start = context.linesAndColumns.indexForLocation({
     line: indexNode.locationData.first_line,
     column: indexNode.locationData.first_column
