@@ -1,0 +1,183 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      38
+    ],
+    "raw": "class A\n  b = ->\n    c: d\n    return 1",
+    "statements": [
+      {
+        "body": {
+          "column": 3,
+          "inline": false,
+          "line": 2,
+          "range": [
+            10,
+            38
+          ],
+          "raw": "b = ->\n    c: d\n    return 1",
+          "statements": [
+            {
+              "assignee": {
+                "column": 3,
+                "data": "b",
+                "line": 2,
+                "range": [
+                  10,
+                  11
+                ],
+                "raw": "b",
+                "type": "Identifier"
+              },
+              "column": 3,
+              "expression": {
+                "body": {
+                  "column": 5,
+                  "inline": false,
+                  "line": 3,
+                  "range": [
+                    21,
+                    38
+                  ],
+                  "raw": "c: d\n    return 1",
+                  "statements": [
+                    {
+                      "column": 5,
+                      "line": 3,
+                      "members": [
+                        {
+                          "column": 5,
+                          "expression": {
+                            "column": 8,
+                            "data": "d",
+                            "line": 3,
+                            "range": [
+                              24,
+                              25
+                            ],
+                            "raw": "d",
+                            "type": "Identifier"
+                          },
+                          "key": {
+                            "column": 5,
+                            "data": "c",
+                            "line": 3,
+                            "range": [
+                              21,
+                              22
+                            ],
+                            "raw": "c",
+                            "type": "Identifier"
+                          },
+                          "line": 3,
+                          "range": [
+                            21,
+                            25
+                          ],
+                          "raw": "c: d",
+                          "type": "ObjectInitialiserMember"
+                        }
+                      ],
+                      "range": [
+                        21,
+                        25
+                      ],
+                      "raw": "c: d",
+                      "type": "ObjectInitialiser"
+                    },
+                    {
+                      "column": 5,
+                      "expression": {
+                        "column": 12,
+                        "data": 1,
+                        "line": 4,
+                        "range": [
+                          37,
+                          38
+                        ],
+                        "raw": "1",
+                        "type": "Int"
+                      },
+                      "line": 4,
+                      "range": [
+                        30,
+                        38
+                      ],
+                      "raw": "return 1",
+                      "type": "Return"
+                    }
+                  ],
+                  "type": "Block"
+                },
+                "column": 7,
+                "line": 2,
+                "parameters": [
+                ],
+                "range": [
+                  14,
+                  38
+                ],
+                "raw": "->\n    c: d\n    return 1",
+                "type": "Function"
+              },
+              "line": 2,
+              "range": [
+                10,
+                38
+              ],
+              "raw": "b = ->\n    c: d\n    return 1",
+              "type": "AssignOp"
+            }
+          ],
+          "type": "Block"
+        },
+        "boundMembers": [
+        ],
+        "column": 1,
+        "ctor": null,
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          38
+        ],
+        "raw": "class A\n  b = ->\n    c: d\n    return 1",
+        "type": "Class"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    39
+  ],
+  "raw": "class A\n  b = ->\n    c: d\n    return 1\n",
+  "type": "Program"
+}
