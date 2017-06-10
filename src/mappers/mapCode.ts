@@ -10,10 +10,12 @@ export default function mapCode(context: ParseContext, node: Code): BaseFunction
 
   let Node = getNodeTypeForCode(node);
 
+  let childContext = context.updateState(s => s.dropCurrentClass());
+
   return new Node(
     line, column, start, end, raw,
-    node.params.map(param => mapAny(context, param)),
-    mapPossiblyEmptyBlock(context, node.body)
+    node.params.map(param => mapAny(childContext, param)),
+    mapPossiblyEmptyBlock(childContext, node.body)
   );
 }
 

@@ -1,0 +1,184 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      30
+    ],
+    "raw": "class A\n  if b\n    c: d\n  e: f",
+    "statements": [
+      {
+        "body": {
+          "column": 3,
+          "inline": false,
+          "line": 2,
+          "range": [
+            10,
+            30
+          ],
+          "raw": "if b\n    c: d\n  e: f",
+          "statements": [
+            {
+              "alternate": null,
+              "column": 3,
+              "condition": {
+                "column": 6,
+                "data": "b",
+                "line": 2,
+                "range": [
+                  13,
+                  14
+                ],
+                "raw": "b",
+                "type": "Identifier"
+              },
+              "consequent": {
+                "column": 5,
+                "inline": false,
+                "line": 3,
+                "range": [
+                  19,
+                  23
+                ],
+                "raw": "c: d",
+                "statements": [
+                  {
+                    "column": 5,
+                    "line": 3,
+                    "members": [
+                      {
+                        "column": 5,
+                        "expression": {
+                          "column": 8,
+                          "data": "d",
+                          "line": 3,
+                          "range": [
+                            22,
+                            23
+                          ],
+                          "raw": "d",
+                          "type": "Identifier"
+                        },
+                        "key": {
+                          "column": 5,
+                          "data": "c",
+                          "line": 3,
+                          "range": [
+                            19,
+                            20
+                          ],
+                          "raw": "c",
+                          "type": "Identifier"
+                        },
+                        "line": 3,
+                        "range": [
+                          19,
+                          23
+                        ],
+                        "raw": "c: d",
+                        "type": "ObjectInitialiserMember"
+                      }
+                    ],
+                    "range": [
+                      19,
+                      23
+                    ],
+                    "raw": "c: d",
+                    "type": "ObjectInitialiser"
+                  }
+                ],
+                "type": "Block"
+              },
+              "isUnless": false,
+              "line": 2,
+              "range": [
+                10,
+                23
+              ],
+              "raw": "if b\n    c: d",
+              "type": "Conditional"
+            },
+            {
+              "assignee": {
+                "column": 3,
+                "data": "e",
+                "line": 4,
+                "range": [
+                  26,
+                  27
+                ],
+                "raw": "e",
+                "type": "Identifier"
+              },
+              "column": 3,
+              "expression": {
+                "column": 6,
+                "data": "f",
+                "line": 4,
+                "range": [
+                  29,
+                  30
+                ],
+                "raw": "f",
+                "type": "Identifier"
+              },
+              "line": 4,
+              "range": [
+                26,
+                30
+              ],
+              "raw": "e: f",
+              "type": "ClassProtoAssignOp"
+            }
+          ],
+          "type": "Block"
+        },
+        "boundMembers": [
+        ],
+        "column": 1,
+        "ctor": null,
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          30
+        ],
+        "raw": "class A\n  if b\n    c: d\n  e: f",
+        "type": "Class"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    31
+  ],
+  "raw": "class A\n  if b\n    c: d\n  e: f\n",
+  "type": "Program"
+}

@@ -1,0 +1,116 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      16
+    ],
+    "raw": "class A\n  {b: c}",
+    "statements": [
+      {
+        "body": {
+          "column": 3,
+          "inline": false,
+          "line": 2,
+          "range": [
+            10,
+            16
+          ],
+          "raw": "{b: c}",
+          "statements": [
+            {
+              "column": 3,
+              "line": 2,
+              "members": [
+                {
+                  "column": 4,
+                  "expression": {
+                    "column": 7,
+                    "data": "c",
+                    "line": 2,
+                    "range": [
+                      14,
+                      15
+                    ],
+                    "raw": "c",
+                    "type": "Identifier"
+                  },
+                  "key": {
+                    "column": 4,
+                    "data": "b",
+                    "line": 2,
+                    "range": [
+                      11,
+                      12
+                    ],
+                    "raw": "b",
+                    "type": "Identifier"
+                  },
+                  "line": 2,
+                  "range": [
+                    11,
+                    15
+                  ],
+                  "raw": "b: c",
+                  "type": "ObjectInitialiserMember"
+                }
+              ],
+              "range": [
+                10,
+                16
+              ],
+              "raw": "{b: c}",
+              "type": "ObjectInitialiser"
+            }
+          ],
+          "type": "Block"
+        },
+        "boundMembers": [
+        ],
+        "column": 1,
+        "ctor": null,
+        "line": 1,
+        "name": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "nameAssignee": {
+          "column": 7,
+          "data": "A",
+          "line": 1,
+          "range": [
+            6,
+            7
+          ],
+          "raw": "A",
+          "type": "Identifier"
+        },
+        "parent": null,
+        "range": [
+          0,
+          16
+        ],
+        "raw": "class A\n  {b: c}",
+        "type": "Class"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    17
+  ],
+  "raw": "class A\n  {b: c}\n",
+  "type": "Program"
+}

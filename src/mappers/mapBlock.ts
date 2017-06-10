@@ -1,6 +1,7 @@
 import { SourceType } from 'coffee-lex';
-import { Block as CoffeeBlock, Comment } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { Block } from '../nodes';
+import { Assign, Base, Block as CoffeeBlock, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { inspect } from 'util';
+import { AssignOp, Block, BoundFunction, BoundGeneratorFunction, ClassProtoAssignOp, Constructor, Identifier, MemberAccessOp, Node, This } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
@@ -9,6 +10,19 @@ import mapBase from './mapBase';
 export default function mapBlock(context: ParseContext, node: CoffeeBlock): Block {
   if (node.expressions.length === 0) {
     throw new UnsupportedNodeError(node, 'Unexpected mapBlock call with an empty block.');
+  }
+
+  let childContext = context;
+  if (context.parseState.isInClassBody()) {
+    // Replicate a bug in CoffeeScript: at any block where we see an
+    // object-style proto assignment, stop considering proto assignments in any
+    // sub-traversals. This is taken from the walkBody implementation.
+    let hasProtoAssignChild = node.expressions.some(child =>
+      child instanceof Value && child.isObject(true)
+    );
+    if (hasProtoAssignChild) {
+      childContext = childContext.updateState(s => s.dropCurrentClass());
+    }
   }
 
   let { line, column, start, end, raw } = mapBase(context, node);
@@ -20,7 +34,56 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
     line, column, start, end, raw,
     node.expressions
       .filter(expression => !(expression instanceof Comment))
-      .map(expression => mapAny(context, expression)),
+      .map(expression => mapChild(context, childContext, expression))
+      .reduce((arr, current) => arr.concat(current), []),
     inline
   );
+}
+
+function mapChild(blockContext: ParseContext, childContext: ParseContext, node: Base): Array<Node> {
+  if (blockContext.parseState.isInClassBody() && node instanceof Value && node.isObject(true)) {
+    let obj = node.base;
+    if (!(obj instanceof Obj)) {
+      throw new Error('Expected isObject node to be an object.');
+    }
+
+    let statements: Array<Node> = [];
+    for (let property of obj.properties) {
+      if (property instanceof Comment) {
+        continue;
+      } else if (property instanceof Assign) {
+        let { line, column, start, end, raw } = mapBase(childContext, property);
+        let key = mapAny(childContext, property.variable);
+        let value = mapAny(childContext, property.value);
+        let Node = ClassProtoAssignOp;
+
+        if (key instanceof Identifier && key.data === 'constructor') {
+          Node = Constructor;
+        } else if (key instanceof MemberAccessOp && key.expression instanceof This) {
+          Node = AssignOp;
+        }
+
+        let assignment = new Node(
+          line, column, start, end, raw,
+          key,
+          value
+        );
+
+        statements.push(assignment);
+
+        if (assignment instanceof ClassProtoAssignOp &&
+            (assignment.expression instanceof BoundFunction || assignment.expression instanceof BoundGeneratorFunction)) {
+          blockContext.parseState.recordBoundMethod(assignment);
+        }
+
+        if (assignment instanceof Constructor) {
+          blockContext.parseState.recordConstructor(assignment);
+        }
+      } else {
+        throw new Error(`unexpected class assignment: ${inspect(property)}`);
+      }
+    }
+    return statements;
+  }
+  return [mapAny(childContext, node)];
 }
