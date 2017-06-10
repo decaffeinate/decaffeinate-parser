@@ -7,7 +7,7 @@ var pkg = require('./package.json');
 var external = Object.keys(pkg.dependencies);
 
 export default {
-  entry: 'src/parser.js',
+  entry: 'src/parser.ts',
   plugins: [
     ts({ typescript: TypeScript }),
     babel(babelrc())
