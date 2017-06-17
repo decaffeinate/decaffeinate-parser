@@ -14,7 +14,7 @@ export default function mapWhile(context: ParseContext, node: CoffeeWhile): Whil
   if (startToken && startToken.type === SourceType.LOOP) {
     return new Loop(
       line, column, start, end, raw,
-      node.body ? mapAny(context, node.body) : null
+      mapPossiblyEmptyBlock(context, node.body)
     );
   }
 
