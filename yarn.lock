@@ -39,9 +39,9 @@
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
 
-"@types/node@7.0.29":
-  version "7.0.29"
-  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.29.tgz#ccfcec5b7135c7caf6c4ffb8c7f33102340d99df"
+"@types/node@7.0.32":
+  version "7.0.32"
+  resolved "https://registry.npmjs.org/@types/node/-/node-7.0.32.tgz#6afe6c66520a4c316623a14aef123908d01b4bba"
 
 StringScanner@~0.0.3:
   version "0.0.3"
