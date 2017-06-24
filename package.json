@@ -43,7 +43,7 @@
     "babel-register": "^6.7.2",
     "babelrc-rollup": "^3.0.0",
     "coffee-script-redux": "^2.0.0-beta8",
-    "eslint": "^3.12.2",
+    "eslint": "^4.1.0",
     "mocha": "^3.0.0",
     "rollup": "^0.42.0",
     "rollup-plugin-babel": "^2.7.1",
