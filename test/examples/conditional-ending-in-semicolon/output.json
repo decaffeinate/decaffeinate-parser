@@ -1,0 +1,68 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      12
+    ],
+    "raw": "x = if a\n  ;",
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "x",
+          "line": 1,
+          "range": [
+            0,
+            1
+          ],
+          "raw": "x",
+          "type": "Identifier"
+        },
+        "column": 1,
+        "expression": {
+          "alternate": null,
+          "column": 5,
+          "condition": {
+            "column": 8,
+            "data": "a",
+            "line": 1,
+            "range": [
+              7,
+              8
+            ],
+            "raw": "a",
+            "type": "Identifier"
+          },
+          "consequent": null,
+          "isUnless": false,
+          "line": 1,
+          "range": [
+            4,
+            12
+          ],
+          "raw": "if a\n  ;",
+          "type": "Conditional"
+        },
+        "line": 1,
+        "range": [
+          0,
+          12
+        ],
+        "raw": "x = if a\n  ;",
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    13
+  ],
+  "raw": "x = if a\n  ;\n",
+  "type": "Program"
+}

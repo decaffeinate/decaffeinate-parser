@@ -1,0 +1,36 @@
+{
+  "body": {
+    "column": 1,
+    "inline": false,
+    "line": 1,
+    "range": [
+      0,
+      6
+    ],
+    "raw": "->\n  ;",
+    "statements": [
+      {
+        "body": null,
+        "column": 1,
+        "line": 1,
+        "parameters": [
+        ],
+        "range": [
+          0,
+          6
+        ],
+        "raw": "->\n  ;",
+        "type": "Function"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "line": 1,
+  "range": [
+    0,
+    7
+  ],
+  "raw": "->\n  ;\n",
+  "type": "Program"
+}
