@@ -962,7 +962,7 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@4.1.0:
+eslint@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/eslint/-/eslint-4.1.0.tgz#bbb55a28220ee08b69da9554d45a6b2ebfd7d913"
   dependencies:

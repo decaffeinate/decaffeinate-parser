@@ -133,6 +133,24 @@ export default function fixLocations(context: ParseContext, node: Base) {
         lastChild.locationData
       );
     }
+    // Blocks can sometimes end one index before their terminating semicolon
+    // when really they should end exactly at that semicolon.
+    let blockEnd = linesAndColumns.indexForLocation({
+      line: node.locationData.last_line,
+      column: node.locationData.last_column,
+    });
+    if (blockEnd === null) {
+      throw new Error('Expected to find index for block end.');
+    }
+    if (source[blockEnd + 1] === ';') {
+      blockEnd++;
+      let loc = linesAndColumns.locationForIndex(blockEnd);
+      if (loc === null) {
+        throw new Error('Expected to find location for block end.');
+      }
+      node.locationData.last_line = loc.line;
+      node.locationData.last_column = loc.column;
+    }
   }
 
   if (node instanceof If) {
