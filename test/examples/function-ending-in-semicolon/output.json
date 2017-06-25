@@ -10,7 +10,19 @@
     "raw": "->\n  ;",
     "statements": [
       {
-        "body": null,
+        "body": {
+          "column": 1,
+          "inline": false,
+          "line": 2,
+          "range": [
+            5,
+            6
+          ],
+          "raw": ";",
+          "statements": [
+          ],
+          "type": "Block"
+        },
         "column": 1,
         "line": 1,
         "parameters": [
