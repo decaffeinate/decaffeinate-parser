@@ -3,15 +3,10 @@ import { Assign, Base, Block as CoffeeBlock, Comment, Obj, Value } from 'decaffe
 import { inspect } from 'util';
 import { AssignOp, Block, BoundFunction, BoundGeneratorFunction, ClassProtoAssignOp, Constructor, Identifier, MemberAccessOp, Node, This } from '../nodes';
 import ParseContext from '../util/ParseContext';
-import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
 
 export default function mapBlock(context: ParseContext, node: CoffeeBlock): Block {
-  if (node.expressions.length === 0) {
-    throw new UnsupportedNodeError(node, 'Unexpected mapBlock call with an empty block.');
-  }
-
   let childContext = context;
   if (context.parseState.isInClassBody()) {
     // Replicate a bug in CoffeeScript: at any block where we see an

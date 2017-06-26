@@ -1,4 +1,5 @@
 import { SourceType } from 'coffee-lex';
+import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import { Node } from '../nodes';
@@ -25,27 +26,45 @@ export default function mapBase(context: ParseContext, node: Base): Node {
     end = context.source.length;
   }
 
-  // Shrink the end to the nearest semantic token.
-  let lastTokenIndexOfNode = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
-    return (
-      token.end <= end &&
-      token.type !== SourceType.NEWLINE &&
-      token.type !== SourceType.COMMENT
-    );
-  }, context.sourceTokens.indexOfTokenNearSourceIndex(end));
+  let firstTokenOfNode = firstSemanticTokenAfter(context, start, node);
+  let lastTokenOfNode = firstSemanticTokenBefore(context, end, node);
 
-  if (lastTokenIndexOfNode === null) {
-    throw new Error(`unable to find last token for node: ${inspect(node)}`);
-  }
-
-  let lastTokenOfNode = context.sourceTokens.tokenAtIndex(lastTokenIndexOfNode);
-
-  if (lastTokenOfNode === null) {
-    throw new Error(`unable to find last token for node: ${inspect(node)}`);
-  }
-
+  start = firstTokenOfNode.start;
   end = lastTokenOfNode.end;
   let raw = context.source.slice(start, end);
 
   return new Node('Node', line, column, start, end, raw);
+}
+
+function firstSemanticTokenAfter(context: ParseContext, index: number, node: Base) {
+  let tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(token => {
+    return (
+      token.start >= index &&
+      token.type !== SourceType.NEWLINE &&
+      token.type !== SourceType.COMMENT
+    );
+  }, context.sourceTokens.indexOfTokenNearSourceIndex(index));
+  return tokenFromIndex(context, tokenIndex, node);
+}
+
+function firstSemanticTokenBefore(context: ParseContext, index: number, node: Base) {
+  let tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
+    return (
+      token.end <= index &&
+      token.type !== SourceType.NEWLINE &&
+      token.type !== SourceType.COMMENT
+    );
+  }, context.sourceTokens.indexOfTokenNearSourceIndex(index));
+  return tokenFromIndex(context, tokenIndex, node);
+}
+
+function tokenFromIndex(context: ParseContext, tokenIndex: SourceTokenListIndex | null, node: Base) {
+  if (tokenIndex === null) {
+    throw new Error(`unable to find token index for node: ${inspect(node)}`);
+  }
+  let token = context.sourceTokens.tokenAtIndex(tokenIndex);
+  if (token === null) {
+    throw new Error(`unable to find token for node: ${inspect(node)}`);
+  }
+  return token;
 }

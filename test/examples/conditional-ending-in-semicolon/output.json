@@ -36,7 +36,19 @@
             "raw": "a",
             "type": "Identifier"
           },
-          "consequent": null,
+          "consequent": {
+            "column": 1,
+            "inline": false,
+            "line": 2,
+            "range": [
+              11,
+              12
+            ],
+            "raw": ";",
+            "statements": [
+            ],
+            "type": "Block"
+          },
           "isUnless": false,
           "line": 1,
           "range": [
