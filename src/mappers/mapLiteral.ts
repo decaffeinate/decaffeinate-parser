@@ -56,7 +56,7 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     let regExp = parseRegExp(node.value);
     return new Regex(
       line, column, start, end, raw,
-      regExp.pattern, RegexFlags.parse(regExp.flags)
+      regExp.pattern, RegexFlags.parse(regExp.flags || '')
     );
   }
 

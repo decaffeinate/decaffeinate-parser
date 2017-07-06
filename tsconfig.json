@@ -6,8 +6,10 @@
     "declaration": true,
     "lib": ["es2015"],
     "experimentalDecorators": true,
+    "noImplicitAny": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "noEmit": true
+    "noEmit": true,
+    "suppressImplicitAnyIndexErrors": true
   }
 }
