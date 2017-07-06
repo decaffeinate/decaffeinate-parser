@@ -29,7 +29,7 @@ function processFile(path: string) {
   } catch (ex) {
     console.log(`NOT OK ${path}`);
     console.log(`    ${ex.message}`);
-    console.log(ex.stack.split('\n').map(line => `   ${line}`).join('\n'));
+    console.log(ex.stack.split('\n').map((line: string) => `   ${line}`).join('\n'));
   }
 }
 

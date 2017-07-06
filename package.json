@@ -22,9 +22,11 @@
     "dist/"
   ],
   "dependencies": {
+    "@types/babylon": "^6.16.1",
+    "@types/json-stable-stringify": "^1.0.31",
     "babylon": "^6.14.1",
     "coffee-lex": "^7.0.0",
-    "decaffeinate-coffeescript": "1.10.0-patch24",
+    "decaffeinate-coffeescript": "1.10.0-patch25",
     "json-stable-stringify": "^1.0.1",
     "lines-and-columns": "^1.1.6"
   },

@@ -5,7 +5,7 @@ import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
 import mapBase from './mapBase';
 
-const COMPOUND_ASSIGN_OPS = {
+const COMPOUND_ASSIGN_OPS: {[op: string]: string | undefined} = {
   '-=': SubtractOp.name,
   '+=': PlusOp.name,
   '/=': DivideOp.name,

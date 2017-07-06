@@ -35,6 +35,20 @@
     conventional-changelog "0.0.17"
     github-url-from-git "^1.4.0"
 
+"@types/babel-types@*":
+  version "6.7.16"
+  resolved "https://registry.npmjs.org/@types/babel-types/-/babel-types-6.7.16.tgz#e2602896636858a0067971f7ca4bb8678038293f"
+
+"@types/babylon@^6.16.1":
+  version "6.16.1"
+  resolved "https://registry.npmjs.org/@types/babylon/-/babylon-6.16.1.tgz#e4d10ab9e43a73703a17c6f41438bede28769340"
+  dependencies:
+    "@types/babel-types" "*"
+
+"@types/json-stable-stringify@^1.0.31":
+  version "1.0.31"
+  resolved "https://registry.npmjs.org/@types/json-stable-stringify/-/json-stable-stringify-1.0.31.tgz#b6c7bc507f5267e88cd2839b3ac6a2b39b653a32"
+
 "@types/mocha@^2.2.35":
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
@@ -864,9 +878,9 @@ debug@2.6.0:
   dependencies:
     ms "0.7.2"
 
-decaffeinate-coffeescript@1.10.0-patch24:
-  version "1.10.0-patch24"
-  resolved "https://registry.npmjs.org/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.10.0-patch24.tgz#11ed2b31c7253686ded645aa29521ba38741e811"
+decaffeinate-coffeescript@^1.10.0-patch25:
+  version "1.10.0-patch25"
+  resolved "https://registry.npmjs.org/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.10.0-patch25.tgz#81816adc6361bd7d1e59d9034c8c5bfcea00677e"
 
 decamelize@^1.1.2:
   version "1.2.0"
