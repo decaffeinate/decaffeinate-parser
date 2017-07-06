@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
-import { join } from 'path';
-import stringify = require('json-stable-stringify');
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
+import * as stringify from 'json-stable-stringify';
+import { join } from 'path';
 import { Node, Program } from '../src/nodes';
 import { parse } from '../src/parser';
 
