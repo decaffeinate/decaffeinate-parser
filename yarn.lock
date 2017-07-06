@@ -53,9 +53,9 @@
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
 
-"@types/node@8.0.7":
-  version "8.0.7"
-  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.7.tgz#fb0ad04b5b6f6eabe0372a32a8f1fbba5c130cae"
+"@types/node@8.0.8":
+  version "8.0.8"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.8.tgz#0dc4ca2c6f6fc69baee16c5e928c4a627f517ada"
 
 StringScanner@~0.0.3:
   version "0.0.3"
@@ -878,7 +878,7 @@ debug@2.6.0:
   dependencies:
     ms "0.7.2"
 
-decaffeinate-coffeescript@^1.10.0-patch25:
+decaffeinate-coffeescript@1.10.0-patch25:
   version "1.10.0-patch25"
   resolved "https://registry.npmjs.org/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.10.0-patch25.tgz#81816adc6361bd7d1e59d9034c8c5bfcea00677e"
 
