@@ -75,7 +75,7 @@
             "token": {
               "end": 3,
               "start": 2,
-              "type": 39
+              "type": "OPERATOR"
             }
           },
           {
@@ -83,7 +83,7 @@
             "token": {
               "end": 7,
               "start": 6,
-              "type": 39
+              "type": "OPERATOR"
             }
           },
           {
@@ -91,7 +91,7 @@
             "token": {
               "end": 11,
               "start": 10,
-              "type": 39
+              "type": "OPERATOR"
             }
           },
           {
@@ -99,7 +99,7 @@
             "token": {
               "end": 15,
               "start": 14,
-              "type": 39
+              "type": "OPERATOR"
             }
           }
         ],

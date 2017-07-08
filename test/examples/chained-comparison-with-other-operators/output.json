@@ -158,7 +158,7 @@
             "token": {
               "end": 11,
               "start": 10,
-              "type": 39
+              "type": "OPERATOR"
             }
           },
           {
@@ -166,7 +166,7 @@
             "token": {
               "end": 19,
               "start": 18,
-              "type": 39
+              "type": "OPERATOR"
             }
           }
         ],
