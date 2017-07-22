@@ -1,6 +1,8 @@
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import ParseContext from './util/ParseContext';
 
+export type ChildField = Node | Array<Node | null> | null;
+
 export abstract class Node {
   readonly range: [number, number];
 
@@ -15,6 +17,20 @@ export abstract class Node {
     this.range = [start, end];
     this.raw = raw;
   }
+
+  getChildren(): Array<Node> {
+    let children: Array<Node> = [];
+    for (let childField of this.getChildFields()) {
+      if (Array.isArray(childField)) {
+        children.push(...childField.filter<Node>((node): node is Node => node !== null));
+      } else if (childField) {
+        children.push(childField);
+      }
+    }
+    return children;
+  }
+
+  abstract getChildFields(): Array<ChildField>;
 }
 
 export class Identifier extends Node {
@@ -27,6 +43,10 @@ export class Identifier extends Node {
     readonly data: string,
   ) {
     super('Identifier', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -49,6 +69,10 @@ export class Bool extends Node {
   static false(): Bool {
     return new Bool(0, 0, 0, 0, '', false);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [];
+  }
 }
 
 export class JavaScript extends Node {
@@ -61,6 +85,10 @@ export class JavaScript extends Node {
     readonly data: string,
   ) {
     super('JavaScript', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -75,6 +103,10 @@ export class Number extends Node {
     readonly data: number,
   ) {
     super(type, line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -130,6 +162,10 @@ export class MemberAccessOp extends AccessOp {
   ) {
     super('MemberAccessOp', line, column, start, end, raw, expression);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.member];
+  }
 }
 
 export class ProtoMemberAccessOp extends AccessOp {
@@ -142,6 +178,10 @@ export class ProtoMemberAccessOp extends AccessOp {
     expression: Node
   ) {
     super('ProtoMemberAccessOp', line, column, start, end, raw, expression);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
   }
 }
 
@@ -157,6 +197,10 @@ export class SoakedMemberAccessOp extends AccessOp {
   ) {
     super('SoakedMemberAccessOp', line, column, start, end, raw, expression);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.member];
+  }
 }
 
 export class SoakedProtoMemberAccessOp extends AccessOp {
@@ -169,6 +213,10 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
     expression: Node
   ) {
     super('SoakedProtoMemberAccessOp', line, column, start, end, raw, expression);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
   }
 }
 
@@ -184,6 +232,10 @@ export class DynamicMemberAccessOp extends AccessOp {
   ) {
     super('DynamicMemberAccessOp', line, column, start, end, raw, expression);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.indexingExpr];
+  }
 }
 
 export class SoakedDynamicMemberAccessOp extends AccessOp {
@@ -198,6 +250,10 @@ export class SoakedDynamicMemberAccessOp extends AccessOp {
   ) {
     super('SoakedDynamicMemberAccessOp', line, column, start, end, raw, expression);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.indexingExpr];
+  }
 }
 
 export class Quasi extends Node {
@@ -210,6 +266,10 @@ export class Quasi extends Node {
     readonly data: string,
   ) {
     super('Quasi', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -225,6 +285,10 @@ export class String extends Node {
   ) {
     super('String', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.quasis, this.expressions];
+  }
 }
 
 export class ObjectInitialiser extends Node {
@@ -237,6 +301,10 @@ export class ObjectInitialiser extends Node {
     readonly members: Array<ObjectInitialiserMember | AssignOp>,
   ) {
     super('ObjectInitialiser', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.members];
   }
 }
 
@@ -252,10 +320,13 @@ export class ObjectInitialiserMember extends Node {
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.key, this.expression];
+  }
 }
 
 export class Conditional extends Node {
-
   constructor(
     line: number,
     column: number,
@@ -268,6 +339,10 @@ export class Conditional extends Node {
     readonly isUnless: boolean,
   ) {
     super('Conditional', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.condition, this.consequent, this.alternate];
   }
 }
 
@@ -286,6 +361,10 @@ export class Program extends Node {
     super('Program', line, column, start, end, raw);
     this.context = context;
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.body];
+  }
 }
 
 export class Block extends Node {
@@ -299,6 +378,10 @@ export class Block extends Node {
     readonly inline: boolean,
   ) {
     super('Block', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.statements];
   }
 
   withInline(inline: boolean): Block {
@@ -319,6 +402,10 @@ export class Loop extends Node {
   ) {
     super('Loop', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.body];
+  }
 }
 
 export class While extends Node {
@@ -334,6 +421,10 @@ export class While extends Node {
     readonly isUntil: boolean,
   ) {
     super('While', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.condition, this.guard, this.body];
   }
 }
 
@@ -371,6 +462,10 @@ export class ForOf extends For {
   ) {
     super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.keyAssignee, this.valAssignee, this.target, this.filter, this.body];
+  }
 }
 
 export class ForIn extends For {
@@ -389,6 +484,10 @@ export class ForIn extends For {
   ) {
     super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.keyAssignee, this.valAssignee, this.target, this.step, this.filter, this.body];
+  }
 }
 
 export class Switch extends Node {
@@ -404,6 +503,10 @@ export class Switch extends Node {
   ) {
     super('Switch', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.cases, this.alternate];
+  }
 }
 
 export class SwitchCase extends Node {
@@ -417,6 +520,10 @@ export class SwitchCase extends Node {
     readonly consequent: Block | null,
   ) {
     super('SwitchCase', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.conditions, this.consequent];
   }
 }
 
@@ -484,6 +591,10 @@ export class Heregex extends Node {
   ) {
     super('Heregex', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.quasis, this.expressions];
+  }
 }
 
 export class Null extends Node {
@@ -496,6 +607,10 @@ export class Null extends Node {
   ) {
     super('Null', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [];
+  }
 }
 
 export class Undefined extends Node {
@@ -507,6 +622,10 @@ export class Undefined extends Node {
     raw: string,
   ) {
     super('Undefined', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -522,6 +641,10 @@ export class Regex extends Node {
   ) {
     super('Regex', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [];
+  }
 }
 
 export class Return extends Node {
@@ -534,6 +657,10 @@ export class Return extends Node {
     readonly expression: Node | null,
   ) {
     super('Return', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
   }
 }
 
@@ -548,6 +675,10 @@ export class YieldReturn extends Node {
   ) {
     super('YieldReturn', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
+  }
 }
 
 export class This extends Node {
@@ -559,6 +690,10 @@ export class This extends Node {
     raw: string,
   ) {
     super('This', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -573,6 +708,10 @@ export class Throw extends Node {
   ) {
     super('Throw', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
+  }
 }
 
 export class ArrayInitialiser extends Node {
@@ -585,6 +724,10 @@ export class ArrayInitialiser extends Node {
     readonly members: Array<Node>,
   ) {
     super('ArrayInitialiser', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.members];
   }
 }
 
@@ -605,6 +748,10 @@ export class DefaultParam extends Node {
     this.param = param;
     this.default = defaultValue;
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.param, this.default];
+  }
 }
 
 export class Rest extends Node {
@@ -618,6 +765,10 @@ export class Rest extends Node {
   ) {
     super('Rest', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
+  }
 }
 
 export class Expansion extends Node {
@@ -629,6 +780,10 @@ export class Expansion extends Node {
     raw: string,
   ) {
     super('Expansion', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -642,6 +797,10 @@ export class Break extends Node {
   ) {
     super('Break', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [];
+  }
 }
 
 export class Continue extends Node {
@@ -653,6 +812,10 @@ export class Continue extends Node {
     raw: string,
   ) {
     super('Continue', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -666,6 +829,10 @@ export class Spread extends Node {
     readonly expression: Node,
   ) {
     super('Spread', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
   }
 }
 
@@ -682,6 +849,10 @@ export class Range extends Node {
   ) {
     super('Range', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.left, this.right];
+  }
 }
 
 export abstract class BinaryOp extends Node {
@@ -697,6 +868,10 @@ export abstract class BinaryOp extends Node {
   ) {
     super(type, line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.left, this.right];
+  }
 }
 
 export abstract class UnaryOp extends Node {
@@ -711,6 +886,10 @@ export abstract class UnaryOp extends Node {
   ) {
     super(type, line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
+  }
 }
 
 export class ChainedComparisonOp extends Node {
@@ -724,6 +903,10 @@ export class ChainedComparisonOp extends Node {
     readonly operators: Array<OperatorInfo>,
   ) {
     super('ChainedComparisonOp', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.operands];
   }
 }
 
@@ -1204,6 +1387,10 @@ export class BaseAssignOp extends Node {
   ) {
     super(type, line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.assignee, this.expression];
+  }
 }
 
 export class AssignOp extends BaseAssignOp {
@@ -1365,6 +1552,10 @@ export class Slice extends Node {
   ) {
     super('Slice', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.left, this.right];
+  }
 }
 
 export class SoakedSlice extends Node {
@@ -1381,6 +1572,10 @@ export class SoakedSlice extends Node {
   ) {
     super('SoakedSlice', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression, this.left, this.right];
+  }
 }
 
 export abstract class BaseFunction extends Node {
@@ -1395,6 +1590,10 @@ export abstract class BaseFunction extends Node {
     readonly body: Block | null,
   ) {
     super(type, line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.parameters, this.body];
   }
 
   abstract withParameters(parameters: Array<Node>): BaseFunction;
@@ -1494,6 +1693,10 @@ export class Try extends Node {
   ) {
     super('Try', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.body, this.catchAssignee, this.catchBody, this.finallyBody];
+  }
 }
 
 export class Constructor extends BaseAssignOp {
@@ -1540,6 +1743,10 @@ export class Class extends Node {
   ) {
     super('Class', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.nameAssignee, this.parent, this.body];
+  }
 }
 
 export class FunctionApplication extends Node {
@@ -1558,6 +1765,10 @@ export class FunctionApplication extends Node {
     super('FunctionApplication', line, column, start, end, raw);
     this.function = fn;
     this.arguments = args;
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.function, this.arguments];
   }
 }
 
@@ -1578,6 +1789,10 @@ export class SoakedFunctionApplication extends Node {
     this.function = fn;
     this.arguments = args;
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.function, this.arguments];
+  }
 }
 
 export class Super extends Node {
@@ -1590,6 +1805,10 @@ export class Super extends Node {
   ) {
     super('Super', line, column, start, end, raw);
   }
+
+  getChildFields(): Array<ChildField> {
+    return [];
+  }
 }
 
 export class BareSuperFunctionApplication extends Node {
@@ -1601,6 +1820,10 @@ export class BareSuperFunctionApplication extends Node {
     raw: string,
   ) {
     super('BareSuperFunctionApplication', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [];
   }
 }
 
@@ -1621,6 +1844,10 @@ export class NewOp extends Node {
     this.ctor = ctor;
     this.arguments = args;
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.ctor, this.arguments];
+  }
 }
 
 export class SoakedNewOp extends Node {
@@ -1640,6 +1867,10 @@ export class SoakedNewOp extends Node {
     this.ctor = ctor;
     this.arguments = args;
   }
+
+  getChildFields(): Array<ChildField> {
+    return [this.ctor, this.arguments];
+  }
 }
 
 export class DoOp extends Node {
@@ -1652,5 +1883,9 @@ export class DoOp extends Node {
     readonly expression: Node
   ) {
     super('DoOp', line, column, start, end, raw);
+  }
+
+  getChildFields(): Array<ChildField> {
+    return [this.expression];
   }
 }
