@@ -8,13 +8,20 @@ import isImplicitPlusOp from './isImplicitPlusOp';
 import ParseContext from './ParseContext';
 import parseString from './parseString';
 
+export type TemplateLiteralComponents = {
+  quasis: Array<Quasi>,
+  unmappedExpressions: Array<Base | null>;
+  start: number,
+  end: number,
+};
+
 /**
  * Reconstruct template literal information given the coffee-lex tokens and the
  * CoffeeScript AST. Since the CoffeeScript AST doesn't attempt to represent a
  * template literal (it's a bunch of + operations instead), the source locations
  * are generally unreliable and we need to rely on the token locations instead.
  */
-export default function getTemplateLiteralComponents(context: ParseContext, node: Base) {
+export default function getTemplateLiteralComponents(context: ParseContext, node: Base): TemplateLiteralComponents {
   let tokens = context.sourceTokens;
 
   let quasis: Array<Quasi> = [];
@@ -80,7 +87,7 @@ function getElements(node: Base, context: ParseContext): Array<Base> {
  * if the start of the template literal is an interpolation, it's two before
  * that one, so check to see which case we are and return what we find.
  */
-function getStartToken(start: number, tokens: SourceTokenList) {
+function getStartToken(start: number, tokens: SourceTokenList): { startToken: SourceToken, startTokenIndex: SourceTokenListIndex } {
   let tokenIndex = tokens.indexOfTokenNearSourceIndex(start);
   for (let i = 0; i < 5; i++) {
     let token = tokens.tokenAtIndex(tokenIndex);

@@ -5,7 +5,7 @@ import mergeLocations from './mergeLocations';
 import ParseContext from './ParseContext';
 import rangeOfBracketTokensForIndexNode from './rangeOfBracketTokensForIndexNode';
 
-export default function fixLocations(context: ParseContext, node: Base) {
+export default function fixLocations(context: ParseContext, node: Base): void {
   let { linesAndColumns, source } = context;
   node.eachChild(child => {
     if (child && child.locationData) {

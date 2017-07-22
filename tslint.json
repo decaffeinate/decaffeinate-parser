@@ -15,7 +15,7 @@
     "no-var-keyword": true,
     "prefer-for-of": true,
     "quotemark": [true, "single"],
-    "typedef": [true, "parameter", "property-declaration"],
+    "typedef": [true, "call-signature", "parameter", "property-declaration"],
     "typedef-whitespace": [
       true,
       {

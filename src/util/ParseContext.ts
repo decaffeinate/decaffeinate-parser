@@ -23,26 +23,26 @@ export class ParseState {
     this.currentClassCtor = null;
   }
 
-  isInClassBody() {
+  isInClassBody(): boolean {
     return this.currentClassBoundMethods !== null;
   }
 
-  recordBoundMethod(method: ClassProtoAssignOp) {
+  recordBoundMethod(method: ClassProtoAssignOp): void {
     if (!this.currentClassBoundMethods) {
       throw new Error('Cannot assign a bound method name when there is no current class.');
     }
     this.currentClassBoundMethods.push(method);
   }
 
-  recordConstructor(ctor: Constructor) {
+  recordConstructor(ctor: Constructor): void {
     this.currentClassCtor = ctor;
   }
 
-  pushCurrentClass() {
+  pushCurrentClass(): ParseState {
     return new ParseState([]);
   }
 
-  dropCurrentClass() {
+  dropCurrentClass(): ParseState {
     return new ParseState(null);
   }
 
@@ -76,7 +76,7 @@ export default class ParseContext {
     }
   }
 
-  static fromSource(source: string, sourceLex: (source: string) => SourceTokenList, parse: (source: string) => Block) {
+  static fromSource(source: string, sourceLex: (source: string) => SourceTokenList, parse: (source: string) => Block): ParseContext {
     try {
       const sourceTokens = sourceLex(source);
       return new ParseContext(

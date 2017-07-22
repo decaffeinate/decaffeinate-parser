@@ -1,4 +1,5 @@
 import { SourceType } from 'coffee-lex';
+import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
@@ -43,7 +44,7 @@ export default function getLocation(context: ParseContext, node: Base): NodeLoca
   return {line, column, start, end, raw};
 }
 
-function firstSemanticTokenAfter(context: ParseContext, index: number, node: Base) {
+function firstSemanticTokenAfter(context: ParseContext, index: number, node: Base): SourceToken {
   let tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(token => {
     return (
       token.start >= index &&
@@ -54,7 +55,7 @@ function firstSemanticTokenAfter(context: ParseContext, index: number, node: Bas
   return tokenFromIndex(context, tokenIndex, node);
 }
 
-function firstSemanticTokenBefore(context: ParseContext, index: number, node: Base) {
+function firstSemanticTokenBefore(context: ParseContext, index: number, node: Base): SourceToken {
   let tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
     return (
       token.end <= index &&
@@ -65,7 +66,7 @@ function firstSemanticTokenBefore(context: ParseContext, index: number, node: Ba
   return tokenFromIndex(context, tokenIndex, node);
 }
 
-function tokenFromIndex(context: ParseContext, tokenIndex: SourceTokenListIndex | null, node: Base) {
+function tokenFromIndex(context: ParseContext, tokenIndex: SourceTokenListIndex | null, node: Base): SourceToken {
   if (tokenIndex === null) {
     throw new Error(`unable to find token index for node: ${inspect(node)}`);
   }

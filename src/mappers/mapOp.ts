@@ -26,7 +26,7 @@ export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
   }
 }
 
-function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
+function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp): ChainedComparisonOp {
   let { line, column, start, end, raw } = getLocation(context, node);
   let coffeeOperands = unwindChainedComparison(node);
   let operands = coffeeOperands.map(operand => mapAny(context, operand));

@@ -6,7 +6,7 @@ import ParseContext from './ParseContext';
  * Determine if the given CoffeeScript AST node is an interpolated heregex node
  * that's pretending to be a function call to the RegExp function.
  */
-export default function isHeregexTemplateNode(node: Base, context: ParseContext) {
+export default function isHeregexTemplateNode(node: Base, context: ParseContext): boolean {
   if (!(node instanceof Call) ||
       !node.variable ||
       !(node.variable instanceof Value) ||
