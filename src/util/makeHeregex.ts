@@ -4,7 +4,7 @@ import { Heregex, RegexFlags } from '../nodes';
 import getTemplateLiteralComponents from './getTemplateLiteralComponents';
 import ParseContext from './ParseContext';
 
-export default function makeHeregex(context: ParseContext, node: Base, flags: string) {
+export default function makeHeregex(context: ParseContext, node: Base, flags: string): Heregex {
   let { quasis, unmappedExpressions, start, end } = getTemplateLiteralComponents(context, node);
   let startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {

@@ -25,12 +25,12 @@ readdirSync(examplesPath).forEach(entry => {
   });
 });
 
-function stripContext(programNode: Program) {
+function stripContext(programNode: Program): Program {
   delete programNode.context;
   return programNode;
 }
 
-function stripExtraInfo(node: Node) {
+function stripExtraInfo(node: Node): Node {
   if (node && typeof node === 'object') {
     for (let key in node) {
       if (node.range && (key === 'start' || key === 'end')) {
@@ -48,7 +48,8 @@ function stripExtraInfo(node: Node) {
   return node;
 }
 
-function requireOptional(path: string) {
+// tslint:disable-next-line no-any
+function requireOptional(path: string): any {
   try {
     return require(path);
   } catch (err) {
