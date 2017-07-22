@@ -1,14 +1,6 @@
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import ParseContext from './util/ParseContext';
 
-export interface RealNode {
-  type: string;
-  line: number;
-  column: number;
-  range: [number, number];
-  raw: string;
-}
-
 export abstract class Node {
   readonly range: [number, number];
 

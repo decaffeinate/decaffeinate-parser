@@ -1,7 +1,7 @@
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import { Base, Block, LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import LinesAndColumns from 'lines-and-columns';
-import { ClassProtoAssignOp, Constructor, RealNode } from '../nodes';
+import { ClassProtoAssignOp, Constructor } from '../nodes';
 
 class ParseError extends Error {
   syntaxError: SyntaxError;
@@ -60,10 +60,8 @@ export default class ParseContext {
     readonly parseState: ParseState) {
   }
 
-  getRange(locatable: RealNode | Base | LocationData): [number, number] | null {
-    if ('range' in locatable) {
-      return (locatable as RealNode).range;
-    } else if (locatable instanceof Base) {
+  getRange(locatable: Base | LocationData): [number, number] | null {
+    if (locatable instanceof Base) {
       return this.getRange(locatable.locationData);
     } else {
       let locationData = locatable as LocationData;
