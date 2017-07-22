@@ -1,59 +1,50 @@
 {
   "body": {
     "column": 1,
+    "end": 10,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      10
-    ],
     "raw": "-1 < 0 < 1",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 10,
         "line": 1,
         "operands": [
           {
             "column": 1,
+            "end": 2,
             "expression": {
               "column": 2,
               "data": 1,
+              "end": 2,
               "line": 1,
-              "range": [
-                1,
-                2
-              ],
               "raw": "1",
+              "start": 1,
               "type": "Int"
             },
             "line": 1,
-            "range": [
-              0,
-              2
-            ],
             "raw": "-1",
+            "start": 0,
             "type": "UnaryNegateOp"
           },
           {
             "column": 6,
             "data": 0,
+            "end": 6,
             "line": 1,
-            "range": [
-              5,
-              6
-            ],
             "raw": "0",
+            "start": 5,
             "type": "Int"
           },
           {
             "column": 10,
             "data": 1,
+            "end": 10,
             "line": 1,
-            "range": [
-              9,
-              10
-            ],
             "raw": "1",
+            "start": 9,
             "type": "Int"
           }
         ],
@@ -75,22 +66,17 @@
             }
           }
         ],
-        "range": [
-          0,
-          10
-        ],
         "raw": "-1 < 0 < 1",
+        "start": 0,
         "type": "ChainedComparisonOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 11,
   "line": 1,
-  "range": [
-    0,
-    11
-  ],
   "raw": "-1 < 0 < 1\n",
+  "start": 0,
   "type": "Program"
 }

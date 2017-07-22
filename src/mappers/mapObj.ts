@@ -21,7 +21,7 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
       members.push(new ObjectInitialiserMember(
         line, column, start, end, raw,
         value,
-        value
+        null
       ));
     } else if (property instanceof Assign && property.context === 'object') {
       let key = mapAny(context, property.variable);

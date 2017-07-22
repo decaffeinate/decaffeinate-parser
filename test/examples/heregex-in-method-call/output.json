@@ -1,18 +1,17 @@
 {
   "body": {
     "column": 1,
+    "end": 19,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      19
-    ],
     "raw": "///foo///.test('a')",
+    "start": 0,
     "statements": [
       {
         "arguments": [
           {
             "column": 16,
+            "end": 18,
             "expressions": [
             ],
             "line": 1,
@@ -20,28 +19,26 @@
               {
                 "column": 17,
                 "data": "a",
+                "end": 17,
                 "line": 1,
-                "range": [
-                  16,
-                  17
-                ],
                 "raw": "a",
+                "start": 16,
                 "type": "Quasi"
               }
             ],
-            "range": [
-              15,
-              18
-            ],
             "raw": "'a'",
+            "start": 15,
             "type": "String"
           }
         ],
         "column": 1,
+        "end": 19,
         "function": {
           "column": 1,
+          "end": 14,
           "expression": {
             "column": 1,
+            "end": 9,
             "expressions": [
             ],
             "flags": {
@@ -59,58 +56,43 @@
               {
                 "column": 4,
                 "data": "/foo/",
+                "end": 6,
                 "line": 1,
-                "range": [
-                  3,
-                  6
-                ],
                 "raw": "foo",
+                "start": 3,
                 "type": "Quasi"
               }
             ],
-            "range": [
-              0,
-              9
-            ],
             "raw": "///foo///",
+            "start": 0,
             "type": "Heregex"
           },
           "line": 1,
           "member": {
             "column": 11,
             "data": "test",
+            "end": 14,
             "line": 1,
-            "range": [
-              10,
-              14
-            ],
             "raw": "test",
+            "start": 10,
             "type": "Identifier"
           },
-          "range": [
-            0,
-            14
-          ],
           "raw": "///foo///.test",
+          "start": 0,
           "type": "MemberAccessOp"
         },
         "line": 1,
-        "range": [
-          0,
-          19
-        ],
         "raw": "///foo///.test('a')",
+        "start": 0,
         "type": "FunctionApplication"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 20,
   "line": 1,
-  "range": [
-    0,
-    20
-  ],
   "raw": "///foo///.test('a')\n",
+  "start": 0,
   "type": "Program"
 }

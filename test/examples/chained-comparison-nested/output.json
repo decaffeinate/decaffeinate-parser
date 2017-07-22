@@ -1,53 +1,47 @@
 {
   "body": {
     "column": 1,
+    "end": 23,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      23
-    ],
     "raw": "(a == b == c) == d == e",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 23,
         "line": 1,
         "operands": [
           {
             "column": 2,
+            "end": 12,
             "line": 1,
             "operands": [
               {
                 "column": 2,
                 "data": "a",
+                "end": 2,
                 "line": 1,
-                "range": [
-                  1,
-                  2
-                ],
                 "raw": "a",
+                "start": 1,
                 "type": "Identifier"
               },
               {
                 "column": 7,
                 "data": "b",
+                "end": 7,
                 "line": 1,
-                "range": [
-                  6,
-                  7
-                ],
                 "raw": "b",
+                "start": 6,
                 "type": "Identifier"
               },
               {
                 "column": 12,
                 "data": "c",
+                "end": 12,
                 "line": 1,
-                "range": [
-                  11,
-                  12
-                ],
                 "raw": "c",
+                "start": 11,
                 "type": "Identifier"
               }
             ],
@@ -69,33 +63,26 @@
                 }
               }
             ],
-            "range": [
-              1,
-              12
-            ],
             "raw": "a == b == c",
+            "start": 1,
             "type": "ChainedComparisonOp"
           },
           {
             "column": 18,
             "data": "d",
+            "end": 18,
             "line": 1,
-            "range": [
-              17,
-              18
-            ],
             "raw": "d",
+            "start": 17,
             "type": "Identifier"
           },
           {
             "column": 23,
             "data": "e",
+            "end": 23,
             "line": 1,
-            "range": [
-              22,
-              23
-            ],
             "raw": "e",
+            "start": 22,
             "type": "Identifier"
           }
         ],
@@ -117,22 +104,17 @@
             }
           }
         ],
-        "range": [
-          0,
-          23
-        ],
         "raw": "(a == b == c) == d == e",
+        "start": 0,
         "type": "ChainedComparisonOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 24,
   "line": 1,
-  "range": [
-    0,
-    24
-  ],
   "raw": "(a == b == c) == d == e\n",
+  "start": 0,
   "type": "Program"
 }

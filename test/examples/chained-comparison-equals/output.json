@@ -1,49 +1,42 @@
 {
   "body": {
     "column": 1,
+    "end": 11,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      11
-    ],
     "raw": "a == b == c",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 11,
         "line": 1,
         "operands": [
           {
             "column": 1,
             "data": "a",
+            "end": 1,
             "line": 1,
-            "range": [
-              0,
-              1
-            ],
             "raw": "a",
+            "start": 0,
             "type": "Identifier"
           },
           {
             "column": 6,
             "data": "b",
+            "end": 6,
             "line": 1,
-            "range": [
-              5,
-              6
-            ],
             "raw": "b",
+            "start": 5,
             "type": "Identifier"
           },
           {
             "column": 11,
             "data": "c",
+            "end": 11,
             "line": 1,
-            "range": [
-              10,
-              11
-            ],
             "raw": "c",
+            "start": 10,
             "type": "Identifier"
           }
         ],
@@ -65,22 +58,17 @@
             }
           }
         ],
-        "range": [
-          0,
-          11
-        ],
         "raw": "a == b == c",
+        "start": 0,
         "type": "ChainedComparisonOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 12,
   "line": 1,
-  "range": [
-    0,
-    12
-  ],
   "raw": "a == b == c\n",
+  "start": 0,
   "type": "Program"
 }

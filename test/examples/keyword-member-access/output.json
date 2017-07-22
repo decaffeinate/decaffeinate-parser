@@ -1,55 +1,45 @@
 {
   "body": {
     "column": 1,
+    "end": 7,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      7
-    ],
     "raw": "a.break",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 7,
         "expression": {
           "column": 1,
           "data": "a",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "type": "Identifier"
         },
         "line": 1,
         "member": {
           "column": 3,
           "data": "break",
+          "end": 7,
           "line": 1,
-          "range": [
-            2,
-            7
-          ],
           "raw": "break",
+          "start": 2,
           "type": "Identifier"
         },
-        "range": [
-          0,
-          7
-        ],
         "raw": "a.break",
+        "start": 0,
         "type": "MemberAccessOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 8,
   "line": 1,
-  "range": [
-    0,
-    8
-  ],
   "raw": "a.break\n",
+  "start": 0,
   "type": "Program"
 }

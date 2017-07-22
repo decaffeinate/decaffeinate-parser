@@ -1,92 +1,76 @@
 {
   "body": {
     "column": 1,
+    "end": 19,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      19
-    ],
     "raw": "c unless a not in b",
+    "start": 0,
     "statements": [
       {
         "alternate": null,
         "column": 1,
         "condition": {
           "column": 10,
+          "end": 19,
           "isNot": true,
           "left": {
             "column": 10,
             "data": "a",
+            "end": 10,
             "line": 1,
-            "range": [
-              9,
-              10
-            ],
             "raw": "a",
+            "start": 9,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            9,
-            19
-          ],
           "raw": "a not in b",
           "right": {
             "column": 19,
             "data": "b",
+            "end": 19,
             "line": 1,
-            "range": [
-              18,
-              19
-            ],
             "raw": "b",
+            "start": 18,
             "type": "Identifier"
           },
+          "start": 9,
           "type": "InOp"
         },
         "consequent": {
           "column": 1,
+          "end": 1,
           "inline": true,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "c",
+          "start": 0,
           "statements": [
             {
               "column": 1,
               "data": "c",
+              "end": 1,
               "line": 1,
-              "range": [
-                0,
-                1
-              ],
               "raw": "c",
+              "start": 0,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
+        "end": 19,
         "isUnless": true,
         "line": 1,
-        "range": [
-          0,
-          19
-        ],
         "raw": "c unless a not in b",
+        "start": 0,
         "type": "Conditional"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 20,
   "line": 1,
-  "range": [
-    0,
-    20
-  ],
   "raw": "c unless a not in b\n",
+  "start": 0,
   "type": "Program"
 }

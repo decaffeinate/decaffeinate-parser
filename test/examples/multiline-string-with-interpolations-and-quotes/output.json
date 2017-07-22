@@ -1,37 +1,32 @@
 {
   "body": {
     "column": 1,
+    "end": 39,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      39
-    ],
     "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 39,
         "expressions": [
           {
             "column": 9,
             "data": "c",
+            "end": 17,
             "line": 3,
-            "range": [
-              16,
-              17
-            ],
             "raw": "c",
+            "start": 16,
             "type": "Identifier"
           },
           {
             "column": 9,
             "data": "e",
+            "end": 29,
             "line": 4,
-            "range": [
-              28,
-              29
-            ],
             "raw": "e",
+            "start": 28,
             "type": "Identifier"
           }
         ],
@@ -40,53 +35,42 @@
           {
             "column": 4,
             "data": "a\n  b\"",
+            "end": 14,
             "line": 1,
-            "range": [
-              3,
-              14
-            ],
             "raw": "\n  a\n    b\"",
+            "start": 3,
             "type": "Quasi"
           },
           {
             "column": 11,
             "data": "\"\n  d\"",
+            "end": 26,
             "line": 3,
-            "range": [
-              18,
-              26
-            ],
             "raw": "\"\n    d\"",
+            "start": 18,
             "type": "Quasi"
           },
           {
             "column": 11,
             "data": "\"\nf",
+            "end": 36,
             "line": 4,
-            "range": [
-              30,
-              36
-            ],
             "raw": "\"\n  f\n",
+            "start": 30,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          39
-        ],
         "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 40,
   "line": 1,
-  "range": [
-    0,
-    40
-  ],
   "raw": "\"\"\"\n  a\n    b\"#{c}\"\n    d\"#{e}\"\n  f\n\"\"\"\n",
+  "start": 0,
   "type": "Program"
 }

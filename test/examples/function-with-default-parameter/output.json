@@ -1,17 +1,16 @@
 {
   "body": {
     "column": 1,
+    "end": 8,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      8
-    ],
     "raw": "(a=1) ->",
+    "start": 0,
     "statements": [
       {
         "body": null,
         "column": 1,
+        "end": 8,
         "line": 1,
         "parameters": [
           {
@@ -19,50 +18,39 @@
             "default": {
               "column": 4,
               "data": 1,
+              "end": 4,
               "line": 1,
-              "range": [
-                3,
-                4
-              ],
               "raw": "1",
+              "start": 3,
               "type": "Int"
             },
+            "end": 4,
             "line": 1,
             "param": {
               "column": 2,
               "data": "a",
+              "end": 2,
               "line": 1,
-              "range": [
-                1,
-                2
-              ],
               "raw": "a",
+              "start": 1,
               "type": "Identifier"
             },
-            "range": [
-              1,
-              4
-            ],
             "raw": "a=1",
+            "start": 1,
             "type": "DefaultParam"
           }
         ],
-        "range": [
-          0,
-          8
-        ],
         "raw": "(a=1) ->",
+        "start": 0,
         "type": "Function"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 9,
   "line": 1,
-  "range": [
-    0,
-    9
-  ],
   "raw": "(a=1) ->\n",
+  "start": 0,
   "type": "Program"
 }

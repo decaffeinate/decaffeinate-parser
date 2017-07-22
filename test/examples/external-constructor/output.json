@@ -1,89 +1,73 @@
 {
   "body": {
     "column": 1,
+    "end": 31,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      31
-    ],
     "raw": "f = ->\nclass A\n  constructor: f",
+    "start": 0,
     "statements": [
       {
         "assignee": {
           "column": 1,
           "data": "f",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "f",
+          "start": 0,
           "type": "Identifier"
         },
         "column": 1,
+        "end": 6,
         "expression": {
           "body": null,
           "column": 5,
+          "end": 6,
           "line": 1,
           "parameters": [
           ],
-          "range": [
-            4,
-            6
-          ],
           "raw": "->",
+          "start": 4,
           "type": "Function"
         },
         "line": 1,
-        "range": [
-          0,
-          6
-        ],
         "raw": "f = ->",
+        "start": 0,
         "type": "AssignOp"
       },
       {
         "body": {
           "column": 3,
+          "end": 31,
           "inline": false,
           "line": 3,
-          "range": [
-            17,
-            31
-          ],
           "raw": "constructor: f",
+          "start": 17,
           "statements": [
             {
               "assignee": {
                 "column": 3,
                 "data": "constructor",
+                "end": 28,
                 "line": 3,
-                "range": [
-                  17,
-                  28
-                ],
                 "raw": "constructor",
+                "start": 17,
                 "type": "Identifier"
               },
               "column": 3,
+              "end": 31,
               "expression": {
                 "column": 16,
                 "data": "f",
+                "end": 31,
                 "line": 3,
-                "range": [
-                  30,
-                  31
-                ],
                 "raw": "f",
+                "start": 30,
                 "type": "Identifier"
               },
               "line": 3,
-              "range": [
-                17,
-                31
-              ],
               "raw": "constructor: f",
+              "start": 17,
               "type": "Constructor"
             }
           ],
@@ -96,74 +80,60 @@
           "assignee": {
             "column": 3,
             "data": "constructor",
+            "end": 28,
             "line": 3,
-            "range": [
-              17,
-              28
-            ],
             "raw": "constructor",
+            "start": 17,
             "type": "Identifier"
           },
           "column": 3,
+          "end": 31,
           "expression": {
             "column": 16,
             "data": "f",
+            "end": 31,
             "line": 3,
-            "range": [
-              30,
-              31
-            ],
             "raw": "f",
+            "start": 30,
             "type": "Identifier"
           },
           "line": 3,
-          "range": [
-            17,
-            31
-          ],
           "raw": "constructor: f",
+          "start": 17,
           "type": "Constructor"
         },
+        "end": 31,
         "line": 2,
         "name": {
           "column": 7,
           "data": "A",
+          "end": 14,
           "line": 2,
-          "range": [
-            13,
-            14
-          ],
           "raw": "A",
+          "start": 13,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "A",
+          "end": 14,
           "line": 2,
-          "range": [
-            13,
-            14
-          ],
           "raw": "A",
+          "start": 13,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          7,
-          31
-        ],
         "raw": "class A\n  constructor: f",
+        "start": 7,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 32,
   "line": 1,
-  "range": [
-    0,
-    32
-  ],
   "raw": "f = ->\nclass A\n  constructor: f\n",
+  "start": 0,
   "type": "Program"
 }

@@ -1,63 +1,55 @@
 {
   "body": {
     "column": 1,
+    "end": 25,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      25
-    ],
     "raw": "do (a=1, b=@b) ->\n  a + b",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 25,
         "expression": {
           "body": {
             "column": 3,
+            "end": 25,
             "inline": false,
             "line": 2,
-            "range": [
-              20,
-              25
-            ],
             "raw": "a + b",
+            "start": 20,
             "statements": [
               {
                 "column": 3,
+                "end": 25,
                 "left": {
                   "column": 3,
                   "data": "a",
+                  "end": 21,
                   "line": 2,
-                  "range": [
-                    20,
-                    21
-                  ],
                   "raw": "a",
+                  "start": 20,
                   "type": "Identifier"
                 },
                 "line": 2,
-                "range": [
-                  20,
-                  25
-                ],
                 "raw": "a + b",
                 "right": {
                   "column": 7,
                   "data": "b",
+                  "end": 25,
                   "line": 2,
-                  "range": [
-                    24,
-                    25
-                  ],
                   "raw": "b",
+                  "start": 24,
                   "type": "Identifier"
                 },
+                "start": 20,
                 "type": "PlusOp"
               }
             ],
             "type": "Block"
           },
           "column": 4,
+          "end": 25,
           "line": 1,
           "parameters": [
             {
@@ -65,110 +57,86 @@
               "default": {
                 "column": 7,
                 "data": 1,
+                "end": 7,
                 "line": 1,
-                "range": [
-                  6,
-                  7
-                ],
                 "raw": "1",
+                "start": 6,
                 "type": "Int"
               },
+              "end": 7,
               "line": 1,
               "param": {
                 "column": 5,
                 "data": "a",
+                "end": 5,
                 "line": 1,
-                "range": [
-                  4,
-                  5
-                ],
                 "raw": "a",
+                "start": 4,
                 "type": "Identifier"
               },
-              "range": [
-                4,
-                7
-              ],
               "raw": "a=1",
+              "start": 4,
               "type": "DefaultParam"
             },
             {
               "column": 10,
               "default": {
                 "column": 12,
+                "end": 13,
                 "expression": {
                   "column": 12,
+                  "end": 12,
                   "line": 1,
-                  "range": [
-                    11,
-                    12
-                  ],
                   "raw": "@",
+                  "start": 11,
                   "type": "This"
                 },
                 "line": 1,
                 "member": {
                   "column": 13,
                   "data": "b",
+                  "end": 13,
                   "line": 1,
-                  "range": [
-                    12,
-                    13
-                  ],
                   "raw": "b",
+                  "start": 12,
                   "type": "Identifier"
                 },
-                "range": [
-                  11,
-                  13
-                ],
                 "raw": "@b",
+                "start": 11,
                 "type": "MemberAccessOp"
               },
+              "end": 13,
               "line": 1,
               "param": {
                 "column": 10,
                 "data": "b",
+                "end": 10,
                 "line": 1,
-                "range": [
-                  9,
-                  10
-                ],
                 "raw": "b",
+                "start": 9,
                 "type": "Identifier"
               },
-              "range": [
-                9,
-                13
-              ],
               "raw": "b=@b",
+              "start": 9,
               "type": "DefaultParam"
             }
           ],
-          "range": [
-            3,
-            25
-          ],
           "raw": "(a=1, b=@b) ->\n  a + b",
+          "start": 3,
           "type": "Function"
         },
         "line": 1,
-        "range": [
-          0,
-          25
-        ],
         "raw": "do (a=1, b=@b) ->\n  a + b",
+        "start": 0,
         "type": "DoOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 25,
   "line": 1,
-  "range": [
-    0,
-    25
-  ],
   "raw": "do (a=1, b=@b) ->\n  a + b",
+  "start": 0,
   "type": "Program"
 }

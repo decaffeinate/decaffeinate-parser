@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 9,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      9
-    ],
     "raw": "a while b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 1,
+          "end": 1,
           "inline": true,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "statements": [
             {
               "column": 1,
               "data": "a",
+              "end": 1,
               "line": 1,
-              "range": [
-                0,
-                1
-              ],
               "raw": "a",
+              "start": 0,
               "type": "Identifier"
             }
           ],
@@ -38,33 +32,27 @@
         "condition": {
           "column": 9,
           "data": "b",
+          "end": 9,
           "line": 1,
-          "range": [
-            8,
-            9
-          ],
           "raw": "b",
+          "start": 8,
           "type": "Identifier"
         },
+        "end": 9,
         "guard": null,
         "isUntil": false,
         "line": 1,
-        "range": [
-          0,
-          9
-        ],
         "raw": "a while b",
+        "start": 0,
         "type": "While"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 9,
   "line": 1,
-  "range": [
-    0,
-    9
-  ],
   "raw": "a while b",
+  "start": 0,
   "type": "Program"
 }

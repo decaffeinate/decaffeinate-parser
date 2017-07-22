@@ -1,80 +1,66 @@
 {
   "body": {
     "column": 1,
+    "end": 14,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      14
-    ],
     "raw": "for [0..1]\n  2",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 14,
           "inline": false,
           "line": 2,
-          "range": [
-            13,
-            14
-          ],
           "raw": "2",
+          "start": 13,
           "statements": [
             {
               "column": 3,
               "data": 2,
+              "end": 14,
               "line": 2,
-              "range": [
-                13,
-                14
-              ],
               "raw": "2",
+              "start": 13,
               "type": "Int"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 14,
         "filter": null,
         "keyAssignee": null,
         "line": 1,
-        "range": [
-          0,
-          14
-        ],
         "raw": "for [0..1]\n  2",
+        "start": 0,
         "step": null,
         "target": {
           "column": 5,
+          "end": 10,
           "isInclusive": true,
           "left": {
             "column": 6,
             "data": 0,
+            "end": 6,
             "line": 1,
-            "range": [
-              5,
-              6
-            ],
             "raw": "0",
+            "start": 5,
             "type": "Int"
           },
           "line": 1,
-          "range": [
-            4,
-            10
-          ],
           "raw": "[0..1]",
           "right": {
             "column": 9,
             "data": 1,
+            "end": 9,
             "line": 1,
-            "range": [
-              8,
-              9
-            ],
             "raw": "1",
+            "start": 8,
             "type": "Int"
           },
+          "start": 4,
           "type": "Range"
         },
         "type": "ForIn",
@@ -84,11 +70,9 @@
     "type": "Block"
   },
   "column": 1,
+  "end": 15,
   "line": 1,
-  "range": [
-    0,
-    15
-  ],
   "raw": "for [0..1]\n  2\n",
+  "start": 0,
   "type": "Program"
 }

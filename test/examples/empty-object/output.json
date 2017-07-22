@@ -1,35 +1,29 @@
 {
   "body": {
     "column": 1,
+    "end": 2,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      2
-    ],
     "raw": "{}",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 2,
         "line": 1,
         "members": [
         ],
-        "range": [
-          0,
-          2
-        ],
         "raw": "{}",
+        "start": 0,
         "type": "ObjectInitialiser"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 2,
   "line": 1,
-  "range": [
-    0,
-    2
-  ],
   "raw": "{}",
+  "start": 0,
   "type": "Program"
 }

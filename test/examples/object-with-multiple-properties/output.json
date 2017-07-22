@@ -1,99 +1,81 @@
 {
   "body": {
     "column": 1,
+    "end": 18,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      18
-    ],
     "raw": "{\n  a: 1,\n  b: 2\n}",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 18,
         "line": 1,
         "members": [
           {
             "column": 3,
+            "end": 8,
             "expression": {
               "column": 6,
               "data": 1,
+              "end": 8,
               "line": 2,
-              "range": [
-                7,
-                8
-              ],
               "raw": "1",
+              "start": 7,
               "type": "Int"
             },
             "key": {
               "column": 3,
               "data": "a",
+              "end": 5,
               "line": 2,
-              "range": [
-                4,
-                5
-              ],
               "raw": "a",
+              "start": 4,
               "type": "Identifier"
             },
             "line": 2,
-            "range": [
-              4,
-              8
-            ],
             "raw": "a: 1",
+            "start": 4,
             "type": "ObjectInitialiserMember"
           },
           {
             "column": 3,
+            "end": 16,
             "expression": {
               "column": 6,
               "data": 2,
+              "end": 16,
               "line": 3,
-              "range": [
-                15,
-                16
-              ],
               "raw": "2",
+              "start": 15,
               "type": "Int"
             },
             "key": {
               "column": 3,
               "data": "b",
+              "end": 13,
               "line": 3,
-              "range": [
-                12,
-                13
-              ],
               "raw": "b",
+              "start": 12,
               "type": "Identifier"
             },
             "line": 3,
-            "range": [
-              12,
-              16
-            ],
             "raw": "b: 2",
+            "start": 12,
             "type": "ObjectInitialiserMember"
           }
         ],
-        "range": [
-          0,
-          18
-        ],
         "raw": "{\n  a: 1,\n  b: 2\n}",
+        "start": 0,
         "type": "ObjectInitialiser"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 18,
   "line": 1,
-  "range": [
-    0,
-    18
-  ],
   "raw": "{\n  a: 1,\n  b: 2\n}",
+  "start": 0,
   "type": "Program"
 }

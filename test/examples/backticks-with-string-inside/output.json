@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 23,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      23
-    ],
     "raw": "`import foo from 'foo'`",
+    "start": 0,
     "statements": [
       {
         "column": 1,
         "data": "import foo from 'foo'",
+        "end": 23,
         "line": 1,
-        "range": [
-          0,
-          23
-        ],
         "raw": "`import foo from 'foo'`",
+        "start": 0,
         "type": "JavaScript"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 24,
   "line": 1,
-  "range": [
-    0,
-    24
-  ],
   "raw": "`import foo from 'foo'`\n",
+  "start": 0,
   "type": "Program"
 }

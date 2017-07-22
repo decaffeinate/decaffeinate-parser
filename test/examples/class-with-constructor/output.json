@@ -1,119 +1,97 @@
 {
   "body": {
     "column": 1,
+    "end": 38,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      38
-    ],
     "raw": "class Point\n  constructor: (@x, @y) ->",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 38,
           "inline": false,
           "line": 2,
-          "range": [
-            14,
-            38
-          ],
           "raw": "constructor: (@x, @y) ->",
+          "start": 14,
           "statements": [
             {
               "assignee": {
                 "column": 3,
                 "data": "constructor",
+                "end": 25,
                 "line": 2,
-                "range": [
-                  14,
-                  25
-                ],
                 "raw": "constructor",
+                "start": 14,
                 "type": "Identifier"
               },
               "column": 3,
+              "end": 38,
               "expression": {
                 "body": null,
                 "column": 16,
+                "end": 38,
                 "line": 2,
                 "parameters": [
                   {
                     "column": 17,
+                    "end": 30,
                     "expression": {
                       "column": 17,
+                      "end": 29,
                       "line": 2,
-                      "range": [
-                        28,
-                        29
-                      ],
                       "raw": "@",
+                      "start": 28,
                       "type": "This"
                     },
                     "line": 2,
                     "member": {
                       "column": 18,
                       "data": "x",
+                      "end": 30,
                       "line": 2,
-                      "range": [
-                        29,
-                        30
-                      ],
                       "raw": "x",
+                      "start": 29,
                       "type": "Identifier"
                     },
-                    "range": [
-                      28,
-                      30
-                    ],
                     "raw": "@x",
+                    "start": 28,
                     "type": "MemberAccessOp"
                   },
                   {
                     "column": 21,
+                    "end": 34,
                     "expression": {
                       "column": 21,
+                      "end": 33,
                       "line": 2,
-                      "range": [
-                        32,
-                        33
-                      ],
                       "raw": "@",
+                      "start": 32,
                       "type": "This"
                     },
                     "line": 2,
                     "member": {
                       "column": 22,
                       "data": "y",
+                      "end": 34,
                       "line": 2,
-                      "range": [
-                        33,
-                        34
-                      ],
                       "raw": "y",
+                      "start": 33,
                       "type": "Identifier"
                     },
-                    "range": [
-                      32,
-                      34
-                    ],
                     "raw": "@y",
+                    "start": 32,
                     "type": "MemberAccessOp"
                   }
                 ],
-                "range": [
-                  27,
-                  38
-                ],
                 "raw": "(@x, @y) ->",
+                "start": 27,
                 "type": "Function"
               },
               "line": 2,
-              "range": [
-                14,
-                38
-              ],
               "raw": "constructor: (@x, @y) ->",
+              "start": 14,
               "type": "Constructor"
             }
           ],
@@ -126,138 +104,112 @@
           "assignee": {
             "column": 3,
             "data": "constructor",
+            "end": 25,
             "line": 2,
-            "range": [
-              14,
-              25
-            ],
             "raw": "constructor",
+            "start": 14,
             "type": "Identifier"
           },
           "column": 3,
+          "end": 38,
           "expression": {
             "body": null,
             "column": 16,
+            "end": 38,
             "line": 2,
             "parameters": [
               {
                 "column": 17,
+                "end": 30,
                 "expression": {
                   "column": 17,
+                  "end": 29,
                   "line": 2,
-                  "range": [
-                    28,
-                    29
-                  ],
                   "raw": "@",
+                  "start": 28,
                   "type": "This"
                 },
                 "line": 2,
                 "member": {
                   "column": 18,
                   "data": "x",
+                  "end": 30,
                   "line": 2,
-                  "range": [
-                    29,
-                    30
-                  ],
                   "raw": "x",
+                  "start": 29,
                   "type": "Identifier"
                 },
-                "range": [
-                  28,
-                  30
-                ],
                 "raw": "@x",
+                "start": 28,
                 "type": "MemberAccessOp"
               },
               {
                 "column": 21,
+                "end": 34,
                 "expression": {
                   "column": 21,
+                  "end": 33,
                   "line": 2,
-                  "range": [
-                    32,
-                    33
-                  ],
                   "raw": "@",
+                  "start": 32,
                   "type": "This"
                 },
                 "line": 2,
                 "member": {
                   "column": 22,
                   "data": "y",
+                  "end": 34,
                   "line": 2,
-                  "range": [
-                    33,
-                    34
-                  ],
                   "raw": "y",
+                  "start": 33,
                   "type": "Identifier"
                 },
-                "range": [
-                  32,
-                  34
-                ],
                 "raw": "@y",
+                "start": 32,
                 "type": "MemberAccessOp"
               }
             ],
-            "range": [
-              27,
-              38
-            ],
             "raw": "(@x, @y) ->",
+            "start": 27,
             "type": "Function"
           },
           "line": 2,
-          "range": [
-            14,
-            38
-          ],
           "raw": "constructor: (@x, @y) ->",
+          "start": 14,
           "type": "Constructor"
         },
+        "end": 38,
         "line": 1,
         "name": {
           "column": 7,
           "data": "Point",
+          "end": 11,
           "line": 1,
-          "range": [
-            6,
-            11
-          ],
           "raw": "Point",
+          "start": 6,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "Point",
+          "end": 11,
           "line": 1,
-          "range": [
-            6,
-            11
-          ],
           "raw": "Point",
+          "start": 6,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          0,
-          38
-        ],
         "raw": "class Point\n  constructor: (@x, @y) ->",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 39,
   "line": 1,
-  "range": [
-    0,
-    39
-  ],
   "raw": "class Point\n  constructor: (@x, @y) ->\n",
+  "start": 0,
   "type": "Program"
 }

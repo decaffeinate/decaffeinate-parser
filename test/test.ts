@@ -1,9 +1,9 @@
-import { deepEqual } from 'assert';
+import { deepEqual, equal } from 'assert';
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import * as stringify from 'json-stable-stringify';
 import { join } from 'path';
 import { Node, Program } from '../src/nodes';
-import { parse } from '../src/parser';
+import { parse, traverse } from '../src/parser';
 
 let examplesPath = join(__dirname, 'examples');
 
@@ -31,14 +31,10 @@ function stripContext(programNode: Program): Program {
 }
 
 function stripExtraInfo(node: Node): Node {
-  for (let key in node) {
-    if (key === 'start' || key === 'end') {
-      delete node[key];
-    }
-  }
-  for (let child of node.getChildren()) {
-    stripExtraInfo(child);
-  }
+  traverse(node, (node, parent) => {
+    equal(node.parentNode, parent);
+    delete node.parentNode;
+  });
   return node;
 }
 

@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 19,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      19
-    ],
     "raw": "try\n  a\nfinally\n  b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 7,
           "inline": false,
           "line": 2,
-          "range": [
-            6,
-            7
-          ],
           "raw": "a",
+          "start": 6,
           "statements": [
             {
               "column": 3,
               "data": "a",
+              "end": 7,
               "line": 2,
-              "range": [
-                6,
-                7
-              ],
               "raw": "a",
+              "start": 6,
               "type": "Identifier"
             }
           ],
@@ -37,47 +31,39 @@
         "catchAssignee": null,
         "catchBody": null,
         "column": 1,
+        "end": 19,
         "finallyBody": {
           "column": 3,
+          "end": 19,
           "inline": false,
           "line": 4,
-          "range": [
-            18,
-            19
-          ],
           "raw": "b",
+          "start": 18,
           "statements": [
             {
               "column": 3,
               "data": "b",
+              "end": 19,
               "line": 4,
-              "range": [
-                18,
-                19
-              ],
               "raw": "b",
+              "start": 18,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "line": 1,
-        "range": [
-          0,
-          19
-        ],
         "raw": "try\n  a\nfinally\n  b",
+        "start": 0,
         "type": "Try"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 19,
   "line": 1,
-  "range": [
-    0,
-    19
-  ],
   "raw": "try\n  a\nfinally\n  b",
+  "start": 0,
   "type": "Program"
 }

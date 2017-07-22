@@ -1,80 +1,66 @@
 {
   "body": {
     "column": 1,
+    "end": 17,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      17
-    ],
     "raw": "class A\n  a: => b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 17,
           "inline": false,
           "line": 2,
-          "range": [
-            10,
-            17
-          ],
           "raw": "a: => b",
+          "start": 10,
           "statements": [
             {
               "assignee": {
                 "column": 3,
                 "data": "a",
+                "end": 11,
                 "line": 2,
-                "range": [
-                  10,
-                  11
-                ],
                 "raw": "a",
+                "start": 10,
                 "type": "Identifier"
               },
               "column": 3,
+              "end": 17,
               "expression": {
                 "body": {
                   "column": 9,
+                  "end": 17,
                   "inline": true,
                   "line": 2,
-                  "range": [
-                    16,
-                    17
-                  ],
                   "raw": "b",
+                  "start": 16,
                   "statements": [
                     {
                       "column": 9,
                       "data": "b",
+                      "end": 17,
                       "line": 2,
-                      "range": [
-                        16,
-                        17
-                      ],
                       "raw": "b",
+                      "start": 16,
                       "type": "Identifier"
                     }
                   ],
                   "type": "Block"
                 },
                 "column": 6,
+                "end": 17,
                 "line": 2,
                 "parameters": [
                 ],
-                "range": [
-                  13,
-                  17
-                ],
                 "raw": "=> b",
+                "start": 13,
                 "type": "BoundFunction"
               },
               "line": 2,
-              "range": [
-                10,
-                17
-              ],
               "raw": "a: => b",
+              "start": 10,
               "type": "ClassProtoAssignOp"
             }
           ],
@@ -85,102 +71,84 @@
             "assignee": {
               "column": 3,
               "data": "a",
+              "end": 11,
               "line": 2,
-              "range": [
-                10,
-                11
-              ],
               "raw": "a",
+              "start": 10,
               "type": "Identifier"
             },
             "column": 3,
+            "end": 17,
             "expression": {
               "body": {
                 "column": 9,
+                "end": 17,
                 "inline": true,
                 "line": 2,
-                "range": [
-                  16,
-                  17
-                ],
                 "raw": "b",
+                "start": 16,
                 "statements": [
                   {
                     "column": 9,
                     "data": "b",
+                    "end": 17,
                     "line": 2,
-                    "range": [
-                      16,
-                      17
-                    ],
                     "raw": "b",
+                    "start": 16,
                     "type": "Identifier"
                   }
                 ],
                 "type": "Block"
               },
               "column": 6,
+              "end": 17,
               "line": 2,
               "parameters": [
               ],
-              "range": [
-                13,
-                17
-              ],
               "raw": "=> b",
+              "start": 13,
               "type": "BoundFunction"
             },
             "line": 2,
-            "range": [
-              10,
-              17
-            ],
             "raw": "a: => b",
+            "start": 10,
             "type": "ClassProtoAssignOp"
           }
         ],
         "column": 1,
         "ctor": null,
+        "end": 17,
         "line": 1,
         "name": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          0,
-          17
-        ],
         "raw": "class A\n  a: => b",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 17,
   "line": 1,
-  "range": [
-    0,
-    17
-  ],
   "raw": "class A\n  a: => b",
+  "start": 0,
   "type": "Program"
 }

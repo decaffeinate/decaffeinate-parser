@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 29,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      29
-    ],
     "raw": "try\n  a\ncatch\n  b\nfinally\n  c",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 7,
           "inline": false,
           "line": 2,
-          "range": [
-            6,
-            7
-          ],
           "raw": "a",
+          "start": 6,
           "statements": [
             {
               "column": 3,
               "data": "a",
+              "end": 7,
               "line": 2,
-              "range": [
-                6,
-                7
-              ],
               "raw": "a",
+              "start": 6,
               "type": "Identifier"
             }
           ],
@@ -37,70 +31,58 @@
         "catchAssignee": null,
         "catchBody": {
           "column": 3,
+          "end": 17,
           "inline": false,
           "line": 4,
-          "range": [
-            16,
-            17
-          ],
           "raw": "b",
+          "start": 16,
           "statements": [
             {
               "column": 3,
               "data": "b",
+              "end": 17,
               "line": 4,
-              "range": [
-                16,
-                17
-              ],
               "raw": "b",
+              "start": 16,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 29,
         "finallyBody": {
           "column": 3,
+          "end": 29,
           "inline": false,
           "line": 6,
-          "range": [
-            28,
-            29
-          ],
           "raw": "c",
+          "start": 28,
           "statements": [
             {
               "column": 3,
               "data": "c",
+              "end": 29,
               "line": 6,
-              "range": [
-                28,
-                29
-              ],
               "raw": "c",
+              "start": 28,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "line": 1,
-        "range": [
-          0,
-          29
-        ],
         "raw": "try\n  a\ncatch\n  b\nfinally\n  c",
+        "start": 0,
         "type": "Try"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 30,
   "line": 1,
-  "range": [
-    0,
-    30
-  ],
   "raw": "try\n  a\ncatch\n  b\nfinally\n  c\n",
+  "start": 0,
   "type": "Program"
 }

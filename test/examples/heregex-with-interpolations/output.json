@@ -1,26 +1,23 @@
 {
   "body": {
     "column": 1,
+    "end": 29,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      29
-    ],
     "raw": "///\n  foo\n  #{bar}  # baz\n///",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 29,
         "expressions": [
           {
             "column": 5,
             "data": "bar",
+            "end": 17,
             "line": 3,
-            "range": [
-              14,
-              17
-            ],
             "raw": "bar",
+            "start": 14,
             "type": "Identifier"
           }
         ],
@@ -39,42 +36,33 @@
           {
             "column": 4,
             "data": "foo",
+            "end": 12,
             "line": 1,
-            "range": [
-              3,
-              12
-            ],
             "raw": "\n  foo\n  ",
+            "start": 3,
             "type": "Quasi"
           },
           {
             "column": 9,
             "data": "",
+            "end": 26,
             "line": 3,
-            "range": [
-              18,
-              26
-            ],
             "raw": "  # baz\n",
+            "start": 18,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          29
-        ],
         "raw": "///\n  foo\n  #{bar}  # baz\n///",
+        "start": 0,
         "type": "Heregex"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 30,
   "line": 1,
-  "range": [
-    0,
-    30
-  ],
   "raw": "///\n  foo\n  #{bar}  # baz\n///\n",
+  "start": 0,
   "type": "Program"
 }

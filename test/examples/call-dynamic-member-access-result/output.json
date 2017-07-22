@@ -1,67 +1,55 @@
 {
   "body": {
     "column": 1,
+    "end": 6,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      6
-    ],
     "raw": "a[b]()",
+    "start": 0,
     "statements": [
       {
         "arguments": [
         ],
         "column": 1,
+        "end": 6,
         "function": {
           "column": 1,
+          "end": 4,
           "expression": {
             "column": 1,
             "data": "a",
+            "end": 1,
             "line": 1,
-            "range": [
-              0,
-              1
-            ],
             "raw": "a",
+            "start": 0,
             "type": "Identifier"
           },
           "indexingExpr": {
             "column": 3,
             "data": "b",
+            "end": 3,
             "line": 1,
-            "range": [
-              2,
-              3
-            ],
             "raw": "b",
+            "start": 2,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            0,
-            4
-          ],
           "raw": "a[b]",
+          "start": 0,
           "type": "DynamicMemberAccessOp"
         },
         "line": 1,
-        "range": [
-          0,
-          6
-        ],
         "raw": "a[b]()",
+        "start": 0,
         "type": "FunctionApplication"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 7,
   "line": 1,
-  "range": [
-    0,
-    7
-  ],
   "raw": "a[b]()\n",
+  "start": 0,
   "type": "Program"
 }

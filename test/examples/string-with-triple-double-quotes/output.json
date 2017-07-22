@@ -1,16 +1,15 @@
 {
   "body": {
     "column": 1,
+    "end": 26,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      26
-    ],
     "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 26,
         "expressions": [
         ],
         "line": 1,
@@ -18,31 +17,24 @@
           {
             "column": 4,
             "data": "multi-line strings",
+            "end": 23,
             "line": 1,
-            "range": [
-              3,
-              23
-            ],
             "raw": "\nmulti-line strings\n",
+            "start": 3,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          26
-        ],
         "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 26,
   "line": 1,
-  "range": [
-    0,
-    26
-  ],
   "raw": "\"\"\"\nmulti-line strings\n\"\"\"",
+  "start": 0,
   "type": "Program"
 }

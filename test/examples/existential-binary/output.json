@@ -1,55 +1,45 @@
 {
   "body": {
     "column": 1,
+    "end": 5,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      5
-    ],
     "raw": "a ? b",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 5,
         "left": {
           "column": 1,
           "data": "a",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          5
-        ],
         "raw": "a ? b",
         "right": {
           "column": 5,
           "data": "b",
+          "end": 5,
           "line": 1,
-          "range": [
-            4,
-            5
-          ],
           "raw": "b",
+          "start": 4,
           "type": "Identifier"
         },
+        "start": 0,
         "type": "ExistsOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 5,
   "line": 1,
-  "range": [
-    0,
-    5
-  ],
   "raw": "a ? b",
+  "start": 0,
   "type": "Program"
 }

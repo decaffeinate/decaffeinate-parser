@@ -1,57 +1,47 @@
 {
   "body": {
     "column": 1,
+    "end": 39,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      39
-    ],
     "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 39,
           "inline": false,
           "line": 2,
-          "range": [
-            12,
-            39
-          ],
           "raw": "###\n  # foo\n  ###\n  foo: ->",
+          "start": 12,
           "statements": [
             {
               "assignee": {
                 "column": 3,
                 "data": "foo",
+                "end": 35,
                 "line": 5,
-                "range": [
-                  32,
-                  35
-                ],
                 "raw": "foo",
+                "start": 32,
                 "type": "Identifier"
               },
               "column": 3,
+              "end": 39,
               "expression": {
                 "body": null,
                 "column": 8,
+                "end": 39,
                 "line": 5,
                 "parameters": [
                 ],
-                "range": [
-                  37,
-                  39
-                ],
                 "raw": "->",
+                "start": 37,
                 "type": "Function"
               },
               "line": 5,
-              "range": [
-                32,
-                39
-              ],
               "raw": "foo: ->",
+              "start": 32,
               "type": "ClassProtoAssignOp"
             }
           ],
@@ -61,46 +51,38 @@
         ],
         "column": 1,
         "ctor": null,
+        "end": 39,
         "line": 1,
         "name": {
           "column": 7,
           "data": "Foo",
+          "end": 9,
           "line": 1,
-          "range": [
-            6,
-            9
-          ],
           "raw": "Foo",
+          "start": 6,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "Foo",
+          "end": 9,
           "line": 1,
-          "range": [
-            6,
-            9
-          ],
           "raw": "Foo",
+          "start": 6,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          0,
-          39
-        ],
         "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 39,
   "line": 1,
-  "range": [
-    0,
-    39
-  ],
   "raw": "class Foo\n  ###\n  # foo\n  ###\n  foo: ->",
+  "start": 0,
   "type": "Program"
 }

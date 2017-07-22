@@ -1,6 +1,7 @@
 {
   "name": "decaffeinate-parser",
   "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
+  "version": "0.0.0-development",
   "main": "dist/parser.js",
   "module": "dist/parser.mjs",
   "types": "dist/parser.d.ts",

@@ -1,13 +1,11 @@
 {
   "body": {
     "column": 1,
+    "end": 5,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      5
-    ],
     "raw": "new A",
+    "start": 0,
     "statements": [
       {
         "arguments": [
@@ -16,31 +14,25 @@
         "ctor": {
           "column": 5,
           "data": "A",
+          "end": 5,
           "line": 1,
-          "range": [
-            4,
-            5
-          ],
           "raw": "A",
+          "start": 4,
           "type": "Identifier"
         },
+        "end": 5,
         "line": 1,
-        "range": [
-          0,
-          5
-        ],
         "raw": "new A",
+        "start": 0,
         "type": "NewOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 5,
   "line": 1,
-  "range": [
-    0,
-    5
-  ],
   "raw": "new A",
+  "start": 0,
   "type": "Program"
 }

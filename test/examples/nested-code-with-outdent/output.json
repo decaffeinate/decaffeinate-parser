@@ -1,46 +1,43 @@
 {
   "body": {
     "column": 1,
+    "end": 52,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      52
-    ],
     "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}\ng",
+    "start": 0,
     "statements": [
       {
         "arguments": [
           {
             "column": 3,
+            "end": 50,
             "line": 1,
             "members": [
               {
                 "column": 3,
+                "end": 48,
                 "expression": {
                   "body": {
                     "column": 5,
+                    "end": 48,
                     "inline": false,
                     "line": 3,
-                    "range": [
-                      16,
-                      48
-                    ],
                     "raw": "return c d,\n      if e\n        f",
+                    "start": 16,
                     "statements": [
                       {
                         "column": 5,
+                        "end": 48,
                         "expression": {
                           "arguments": [
                             {
                               "column": 14,
                               "data": "d",
+                              "end": 26,
                               "line": 3,
-                              "range": [
-                                25,
-                                26
-                              ],
                               "raw": "d",
+                              "start": 25,
                               "type": "Identifier"
                             },
                             {
@@ -49,158 +46,125 @@
                               "condition": {
                                 "column": 10,
                                 "data": "e",
+                                "end": 38,
                                 "line": 4,
-                                "range": [
-                                  37,
-                                  38
-                                ],
                                 "raw": "e",
+                                "start": 37,
                                 "type": "Identifier"
                               },
                               "consequent": {
                                 "column": 9,
+                                "end": 48,
                                 "inline": false,
                                 "line": 5,
-                                "range": [
-                                  47,
-                                  48
-                                ],
                                 "raw": "f",
+                                "start": 47,
                                 "statements": [
                                   {
                                     "column": 9,
                                     "data": "f",
+                                    "end": 48,
                                     "line": 5,
-                                    "range": [
-                                      47,
-                                      48
-                                    ],
                                     "raw": "f",
+                                    "start": 47,
                                     "type": "Identifier"
                                   }
                                 ],
                                 "type": "Block"
                               },
+                              "end": 48,
                               "isUnless": false,
                               "line": 4,
-                              "range": [
-                                34,
-                                48
-                              ],
                               "raw": "if e\n        f",
+                              "start": 34,
                               "type": "Conditional"
                             }
                           ],
                           "column": 12,
+                          "end": 48,
                           "function": {
                             "column": 12,
                             "data": "c",
+                            "end": 24,
                             "line": 3,
-                            "range": [
-                              23,
-                              24
-                            ],
                             "raw": "c",
+                            "start": 23,
                             "type": "Identifier"
                           },
                           "line": 3,
-                          "range": [
-                            23,
-                            48
-                          ],
                           "raw": "c d,\n      if e\n        f",
+                          "start": 23,
                           "type": "FunctionApplication"
                         },
                         "line": 3,
-                        "range": [
-                          16,
-                          48
-                        ],
                         "raw": "return c d,\n      if e\n        f",
+                        "start": 16,
                         "type": "Return"
                       }
                     ],
                     "type": "Block"
                   },
                   "column": 6,
+                  "end": 48,
                   "line": 2,
                   "parameters": [
                   ],
-                  "range": [
-                    9,
-                    48
-                  ],
                   "raw": "->\n    return c d,\n      if e\n        f",
+                  "start": 9,
                   "type": "Function"
                 },
                 "key": {
                   "column": 3,
                   "data": "b",
+                  "end": 7,
                   "line": 2,
-                  "range": [
-                    6,
-                    7
-                  ],
                   "raw": "b",
+                  "start": 6,
                   "type": "Identifier"
                 },
                 "line": 2,
-                "range": [
-                  6,
-                  48
-                ],
                 "raw": "b: ->\n    return c d,\n      if e\n        f",
+                "start": 6,
                 "type": "ObjectInitialiserMember"
               }
             ],
-            "range": [
-              2,
-              50
-            ],
             "raw": "{\n  b: ->\n    return c d,\n      if e\n        f\n}",
+            "start": 2,
             "type": "ObjectInitialiser"
           }
         ],
         "column": 1,
+        "end": 50,
         "function": {
           "column": 1,
           "data": "a",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          50
-        ],
         "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}",
+        "start": 0,
         "type": "FunctionApplication"
       },
       {
         "column": 1,
         "data": "g",
+        "end": 52,
         "line": 7,
-        "range": [
-          51,
-          52
-        ],
         "raw": "g",
+        "start": 51,
         "type": "Identifier"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 53,
   "line": 1,
-  "range": [
-    0,
-    53
-  ],
   "raw": "a {\n  b: ->\n    return c d,\n      if e\n        f\n}\ng\n",
+  "start": 0,
   "type": "Program"
 }

@@ -1,59 +1,49 @@
 {
   "body": {
     "column": 1,
+    "end": 6,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      6
-    ],
     "raw": "->\n  a",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 6,
           "inline": false,
           "line": 2,
-          "range": [
-            5,
-            6
-          ],
           "raw": "a",
+          "start": 5,
           "statements": [
             {
               "column": 3,
               "data": "a",
+              "end": 6,
               "line": 2,
-              "range": [
-                5,
-                6
-              ],
               "raw": "a",
+              "start": 5,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 6,
         "line": 1,
         "parameters": [
         ],
-        "range": [
-          0,
-          6
-        ],
         "raw": "->\n  a",
+        "start": 0,
         "type": "Function"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 7,
   "line": 1,
-  "range": [
-    0,
-    7
-  ],
   "raw": "->\n  a\n",
+  "start": 0,
   "type": "Program"
 }

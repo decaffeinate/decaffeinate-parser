@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 18,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      18
-    ],
     "raw": "if a then b else c",
+    "start": 0,
     "statements": [
       {
         "alternate": {
           "column": 18,
+          "end": 18,
           "inline": true,
           "line": 1,
-          "range": [
-            17,
-            18
-          ],
           "raw": "c",
+          "start": 17,
           "statements": [
             {
               "column": 18,
               "data": "c",
+              "end": 18,
               "line": 1,
-              "range": [
-                17,
-                18
-              ],
               "raw": "c",
+              "start": 17,
               "type": "Identifier"
             }
           ],
@@ -38,56 +32,46 @@
         "condition": {
           "column": 4,
           "data": "a",
+          "end": 4,
           "line": 1,
-          "range": [
-            3,
-            4
-          ],
           "raw": "a",
+          "start": 3,
           "type": "Identifier"
         },
         "consequent": {
           "column": 11,
+          "end": 11,
           "inline": true,
           "line": 1,
-          "range": [
-            10,
-            11
-          ],
           "raw": "b",
+          "start": 10,
           "statements": [
             {
               "column": 11,
               "data": "b",
+              "end": 11,
               "line": 1,
-              "range": [
-                10,
-                11
-              ],
               "raw": "b",
+              "start": 10,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
+        "end": 18,
         "isUnless": false,
         "line": 1,
-        "range": [
-          0,
-          18
-        ],
         "raw": "if a then b else c",
+        "start": 0,
         "type": "Conditional"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 18,
   "line": 1,
-  "range": [
-    0,
-    18
-  ],
   "raw": "if a then b else c",
+  "start": 0,
   "type": "Program"
 }

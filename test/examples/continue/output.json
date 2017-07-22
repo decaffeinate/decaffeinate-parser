@@ -1,56 +1,46 @@
 {
   "body": {
     "column": 1,
+    "end": 15,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      15
-    ],
     "raw": "loop\n  continue",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 15,
           "inline": false,
           "line": 2,
-          "range": [
-            7,
-            15
-          ],
           "raw": "continue",
+          "start": 7,
           "statements": [
             {
               "column": 3,
+              "end": 15,
               "line": 2,
-              "range": [
-                7,
-                15
-              ],
               "raw": "continue",
+              "start": 7,
               "type": "Continue"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 15,
         "line": 1,
-        "range": [
-          0,
-          15
-        ],
         "raw": "loop\n  continue",
+        "start": 0,
         "type": "Loop"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 16,
   "line": 1,
-  "range": [
-    0,
-    16
-  ],
   "raw": "loop\n  continue\n",
+  "start": 0,
   "type": "Program"
 }

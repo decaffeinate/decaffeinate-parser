@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 21,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      21
-    ],
     "raw": "try\n  a\ncatch err\n  b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 7,
           "inline": false,
           "line": 2,
-          "range": [
-            6,
-            7
-          ],
           "raw": "a",
+          "start": 6,
           "statements": [
             {
               "column": 3,
               "data": "a",
+              "end": 7,
               "line": 2,
-              "range": [
-                6,
-                7
-              ],
               "raw": "a",
+              "start": 6,
               "type": "Identifier"
             }
           ],
@@ -37,57 +31,47 @@
         "catchAssignee": {
           "column": 7,
           "data": "err",
+          "end": 17,
           "line": 3,
-          "range": [
-            14,
-            17
-          ],
           "raw": "err",
+          "start": 14,
           "type": "Identifier"
         },
         "catchBody": {
           "column": 3,
+          "end": 21,
           "inline": false,
           "line": 4,
-          "range": [
-            20,
-            21
-          ],
           "raw": "b",
+          "start": 20,
           "statements": [
             {
               "column": 3,
               "data": "b",
+              "end": 21,
               "line": 4,
-              "range": [
-                20,
-                21
-              ],
               "raw": "b",
+              "start": 20,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 21,
         "finallyBody": null,
         "line": 1,
-        "range": [
-          0,
-          21
-        ],
         "raw": "try\n  a\ncatch err\n  b",
+        "start": 0,
         "type": "Try"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 21,
   "line": 1,
-  "range": [
-    0,
-    21
-  ],
   "raw": "try\n  a\ncatch err\n  b",
+  "start": 0,
   "type": "Program"
 }
