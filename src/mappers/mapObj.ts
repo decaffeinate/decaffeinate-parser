@@ -1,18 +1,18 @@
 import { Assign, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { AssignOp, ObjectInitialiser, ObjectInitialiserMember } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapValue from './mapValue';
 
 export default function mapObj(context: ParseContext, node: Obj): ObjectInitialiser {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   let members: Array<ObjectInitialiserMember | AssignOp> = [];
 
   for (let property of node.properties) {
-    let { line, column, start, end, raw } = mapBase(context, property);
+    let { line, column, start, end, raw } = getLocation(context, property);
 
     if (property instanceof Value) {
       // shorthand property

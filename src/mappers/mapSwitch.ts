@@ -2,13 +2,13 @@ import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceType from 'coffee-lex/dist/SourceType';
 import { Switch as CoffeeSwitch } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Switch, SwitchCase } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Switch {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   let expression = node.subject ? mapAny(context, node.subject) : null;
   let cases = node.cases.map(([conditions, body]) => {
@@ -25,7 +25,7 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
     }
 
     let { line: caseLine, column: caseColumn } = locationForIndex;
-    let { end } = mapBase(context, body);
+    let { end } = getLocation(context, body);
     return new SwitchCase(
       caseLine + 1, caseColumn + 1, whenToken.start, end,
       context.source.slice(whenToken.start, end),

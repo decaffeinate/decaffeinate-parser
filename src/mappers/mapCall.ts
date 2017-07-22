@@ -6,6 +6,7 @@ import {
   BareSuperFunctionApplication, BaseFunction, DefaultParam, DoOp, FunctionApplication, Identifier, NewOp,
   Node, SoakedFunctionApplication, SoakedNewOp, Super
 } from '../nodes';
+import getLocation from '../util/getLocation';
 import isHeregexTemplateNode from '../util/isHeregexTemplateNode';
 import locationsEqual from '../util/locationsEqual';
 import makeHeregex from '../util/makeHeregex';
@@ -13,10 +14,9 @@ import ParseContext from '../util/ParseContext';
 import parseString from '../util/parseString';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 
 export default function mapCall(context: ParseContext, node: Call): Node {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   if (isHeregexTemplateNode(node, context)) {
     let firstArg = node.args[0];
@@ -128,7 +128,7 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
   let callee = mapAny(context, node.variable);
   let args = node.args.map(arg => mapAny(context, arg));
 
@@ -162,7 +162,7 @@ function mapDoOp(context: ParseContext, node: Call): DoOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   let expression = mapAny(context, node.variable);
 

@@ -2,18 +2,18 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import { Literal } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import { Break, Continue, Float, Identifier, Int, JavaScript, Node, Regex, RegexFlags, This } from '../nodes';
+import getLocation from '../util/getLocation';
 import isStringAtPosition from '../util/isStringAtPosition';
 import makeHeregex from '../util/makeHeregex';
 import makeString from '../util/makeString';
 import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
 import parseRegExp from '../util/parseRegExp';
-import mapBase from './mapBase';
 
 const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimy]*)$/;
 
 export default function mapLiteral(context: ParseContext, node: Literal): Node {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   if (node.value === 'this') {
     return new This(line, column, start, end, raw);

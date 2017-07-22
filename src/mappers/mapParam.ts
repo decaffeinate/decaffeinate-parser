@@ -1,11 +1,11 @@
 import { Param } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { DefaultParam, Node, Rest } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 
 export default function mapParam(context: ParseContext, node: Param): Node {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
   let param = mapAny(context, node.name);
 
   if (node.value) {

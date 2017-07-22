@@ -9,7 +9,7 @@ export interface RealNode {
   raw: string;
 }
 
-export class Node {
+export abstract class Node {
   readonly range: [number, number];
 
   constructor(

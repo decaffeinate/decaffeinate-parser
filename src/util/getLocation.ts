@@ -2,10 +2,17 @@ import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
-import { Node } from '../nodes';
-import ParseContext from '../util/ParseContext';
+import ParseContext from './ParseContext';
 
-export default function mapBase(context: ParseContext, node: Base): Node {
+export type NodeLocation = {
+  line: number,
+  column: number,
+  start: number,
+  end: number,
+  raw: string,
+};
+
+export default function getLocation(context: ParseContext, node: Base): NodeLocation {
   let loc = node.locationData;
   let start = context.linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
   let last = context.linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
@@ -33,7 +40,7 @@ export default function mapBase(context: ParseContext, node: Base): Node {
   end = lastTokenOfNode.end;
   let raw = context.source.slice(start, end);
 
-  return new Node('Node', line, column, start, end, raw);
+  return {line, column, start, end, raw};
 }
 
 function firstSemanticTokenAfter(context: ParseContext, index: number, node: Base) {

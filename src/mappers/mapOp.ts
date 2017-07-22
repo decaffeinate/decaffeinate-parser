@@ -8,6 +8,7 @@ import {
   PreDecrementOp, PreIncrementOp, RemOp, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp,
   UnsignedRightShiftOp, Yield, YieldFrom, YieldReturn
 } from '../nodes';
+import getLocation from '../util/getLocation';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
 import isChainedComparison from '../util/isChainedComparison';
 import isImplicitPlusOp from '../util/isImplicitPlusOp';
@@ -16,7 +17,6 @@ import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import unwindChainedComparison from '../util/unwindChainedComparison';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 
 export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
   if (isChainedComparison(node)) {
@@ -27,7 +27,7 @@ export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
 }
 
 function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp) {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
   let coffeeOperands = unwindChainedComparison(node);
   let operands = coffeeOperands.map(operand => mapAny(context, operand));
   let operators: Array<OperatorInfo> = [];
@@ -174,7 +174,7 @@ function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
     throw new Error(`unexpected 'new' operator with multiple operands: ${inspect(node)}`);
   }
 
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   return new NewOp(
     line, column, start, end, raw,
@@ -184,7 +184,7 @@ function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
 }
 
 function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   if (node.first instanceof CoffeeReturn) {
     let expression = node.first.expression;
@@ -213,7 +213,7 @@ interface IBinaryOp {
 }
 
 function mapBinaryOp<T extends IBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   if (!node.second) {
     throw new Error(`unexpected '${node.operator}' operator with only one operand: ${inspect(node)}`);
@@ -238,7 +238,7 @@ interface IUnaryOp {
 }
 
 function mapUnaryOp<T extends IUnaryOp>(context: ParseContext, node: CoffeeOp, Op: T): UnaryOp {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   if (node.second) {
     throw new Error(`unexpected '${node.operator}' operator with two operands: ${inspect(node)}`);

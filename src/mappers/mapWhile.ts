@@ -1,13 +1,13 @@
 import { SourceType } from 'coffee-lex';
 import { While as CoffeeWhile } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Block, Loop, While } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapWhile(context: ParseContext, node: CoffeeWhile): While | Loop {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
   let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
   let startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
 
