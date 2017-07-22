@@ -31,20 +31,14 @@ function stripContext(programNode: Program): Program {
 }
 
 function stripExtraInfo(node: Node): Node {
-  if (node && typeof node === 'object') {
-    for (let key in node) {
-      if (node.range && (key === 'start' || key === 'end')) {
-        delete node[key];
-      } else {
-        stripExtraInfo(node[key]);
-      }
-    }
-  } else if (Array.isArray(node)) {
-    for (let child of node) {
-      stripExtraInfo(child);
+  for (let key in node) {
+    if (key === 'start' || key === 'end') {
+      delete node[key];
     }
   }
-
+  for (let child of node.getChildren()) {
+    stripExtraInfo(child);
+  }
   return node;
 }
 
