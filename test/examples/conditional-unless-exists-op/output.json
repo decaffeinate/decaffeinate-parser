@@ -1,80 +1,66 @@
 {
   "body": {
     "column": 1,
+    "end": 13,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      13
-    ],
     "raw": "unless a?\n  b",
+    "start": 0,
     "statements": [
       {
         "alternate": null,
         "column": 1,
         "condition": {
           "column": 8,
+          "end": 9,
           "expression": {
             "column": 8,
             "data": "a",
+            "end": 8,
             "line": 1,
-            "range": [
-              7,
-              8
-            ],
             "raw": "a",
+            "start": 7,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            7,
-            9
-          ],
           "raw": "a?",
+          "start": 7,
           "type": "UnaryExistsOp"
         },
         "consequent": {
           "column": 3,
+          "end": 13,
           "inline": false,
           "line": 2,
-          "range": [
-            12,
-            13
-          ],
           "raw": "b",
+          "start": 12,
           "statements": [
             {
               "column": 3,
               "data": "b",
+              "end": 13,
               "line": 2,
-              "range": [
-                12,
-                13
-              ],
               "raw": "b",
+              "start": 12,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
+        "end": 13,
         "isUnless": true,
         "line": 1,
-        "range": [
-          0,
-          13
-        ],
         "raw": "unless a?\n  b",
+        "start": 0,
         "type": "Conditional"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "unless a?\n  b",
+  "start": 0,
   "type": "Program"
 }

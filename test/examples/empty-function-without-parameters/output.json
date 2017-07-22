@@ -1,36 +1,30 @@
 {
   "body": {
     "column": 1,
+    "end": 2,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      2
-    ],
     "raw": "->",
+    "start": 0,
     "statements": [
       {
         "body": null,
         "column": 1,
+        "end": 2,
         "line": 1,
         "parameters": [
         ],
-        "range": [
-          0,
-          2
-        ],
         "raw": "->",
+        "start": 0,
         "type": "Function"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 3,
   "line": 1,
-  "range": [
-    0,
-    3
-  ],
   "raw": "->\n",
+  "start": 0,
   "type": "Program"
 }

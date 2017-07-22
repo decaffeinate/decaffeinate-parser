@@ -1,16 +1,15 @@
 {
   "body": {
     "column": 1,
+    "end": 11,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      11
-    ],
     "raw": "\"coffee me\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 11,
         "expressions": [
         ],
         "line": 1,
@@ -18,31 +17,24 @@
           {
             "column": 2,
             "data": "coffee me",
+            "end": 10,
             "line": 1,
-            "range": [
-              1,
-              10
-            ],
             "raw": "coffee me",
+            "start": 1,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          11
-        ],
         "raw": "\"coffee me\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 11,
   "line": 1,
-  "range": [
-    0,
-    11
-  ],
   "raw": "\"coffee me\"",
+  "start": 0,
   "type": "Program"
 }

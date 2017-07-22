@@ -1,33 +1,27 @@
 {
   "body": {
     "column": 1,
+    "end": 4,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      4
-    ],
     "raw": "null",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 4,
         "line": 1,
-        "range": [
-          0,
-          4
-        ],
         "raw": "null",
+        "start": 0,
         "type": "Null"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 4,
   "line": 1,
-  "range": [
-    0,
-    4
-  ],
   "raw": "null",
+  "start": 0,
   "type": "Program"
 }

@@ -1,28 +1,26 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "\"#{a}\" + \"b\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 12,
         "left": {
           "column": 1,
+          "end": 6,
           "expressions": [
             {
               "column": 4,
               "data": "a",
+              "end": 4,
               "line": 1,
-              "range": [
-                3,
-                4
-              ],
               "raw": "a",
+              "start": 3,
               "type": "Identifier"
             }
           ],
@@ -31,41 +29,31 @@
             {
               "column": 2,
               "data": "",
+              "end": 1,
               "line": 1,
-              "range": [
-                1,
-                1
-              ],
               "raw": "",
+              "start": 1,
               "type": "Quasi"
             },
             {
               "column": 6,
               "data": "",
+              "end": 5,
               "line": 1,
-              "range": [
-                5,
-                5
-              ],
               "raw": "",
+              "start": 5,
               "type": "Quasi"
             }
           ],
-          "range": [
-            0,
-            6
-          ],
           "raw": "\"#{a}\"",
+          "start": 0,
           "type": "String"
         },
         "line": 1,
-        "range": [
-          0,
-          12
-        ],
         "raw": "\"#{a}\" + \"b\"",
         "right": {
           "column": 10,
+          "end": 12,
           "expressions": [
           ],
           "line": 1,
@@ -73,33 +61,27 @@
             {
               "column": 11,
               "data": "b",
+              "end": 11,
               "line": 1,
-              "range": [
-                10,
-                11
-              ],
               "raw": "b",
+              "start": 10,
               "type": "Quasi"
             }
           ],
-          "range": [
-            9,
-            12
-          ],
           "raw": "\"b\"",
+          "start": 9,
           "type": "String"
         },
+        "start": 0,
         "type": "PlusOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "\"#{a}\" + \"b\"\n",
+  "start": 0,
   "type": "Program"
 }

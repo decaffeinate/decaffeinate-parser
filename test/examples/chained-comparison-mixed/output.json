@@ -1,49 +1,42 @@
 {
   "body": {
     "column": 1,
+    "end": 9,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      9
-    ],
     "raw": "a < b > c",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 9,
         "line": 1,
         "operands": [
           {
             "column": 1,
             "data": "a",
+            "end": 1,
             "line": 1,
-            "range": [
-              0,
-              1
-            ],
             "raw": "a",
+            "start": 0,
             "type": "Identifier"
           },
           {
             "column": 5,
             "data": "b",
+            "end": 5,
             "line": 1,
-            "range": [
-              4,
-              5
-            ],
             "raw": "b",
+            "start": 4,
             "type": "Identifier"
           },
           {
             "column": 9,
             "data": "c",
+            "end": 9,
             "line": 1,
-            "range": [
-              8,
-              9
-            ],
             "raw": "c",
+            "start": 8,
             "type": "Identifier"
           }
         ],
@@ -65,22 +58,17 @@
             }
           }
         ],
-        "range": [
-          0,
-          9
-        ],
         "raw": "a < b > c",
+        "start": 0,
         "type": "ChainedComparisonOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 9,
   "line": 1,
-  "range": [
-    0,
-    9
-  ],
   "raw": "a < b > c",
+  "start": 0,
   "type": "Program"
 }

@@ -1,78 +1,64 @@
 {
   "body": {
     "column": 1,
+    "end": 21,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      21
-    ],
     "raw": "for a of b when c\n  d",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 21,
           "inline": false,
           "line": 2,
-          "range": [
-            20,
-            21
-          ],
           "raw": "d",
+          "start": 20,
           "statements": [
             {
               "column": 3,
               "data": "d",
+              "end": 21,
               "line": 2,
-              "range": [
-                20,
-                21
-              ],
               "raw": "d",
+              "start": 20,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 21,
         "filter": {
           "column": 17,
           "data": "c",
+          "end": 17,
           "line": 1,
-          "range": [
-            16,
-            17
-          ],
           "raw": "c",
+          "start": 16,
           "type": "Identifier"
         },
         "isOwn": false,
         "keyAssignee": {
           "column": 5,
           "data": "a",
+          "end": 5,
           "line": 1,
-          "range": [
-            4,
-            5
-          ],
           "raw": "a",
+          "start": 4,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          21
-        ],
         "raw": "for a of b when c\n  d",
+        "start": 0,
         "target": {
           "column": 10,
           "data": "b",
+          "end": 10,
           "line": 1,
-          "range": [
-            9,
-            10
-          ],
           "raw": "b",
+          "start": 9,
           "type": "Identifier"
         },
         "type": "ForOf",
@@ -82,11 +68,9 @@
     "type": "Block"
   },
   "column": 1,
+  "end": 21,
   "line": 1,
-  "range": [
-    0,
-    21
-  ],
   "raw": "for a of b when c\n  d",
+  "start": 0,
   "type": "Program"
 }

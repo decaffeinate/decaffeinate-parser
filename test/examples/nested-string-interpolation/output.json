@@ -1,29 +1,27 @@
 {
   "body": {
     "column": 1,
+    "end": 13,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      13
-    ],
     "raw": "\"a#{\"b#{c}\"}\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 13,
         "expressions": [
           {
             "column": 5,
+            "end": 11,
             "expressions": [
               {
                 "column": 9,
                 "data": "c",
+                "end": 9,
                 "line": 1,
-                "range": [
-                  8,
-                  9
-                ],
                 "raw": "c",
+                "start": 8,
                 "type": "Identifier"
               }
             ],
@@ -32,31 +30,24 @@
               {
                 "column": 6,
                 "data": "b",
+                "end": 6,
                 "line": 1,
-                "range": [
-                  5,
-                  6
-                ],
                 "raw": "b",
+                "start": 5,
                 "type": "Quasi"
               },
               {
                 "column": 11,
                 "data": "",
+                "end": 10,
                 "line": 1,
-                "range": [
-                  10,
-                  10
-                ],
                 "raw": "",
+                "start": 10,
                 "type": "Quasi"
               }
             ],
-            "range": [
-              4,
-              11
-            ],
             "raw": "\"b#{c}\"",
+            "start": 4,
             "type": "String"
           }
         ],
@@ -65,42 +56,33 @@
           {
             "column": 2,
             "data": "a",
+            "end": 2,
             "line": 1,
-            "range": [
-              1,
-              2
-            ],
             "raw": "a",
+            "start": 1,
             "type": "Quasi"
           },
           {
             "column": 13,
             "data": "",
+            "end": 12,
             "line": 1,
-            "range": [
-              12,
-              12
-            ],
             "raw": "",
+            "start": 12,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          13
-        ],
         "raw": "\"a#{\"b#{c}\"}\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "\"a#{\"b#{c}\"}\"",
+  "start": 0,
   "type": "Program"
 }

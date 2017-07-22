@@ -1,76 +1,62 @@
 {
   "body": {
     "column": 1,
+    "end": 5,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      5
-    ],
     "raw": "a.b.c",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 5,
         "expression": {
           "column": 1,
+          "end": 3,
           "expression": {
             "column": 1,
             "data": "a",
+            "end": 1,
             "line": 1,
-            "range": [
-              0,
-              1
-            ],
             "raw": "a",
+            "start": 0,
             "type": "Identifier"
           },
           "line": 1,
           "member": {
             "column": 3,
             "data": "b",
+            "end": 3,
             "line": 1,
-            "range": [
-              2,
-              3
-            ],
             "raw": "b",
+            "start": 2,
             "type": "Identifier"
           },
-          "range": [
-            0,
-            3
-          ],
           "raw": "a.b",
+          "start": 0,
           "type": "MemberAccessOp"
         },
         "line": 1,
         "member": {
           "column": 5,
           "data": "c",
+          "end": 5,
           "line": 1,
-          "range": [
-            4,
-            5
-          ],
           "raw": "c",
+          "start": 4,
           "type": "Identifier"
         },
-        "range": [
-          0,
-          5
-        ],
         "raw": "a.b.c",
+        "start": 0,
         "type": "MemberAccessOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 5,
   "line": 1,
-  "range": [
-    0,
-    5
-  ],
   "raw": "a.b.c",
+  "start": 0,
   "type": "Program"
 }

@@ -1,59 +1,49 @@
 {
   "body": {
     "column": 1,
+    "end": 15,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      15
-    ],
     "raw": "-> yield return",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 4,
+          "end": 15,
           "inline": true,
           "line": 1,
-          "range": [
-            3,
-            15
-          ],
           "raw": "yield return",
+          "start": 3,
           "statements": [
             {
               "column": 4,
+              "end": 15,
               "expression": null,
               "line": 1,
-              "range": [
-                3,
-                15
-              ],
               "raw": "yield return",
+              "start": 3,
               "type": "YieldReturn"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 15,
         "line": 1,
         "parameters": [
         ],
-        "range": [
-          0,
-          15
-        ],
         "raw": "-> yield return",
+        "start": 0,
         "type": "GeneratorFunction"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 16,
   "line": 1,
-  "range": [
-    0,
-    16
-  ],
   "raw": "-> yield return\n",
+  "start": 0,
   "type": "Program"
 }

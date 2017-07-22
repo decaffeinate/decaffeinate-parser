@@ -1,68 +1,56 @@
 {
   "body": {
     "column": 1,
+    "end": 9,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      9
-    ],
     "raw": "[1, 2, 3]",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 9,
         "line": 1,
         "members": [
           {
             "column": 2,
             "data": 1,
+            "end": 2,
             "line": 1,
-            "range": [
-              1,
-              2
-            ],
             "raw": "1",
+            "start": 1,
             "type": "Int"
           },
           {
             "column": 5,
             "data": 2,
+            "end": 5,
             "line": 1,
-            "range": [
-              4,
-              5
-            ],
             "raw": "2",
+            "start": 4,
             "type": "Int"
           },
           {
             "column": 8,
             "data": 3,
+            "end": 8,
             "line": 1,
-            "range": [
-              7,
-              8
-            ],
             "raw": "3",
+            "start": 7,
             "type": "Int"
           }
         ],
-        "range": [
-          0,
-          9
-        ],
         "raw": "[1, 2, 3]",
+        "start": 0,
         "type": "ArrayInitialiser"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 9,
   "line": 1,
-  "range": [
-    0,
-    9
-  ],
   "raw": "[1, 2, 3]",
+  "start": 0,
   "type": "Program"
 }

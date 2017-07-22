@@ -1,92 +1,76 @@
 {
   "body": {
     "column": 1,
+    "end": 29,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      29
-    ],
     "raw": "unless a not instanceof b\n  c",
+    "start": 0,
     "statements": [
       {
         "alternate": null,
         "column": 1,
         "condition": {
           "column": 8,
+          "end": 25,
           "isNot": true,
           "left": {
             "column": 8,
             "data": "a",
+            "end": 8,
             "line": 1,
-            "range": [
-              7,
-              8
-            ],
             "raw": "a",
+            "start": 7,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            7,
-            25
-          ],
           "raw": "a not instanceof b",
           "right": {
             "column": 25,
             "data": "b",
+            "end": 25,
             "line": 1,
-            "range": [
-              24,
-              25
-            ],
             "raw": "b",
+            "start": 24,
             "type": "Identifier"
           },
+          "start": 7,
           "type": "InstanceofOp"
         },
         "consequent": {
           "column": 3,
+          "end": 29,
           "inline": false,
           "line": 2,
-          "range": [
-            28,
-            29
-          ],
           "raw": "c",
+          "start": 28,
           "statements": [
             {
               "column": 3,
               "data": "c",
+              "end": 29,
               "line": 2,
-              "range": [
-                28,
-                29
-              ],
               "raw": "c",
+              "start": 28,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
+        "end": 29,
         "isUnless": true,
         "line": 1,
-        "range": [
-          0,
-          29
-        ],
         "raw": "unless a not instanceof b\n  c",
+        "start": 0,
         "type": "Conditional"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 30,
   "line": 1,
-  "range": [
-    0,
-    30
-  ],
   "raw": "unless a not instanceof b\n  c\n",
+  "start": 0,
   "type": "Program"
 }

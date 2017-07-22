@@ -1,120 +1,74 @@
 {
   "body": {
     "column": 1,
+    "end": 9,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      9
-    ],
     "raw": "({@a}) ->",
+    "start": 0,
     "statements": [
       {
         "body": null,
         "column": 1,
+        "end": 9,
         "line": 1,
         "parameters": [
           {
             "column": 2,
+            "end": 5,
             "line": 1,
             "members": [
               {
                 "column": 3,
-                "expression": {
-                  "column": 3,
-                  "expression": {
-                    "column": 3,
-                    "line": 1,
-                    "range": [
-                      2,
-                      3
-                    ],
-                    "raw": "@",
-                    "type": "This"
-                  },
-                  "line": 1,
-                  "member": {
-                    "column": 4,
-                    "data": "a",
-                    "line": 1,
-                    "range": [
-                      3,
-                      4
-                    ],
-                    "raw": "a",
-                    "type": "Identifier"
-                  },
-                  "range": [
-                    2,
-                    4
-                  ],
-                  "raw": "@a",
-                  "type": "MemberAccessOp"
-                },
+                "end": 4,
+                "expression": null,
                 "key": {
                   "column": 3,
+                  "end": 4,
                   "expression": {
                     "column": 3,
+                    "end": 3,
                     "line": 1,
-                    "range": [
-                      2,
-                      3
-                    ],
                     "raw": "@",
+                    "start": 2,
                     "type": "This"
                   },
                   "line": 1,
                   "member": {
                     "column": 4,
                     "data": "a",
+                    "end": 4,
                     "line": 1,
-                    "range": [
-                      3,
-                      4
-                    ],
                     "raw": "a",
+                    "start": 3,
                     "type": "Identifier"
                   },
-                  "range": [
-                    2,
-                    4
-                  ],
                   "raw": "@a",
+                  "start": 2,
                   "type": "MemberAccessOp"
                 },
                 "line": 1,
-                "range": [
-                  2,
-                  4
-                ],
                 "raw": "@a",
+                "start": 2,
                 "type": "ObjectInitialiserMember"
               }
             ],
-            "range": [
-              1,
-              5
-            ],
             "raw": "{@a}",
+            "start": 1,
             "type": "ObjectInitialiser"
           }
         ],
-        "range": [
-          0,
-          9
-        ],
         "raw": "({@a}) ->",
+        "start": 0,
         "type": "Function"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 10,
   "line": 1,
-  "range": [
-    0,
-    10
-  ],
   "raw": "({@a}) ->\n",
+  "start": 0,
   "type": "Program"
 }

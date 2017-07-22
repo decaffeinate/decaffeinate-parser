@@ -1,26 +1,23 @@
 {
   "body": {
     "column": 1,
+    "end": 20,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      20
-    ],
     "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 20,
         "expressions": [
           {
             "column": 8,
             "data": "bar",
+            "end": 14,
             "line": 2,
-            "range": [
-              11,
-              14
-            ],
             "raw": "bar",
+            "start": 11,
             "type": "Identifier"
           }
         ],
@@ -29,42 +26,33 @@
           {
             "column": 4,
             "data": "bar=\"",
+            "end": 9,
             "line": 1,
-            "range": [
-              3,
-              9
-            ],
             "raw": "\nbar=\"",
+            "start": 3,
             "type": "Quasi"
           },
           {
             "column": 12,
             "data": "\"",
+            "end": 17,
             "line": 2,
-            "range": [
-              15,
-              17
-            ],
             "raw": "\"\n",
+            "start": 15,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          20
-        ],
         "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 20,
   "line": 1,
-  "range": [
-    0,
-    20
-  ],
   "raw": "\"\"\"\nbar=\"#{bar}\"\n\"\"\"",
+  "start": 0,
   "type": "Program"
 }

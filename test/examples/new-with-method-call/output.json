@@ -1,42 +1,38 @@
 {
   "body": {
     "column": 1,
+    "end": 15,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      15
-    ],
     "raw": "-> new A().b(c)",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 4,
+          "end": 15,
           "inline": true,
           "line": 1,
-          "range": [
-            3,
-            15
-          ],
           "raw": "new A().b(c)",
+          "start": 3,
           "statements": [
             {
               "arguments": [
                 {
                   "column": 14,
                   "data": "c",
+                  "end": 14,
                   "line": 1,
-                  "range": [
-                    13,
-                    14
-                  ],
                   "raw": "c",
+                  "start": 13,
                   "type": "Identifier"
                 }
               ],
               "column": 4,
+              "end": 15,
               "function": {
                 "column": 4,
+                "end": 12,
                 "expression": {
                   "arguments": [
                   ],
@@ -44,72 +40,56 @@
                   "ctor": {
                     "column": 8,
                     "data": "A",
+                    "end": 8,
                     "line": 1,
-                    "range": [
-                      7,
-                      8
-                    ],
                     "raw": "A",
+                    "start": 7,
                     "type": "Identifier"
                   },
+                  "end": 10,
                   "line": 1,
-                  "range": [
-                    3,
-                    10
-                  ],
                   "raw": "new A()",
+                  "start": 3,
                   "type": "NewOp"
                 },
                 "line": 1,
                 "member": {
                   "column": 12,
                   "data": "b",
+                  "end": 12,
                   "line": 1,
-                  "range": [
-                    11,
-                    12
-                  ],
                   "raw": "b",
+                  "start": 11,
                   "type": "Identifier"
                 },
-                "range": [
-                  3,
-                  12
-                ],
                 "raw": "new A().b",
+                "start": 3,
                 "type": "MemberAccessOp"
               },
               "line": 1,
-              "range": [
-                3,
-                15
-              ],
               "raw": "new A().b(c)",
+              "start": 3,
               "type": "FunctionApplication"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 15,
         "line": 1,
         "parameters": [
         ],
-        "range": [
-          0,
-          15
-        ],
         "raw": "-> new A().b(c)",
+        "start": 0,
         "type": "Function"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 16,
   "line": 1,
-  "range": [
-    0,
-    16
-  ],
   "raw": "-> new A().b(c)\n",
+  "start": 0,
   "type": "Program"
 }

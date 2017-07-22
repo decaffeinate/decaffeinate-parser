@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 4,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      4
-    ],
     "raw": "loop",
+    "start": 0,
     "statements": [
       {
         "body": null,
         "column": 1,
+        "end": 4,
         "line": 1,
-        "range": [
-          0,
-          4
-        ],
         "raw": "loop",
+        "start": 0,
         "type": "Loop"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 10,
   "line": 1,
-  "range": [
-    0,
-    10
-  ],
   "raw": "loop then\n",
+  "start": 0,
   "type": "Program"
 }

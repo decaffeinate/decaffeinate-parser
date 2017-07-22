@@ -1,46 +1,38 @@
 {
   "body": {
     "column": 1,
+    "end": 3,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      3
-    ],
     "raw": "[1]",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 3,
         "line": 1,
         "members": [
           {
             "column": 2,
             "data": 1,
+            "end": 2,
             "line": 1,
-            "range": [
-              1,
-              2
-            ],
             "raw": "1",
+            "start": 1,
             "type": "Int"
           }
         ],
-        "range": [
-          0,
-          3
-        ],
         "raw": "[1]",
+        "start": 0,
         "type": "ArrayInitialiser"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 3,
   "line": 1,
-  "range": [
-    0,
-    3
-  ],
   "raw": "[1]",
+  "start": 0,
   "type": "Program"
 }

@@ -1,117 +1,95 @@
 {
   "body": {
     "column": 1,
+    "end": 37,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      37
-    ],
     "raw": "Object::toString.constructor::valueOf",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 37,
         "expression": {
           "column": 1,
+          "end": 30,
           "expression": {
             "column": 1,
+            "end": 28,
             "expression": {
               "column": 1,
+              "end": 16,
               "expression": {
                 "column": 1,
+                "end": 8,
                 "expression": {
                   "column": 1,
                   "data": "Object",
+                  "end": 6,
                   "line": 1,
-                  "range": [
-                    0,
-                    6
-                  ],
                   "raw": "Object",
+                  "start": 0,
                   "type": "Identifier"
                 },
                 "line": 1,
-                "range": [
-                  0,
-                  8
-                ],
                 "raw": "Object::",
+                "start": 0,
                 "type": "ProtoMemberAccessOp"
               },
               "line": 1,
               "member": {
                 "column": 9,
                 "data": "toString",
+                "end": 16,
                 "line": 1,
-                "range": [
-                  8,
-                  16
-                ],
                 "raw": "toString",
+                "start": 8,
                 "type": "Identifier"
               },
-              "range": [
-                0,
-                16
-              ],
               "raw": "Object::toString",
+              "start": 0,
               "type": "MemberAccessOp"
             },
             "line": 1,
             "member": {
               "column": 18,
               "data": "constructor",
+              "end": 28,
               "line": 1,
-              "range": [
-                17,
-                28
-              ],
               "raw": "constructor",
+              "start": 17,
               "type": "Identifier"
             },
-            "range": [
-              0,
-              28
-            ],
             "raw": "Object::toString.constructor",
+            "start": 0,
             "type": "MemberAccessOp"
           },
           "line": 1,
-          "range": [
-            0,
-            30
-          ],
           "raw": "Object::toString.constructor::",
+          "start": 0,
           "type": "ProtoMemberAccessOp"
         },
         "line": 1,
         "member": {
           "column": 31,
           "data": "valueOf",
+          "end": 37,
           "line": 1,
-          "range": [
-            30,
-            37
-          ],
           "raw": "valueOf",
+          "start": 30,
           "type": "Identifier"
         },
-        "range": [
-          0,
-          37
-        ],
         "raw": "Object::toString.constructor::valueOf",
+        "start": 0,
         "type": "MemberAccessOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 38,
   "line": 1,
-  "range": [
-    0,
-    38
-  ],
   "raw": "Object::toString.constructor::valueOf\n",
+  "start": 0,
   "type": "Program"
 }

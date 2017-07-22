@@ -1,63 +1,55 @@
 {
   "body": {
     "column": 1,
+    "end": 24,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      24
-    ],
     "raw": "do (a=a, b=b) ->\n  a + b",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 24,
         "expression": {
           "body": {
             "column": 3,
+            "end": 24,
             "inline": false,
             "line": 2,
-            "range": [
-              19,
-              24
-            ],
             "raw": "a + b",
+            "start": 19,
             "statements": [
               {
                 "column": 3,
+                "end": 24,
                 "left": {
                   "column": 3,
                   "data": "a",
+                  "end": 20,
                   "line": 2,
-                  "range": [
-                    19,
-                    20
-                  ],
                   "raw": "a",
+                  "start": 19,
                   "type": "Identifier"
                 },
                 "line": 2,
-                "range": [
-                  19,
-                  24
-                ],
                 "raw": "a + b",
                 "right": {
                   "column": 7,
                   "data": "b",
+                  "end": 24,
                   "line": 2,
-                  "range": [
-                    23,
-                    24
-                  ],
                   "raw": "b",
+                  "start": 23,
                   "type": "Identifier"
                 },
+                "start": 19,
                 "type": "PlusOp"
               }
             ],
             "type": "Block"
           },
           "column": 4,
+          "end": 24,
           "line": 1,
           "parameters": [
             {
@@ -65,31 +57,25 @@
               "default": {
                 "column": 7,
                 "data": "a",
+                "end": 7,
                 "line": 1,
-                "range": [
-                  6,
-                  7
-                ],
                 "raw": "a",
+                "start": 6,
                 "type": "Identifier"
               },
+              "end": 7,
               "line": 1,
               "param": {
                 "column": 5,
                 "data": "a",
+                "end": 5,
                 "line": 1,
-                "range": [
-                  4,
-                  5
-                ],
                 "raw": "a",
+                "start": 4,
                 "type": "Identifier"
               },
-              "range": [
-                4,
-                7
-              ],
               "raw": "a=a",
+              "start": 4,
               "type": "DefaultParam"
             },
             {
@@ -97,58 +83,44 @@
               "default": {
                 "column": 12,
                 "data": "b",
+                "end": 12,
                 "line": 1,
-                "range": [
-                  11,
-                  12
-                ],
                 "raw": "b",
+                "start": 11,
                 "type": "Identifier"
               },
+              "end": 12,
               "line": 1,
               "param": {
                 "column": 10,
                 "data": "b",
+                "end": 10,
                 "line": 1,
-                "range": [
-                  9,
-                  10
-                ],
                 "raw": "b",
+                "start": 9,
                 "type": "Identifier"
               },
-              "range": [
-                9,
-                12
-              ],
               "raw": "b=b",
+              "start": 9,
               "type": "DefaultParam"
             }
           ],
-          "range": [
-            3,
-            24
-          ],
           "raw": "(a=a, b=b) ->\n  a + b",
+          "start": 3,
           "type": "Function"
         },
         "line": 1,
-        "range": [
-          0,
-          24
-        ],
         "raw": "do (a=a, b=b) ->\n  a + b",
+        "start": 0,
         "type": "DoOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 25,
   "line": 1,
-  "range": [
-    0,
-    25
-  ],
   "raw": "do (a=a, b=b) ->\n  a + b\n",
+  "start": 0,
   "type": "Program"
 }

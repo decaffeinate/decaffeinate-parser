@@ -1,37 +1,32 @@
 {
   "body": {
     "column": 1,
+    "end": 13,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      13
-    ],
     "raw": "\"#{a}\\\n #{b}\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 13,
         "expressions": [
           {
             "column": 4,
             "data": "a",
+            "end": 4,
             "line": 1,
-            "range": [
-              3,
-              4
-            ],
             "raw": "a",
+            "start": 3,
             "type": "Identifier"
           },
           {
             "column": 4,
             "data": "b",
+            "end": 11,
             "line": 2,
-            "range": [
-              10,
-              11
-            ],
             "raw": "b",
+            "start": 10,
             "type": "Identifier"
           }
         ],
@@ -40,53 +35,42 @@
           {
             "column": 2,
             "data": "",
+            "end": 1,
             "line": 1,
-            "range": [
-              1,
-              1
-            ],
             "raw": "",
+            "start": 1,
             "type": "Quasi"
           },
           {
             "column": 6,
             "data": "",
+            "end": 8,
             "line": 1,
-            "range": [
-              5,
-              8
-            ],
             "raw": "\\\n ",
+            "start": 5,
             "type": "Quasi"
           },
           {
             "column": 6,
             "data": "",
+            "end": 12,
             "line": 2,
-            "range": [
-              12,
-              12
-            ],
             "raw": "",
+            "start": 12,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          13
-        ],
         "raw": "\"#{a}\\\n #{b}\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 14,
   "line": 1,
-  "range": [
-    0,
-    14
-  ],
   "raw": "\"#{a}\\\n #{b}\"\n",
+  "start": 0,
   "type": "Program"
 }

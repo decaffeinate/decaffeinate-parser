@@ -1,26 +1,23 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "\"\"\"\n#{a}\n\"\"\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 12,
         "expressions": [
           {
             "column": 3,
             "data": "a",
+            "end": 7,
             "line": 2,
-            "range": [
-              6,
-              7
-            ],
             "raw": "a",
+            "start": 6,
             "type": "Identifier"
           }
         ],
@@ -29,42 +26,33 @@
           {
             "column": 4,
             "data": "",
+            "end": 4,
             "line": 1,
-            "range": [
-              3,
-              4
-            ],
             "raw": "\n",
+            "start": 3,
             "type": "Quasi"
           },
           {
             "column": 5,
             "data": "",
+            "end": 9,
             "line": 2,
-            "range": [
-              8,
-              9
-            ],
             "raw": "\n",
+            "start": 8,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          12
-        ],
         "raw": "\"\"\"\n#{a}\n\"\"\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 12,
   "line": 1,
-  "range": [
-    0,
-    12
-  ],
   "raw": "\"\"\"\n#{a}\n\"\"\"",
+  "start": 0,
   "type": "Program"
 }

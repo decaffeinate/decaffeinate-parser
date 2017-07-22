@@ -1,44 +1,36 @@
 {
   "body": {
     "column": 1,
+    "end": 8,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      8
-    ],
     "raw": "delete a",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 8,
         "expression": {
           "column": 8,
           "data": "a",
+          "end": 8,
           "line": 1,
-          "range": [
-            7,
-            8
-          ],
           "raw": "a",
+          "start": 7,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          8
-        ],
         "raw": "delete a",
+        "start": 0,
         "type": "DeleteOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 8,
   "line": 1,
-  "range": [
-    0,
-    8
-  ],
   "raw": "delete a",
+  "start": 0,
   "type": "Program"
 }

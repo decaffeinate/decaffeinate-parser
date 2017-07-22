@@ -1,88 +1,72 @@
 {
   "body": {
     "column": 1,
+    "end": 47,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      47
-    ],
     "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+    "start": 0,
     "statements": [
       {
         "assignee": {
           "column": 1,
           "data": "obj",
+          "end": 3,
           "line": 1,
-          "range": [
-            0,
-            3
-          ],
           "raw": "obj",
+          "start": 0,
           "type": "Identifier"
         },
         "column": 1,
+        "end": 47,
         "expression": {
           "column": 3,
+          "end": 47,
           "line": 2,
           "members": [
             {
               "column": 3,
+              "end": 47,
               "expression": {
                 "column": 6,
                 "data": 1,
+                "end": 47,
                 "line": 5,
-                "range": [
-                  46,
-                  47
-                ],
                 "raw": "1",
+                "start": 46,
                 "type": "Int"
               },
               "key": {
                 "column": 3,
                 "data": "a",
+                "end": 44,
                 "line": 5,
-                "range": [
-                  43,
-                  44
-                ],
                 "raw": "a",
+                "start": 43,
                 "type": "Identifier"
               },
               "line": 5,
-              "range": [
-                43,
-                47
-              ],
               "raw": "a: 1",
+              "start": 43,
               "type": "ObjectInitialiserMember"
             }
           ],
-          "range": [
-            8,
-            47
-          ],
           "raw": "###\n  # @returns {boolean}\n  ###\n  a: 1",
+          "start": 8,
           "type": "ObjectInitialiser"
         },
         "line": 1,
-        "range": [
-          0,
-          47
-        ],
         "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+        "start": 0,
         "type": "AssignOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 47,
   "line": 1,
-  "range": [
-    0,
-    47
-  ],
   "raw": "obj =\n  ###\n  # @returns {boolean}\n  ###\n  a: 1",
+  "start": 0,
   "type": "Program"
 }

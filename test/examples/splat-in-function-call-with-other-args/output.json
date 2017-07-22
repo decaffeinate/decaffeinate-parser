@@ -1,89 +1,73 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "a b, c..., d",
+    "start": 0,
     "statements": [
       {
         "arguments": [
           {
             "column": 3,
             "data": "b",
+            "end": 3,
             "line": 1,
-            "range": [
-              2,
-              3
-            ],
             "raw": "b",
+            "start": 2,
             "type": "Identifier"
           },
           {
             "column": 6,
+            "end": 9,
             "expression": {
               "column": 6,
               "data": "c",
+              "end": 6,
               "line": 1,
-              "range": [
-                5,
-                6
-              ],
               "raw": "c",
+              "start": 5,
               "type": "Identifier"
             },
             "line": 1,
-            "range": [
-              5,
-              9
-            ],
             "raw": "c...",
+            "start": 5,
             "type": "Spread"
           },
           {
             "column": 12,
             "data": "d",
+            "end": 12,
             "line": 1,
-            "range": [
-              11,
-              12
-            ],
             "raw": "d",
+            "start": 11,
             "type": "Identifier"
           }
         ],
         "column": 1,
+        "end": 12,
         "function": {
           "column": 1,
           "data": "a",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          12
-        ],
         "raw": "a b, c..., d",
+        "start": 0,
         "type": "FunctionApplication"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 12,
   "line": 1,
-  "range": [
-    0,
-    12
-  ],
   "raw": "a b, c..., d",
+  "start": 0,
   "type": "Program"
 }

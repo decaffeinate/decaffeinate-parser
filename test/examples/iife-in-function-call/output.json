@@ -1,13 +1,11 @@
 {
   "body": {
     "column": 1,
+    "end": 13,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      13
-    ],
     "raw": "a((=>\n  0)())",
+    "start": 0,
     "statements": [
       {
         "arguments": [
@@ -15,80 +13,66 @@
             "arguments": [
             ],
             "column": 3,
+            "end": 12,
             "function": {
               "body": {
                 "column": 3,
+                "end": 9,
                 "inline": false,
                 "line": 2,
-                "range": [
-                  8,
-                  9
-                ],
                 "raw": "0",
+                "start": 8,
                 "statements": [
                   {
                     "column": 3,
                     "data": 0,
+                    "end": 9,
                     "line": 2,
-                    "range": [
-                      8,
-                      9
-                    ],
                     "raw": "0",
+                    "start": 8,
                     "type": "Int"
                   }
                 ],
                 "type": "Block"
               },
               "column": 4,
+              "end": 9,
               "line": 1,
               "parameters": [
               ],
-              "range": [
-                3,
-                9
-              ],
               "raw": "=>\n  0",
+              "start": 3,
               "type": "BoundFunction"
             },
             "line": 1,
-            "range": [
-              2,
-              12
-            ],
             "raw": "(=>\n  0)()",
+            "start": 2,
             "type": "FunctionApplication"
           }
         ],
         "column": 1,
+        "end": 13,
         "function": {
           "column": 1,
           "data": "a",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          13
-        ],
         "raw": "a((=>\n  0)())",
+        "start": 0,
         "type": "FunctionApplication"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "a((=>\n  0)())",
+  "start": 0,
   "type": "Program"
 }

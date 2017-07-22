@@ -4,7 +4,7 @@ import ParseContext from './util/ParseContext';
 export type ChildField = Node | Array<Node | null> | null;
 
 export abstract class Node {
-  readonly range: [number, number];
+  parentNode: Node | null = null;
 
   constructor(
     readonly type: string,
@@ -14,8 +14,6 @@ export abstract class Node {
     readonly end: number,
     readonly raw: string,
   ) {
-    this.range = [start, end];
-    this.raw = raw;
   }
 
   getChildren(): Array<Node> {
@@ -316,7 +314,8 @@ export class ObjectInitialiserMember extends Node {
     end: number,
     raw: string,
     readonly key: Node,
-    readonly expression: Node,
+    // If null, this is a shorthand initializer and the key and value are the same.
+    readonly expression: Node | null,
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
   }

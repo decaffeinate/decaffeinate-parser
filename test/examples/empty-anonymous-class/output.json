@@ -1,13 +1,11 @@
 {
   "body": {
     "column": 1,
+    "end": 5,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      5
-    ],
     "raw": "class",
+    "start": 0,
     "statements": [
       {
         "body": null,
@@ -15,26 +13,22 @@
         ],
         "column": 1,
         "ctor": null,
+        "end": 5,
         "line": 1,
         "name": null,
         "nameAssignee": null,
         "parent": null,
-        "range": [
-          0,
-          5
-        ],
         "raw": "class",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 5,
   "line": 1,
-  "range": [
-    0,
-    5
-  ],
   "raw": "class",
+  "start": 0,
   "type": "Program"
 }

@@ -1,81 +1,67 @@
 {
   "body": {
     "column": 1,
+    "end": 18,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      18
-    ],
     "raw": "-> yield from fn()",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 4,
+          "end": 18,
           "inline": true,
           "line": 1,
-          "range": [
-            3,
-            18
-          ],
           "raw": "yield from fn()",
+          "start": 3,
           "statements": [
             {
               "column": 4,
+              "end": 18,
               "expression": {
                 "arguments": [
                 ],
                 "column": 15,
+                "end": 18,
                 "function": {
                   "column": 15,
                   "data": "fn",
+                  "end": 16,
                   "line": 1,
-                  "range": [
-                    14,
-                    16
-                  ],
                   "raw": "fn",
+                  "start": 14,
                   "type": "Identifier"
                 },
                 "line": 1,
-                "range": [
-                  14,
-                  18
-                ],
                 "raw": "fn()",
+                "start": 14,
                 "type": "FunctionApplication"
               },
               "line": 1,
-              "range": [
-                3,
-                18
-              ],
               "raw": "yield from fn()",
+              "start": 3,
               "type": "YieldFrom"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 18,
         "line": 1,
         "parameters": [
         ],
-        "range": [
-          0,
-          18
-        ],
         "raw": "-> yield from fn()",
+        "start": 0,
         "type": "GeneratorFunction"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 18,
   "line": 1,
-  "range": [
-    0,
-    18
-  ],
   "raw": "-> yield from fn()",
+  "start": 0,
   "type": "Program"
 }

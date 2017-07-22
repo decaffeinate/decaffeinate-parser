@@ -1,44 +1,36 @@
 {
   "body": {
     "column": 1,
+    "end": 2,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      2
-    ],
     "raw": "+1",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 2,
         "expression": {
           "column": 2,
           "data": 1,
+          "end": 2,
           "line": 1,
-          "range": [
-            1,
-            2
-          ],
           "raw": "1",
+          "start": 1,
           "type": "Int"
         },
         "line": 1,
-        "range": [
-          0,
-          2
-        ],
         "raw": "+1",
+        "start": 0,
         "type": "UnaryPlusOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 2,
   "line": 1,
-  "range": [
-    0,
-    2
-  ],
   "raw": "+1",
+  "start": 0,
   "type": "Program"
 }

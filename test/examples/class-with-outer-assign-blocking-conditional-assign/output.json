@@ -1,24 +1,20 @@
 {
   "body": {
     "column": 1,
+    "end": 30,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      30
-    ],
     "raw": "class A\n  if b\n    c: d\n  e: f",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 30,
           "inline": false,
           "line": 2,
-          "range": [
-            10,
-            30
-          ],
           "raw": "if b\n    c: d\n  e: f",
+          "start": 10,
           "statements": [
             {
               "alternate": null,
@@ -26,110 +22,90 @@
               "condition": {
                 "column": 6,
                 "data": "b",
+                "end": 14,
                 "line": 2,
-                "range": [
-                  13,
-                  14
-                ],
                 "raw": "b",
+                "start": 13,
                 "type": "Identifier"
               },
               "consequent": {
                 "column": 5,
+                "end": 23,
                 "inline": false,
                 "line": 3,
-                "range": [
-                  19,
-                  23
-                ],
                 "raw": "c: d",
+                "start": 19,
                 "statements": [
                   {
                     "column": 5,
+                    "end": 23,
                     "line": 3,
                     "members": [
                       {
                         "column": 5,
+                        "end": 23,
                         "expression": {
                           "column": 8,
                           "data": "d",
+                          "end": 23,
                           "line": 3,
-                          "range": [
-                            22,
-                            23
-                          ],
                           "raw": "d",
+                          "start": 22,
                           "type": "Identifier"
                         },
                         "key": {
                           "column": 5,
                           "data": "c",
+                          "end": 20,
                           "line": 3,
-                          "range": [
-                            19,
-                            20
-                          ],
                           "raw": "c",
+                          "start": 19,
                           "type": "Identifier"
                         },
                         "line": 3,
-                        "range": [
-                          19,
-                          23
-                        ],
                         "raw": "c: d",
+                        "start": 19,
                         "type": "ObjectInitialiserMember"
                       }
                     ],
-                    "range": [
-                      19,
-                      23
-                    ],
                     "raw": "c: d",
+                    "start": 19,
                     "type": "ObjectInitialiser"
                   }
                 ],
                 "type": "Block"
               },
+              "end": 23,
               "isUnless": false,
               "line": 2,
-              "range": [
-                10,
-                23
-              ],
               "raw": "if b\n    c: d",
+              "start": 10,
               "type": "Conditional"
             },
             {
               "assignee": {
                 "column": 3,
                 "data": "e",
+                "end": 27,
                 "line": 4,
-                "range": [
-                  26,
-                  27
-                ],
                 "raw": "e",
+                "start": 26,
                 "type": "Identifier"
               },
               "column": 3,
+              "end": 30,
               "expression": {
                 "column": 6,
                 "data": "f",
+                "end": 30,
                 "line": 4,
-                "range": [
-                  29,
-                  30
-                ],
                 "raw": "f",
+                "start": 29,
                 "type": "Identifier"
               },
               "line": 4,
-              "range": [
-                26,
-                30
-              ],
               "raw": "e: f",
+              "start": 26,
               "type": "ClassProtoAssignOp"
             }
           ],
@@ -139,46 +115,38 @@
         ],
         "column": 1,
         "ctor": null,
+        "end": 30,
         "line": 1,
         "name": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          0,
-          30
-        ],
         "raw": "class A\n  if b\n    c: d\n  e: f",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 31,
   "line": 1,
-  "range": [
-    0,
-    31
-  ],
   "raw": "class A\n  if b\n    c: d\n  e: f\n",
+  "start": 0,
   "type": "Program"
 }

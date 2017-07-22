@@ -1,91 +1,75 @@
 {
   "body": {
     "column": 1,
+    "end": 14,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      14
-    ],
     "raw": "a if (b and c)",
+    "start": 0,
     "statements": [
       {
         "alternate": null,
         "column": 1,
         "condition": {
           "column": 7,
+          "end": 13,
           "left": {
             "column": 7,
             "data": "b",
+            "end": 7,
             "line": 1,
-            "range": [
-              6,
-              7
-            ],
             "raw": "b",
+            "start": 6,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            6,
-            13
-          ],
           "raw": "b and c",
           "right": {
             "column": 13,
             "data": "c",
+            "end": 13,
             "line": 1,
-            "range": [
-              12,
-              13
-            ],
             "raw": "c",
+            "start": 12,
             "type": "Identifier"
           },
+          "start": 6,
           "type": "LogicalAndOp"
         },
         "consequent": {
           "column": 1,
+          "end": 1,
           "inline": true,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "statements": [
             {
               "column": 1,
               "data": "a",
+              "end": 1,
               "line": 1,
-              "range": [
-                0,
-                1
-              ],
               "raw": "a",
+              "start": 0,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
+        "end": 14,
         "isUnless": false,
         "line": 1,
-        "range": [
-          0,
-          14
-        ],
         "raw": "a if (b and c)",
+        "start": 0,
         "type": "Conditional"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 15,
   "line": 1,
-  "range": [
-    0,
-    15
-  ],
   "raw": "a if (b and c)\n",
+  "start": 0,
   "type": "Program"
 }

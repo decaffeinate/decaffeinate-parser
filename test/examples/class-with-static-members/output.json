@@ -1,75 +1,61 @@
 {
   "body": {
     "column": 1,
+    "end": 15,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      15
-    ],
     "raw": "class A\n  @b: c",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 15,
           "inline": false,
           "line": 2,
-          "range": [
-            10,
-            15
-          ],
           "raw": "@b: c",
+          "start": 10,
           "statements": [
             {
               "assignee": {
                 "column": 3,
+                "end": 12,
                 "expression": {
                   "column": 3,
+                  "end": 11,
                   "line": 2,
-                  "range": [
-                    10,
-                    11
-                  ],
                   "raw": "@",
+                  "start": 10,
                   "type": "This"
                 },
                 "line": 2,
                 "member": {
                   "column": 4,
                   "data": "b",
+                  "end": 12,
                   "line": 2,
-                  "range": [
-                    11,
-                    12
-                  ],
                   "raw": "b",
+                  "start": 11,
                   "type": "Identifier"
                 },
-                "range": [
-                  10,
-                  12
-                ],
                 "raw": "@b",
+                "start": 10,
                 "type": "MemberAccessOp"
               },
               "column": 3,
+              "end": 15,
               "expression": {
                 "column": 7,
                 "data": "c",
+                "end": 15,
                 "line": 2,
-                "range": [
-                  14,
-                  15
-                ],
                 "raw": "c",
+                "start": 14,
                 "type": "Identifier"
               },
               "line": 2,
-              "range": [
-                10,
-                15
-              ],
               "raw": "@b: c",
+              "start": 10,
               "type": "AssignOp"
             }
           ],
@@ -79,46 +65,38 @@
         ],
         "column": 1,
         "ctor": null,
+        "end": 15,
         "line": 1,
         "name": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "nameAssignee": {
           "column": 7,
           "data": "A",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "A",
+          "start": 6,
           "type": "Identifier"
         },
         "parent": null,
-        "range": [
-          0,
-          15
-        ],
         "raw": "class A\n  @b: c",
+        "start": 0,
         "type": "Class"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 15,
   "line": 1,
-  "range": [
-    0,
-    15
-  ],
   "raw": "class A\n  @b: c",
+  "start": 0,
   "type": "Program"
 }

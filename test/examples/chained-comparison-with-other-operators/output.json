@@ -1,154 +1,127 @@
 {
   "body": {
     "column": 1,
+    "end": 31,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      31
-    ],
     "raw": "Math.PI/2 < angle < 3*Math.PI/2",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 31,
         "line": 1,
         "operands": [
           {
             "column": 1,
+            "end": 9,
             "left": {
               "column": 1,
+              "end": 7,
               "expression": {
                 "column": 1,
                 "data": "Math",
+                "end": 4,
                 "line": 1,
-                "range": [
-                  0,
-                  4
-                ],
                 "raw": "Math",
+                "start": 0,
                 "type": "Identifier"
               },
               "line": 1,
               "member": {
                 "column": 6,
                 "data": "PI",
+                "end": 7,
                 "line": 1,
-                "range": [
-                  5,
-                  7
-                ],
                 "raw": "PI",
+                "start": 5,
                 "type": "Identifier"
               },
-              "range": [
-                0,
-                7
-              ],
               "raw": "Math.PI",
+              "start": 0,
               "type": "MemberAccessOp"
             },
             "line": 1,
-            "range": [
-              0,
-              9
-            ],
             "raw": "Math.PI/2",
             "right": {
               "column": 9,
               "data": 2,
+              "end": 9,
               "line": 1,
-              "range": [
-                8,
-                9
-              ],
               "raw": "2",
+              "start": 8,
               "type": "Int"
             },
+            "start": 0,
             "type": "DivideOp"
           },
           {
             "column": 13,
             "data": "angle",
+            "end": 17,
             "line": 1,
-            "range": [
-              12,
-              17
-            ],
             "raw": "angle",
+            "start": 12,
             "type": "Identifier"
           },
           {
             "column": 21,
+            "end": 31,
             "left": {
               "column": 21,
+              "end": 29,
               "left": {
                 "column": 21,
                 "data": 3,
+                "end": 21,
                 "line": 1,
-                "range": [
-                  20,
-                  21
-                ],
                 "raw": "3",
+                "start": 20,
                 "type": "Int"
               },
               "line": 1,
-              "range": [
-                20,
-                29
-              ],
               "raw": "3*Math.PI",
               "right": {
                 "column": 23,
+                "end": 29,
                 "expression": {
                   "column": 23,
                   "data": "Math",
+                  "end": 26,
                   "line": 1,
-                  "range": [
-                    22,
-                    26
-                  ],
                   "raw": "Math",
+                  "start": 22,
                   "type": "Identifier"
                 },
                 "line": 1,
                 "member": {
                   "column": 28,
                   "data": "PI",
+                  "end": 29,
                   "line": 1,
-                  "range": [
-                    27,
-                    29
-                  ],
                   "raw": "PI",
+                  "start": 27,
                   "type": "Identifier"
                 },
-                "range": [
-                  22,
-                  29
-                ],
                 "raw": "Math.PI",
+                "start": 22,
                 "type": "MemberAccessOp"
               },
+              "start": 20,
               "type": "MultiplyOp"
             },
             "line": 1,
-            "range": [
-              20,
-              31
-            ],
             "raw": "3*Math.PI/2",
             "right": {
               "column": 31,
               "data": 2,
+              "end": 31,
               "line": 1,
-              "range": [
-                30,
-                31
-              ],
               "raw": "2",
+              "start": 30,
               "type": "Int"
             },
+            "start": 20,
             "type": "DivideOp"
           }
         ],
@@ -170,22 +143,17 @@
             }
           }
         ],
-        "range": [
-          0,
-          31
-        ],
         "raw": "Math.PI/2 < angle < 3*Math.PI/2",
+        "start": 0,
         "type": "ChainedComparisonOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 32,
   "line": 1,
-  "range": [
-    0,
-    32
-  ],
   "raw": "Math.PI/2 < angle < 3*Math.PI/2\n",
+  "start": 0,
   "type": "Program"
 }

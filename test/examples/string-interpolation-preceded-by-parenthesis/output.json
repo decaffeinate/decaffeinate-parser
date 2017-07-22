@@ -1,26 +1,23 @@
 {
   "body": {
     "column": 1,
+    "end": 65,
     "inline": false,
     "line": 2,
-    "range": [
-      58,
-      65
-    ],
     "raw": "\"(#{a}\"",
+    "start": 58,
     "statements": [
       {
         "column": 1,
+        "end": 65,
         "expressions": [
           {
             "column": 5,
             "data": "a",
+            "end": 63,
             "line": 2,
-            "range": [
-              62,
-              63
-            ],
             "raw": "a",
+            "start": 62,
             "type": "Identifier"
           }
         ],
@@ -29,42 +26,33 @@
           {
             "column": 2,
             "data": "(",
+            "end": 60,
             "line": 2,
-            "range": [
-              59,
-              60
-            ],
             "raw": "(",
+            "start": 59,
             "type": "Quasi"
           },
           {
             "column": 7,
             "data": "",
+            "end": 64,
             "line": 2,
-            "range": [
-              64,
-              64
-            ],
             "raw": "",
+            "start": 64,
             "type": "Quasi"
           }
         ],
-        "range": [
-          58,
-          65
-        ],
         "raw": "\"(#{a}\"",
+        "start": 58,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 66,
   "line": 1,
-  "range": [
-    0,
-    66
-  ],
   "raw": "# https://github.com/decaffeinate/decaffeinate/issues/212\n\"(#{a}\"\n",
+  "start": 0,
   "type": "Program"
 }

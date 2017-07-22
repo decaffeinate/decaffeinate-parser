@@ -1,80 +1,66 @@
 {
   "body": {
     "column": 1,
+    "end": 17,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      17
-    ],
     "raw": "for k, v of a\n  b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 17,
           "inline": false,
           "line": 2,
-          "range": [
-            16,
-            17
-          ],
           "raw": "b",
+          "start": 16,
           "statements": [
             {
               "column": 3,
               "data": "b",
+              "end": 17,
               "line": 2,
-              "range": [
-                16,
-                17
-              ],
               "raw": "b",
+              "start": 16,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 17,
         "filter": null,
         "isOwn": false,
         "keyAssignee": {
           "column": 5,
           "data": "k",
+          "end": 5,
           "line": 1,
-          "range": [
-            4,
-            5
-          ],
           "raw": "k",
+          "start": 4,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          17
-        ],
         "raw": "for k, v of a\n  b",
+        "start": 0,
         "target": {
           "column": 13,
           "data": "a",
+          "end": 13,
           "line": 1,
-          "range": [
-            12,
-            13
-          ],
           "raw": "a",
+          "start": 12,
           "type": "Identifier"
         },
         "type": "ForOf",
         "valAssignee": {
           "column": 8,
           "data": "v",
+          "end": 8,
           "line": 1,
-          "range": [
-            7,
-            8
-          ],
           "raw": "v",
+          "start": 7,
           "type": "Identifier"
         }
       }
@@ -82,11 +68,9 @@
     "type": "Block"
   },
   "column": 1,
+  "end": 17,
   "line": 1,
-  "range": [
-    0,
-    17
-  ],
   "raw": "for k, v of a\n  b",
+  "start": 0,
   "type": "Program"
 }

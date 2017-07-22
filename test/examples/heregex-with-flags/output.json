@@ -1,16 +1,15 @@
 {
   "body": {
     "column": 1,
+    "end": 15,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      15
-    ],
     "raw": "///a/b/c///gimy",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 15,
         "expressions": [
         ],
         "flags": {
@@ -28,31 +27,24 @@
           {
             "column": 4,
             "data": "/a\\/b\\/c/gimy",
+            "end": 8,
             "line": 1,
-            "range": [
-              3,
-              8
-            ],
             "raw": "a/b/c",
+            "start": 3,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          15
-        ],
         "raw": "///a/b/c///gimy",
+        "start": 0,
         "type": "Heregex"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 15,
   "line": 1,
-  "range": [
-    0,
-    15
-  ],
   "raw": "///a/b/c///gimy",
+  "start": 0,
   "type": "Program"
 }

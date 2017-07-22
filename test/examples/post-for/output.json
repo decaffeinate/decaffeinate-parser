@@ -1,70 +1,58 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "a for a in b",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 1,
+          "end": 1,
           "inline": true,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "a",
+          "start": 0,
           "statements": [
             {
               "column": 1,
               "data": "a",
+              "end": 1,
               "line": 1,
-              "range": [
-                0,
-                1
-              ],
               "raw": "a",
+              "start": 0,
               "type": "Identifier"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 12,
         "filter": null,
         "keyAssignee": null,
         "line": 1,
-        "range": [
-          0,
-          12
-        ],
         "raw": "a for a in b",
+        "start": 0,
         "step": null,
         "target": {
           "column": 12,
           "data": "b",
+          "end": 12,
           "line": 1,
-          "range": [
-            11,
-            12
-          ],
           "raw": "b",
+          "start": 11,
           "type": "Identifier"
         },
         "type": "ForIn",
         "valAssignee": {
           "column": 7,
           "data": "a",
+          "end": 7,
           "line": 1,
-          "range": [
-            6,
-            7
-          ],
           "raw": "a",
+          "start": 6,
           "type": "Identifier"
         }
       }
@@ -72,11 +60,9 @@
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "a for a in b\n",
+  "start": 0,
   "type": "Program"
 }

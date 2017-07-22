@@ -1,54 +1,44 @@
 {
   "body": {
     "column": 1,
+    "end": 3,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      3
-    ],
     "raw": "!!a",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 3,
         "expression": {
           "column": 2,
+          "end": 3,
           "expression": {
             "column": 3,
             "data": "a",
+            "end": 3,
             "line": 1,
-            "range": [
-              2,
-              3
-            ],
             "raw": "a",
+            "start": 2,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            1,
-            3
-          ],
           "raw": "!a",
+          "start": 1,
           "type": "LogicalNotOp"
         },
         "line": 1,
-        "range": [
-          0,
-          3
-        ],
         "raw": "!!a",
+        "start": 0,
         "type": "LogicalNotOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 3,
   "line": 1,
-  "range": [
-    0,
-    3
-  ],
   "raw": "!!a",
+  "start": 0,
   "type": "Program"
 }

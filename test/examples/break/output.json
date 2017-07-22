@@ -1,56 +1,46 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "loop\n  break",
+    "start": 0,
     "statements": [
       {
         "body": {
           "column": 3,
+          "end": 12,
           "inline": false,
           "line": 2,
-          "range": [
-            7,
-            12
-          ],
           "raw": "break",
+          "start": 7,
           "statements": [
             {
               "column": 3,
+              "end": 12,
               "line": 2,
-              "range": [
-                7,
-                12
-              ],
               "raw": "break",
+              "start": 7,
               "type": "Break"
             }
           ],
           "type": "Block"
         },
         "column": 1,
+        "end": 12,
         "line": 1,
-        "range": [
-          0,
-          12
-        ],
         "raw": "loop\n  break",
+        "start": 0,
         "type": "Loop"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "loop\n  break\n",
+  "start": 0,
   "type": "Program"
 }

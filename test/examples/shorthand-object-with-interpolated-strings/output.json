@@ -1,92 +1,44 @@
 {
   "body": {
     "column": 1,
+    "end": 14,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      14
-    ],
     "raw": "x = {\"a#{b}c\"}",
+    "start": 0,
     "statements": [
       {
         "assignee": {
           "column": 1,
           "data": "x",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "x",
+          "start": 0,
           "type": "Identifier"
         },
         "column": 1,
+        "end": 14,
         "expression": {
           "column": 5,
+          "end": 14,
           "line": 1,
           "members": [
             {
               "column": 6,
-              "expression": {
-                "column": 6,
-                "expressions": [
-                  {
-                    "column": 10,
-                    "data": "b",
-                    "line": 1,
-                    "range": [
-                      9,
-                      10
-                    ],
-                    "raw": "b",
-                    "type": "Identifier"
-                  }
-                ],
-                "line": 1,
-                "quasis": [
-                  {
-                    "column": 7,
-                    "data": "a",
-                    "line": 1,
-                    "range": [
-                      6,
-                      7
-                    ],
-                    "raw": "a",
-                    "type": "Quasi"
-                  },
-                  {
-                    "column": 12,
-                    "data": "c",
-                    "line": 1,
-                    "range": [
-                      11,
-                      12
-                    ],
-                    "raw": "c",
-                    "type": "Quasi"
-                  }
-                ],
-                "range": [
-                  5,
-                  13
-                ],
-                "raw": "\"a#{b}c\"",
-                "type": "String"
-              },
+              "end": 13,
+              "expression": null,
               "key": {
                 "column": 6,
+                "end": 13,
                 "expressions": [
                   {
                     "column": 10,
                     "data": "b",
+                    "end": 10,
                     "line": 1,
-                    "range": [
-                      9,
-                      10
-                    ],
                     "raw": "b",
+                    "start": 9,
                     "type": "Identifier"
                   }
                 ],
@@ -95,66 +47,48 @@
                   {
                     "column": 7,
                     "data": "a",
+                    "end": 7,
                     "line": 1,
-                    "range": [
-                      6,
-                      7
-                    ],
                     "raw": "a",
+                    "start": 6,
                     "type": "Quasi"
                   },
                   {
                     "column": 12,
                     "data": "c",
+                    "end": 12,
                     "line": 1,
-                    "range": [
-                      11,
-                      12
-                    ],
                     "raw": "c",
+                    "start": 11,
                     "type": "Quasi"
                   }
                 ],
-                "range": [
-                  5,
-                  13
-                ],
                 "raw": "\"a#{b}c\"",
+                "start": 5,
                 "type": "String"
               },
               "line": 1,
-              "range": [
-                5,
-                13
-              ],
               "raw": "\"a#{b}c\"",
+              "start": 5,
               "type": "ObjectInitialiserMember"
             }
           ],
-          "range": [
-            4,
-            14
-          ],
           "raw": "{\"a#{b}c\"}",
+          "start": 4,
           "type": "ObjectInitialiser"
         },
         "line": 1,
-        "range": [
-          0,
-          14
-        ],
         "raw": "x = {\"a#{b}c\"}",
+        "start": 0,
         "type": "AssignOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 15,
   "line": 1,
-  "range": [
-    0,
-    15
-  ],
   "raw": "x = {\"a#{b}c\"}\n",
+  "start": 0,
   "type": "Program"
 }

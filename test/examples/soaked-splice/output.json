@@ -1,88 +1,72 @@
 {
   "body": {
     "column": 1,
+    "end": 12,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      12
-    ],
     "raw": "a?[b..c] = d",
+    "start": 0,
     "statements": [
       {
         "assignee": {
           "column": 1,
+          "end": 8,
           "expression": {
             "column": 1,
             "data": "a",
+            "end": 1,
             "line": 1,
-            "range": [
-              0,
-              1
-            ],
             "raw": "a",
+            "start": 0,
             "type": "Identifier"
           },
           "isInclusive": true,
           "left": {
             "column": 4,
             "data": "b",
+            "end": 4,
             "line": 1,
-            "range": [
-              3,
-              4
-            ],
             "raw": "b",
+            "start": 3,
             "type": "Identifier"
           },
           "line": 1,
-          "range": [
-            0,
-            8
-          ],
           "raw": "a?[b..c]",
           "right": {
             "column": 7,
             "data": "c",
+            "end": 7,
             "line": 1,
-            "range": [
-              6,
-              7
-            ],
             "raw": "c",
+            "start": 6,
             "type": "Identifier"
           },
+          "start": 0,
           "type": "SoakedSlice"
         },
         "column": 1,
+        "end": 12,
         "expression": {
           "column": 12,
           "data": "d",
+          "end": 12,
           "line": 1,
-          "range": [
-            11,
-            12
-          ],
           "raw": "d",
+          "start": 11,
           "type": "Identifier"
         },
         "line": 1,
-        "range": [
-          0,
-          12
-        ],
         "raw": "a?[b..c] = d",
+        "start": 0,
         "type": "AssignOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 13,
   "line": 1,
-  "range": [
-    0,
-    13
-  ],
   "raw": "a?[b..c] = d\n",
+  "start": 0,
   "type": "Program"
 }

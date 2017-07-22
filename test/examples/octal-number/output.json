@@ -1,34 +1,28 @@
 {
   "body": {
     "column": 1,
+    "end": 6,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      6
-    ],
     "raw": "0o1234",
+    "start": 0,
     "statements": [
       {
         "column": 1,
         "data": 668,
+        "end": 6,
         "line": 1,
-        "range": [
-          0,
-          6
-        ],
         "raw": "0o1234",
+        "start": 0,
         "type": "Int"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 6,
   "line": 1,
-  "range": [
-    0,
-    6
-  ],
   "raw": "0o1234",
+  "start": 0,
   "type": "Program"
 }

@@ -1,60 +1,36 @@
 {
   "body": {
     "column": 1,
+    "end": 25,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      25
-    ],
     "raw": "x = {\"FOO\", \"BAR\", \"BAZ\"}",
+    "start": 0,
     "statements": [
       {
         "assignee": {
           "column": 1,
           "data": "x",
+          "end": 1,
           "line": 1,
-          "range": [
-            0,
-            1
-          ],
           "raw": "x",
+          "start": 0,
           "type": "Identifier"
         },
         "column": 1,
+        "end": 25,
         "expression": {
           "column": 5,
+          "end": 25,
           "line": 1,
           "members": [
             {
               "column": 6,
-              "expression": {
-                "column": 6,
-                "expressions": [
-                ],
-                "line": 1,
-                "quasis": [
-                  {
-                    "column": 7,
-                    "data": "FOO",
-                    "line": 1,
-                    "range": [
-                      6,
-                      9
-                    ],
-                    "raw": "FOO",
-                    "type": "Quasi"
-                  }
-                ],
-                "range": [
-                  5,
-                  10
-                ],
-                "raw": "\"FOO\"",
-                "type": "String"
-              },
+              "end": 10,
+              "expression": null,
               "key": {
                 "column": 6,
+                "end": 10,
                 "expressions": [
                 ],
                 "line": 1,
@@ -62,59 +38,29 @@
                   {
                     "column": 7,
                     "data": "FOO",
+                    "end": 9,
                     "line": 1,
-                    "range": [
-                      6,
-                      9
-                    ],
                     "raw": "FOO",
+                    "start": 6,
                     "type": "Quasi"
                   }
                 ],
-                "range": [
-                  5,
-                  10
-                ],
                 "raw": "\"FOO\"",
+                "start": 5,
                 "type": "String"
               },
               "line": 1,
-              "range": [
-                5,
-                10
-              ],
               "raw": "\"FOO\"",
+              "start": 5,
               "type": "ObjectInitialiserMember"
             },
             {
               "column": 13,
-              "expression": {
-                "column": 13,
-                "expressions": [
-                ],
-                "line": 1,
-                "quasis": [
-                  {
-                    "column": 14,
-                    "data": "BAR",
-                    "line": 1,
-                    "range": [
-                      13,
-                      16
-                    ],
-                    "raw": "BAR",
-                    "type": "Quasi"
-                  }
-                ],
-                "range": [
-                  12,
-                  17
-                ],
-                "raw": "\"BAR\"",
-                "type": "String"
-              },
+              "end": 17,
+              "expression": null,
               "key": {
                 "column": 13,
+                "end": 17,
                 "expressions": [
                 ],
                 "line": 1,
@@ -122,59 +68,29 @@
                   {
                     "column": 14,
                     "data": "BAR",
+                    "end": 16,
                     "line": 1,
-                    "range": [
-                      13,
-                      16
-                    ],
                     "raw": "BAR",
+                    "start": 13,
                     "type": "Quasi"
                   }
                 ],
-                "range": [
-                  12,
-                  17
-                ],
                 "raw": "\"BAR\"",
+                "start": 12,
                 "type": "String"
               },
               "line": 1,
-              "range": [
-                12,
-                17
-              ],
               "raw": "\"BAR\"",
+              "start": 12,
               "type": "ObjectInitialiserMember"
             },
             {
               "column": 20,
-              "expression": {
-                "column": 20,
-                "expressions": [
-                ],
-                "line": 1,
-                "quasis": [
-                  {
-                    "column": 21,
-                    "data": "BAZ",
-                    "line": 1,
-                    "range": [
-                      20,
-                      23
-                    ],
-                    "raw": "BAZ",
-                    "type": "Quasi"
-                  }
-                ],
-                "range": [
-                  19,
-                  24
-                ],
-                "raw": "\"BAZ\"",
-                "type": "String"
-              },
+              "end": 24,
+              "expression": null,
               "key": {
                 "column": 20,
+                "end": 24,
                 "expressions": [
                 ],
                 "line": 1,
@@ -182,55 +98,39 @@
                   {
                     "column": 21,
                     "data": "BAZ",
+                    "end": 23,
                     "line": 1,
-                    "range": [
-                      20,
-                      23
-                    ],
                     "raw": "BAZ",
+                    "start": 20,
                     "type": "Quasi"
                   }
                 ],
-                "range": [
-                  19,
-                  24
-                ],
                 "raw": "\"BAZ\"",
+                "start": 19,
                 "type": "String"
               },
               "line": 1,
-              "range": [
-                19,
-                24
-              ],
               "raw": "\"BAZ\"",
+              "start": 19,
               "type": "ObjectInitialiserMember"
             }
           ],
-          "range": [
-            4,
-            25
-          ],
           "raw": "{\"FOO\", \"BAR\", \"BAZ\"}",
+          "start": 4,
           "type": "ObjectInitialiser"
         },
         "line": 1,
-        "range": [
-          0,
-          25
-        ],
         "raw": "x = {\"FOO\", \"BAR\", \"BAZ\"}",
+        "start": 0,
         "type": "AssignOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 26,
   "line": 1,
-  "range": [
-    0,
-    26
-  ],
   "raw": "x = {\"FOO\", \"BAR\", \"BAZ\"}\n",
+  "start": 0,
   "type": "Program"
 }

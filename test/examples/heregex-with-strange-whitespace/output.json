@@ -1,16 +1,15 @@
 {
   "body": {
     "column": 1,
+    "end": 44,
     "inline": false,
     "line": 2,
-    "range": [
-      37,
-      44
-    ],
     "raw": "/// ///",
+    "start": 37,
     "statements": [
       {
         "column": 1,
+        "end": 44,
         "expressions": [
         ],
         "flags": {
@@ -28,31 +27,24 @@
           {
             "column": 4,
             "data": "/(?:)/",
+            "end": 41,
             "line": 2,
-            "range": [
-              40,
-              41
-            ],
             "raw": " ",
+            "start": 40,
             "type": "Quasi"
           }
         ],
-        "range": [
-          37,
-          44
-        ],
         "raw": "/// ///",
+        "start": 37,
         "type": "Heregex"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 45,
   "line": 1,
-  "range": [
-    0,
-    45
-  ],
   "raw": "# This has a \\u2028 character in it.\n/// ///\n",
+  "start": 0,
   "type": "Program"
 }

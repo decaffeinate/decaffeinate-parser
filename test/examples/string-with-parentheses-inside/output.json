@@ -1,16 +1,15 @@
 {
   "body": {
     "column": 1,
+    "end": 5,
     "inline": false,
     "line": 1,
-    "range": [
-      0,
-      5
-    ],
     "raw": "\"( a\"",
+    "start": 0,
     "statements": [
       {
         "column": 1,
+        "end": 5,
         "expressions": [
         ],
         "line": 1,
@@ -18,31 +17,24 @@
           {
             "column": 2,
             "data": "( a",
+            "end": 4,
             "line": 1,
-            "range": [
-              1,
-              4
-            ],
             "raw": "( a",
+            "start": 1,
             "type": "Quasi"
           }
         ],
-        "range": [
-          0,
-          5
-        ],
         "raw": "\"( a\"",
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
+  "end": 5,
   "line": 1,
-  "range": [
-    0,
-    5
-  ],
   "raw": "\"( a\"",
+  "start": 0,
   "type": "Program"
 }
