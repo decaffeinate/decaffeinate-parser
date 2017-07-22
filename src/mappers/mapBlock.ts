@@ -2,9 +2,9 @@ import { SourceType } from 'coffee-lex';
 import { Assign, Base, Block as CoffeeBlock, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import { AssignOp, Block, BoundFunction, BoundGeneratorFunction, ClassProtoAssignOp, Constructor, Identifier, MemberAccessOp, Node, This } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 
 export default function mapBlock(context: ParseContext, node: CoffeeBlock): Block {
   let childContext = context;
@@ -20,7 +20,7 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
     }
   }
 
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
   let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start).previous();
   let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
   let inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
@@ -47,7 +47,7 @@ function mapChild(blockContext: ParseContext, childContext: ParseContext, node: 
       if (property instanceof Comment) {
         continue;
       } else if (property instanceof Assign) {
-        let { line, column, start, end, raw } = mapBase(childContext, property);
+        let { line, column, start, end, raw } = getLocation(childContext, property);
         let key = mapAny(childContext, property.variable);
         let value = mapAny(childContext, property.value);
         let Node = ClassProtoAssignOp;

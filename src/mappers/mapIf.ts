@@ -2,13 +2,13 @@ import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { If } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Conditional } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapIf(context: ParseContext, node: If): Conditional {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   let condition = mapAny(context, node.condition);
   let consequent = mapPossiblyEmptyBlock(context, node.body);

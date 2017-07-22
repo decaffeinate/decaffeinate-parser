@@ -1,12 +1,12 @@
 import { For as CoffeeFor } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { For, ForIn, ForOf } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapFor(context: ParseContext, node: CoffeeFor): For {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   let keyAssignee = node.index ? mapAny(context, node.index) : null;
   let valAssignee = node.name ? mapAny(context, node.name) : null;

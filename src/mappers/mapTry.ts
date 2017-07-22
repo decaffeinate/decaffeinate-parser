@@ -1,12 +1,12 @@
 import { Try as CoffeeTry } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Try } from '../nodes';
+import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapTry(context: ParseContext, node: CoffeeTry): Try {
-  let { line, column, start, end, raw } = mapBase(context, node);
+  let { line, column, start, end, raw } = getLocation(context, node);
 
   return new Try(
     line, column, start, end, raw,

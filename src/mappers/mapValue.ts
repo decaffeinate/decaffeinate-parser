@@ -9,21 +9,21 @@ import {
   Identifier, MemberAccessOp, Node, ProtoMemberAccessOp, Slice, SoakedDynamicMemberAccessOp, SoakedMemberAccessOp,
   SoakedProtoMemberAccessOp, SoakedSlice
 } from '../nodes';
+import getLocation, { NodeLocation } from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
-import mapBase from './mapBase';
 
 export default function mapValue(context: ParseContext, node: Value): Node {
-  let base = mapBase(context, node);
+  let location = getLocation(context, node);
 
   return node.properties.reduce(
-    (reduced, property) => propertyReducer(context, base, reduced, property),
+    (reduced, property) => propertyReducer(context, location, reduced, property),
     mapAny(context, node.base)
   );
 }
 
-function propertyReducer(context: ParseContext, base: Node, reduced: Node, property: Access | Index | CoffeeSlice): Node {
+function propertyReducer(context: ParseContext, location: NodeLocation, reduced: Node, property: Access | Index | CoffeeSlice): Node {
   if (property instanceof Access) {
     let name = property.name;
 
@@ -62,11 +62,11 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
       let AccessOp = property.soak ? SoakedProtoMemberAccessOp : ProtoMemberAccessOp;
 
       return new AccessOp(
-        base.line,
-        base.column,
-        base.start,
+        location.line,
+        location.column,
+        location.start,
         last + 1,
-        context.source.slice(base.start, last + 1),
+        context.source.slice(location.start, last + 1),
         reduced
       );
     } else {
@@ -79,11 +79,11 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
       let AccessOp = property.soak ? SoakedMemberAccessOp : MemberAccessOp;
 
       return new AccessOp(
-        base.line,
-        base.column,
-        base.start,
+        location.line,
+        location.column,
+        location.start,
         last + 1,
-        context.source.slice(base.start, last + 1),
+        context.source.slice(location.start, last + 1),
         reduced,
         member
       );
@@ -99,7 +99,7 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
     }
 
     return new NodeClass(
-      base.line, base.column, base.start, last + 1, context.source.slice(base.start, last + 1),
+      location.line, location.column, location.start, last + 1, context.source.slice(location.start, last + 1),
       reduced,
       mapAny(context, property.index)
     );
@@ -115,11 +115,11 @@ function propertyReducer(context: ParseContext, base: Node, reduced: Node, prope
 
     let SliceClass = property.soak ? SoakedSlice : Slice;
     return new SliceClass(
-      base.line,
-      base.column,
-      base.start,
+      location.line,
+      location.column,
+      location.start,
       last + 1,
-      context.source.slice(base.start, last + 1),
+      context.source.slice(location.start, last + 1),
       reduced,
       property.range.from ? mapAny(context, property.range.from) : null,
       property.range.to ? mapAny(context, property.range.to) : null,
