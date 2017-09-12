@@ -35,7 +35,7 @@
     "@types/mocha": "^2.2.35",
     "@types/node": "8.0.25",
     "babel": "^6.5.2",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^8.0.0",
     "babel-plugin-external-helpers": "^6.8.0",
     "babel-plugin-object-rest-spread": "0.0.0",
     "babel-plugin-syntax-flow": "^6.8.0",
