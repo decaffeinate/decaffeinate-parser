@@ -53,9 +53,9 @@
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
 
-"@types/node@8.0.25":
-  version "8.0.25"
-  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.25.tgz#66ecaf4df93f5281b48427ee96fbcdfc4f0cdce1"
+"@types/node@8.0.34":
+  version "8.0.34"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.34.tgz#55f801fa2ddb2a40dd6dfc15ecfe1dde9c129fe9"
 
 StringScanner@~0.0.3:
   version "0.0.3"
@@ -239,7 +239,7 @@ babel-core@^6.24.1:
     slash "^1.0.0"
     source-map "^0.5.0"
 
-babel-eslint@8.0.1:
+babel-eslint@^8.0.1:
   version "8.0.1"
   resolved "https://registry.npmjs.org/babel-eslint/-/babel-eslint-8.0.1.tgz#5d718be7a328625d006022eb293ed3008cbd6346"
   dependencies:
@@ -952,13 +952,7 @@ debug@2, debug@^2.1.1, debug@^2.2.0, debug@^2.6.8:
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
-  dependencies:
-    ms "2.0.0"
-
-debug@^3.0.1:
+debug@3.1.0, debug@^3.0.1:
   version "3.1.0"
   resolved "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
@@ -1058,15 +1052,6 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.npmjs.org/escope/-/escope-1.0.3.tgz#759dce8496c4248fec2d0caaf4108bcf3f1a7f5d"
   dependencies:
     estraverse "^2.0.0"
-
-eslint-plugin-node@^5.1.0:
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-node/-/eslint-plugin-node-5.2.0.tgz#e1efca04a385516cff3f2f04027ce8c5ae6db749"
-  dependencies:
-    ignore "^3.3.3"
-    minimatch "^3.0.4"
-    resolve "^1.3.3"
-    semver "5.3.0"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -1400,11 +1385,9 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "1.0.1"
   resolved "https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-growl@1.10.2:
-  version "1.10.2"
-  resolved "https://registry.npmjs.org/growl/-/growl-1.10.2.tgz#8f16dfcd8fb7c04cfc1f4e0012e0ea858726979a"
-  dependencies:
-    eslint-plugin-node "^5.1.0"
+growl@1.10.3:
+  version "1.10.3"
+  resolved "https://registry.npmjs.org/growl/-/growl-1.10.3.tgz#1926ba90cf3edfe2adb4927f5880bc22c66c790f"
 
 har-schema@^1.0.5:
   version "1.0.5"
@@ -1873,9 +1856,9 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/mocha/-/mocha-4.0.0.tgz#3da718ccd76e93b9d82afb065e17086bdbe352bf"
+mocha@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/mocha/-/mocha-4.0.1.tgz#0aee5a95cf69a4618820f5e51fa31717117daf1b"
   dependencies:
     browser-stdout "1.3.0"
     commander "2.11.0"
@@ -1883,7 +1866,7 @@ mocha@4.0.0:
     diff "3.3.1"
     escape-string-regexp "1.0.5"
     glob "7.1.2"
-    growl "1.10.2"
+    growl "1.10.3"
     he "1.1.1"
     mkdirp "0.5.1"
     supports-color "4.4.0"
@@ -2342,12 +2325,6 @@ resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
-resolve@^1.3.3:
-  version "1.4.0"
-  resolved "https://registry.npmjs.org/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
-  dependencies:
-    path-parse "^1.0.5"
-
 restore-cursor@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/restore-cursor/-/restore-cursor-2.0.0.tgz#9f7ee287f82fd326d4fd162923d62129eee0dfaf"
@@ -2418,7 +2395,7 @@ semantic-release@^6.3.2:
     run-series "^1.1.3"
     semver "^5.2.0"
 
-"semver@2 >=2.2.1 || 3.x || 4 || 5", "semver@2 || 3 || 4 || 5", semver@5.3.0, semver@^5.0.3, semver@^5.1.0, semver@^5.2.0, semver@^5.3.0:
+"semver@2 >=2.2.1 || 3.x || 4 || 5", "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.2.0, semver@^5.3.0:
   version "5.3.0"
   resolved "https://registry.npmjs.org/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
