@@ -1,0 +1,103 @@
+{
+  "body": {
+    "column": 1,
+    "end": 17,
+    "inline": false,
+    "line": 1,
+    "raw": "a:\n  b: ->\n    c;",
+    "start": 0,
+    "statements": [
+      {
+        "column": 1,
+        "end": 17,
+        "line": 1,
+        "members": [
+          {
+            "column": 1,
+            "end": 17,
+            "expression": {
+              "column": 3,
+              "end": 17,
+              "line": 2,
+              "members": [
+                {
+                  "column": 3,
+                  "end": 17,
+                  "expression": {
+                    "body": {
+                      "column": 5,
+                      "end": 17,
+                      "inline": false,
+                      "line": 3,
+                      "raw": "c;",
+                      "start": 15,
+                      "statements": [
+                        {
+                          "column": 5,
+                          "data": "c",
+                          "end": 16,
+                          "line": 3,
+                          "raw": "c",
+                          "start": 15,
+                          "type": "Identifier"
+                        }
+                      ],
+                      "type": "Block"
+                    },
+                    "column": 6,
+                    "end": 17,
+                    "line": 2,
+                    "parameters": [
+                    ],
+                    "raw": "->\n    c;",
+                    "start": 8,
+                    "type": "Function"
+                  },
+                  "key": {
+                    "column": 3,
+                    "data": "b",
+                    "end": 6,
+                    "line": 2,
+                    "raw": "b",
+                    "start": 5,
+                    "type": "Identifier"
+                  },
+                  "line": 2,
+                  "raw": "b: ->\n    c;",
+                  "start": 5,
+                  "type": "ObjectInitialiserMember"
+                }
+              ],
+              "raw": "b: ->\n    c;",
+              "start": 5,
+              "type": "ObjectInitialiser"
+            },
+            "key": {
+              "column": 1,
+              "data": "a",
+              "end": 1,
+              "line": 1,
+              "raw": "a",
+              "start": 0,
+              "type": "Identifier"
+            },
+            "line": 1,
+            "raw": "a:\n  b: ->\n    c;",
+            "start": 0,
+            "type": "ObjectInitialiserMember"
+          }
+        ],
+        "raw": "a:\n  b: ->\n    c;",
+        "start": 0,
+        "type": "ObjectInitialiser"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 18,
+  "line": 1,
+  "raw": "a:\n  b: ->\n    c;\n",
+  "start": 0,
+  "type": "Program"
+}

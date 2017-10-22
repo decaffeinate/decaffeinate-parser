@@ -1,4 +1,8 @@
-import { Assign, Base, Block, Call, Class, Code, Extends, For, If, In, Index, Obj, Op, Param, Slice, Switch, Try, Value, While } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import SourceType from 'coffee-lex/dist/SourceType';
+import {
+  Assign, Base, Block, Call, Class, Code, Extends, For, If, In, Index, Literal,
+  Obj, Op, Param, Slice, Switch, Try, Value, While
+} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import fixInvalidLocationData from './fixInvalidLocationData';
 import locationWithLastPosition from './locationWithLastPosition';
 import mergeLocations from './mergeLocations';
@@ -17,7 +21,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   node.locationData = fixInvalidLocationData(node.locationData, context.linesAndColumns);
 
   if (node instanceof Value) {
-    let lastChild = node.properties[node.properties.length - 1];
+    let lastChild = node.properties[node.properties.length - 1] || node.base;
     if (lastChild) {
       node.locationData = locationWithLastPosition(
         node.locationData,
@@ -222,5 +226,28 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       node.locationData,
       lastChild.locationData
     );
+  }
+
+  if (node instanceof Literal) {
+    // Heregexp flags have an incorrect location, so detect that case and adjust
+    // the end location to be correct.
+    let endIndex = linesAndColumns.indexForLocation({
+      line: node.locationData.last_line,
+      column: node.locationData.last_column
+    });
+    if (endIndex !== null) {
+      let tokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(endIndex);
+      let token = context.sourceTokens.tokenAtIndex(tokenIndex);
+      if (token && token.type === SourceType.HEREGEXP_END) {
+        let location = linesAndColumns.locationForIndex(token.end - 1);
+        if (location) {
+          node.locationData = {
+            ...node.locationData,
+            last_line: location.line,
+            last_column: location.column,
+          };
+        }
+      }
+    }
   }
 }
