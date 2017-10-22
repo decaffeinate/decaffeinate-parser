@@ -65,9 +65,9 @@
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
 
-"@types/node@8.0.34":
-  version "8.0.34"
-  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.34.tgz#55f801fa2ddb2a40dd6dfc15ecfe1dde9c129fe9"
+"@types/node@8.0.46":
+  version "8.0.46"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.46.tgz#6e1766b2d0ed06631d5b5f87bb8e72c8dbb6888e"
 
 JSONStream@^1.0.4:
   version "1.3.1"
