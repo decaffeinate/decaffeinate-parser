@@ -2625,9 +2625,9 @@ safe-buffer@^5.1.0, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-semantic-release@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.npmjs.org/semantic-release/-/semantic-release-8.2.0.tgz#972aa3a7246065d8a405991005a210e46995d4b6"
+semantic-release@^8.2.0:
+  version "8.2.1"
+  resolved "https://registry.npmjs.org/semantic-release/-/semantic-release-8.2.1.tgz#0bd4c2d372b328b2617fb34688937e58387f1bc1"
   dependencies:
     "@semantic-release/commit-analyzer" "^3.0.1"
     "@semantic-release/condition-travis" "^6.0.0"
