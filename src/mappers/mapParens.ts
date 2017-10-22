@@ -1,4 +1,6 @@
-import { Block, Parens } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {
+  Block, Comment, Parens
+} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node, SeqOp } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
@@ -9,6 +11,7 @@ export default function mapParens(context: ParseContext, node: Parens): Node {
   }
 
   let { expressions } = node.body;
+  expressions = expressions.filter((expr) => !(expr instanceof Comment));
 
   if (expressions.length === 1) {
     return mapAny(context, expressions[0]);
