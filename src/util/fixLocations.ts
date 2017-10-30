@@ -66,8 +66,12 @@ export default function fixLocations(context: ParseContext, node: Base): void {
     if (start === null) {
       throw new Error('Expected to find a start index for object.');
     }
+    let end = linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
+    if (end === null) {
+      throw new Error('Expected to find an end index for object.');
+    }
     let isImplicitObject = source[start] !== '{';
-    if (isImplicitObject) {
+    if (isImplicitObject && source[end] !== ',') {
       let lastChild = node.properties[node.properties.length - 1];
       node.locationData = locationWithLastPosition(
         node.locationData,
