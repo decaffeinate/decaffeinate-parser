@@ -57,10 +57,6 @@
   dependencies:
     "@types/babel-types" "*"
 
-"@types/events@*":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@types/events/-/events-1.1.0.tgz#93b1be91f63c184450385272c47b6496fd028e02"
-
 "@types/json-stable-stringify@^1.0.31":
   version "1.0.31"
   resolved "https://registry.npmjs.org/@types/json-stable-stringify/-/json-stable-stringify-1.0.31.tgz#b6c7bc507f5267e88cd2839b3ac6a2b39b653a32"
@@ -69,11 +65,9 @@
   version "2.2.41"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
 
-"@types/node@8.0.54":
-  version "8.0.54"
-  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.54.tgz#3fd9357db4af388b79e03845340259440edffde6"
-  dependencies:
-    "@types/events" "*"
+"@types/node@8.0.55":
+  version "8.0.55"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.55.tgz#015966c0af809216b8a46cc527b5c211994d36f0"
 
 JSONStream@^1.0.4:
   version "1.3.1"
