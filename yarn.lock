@@ -3019,9 +3019,9 @@ tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.npmjs.org/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
-ts-node@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/ts-node/-/ts-node-4.0.0.tgz#75f3f8cffbbc00c2d793c2d1686173f78fcbcd8f"
+ts-node@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/ts-node/-/ts-node-4.0.1.tgz#4d368088b50c382d78285c029784ea0f32a4eb5c"
   dependencies:
     "@types/arrify" "^1.0.1"
     "@types/diff" "^3.2.1"
