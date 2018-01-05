@@ -87,9 +87,9 @@
   version "8.0.57"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.0.57.tgz#e5d8b4dc112763e35cfc51988f4f38da3c486d99"
 
-"@types/node@8.5.5":
-  version "8.5.5"
-  resolved "https://registry.npmjs.org/@types/node/-/node-8.5.5.tgz#6f9e8164ae1a55a9beb1d2571cfb7acf9d720c61"
+"@types/node@8.5.6":
+  version "8.5.6"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.5.6.tgz#5cf96a225c7be86f72d3dde03c41399319bb8bdc"
 
 "@types/source-map-support@^0.4.0":
   version "0.4.0"
