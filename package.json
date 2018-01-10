@@ -7,8 +7,8 @@
   "types": "dist/parser.d.ts",
   "scripts": {
     "build": "./script/build",
-    "lint": "eslint src test && tslint --config tslint.json --project tsconfig.json --type-check",
-    "lint-fix": "eslint src test --fix && tslint --config tslint.json --project tsconfig.json --type-check --fix",
+    "lint": "eslint src test && tslint --config tslint.json --project tsconfig.json",
+    "lint-fix": "eslint src test --fix && tslint --config tslint.json --project tsconfig.json --fix",
     "pretest": "npm run lint",
     "test": "mocha"
   },
