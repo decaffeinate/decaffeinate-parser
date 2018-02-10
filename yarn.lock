@@ -117,9 +117,9 @@
   version "2.2.46"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.46.tgz#b04713f7759d1cf752effdaae7b3969e285ebc16"
 
-"@types/node@9.4.4":
-  version "9.4.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-9.4.4.tgz#4cad4305d1ec84eab2dc2bda97dfb6a5f652cccb"
+"@types/node@9.4.5":
+  version "9.4.5"
+  resolved "https://registry.npmjs.org/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
 
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
