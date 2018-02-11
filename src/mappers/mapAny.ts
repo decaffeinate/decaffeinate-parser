@@ -1,7 +1,7 @@
 import {
-  Arr, Assign, Base, Block, Bool, Call, Class, Code, Comment, Existence, Expansion, Extends,
-  For, If, In, Literal, Null, Obj, Op, Param, Parens, Range, Return, Splat, Switch,
-  Throw, Try, Undefined, Value, While
+  Arr, Assign, Base, Block, Call, Class, Code, Comment, Existence, Expansion, Extends,
+  For, If, In, Literal, Obj, Op, Param, Parens, Range, Return, Splat, Switch,
+  Throw, Try, Value, While
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
@@ -9,7 +9,6 @@ import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapArr from './mapArr';
 import mapAssign from './mapAssign';
 import mapBlock from './mapBlock';
-import mapBool from './mapBool';
 import mapCall from './mapCall';
 import mapClass from './mapClass';
 import mapCode from './mapCode';
@@ -20,7 +19,6 @@ import mapFor from './mapFor';
 import mapIf from './mapIf';
 import mapIn from './mapIn';
 import mapLiteral from './mapLiteral';
-import mapNull from './mapNull';
 import mapObj from './mapObj';
 import mapOp from './mapOp';
 import mapParam from './mapParam';
@@ -31,7 +29,6 @@ import mapSplat from './mapSplat';
 import mapSwitch from './mapSwitch';
 import mapThrow from './mapThrow';
 import mapTry from './mapTry';
-import mapUndefined from './mapUndefined';
 import mapValue from './mapValue';
 import mapWhile from './mapWhile';
 
@@ -56,10 +53,6 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapArr(context, node);
   }
 
-  if (node instanceof Bool) {
-    return mapBool(context, node);
-  }
-
   if (node instanceof Assign) {
     return mapAssign(context, node);
   }
@@ -76,10 +69,6 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapIf(context, node);
   }
 
-  if (node instanceof Null) {
-    return mapNull(context, node);
-  }
-
   if (node instanceof Obj) {
     return mapObj(context, node);
   }
@@ -94,10 +83,6 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Throw) {
     return mapThrow(context, node);
-  }
-
-  if (node instanceof Undefined) {
-    return mapUndefined(context, node);
   }
 
   if (node instanceof Block) {

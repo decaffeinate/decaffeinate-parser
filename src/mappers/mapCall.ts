@@ -1,5 +1,5 @@
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Call, Literal, Parens, Splat, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Call, Literal, Parens, Splat, SuperCall, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
   AssignOp,
@@ -39,12 +39,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
 
   let args = node.args.map(arg => mapAny(context, arg));
 
-  if (!node.variable) {
-    // This should only happen when `isSuper` is true.
-    if (!node.isSuper) {
-      throw new Error(`callee unexpectedly null in non-super call: ${inspect(node)}`);
-    }
-
+  if (node instanceof SuperCall) {
     if (
       node.args.length === 1 &&
       node.args[0] instanceof Splat &&
@@ -89,6 +84,9 @@ export default function mapCall(context: ParseContext, node: Call): Node {
     );
   }
 
+  if (!node.variable) {
+    throw new Error('Expected non-super call to have a variable defined.');
+  }
   let callee = mapAny(context, node.variable);
 
   if (node.isNew) {
