@@ -574,17 +574,20 @@ export class RegexFlags {
   readonly g: boolean;
   readonly i: boolean;
   readonly m: boolean;
+  readonly u: boolean;
   readonly y: boolean;
 
   constructor(
     readonly global: boolean,
     readonly ignoreCase: boolean,
     readonly multiline: boolean,
+    readonly unicode: boolean,
     readonly sticky: boolean,
   ) {
     this.g = global;
     this.i = ignoreCase;
     this.m = multiline;
+    this.u = unicode;
     this.y = sticky;
   }
 
@@ -592,6 +595,7 @@ export class RegexFlags {
     let global = false;
     let ignoreCase = false;
     let multiline = false;
+    let unicode = false;
     let sticky = false;
 
     for (let i = 0; i < flags.length; i++) {
@@ -608,6 +612,10 @@ export class RegexFlags {
           multiline = true;
           break;
 
+        case 117:
+          unicode = true;
+          break;
+
         case 121:
           sticky = true;
           break;
@@ -617,7 +625,7 @@ export class RegexFlags {
       }
     }
 
-    return new RegexFlags(global, ignoreCase, multiline, sticky);
+    return new RegexFlags(global, ignoreCase, multiline, unicode, sticky);
   }
 }
 

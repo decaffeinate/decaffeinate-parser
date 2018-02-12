@@ -32,6 +32,8 @@
             "m": false,
             "multiline": false,
             "sticky": false,
+            "u": false,
+            "unicode": false,
             "y": false
           },
           "line": 1,
