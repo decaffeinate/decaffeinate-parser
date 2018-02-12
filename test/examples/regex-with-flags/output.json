@@ -1,17 +1,15 @@
 {
   "body": {
     "column": 1,
-    "end": 15,
+    "end": 8,
     "inline": false,
     "line": 1,
-    "raw": "///a/b/c///gimy",
+    "raw": "/a/gimuy",
     "start": 0,
     "statements": [
       {
         "column": 1,
-        "end": 15,
-        "expressions": [
-        ],
+        "end": 8,
         "flags": {
           "g": true,
           "global": true,
@@ -20,33 +18,23 @@
           "m": true,
           "multiline": true,
           "sticky": true,
-          "u": false,
-          "unicode": false,
+          "u": true,
+          "unicode": true,
           "y": true
         },
         "line": 1,
-        "quasis": [
-          {
-            "column": 4,
-            "data": "/a\\/b\\/c/gimy",
-            "end": 8,
-            "line": 1,
-            "raw": "a/b/c",
-            "start": 3,
-            "type": "Quasi"
-          }
-        ],
-        "raw": "///a/b/c///gimy",
+        "pattern": "a",
+        "raw": "/a/gimuy",
         "start": 0,
-        "type": "Heregex"
+        "type": "Regex"
       }
     ],
     "type": "Block"
   },
   "column": 1,
-  "end": 15,
+  "end": 9,
   "line": 1,
-  "raw": "///a/b/c///gimy",
+  "raw": "/a/gimuy\n",
   "start": 0,
   "type": "Program"
 }
