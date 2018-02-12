@@ -1,0 +1,66 @@
+{
+  "body": {
+    "column": 1,
+    "end": 14,
+    "inline": false,
+    "line": 1,
+    "raw": "f = ->\n  yield",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "f",
+          "end": 1,
+          "line": 1,
+          "raw": "f",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 14,
+        "expression": {
+          "body": {
+            "column": 3,
+            "end": 14,
+            "inline": false,
+            "line": 2,
+            "raw": "yield",
+            "start": 9,
+            "statements": [
+              {
+                "column": 3,
+                "end": 14,
+                "expression": null,
+                "line": 2,
+                "raw": "yield",
+                "start": 9,
+                "type": "Yield"
+              }
+            ],
+            "type": "Block"
+          },
+          "column": 5,
+          "end": 14,
+          "line": 1,
+          "parameters": [
+          ],
+          "raw": "->\n  yield",
+          "start": 4,
+          "type": "GeneratorFunction"
+        },
+        "line": 1,
+        "raw": "f = ->\n  yield",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 15,
+  "line": 1,
+  "raw": "f = ->\n  yield\n",
+  "start": 0,
+  "type": "Program"
+}
