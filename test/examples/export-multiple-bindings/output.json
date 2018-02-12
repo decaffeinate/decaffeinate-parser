@@ -1,0 +1,131 @@
+{
+  "body": {
+    "column": 1,
+    "end": 43,
+    "inline": false,
+    "line": 1,
+    "raw": "export {a, b as c} from 'd'\nexport {e as f}",
+    "start": 0,
+    "statements": [
+      {
+        "column": 1,
+        "end": 27,
+        "line": 1,
+        "namedExports": [
+          {
+            "alias": null,
+            "column": 9,
+            "end": 9,
+            "line": 1,
+            "original": {
+              "column": 9,
+              "data": "a",
+              "end": 9,
+              "line": 1,
+              "raw": "a",
+              "start": 8,
+              "type": "Identifier"
+            },
+            "raw": "a",
+            "start": 8,
+            "type": "ModuleSpecifier"
+          },
+          {
+            "alias": {
+              "column": 17,
+              "data": "c",
+              "end": 17,
+              "line": 1,
+              "raw": "c",
+              "start": 16,
+              "type": "Identifier"
+            },
+            "column": 12,
+            "end": 17,
+            "line": 1,
+            "original": {
+              "column": 12,
+              "data": "b",
+              "end": 12,
+              "line": 1,
+              "raw": "b",
+              "start": 11,
+              "type": "Identifier"
+            },
+            "raw": "b as c",
+            "start": 11,
+            "type": "ModuleSpecifier"
+          }
+        ],
+        "raw": "export {a, b as c} from 'd'",
+        "source": {
+          "column": 25,
+          "end": 27,
+          "expressions": [
+          ],
+          "line": 1,
+          "quasis": [
+            {
+              "column": 26,
+              "data": "d",
+              "end": 26,
+              "line": 1,
+              "raw": "d",
+              "start": 25,
+              "type": "Quasi"
+            }
+          ],
+          "raw": "'d'",
+          "start": 24,
+          "type": "String"
+        },
+        "start": 0,
+        "type": "ExportBindingsDeclaration"
+      },
+      {
+        "column": 1,
+        "end": 43,
+        "line": 2,
+        "namedExports": [
+          {
+            "alias": {
+              "column": 14,
+              "data": "f",
+              "end": 42,
+              "line": 2,
+              "raw": "f",
+              "start": 41,
+              "type": "Identifier"
+            },
+            "column": 9,
+            "end": 42,
+            "line": 2,
+            "original": {
+              "column": 9,
+              "data": "e",
+              "end": 37,
+              "line": 2,
+              "raw": "e",
+              "start": 36,
+              "type": "Identifier"
+            },
+            "raw": "e as f",
+            "start": 36,
+            "type": "ModuleSpecifier"
+          }
+        ],
+        "raw": "export {e as f}",
+        "source": null,
+        "start": 28,
+        "type": "ExportBindingsDeclaration"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 44,
+  "line": 1,
+  "raw": "export {a, b as c} from 'd'\nexport {e as f}\n",
+  "start": 0,
+  "type": "Program"
+}
