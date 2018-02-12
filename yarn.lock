@@ -942,9 +942,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-lex@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.npmjs.org/coffee-lex/-/coffee-lex-8.1.0.tgz#dfdcb5d802403a23375bef6dd776462ca7f1d556"
+coffee-lex@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.npmjs.org/coffee-lex/-/coffee-lex-8.1.1.tgz#d00f4388351eda23ddff8df9d706267c9608c615"
 
 coffee-script-redux@^2.0.0-beta8:
   version "2.0.0-beta8"

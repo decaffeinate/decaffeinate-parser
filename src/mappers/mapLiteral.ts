@@ -34,7 +34,7 @@ import ParseContext from '../util/ParseContext';
 import parseNumber from '../util/parseNumber';
 import parseRegExp from '../util/parseRegExp';
 
-const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimy]*)$/;
+const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimuy]*)$/;
 
 export default function mapLiteral(context: ParseContext, node: Literal): Node {
   let { line, column, start, end, raw } = getLocation(context, node);
