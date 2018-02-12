@@ -1,0 +1,96 @@
+{
+  "body": {
+    "column": 1,
+    "end": 27,
+    "inline": false,
+    "line": 1,
+    "raw": "import {a, b as c} from 'd'",
+    "start": 0,
+    "statements": [
+      {
+        "column": 1,
+        "defaultBinding": null,
+        "end": 27,
+        "line": 1,
+        "namedImports": [
+          {
+            "alias": null,
+            "column": 9,
+            "end": 9,
+            "line": 1,
+            "original": {
+              "column": 9,
+              "data": "a",
+              "end": 9,
+              "line": 1,
+              "raw": "a",
+              "start": 8,
+              "type": "Identifier"
+            },
+            "raw": "a",
+            "start": 8,
+            "type": "ModuleSpecifier"
+          },
+          {
+            "alias": {
+              "column": 17,
+              "data": "c",
+              "end": 17,
+              "line": 1,
+              "raw": "c",
+              "start": 16,
+              "type": "Identifier"
+            },
+            "column": 12,
+            "end": 17,
+            "line": 1,
+            "original": {
+              "column": 12,
+              "data": "b",
+              "end": 12,
+              "line": 1,
+              "raw": "b",
+              "start": 11,
+              "type": "Identifier"
+            },
+            "raw": "b as c",
+            "start": 11,
+            "type": "ModuleSpecifier"
+          }
+        ],
+        "namespaceImport": null,
+        "raw": "import {a, b as c} from 'd'",
+        "source": {
+          "column": 25,
+          "end": 27,
+          "expressions": [
+          ],
+          "line": 1,
+          "quasis": [
+            {
+              "column": 26,
+              "data": "d",
+              "end": 26,
+              "line": 1,
+              "raw": "d",
+              "start": 25,
+              "type": "Quasi"
+            }
+          ],
+          "raw": "'d'",
+          "start": 24,
+          "type": "String"
+        },
+        "start": 0,
+        "type": "ImportDeclaration"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 28,
+  "line": 1,
+  "raw": "import {a, b as c} from 'd'\n",
+  "start": 0,
+  "type": "Program"
+}

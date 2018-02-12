@@ -1,0 +1,53 @@
+{
+  "body": {
+    "column": 1,
+    "end": 12,
+    "inline": false,
+    "line": 1,
+    "raw": "export a = 1",
+    "start": 0,
+    "statements": [
+      {
+        "column": 1,
+        "end": 12,
+        "expression": {
+          "assignee": {
+            "column": 8,
+            "data": "a",
+            "end": 8,
+            "line": 1,
+            "raw": "a",
+            "start": 7,
+            "type": "Identifier"
+          },
+          "column": 1,
+          "end": 12,
+          "expression": {
+            "column": 12,
+            "data": 1,
+            "end": 12,
+            "line": 1,
+            "raw": "1",
+            "start": 11,
+            "type": "Int"
+          },
+          "line": 1,
+          "raw": "export a = 1",
+          "start": 0,
+          "type": "AssignOp"
+        },
+        "line": 1,
+        "raw": "export a = 1",
+        "start": 0,
+        "type": "ExportNamedDeclaration"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 13,
+  "line": 1,
+  "raw": "export a = 1\n",
+  "start": 0,
+  "type": "Program"
+}

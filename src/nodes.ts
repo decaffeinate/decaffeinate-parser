@@ -1894,3 +1894,111 @@ export class DoOp extends Node {
     return ['expression'];
   }
 }
+
+export class ImportDeclaration extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly defaultBinding: Identifier | null,
+    readonly namespaceImport: Identifier | null,
+    readonly namedImports: Array<ModuleSpecifier> | null,
+    readonly source: String,
+  ) {
+    super('ImportDeclaration', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['defaultBinding', 'namespaceImport', 'namedImports', 'source'];
+  }
+}
+
+export class ExportNamedDeclaration extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    // This may be an assignment to an identifier, or it could be another binding expression like a class.
+    readonly expression: Node,
+  ) {
+    super('ExportNamedDeclaration', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
+  }
+}
+
+export class ExportBindingsDeclaration extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly namedExports: Array<ModuleSpecifier>,
+    readonly source: String | null,
+  ) {
+    super('ExportBindingsDeclaration', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['namedExports', 'source'];
+  }
+}
+
+export class ExportDefaultDeclaration extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node,
+  ) {
+    super('ExportDefaultDeclaration', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
+  }
+}
+
+export class ExportAllDeclaration extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly source: String,
+  ) {
+    super('ExportAllDeclaration', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['source'];
+  }
+}
+
+export class ModuleSpecifier extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly original: Identifier,
+    readonly alias: Identifier | null,
+  ) {
+    super('ModuleSpecifier', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['original', 'alias'];
+  }
+}
