@@ -1,0 +1,92 @@
+{
+  "body": {
+    "column": 1,
+    "end": 13,
+    "inline": false,
+    "line": 1,
+    "raw": "s = f\"a#{b}c\"",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "s",
+          "end": 1,
+          "line": 1,
+          "raw": "s",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 13,
+        "expression": {
+          "column": 5,
+          "end": 13,
+          "line": 1,
+          "raw": "f\"a#{b}c\"",
+          "start": 4,
+          "tag": {
+            "column": 5,
+            "data": "f",
+            "end": 5,
+            "line": 1,
+            "raw": "f",
+            "start": 4,
+            "type": "Identifier"
+          },
+          "template": {
+            "column": 6,
+            "end": 13,
+            "expressions": [
+              {
+                "column": 10,
+                "data": "b",
+                "end": 10,
+                "line": 1,
+                "raw": "b",
+                "start": 9,
+                "type": "Identifier"
+              }
+            ],
+            "line": 1,
+            "quasis": [
+              {
+                "column": 7,
+                "data": "a",
+                "end": 7,
+                "line": 1,
+                "raw": "a",
+                "start": 6,
+                "type": "Quasi"
+              },
+              {
+                "column": 12,
+                "data": "c",
+                "end": 12,
+                "line": 1,
+                "raw": "c",
+                "start": 11,
+                "type": "Quasi"
+              }
+            ],
+            "raw": "\"a#{b}c\"",
+            "start": 5,
+            "type": "String"
+          },
+          "type": "TaggedTemplateLiteral"
+        },
+        "line": 1,
+        "raw": "s = f\"a#{b}c\"",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 14,
+  "line": 1,
+  "raw": "s = f\"a#{b}c\"\n",
+  "start": 0,
+  "type": "Program"
+}

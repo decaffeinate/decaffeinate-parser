@@ -1,5 +1,5 @@
 import { SourceType } from 'coffee-lex';
-import { Op as CoffeeOp } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { inspect } from 'util';
 import {
   BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExistsOp, ExpOp, EQOp, FloorDivideOp,
@@ -185,10 +185,17 @@ function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
 
 function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
   let { line, column, start, end, raw } = getLocation(context, node);
-  return new Yield(
-    line, column, start, end, raw,
-    mapAny(context, node.first)
-  );
+  if (isBareYield(node)) {
+    return new Yield(line, column, start, end, raw, null);
+  } else {
+    return new Yield(line, column, start, end, raw, mapAny(context, node.first));
+  }
+}
+
+function isBareYield(node: CoffeeOp): boolean {
+  return node.first instanceof Value &&
+    node.first.base instanceof Literal &&
+    node.first.base.value === '';
 }
 
 interface IBinaryOp {

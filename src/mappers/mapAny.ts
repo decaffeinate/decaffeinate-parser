@@ -1,6 +1,6 @@
 import {
   Arr, Assign, Base, Block, Call, Class, Code, Comment, Existence, Expansion, Extends,
-  For, If, In, Literal, ModuleDeclaration, Obj, Op, Param, Parens, Range, Return, Splat, Switch,
+  For, If, In, Literal, ModuleDeclaration, Obj, Op, Param, Parens, Range, Return, Splat, Switch, TaggedTemplateCall,
   Throw, Try, Value, While,
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Node } from '../nodes';
@@ -28,6 +28,7 @@ import mapRange from './mapRange';
 import mapReturn from './mapReturn';
 import mapSplat from './mapSplat';
 import mapSwitch from './mapSwitch';
+import mapTaggedTemplateCall from './mapTaggedTemplateCall';
 import mapThrow from './mapThrow';
 import mapTry from './mapTry';
 import mapValue from './mapValue';
@@ -44,6 +45,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Op) {
     return mapOp(context, node);
+  }
+
+  if (node instanceof TaggedTemplateCall) {
+    return mapTaggedTemplateCall(context, node);
   }
 
   if (node instanceof Call) {

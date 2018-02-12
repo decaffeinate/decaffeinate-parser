@@ -1,5 +1,5 @@
 import { For as CoffeeFor } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
-import { For, ForIn, ForOf } from '../nodes';
+import {For, ForFrom, ForIn, ForOf} from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
@@ -31,16 +31,28 @@ export default function mapFor(context: ParseContext, node: CoffeeFor): For {
       isOwn
     );
   } else {
-    let step = node.step ? mapAny(context, node.step) : null;
-
-    return new ForIn(
-      line, column, start, end, raw,
-      keyAssignee,
-      valAssignee,
-      target,
-      filter,
-      body,
-      step
-    );
+    if (node.from) {
+      if (keyAssignee) {
+        throw new Error('Unexpected key assignee in for...from.');
+      }
+      return new ForFrom(
+        line, column, start, end, raw,
+        valAssignee,
+        target,
+        filter,
+        body,
+      );
+    } else {
+      let step = node.step ? mapAny(context, node.step) : null;
+      return new ForIn(
+        line, column, start, end, raw,
+        keyAssignee,
+        valAssignee,
+        target,
+        filter,
+        body,
+        step
+      );
+    }
   }
 }

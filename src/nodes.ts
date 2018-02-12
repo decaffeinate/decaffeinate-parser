@@ -295,6 +295,24 @@ export class String extends Node {
   }
 }
 
+export class TaggedTemplateLiteral extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly tag: Node,
+    readonly template: String,
+  ) {
+    super('TaggedTemplateLiteral', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['tag', 'template'];
+  }
+}
+
 export class ObjectInitialiser extends Node {
   constructor(
     line: number,
@@ -492,6 +510,26 @@ export class ForIn extends For {
 
   getChildNames(): Array<keyof this> {
     return ['keyAssignee', 'valAssignee', 'target', 'step', 'filter', 'body'];
+  }
+}
+
+export class ForFrom extends For {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    valAssignee: Node | null,
+    target: Node,
+    filter: Node | null,
+    body: Block | null,
+  ) {
+    super('ForFrom', line, column, start, end, raw, null /* keyAssignee */, valAssignee, target, filter, body);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['keyAssignee', 'valAssignee', 'target', 'filter', 'body'];
   }
 }
 
@@ -1517,29 +1555,37 @@ export class DeleteOp extends UnaryOp {
   }
 }
 
-export class Yield extends UnaryOp {
+export class Yield extends Node {
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    readonly expression: Node | null,
   ) {
-    super('Yield', line, column, start, end, raw, expression);
+    super('Yield', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
   }
 }
 
-export class YieldFrom extends UnaryOp {
+export class YieldFrom extends Node {
   constructor(
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    readonly expression: Node,
   ) {
-    super('YieldFrom', line, column, start, end, raw, expression);
+    super('YieldFrom', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
   }
 }
 
