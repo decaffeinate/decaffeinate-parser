@@ -207,6 +207,9 @@ export default function parseCS1AsCS2(source: string): Block {
 }
 
 function convertCS1NodeToCS2(node: CS1Base): Base {
+  if (node instanceof CS1Comment) {
+    return makeCS2Comment(node);
+  }
   let cs1Constructor = node.constructor;
   let cs2Constructor = nodeTypeMap.get(cs1Constructor);
   if (!cs2Constructor) {
@@ -217,7 +220,6 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
     let value = node[key];
     if (Array.isArray(value) && value.length > 0 && value[0] instanceof CS1Base) {
       result[key] = value
-        .filter((child) => !(child instanceof CS1Comment))
         .map((child: CS1Base) => convertCS1NodeToCS2(child));
     } else if (key === 'cases') {
       // Switch cases have a complex structure, so special-case those.
@@ -238,4 +240,20 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
     }
   }
   return result;
+}
+
+/**
+ * The CS2 comment format is an empty passthrough node with comments attached. We need to keep
+ * these nodes from CS1 in some cases so that we properly determine the end of functions ending
+ * in block comments.
+ */
+function makeCS2Comment(comment: CS1Comment): Value {
+  let valueNode = Object.create(Value.prototype);
+  let passthroughNode = Object.create(PassthroughLiteral.prototype);
+  valueNode.properties = [];
+  valueNode.base = passthroughNode;
+  passthroughNode.value = '';
+  valueNode.locationData = comment.locationData;
+  passthroughNode.locationData = comment.locationData;
+  return valueNode;
 }

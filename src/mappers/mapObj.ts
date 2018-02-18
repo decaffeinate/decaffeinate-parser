@@ -1,6 +1,7 @@
 import { Assign, Obj, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { AssignOp, ObjectInitialiser, ObjectInitialiserMember } from '../nodes';
 import getLocation from '../util/getLocation';
+import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
@@ -12,6 +13,9 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
   let members: Array<ObjectInitialiserMember | AssignOp> = [];
 
   for (let property of node.properties) {
+    if (isCommentOnlyNode(property)) {
+      continue;
+    }
     let { line, column, start, end, raw } = getLocation(context, property);
 
     if (property instanceof Value) {

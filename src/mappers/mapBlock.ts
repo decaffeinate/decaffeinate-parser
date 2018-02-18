@@ -45,6 +45,9 @@ function mapChild(blockContext: ParseContext, childContext: ParseContext, node: 
 
     let statements: Array<Node> = [];
     for (let property of obj.properties) {
+      if (isCommentOnlyNode(property)) {
+        continue;
+      }
       if (property instanceof Assign) {
         let { line, column, start, end, raw } = getLocation(childContext, property);
         let key = mapAny(childContext, property.variable);

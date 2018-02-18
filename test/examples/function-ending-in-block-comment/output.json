@@ -1,10 +1,10 @@
 {
   "body": {
     "column": 1,
-    "end": 8,
+    "end": 20,
     "inline": false,
     "line": 1,
-    "raw": "a ->\n  b",
+    "raw": "a ->\n  b\n  ### c ###",
     "start": 0,
     "statements": [
       {
@@ -12,10 +12,10 @@
           {
             "body": {
               "column": 3,
-              "end": 8,
+              "end": 20,
               "inline": false,
               "line": 2,
-              "raw": "b",
+              "raw": "b\n  ### c ###",
               "start": 7,
               "statements": [
                 {
@@ -31,17 +31,17 @@
               "type": "Block"
             },
             "column": 3,
-            "end": 8,
+            "end": 20,
             "line": 1,
             "parameters": [
             ],
-            "raw": "->\n  b",
+            "raw": "->\n  b\n  ### c ###",
             "start": 2,
             "type": "Function"
           }
         ],
         "column": 1,
-        "end": 8,
+        "end": 20,
         "function": {
           "column": 1,
           "data": "a",
@@ -52,7 +52,7 @@
           "type": "Identifier"
         },
         "line": 1,
-        "raw": "a ->\n  b",
+        "raw": "a ->\n  b\n  ### c ###",
         "start": 0,
         "type": "FunctionApplication"
       }
