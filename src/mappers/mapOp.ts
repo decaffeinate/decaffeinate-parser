@@ -1,5 +1,5 @@
 import { SourceType } from 'coffee-lex';
-import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
   BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExistsOp, ExpOp, EQOp, FloorDivideOp,

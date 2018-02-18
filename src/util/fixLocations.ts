@@ -2,7 +2,7 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import {
   Assign, Base, Block, Call, Class, Code, Extends, For, If, In, Index, Literal,
   Obj, Op, Param, Slice, Switch, Try, Value, While
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import fixInvalidLocationData from './fixInvalidLocationData';
 import locationWithLastPosition from './locationWithLastPosition';
 import mergeLocations from './mergeLocations';

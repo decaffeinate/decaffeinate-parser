@@ -1,5 +1,5 @@
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
-import { Base, Block, LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base, Block, LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import LinesAndColumns from 'lines-and-columns';
 import { ClassProtoAssignOp, Constructor } from '../nodes';
 

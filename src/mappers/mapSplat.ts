@@ -1,4 +1,4 @@
-import { Splat } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Splat } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Spread } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

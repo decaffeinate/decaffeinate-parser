@@ -11,7 +11,7 @@ import {
   StringLiteral,
   ThisLiteral,
   UndefinedLiteral,
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   Bool,
   Break,

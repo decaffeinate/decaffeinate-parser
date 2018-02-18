@@ -1,5 +1,12 @@
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Call, Literal, Parens, Splat, SuperCall, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {
+  Call,
+  Literal,
+  Splat,
+  StringWithInterpolations,
+  SuperCall,
+  Value,
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
   AssignOp,
@@ -20,7 +27,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
 
   if (isHeregexTemplateNode(node, context)) {
     let firstArg = node.args[0];
-    if (!(firstArg instanceof Value) || !(firstArg.base instanceof Parens)) {
+    if (!(firstArg instanceof Value) || !(firstArg.base instanceof StringWithInterpolations)) {
       throw new Error('Expected a valid first heregex arg in the AST.');
     }
     let strNode = firstArg.base.body.expressions[0];

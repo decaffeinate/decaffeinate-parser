@@ -1,6 +1,6 @@
 import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
-import { Index, Slice } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Index, Slice } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import ParseContext from './ParseContext';
 

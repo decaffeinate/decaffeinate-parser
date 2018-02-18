@@ -1,4 +1,4 @@
-import { Op } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Op } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import isPlusTokenBetweenRanges from './isPlusTokenBetweenRanges';
 import ParseContext from './ParseContext';
 

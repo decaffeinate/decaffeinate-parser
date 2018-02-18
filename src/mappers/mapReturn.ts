@@ -1,4 +1,4 @@
-import { Return as CoffeeReturn, YieldReturn as CoffeeYieldReturn } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Return as CoffeeReturn, YieldReturn as CoffeeYieldReturn } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {Return, YieldReturn} from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

@@ -2,7 +2,7 @@ import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Base, Literal, Op, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base, Literal, Op, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Quasi } from '../nodes';
 import isImplicitPlusOp from './isImplicitPlusOp';
 import ParseContext from './ParseContext';

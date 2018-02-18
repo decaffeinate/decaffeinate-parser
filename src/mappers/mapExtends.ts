@@ -1,4 +1,4 @@
-import { Extends } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Extends } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { ExtendsOp } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
