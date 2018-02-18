@@ -1,8 +1,8 @@
 import {
-  Arr, Assign, Base, Block, Call, Class, Code, Comment, Existence, Expansion, Extends,
-  For, If, In, Literal, ModuleDeclaration, Obj, Op, Param, Parens, Range, Return, Splat, Switch, TaggedTemplateCall,
-  Throw, Try, Value, While,
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+  Arr, Assign, Base, Block, Call, Class, Code, Existence, Expansion, Extends, For, If, In, Literal, ModuleDeclaration,
+  Obj, Op, Param, Parens, Range, Return, Splat, StringWithInterpolations, Switch, TaggedTemplateCall, Throw, Try, Value,
+  While,
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
@@ -79,7 +79,7 @@ export default function mapAny(context: ParseContext, node: Base): Node {
     return mapObj(context, node);
   }
 
-  if (node instanceof Parens) {
+  if (node instanceof Parens || node instanceof StringWithInterpolations) {
     return mapParens(context, node);
   }
 
@@ -141,11 +141,6 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof ModuleDeclaration) {
     return mapModuleDeclaration(context, node);
-  }
-
-  if (node instanceof Comment) {
-    throw new UnsupportedNodeError(
-      node, 'Expected comment notes to be filtered out by mapBlock rather than processed directly.');
   }
 
   throw new UnsupportedNodeError(node);

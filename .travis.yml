@@ -10,7 +10,6 @@ node_js:
   - '9'
   - '8'
   - '6'
-  - '4'
 before_install:
   # TODO: Switch this back to yarn when greenkeeperio/greenkeeper-lockfile#98 is fixed.
   # https://github.com/greenkeeperio/greenkeeper-lockfile/issues/98

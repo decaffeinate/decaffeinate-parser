@@ -1,5 +1,5 @@
 import { SourceType } from 'coffee-lex';
-import { While as CoffeeWhile } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { While as CoffeeWhile } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Block, Loop, While } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

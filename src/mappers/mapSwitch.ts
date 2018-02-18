@@ -1,6 +1,6 @@
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceType from 'coffee-lex/dist/SourceType';
-import { Switch as CoffeeSwitch } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Switch as CoffeeSwitch } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Switch, SwitchCase } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

@@ -2,7 +2,7 @@ import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import {
   Access, Index, Literal, LocationData, Slice as CoffeeSlice, Value
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
   DynamicMemberAccessOp,

@@ -1,4 +1,4 @@
-import { For as CoffeeFor } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { For as CoffeeFor } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {For, ForFrom, ForIn, ForOf} from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

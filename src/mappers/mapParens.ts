@@ -1,17 +1,16 @@
-import {
-  Block, Comment, Parens
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import {Block, Parens, StringWithInterpolations} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node, SeqOp } from '../nodes';
+import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
-export default function mapParens(context: ParseContext, node: Parens): Node {
+export default function mapParens(context: ParseContext, node: Parens | StringWithInterpolations): Node {
   if (!(node.body instanceof Block)) {
     return mapAny(context, node.body);
   }
 
   let { expressions } = node.body;
-  expressions = expressions.filter((expr) => !(expr instanceof Comment));
+  expressions = expressions.filter((expr) => !isCommentOnlyNode(expr));
 
   if (expressions.length === 1) {
     return mapAny(context, expressions[0]);

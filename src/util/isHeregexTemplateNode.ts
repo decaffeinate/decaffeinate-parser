@@ -1,5 +1,5 @@
 import { SourceType } from 'coffee-lex';
-import { Base, Call, Literal, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base, Call, Literal, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import ParseContext from './ParseContext';
 
 /**

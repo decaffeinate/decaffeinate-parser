@@ -1,5 +1,6 @@
-import { Block as CoffeeBlock } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Block as CoffeeBlock } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Block } from '../nodes';
+import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';
 import mapBlock from './mapBlock';
 
@@ -24,6 +25,9 @@ import mapBlock from './mapBlock';
  */
 export default function mapPossiblyEmptyBlock(context: ParseContext, node: CoffeeBlock | null | undefined): Block | null {
   if (!node) {
+    return null;
+  }
+  if (node.expressions.every((expression) => isCommentOnlyNode(expression))) {
     return null;
   }
 

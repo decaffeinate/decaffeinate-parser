@@ -1,4 +1,4 @@
-import { LocationData } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 export default function locationWithLastPosition(loc: LocationData, last: LocationData): LocationData {
   return {

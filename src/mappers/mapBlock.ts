@@ -1,8 +1,9 @@
 import { SourceType } from 'coffee-lex';
-import { Assign, Base, Block as CoffeeBlock, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Assign, Base, Block as CoffeeBlock, Obj, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import { AssignOp, Block, BoundFunction, BoundGeneratorFunction, ClassProtoAssignOp, Constructor, Identifier, MemberAccessOp, Node, This } from '../nodes';
 import getLocation from '../util/getLocation';
+import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
@@ -28,7 +29,7 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
   return new Block(
     line, column, start, end, raw,
     node.expressions
-      .filter(expression => !(expression instanceof Comment))
+      .filter(expression => !isCommentOnlyNode(expression))
       .map(expression => mapChild(context, childContext, expression))
       .reduce((arr, current) => arr.concat(current), []),
     inline
@@ -44,9 +45,7 @@ function mapChild(blockContext: ParseContext, childContext: ParseContext, node: 
 
     let statements: Array<Node> = [];
     for (let property of obj.properties) {
-      if (property instanceof Comment) {
-        continue;
-      } else if (property instanceof Assign) {
+      if (property instanceof Assign) {
         let { line, column, start, end, raw } = getLocation(childContext, property);
         let key = mapAny(childContext, property.variable);
         let value = mapAny(childContext, property.value);

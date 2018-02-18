@@ -1,6 +1,6 @@
 import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
-import { If } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { If } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Conditional } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

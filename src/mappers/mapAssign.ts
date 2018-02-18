@@ -1,4 +1,4 @@
-import { Assign } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Assign } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { AssignOp, BaseAssignOp, BitAndOp, BitOrOp, BitXorOp, CompoundAssignOp, DivideOp, ExistsOp, ExpOp, FloorDivideOp, LeftShiftOp, LogicalAndOp, LogicalOrOp, ModuloOp, MultiplyOp, PlusOp, RemOp, SignedRightShiftOp, SubtractOp, UnsignedRightShiftOp } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

@@ -1,4 +1,4 @@
-import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 
 export default class UnsupportedNodeError extends Error {

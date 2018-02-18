@@ -1,7 +1,7 @@
 import { SourceType } from 'coffee-lex';
 import SourceToken from 'coffee-lex/dist/SourceToken';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
-import { Base } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import ParseContext from './ParseContext';
 

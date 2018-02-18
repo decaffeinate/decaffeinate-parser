@@ -31,17 +31,7 @@
             "start": 7,
             "type": "Identifier"
           },
-          "consequent": {
-            "column": 1,
-            "end": 12,
-            "inline": false,
-            "line": 2,
-            "raw": ";",
-            "start": 11,
-            "statements": [
-            ],
-            "type": "Block"
-          },
+          "consequent": null,
           "end": 12,
           "isUnless": false,
           "line": 1,

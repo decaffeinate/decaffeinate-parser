@@ -1,4 +1,4 @@
-import { Range as CoffeeRange } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Range as CoffeeRange } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import { Range } from '../nodes';
 import getLocation from '../util/getLocation';

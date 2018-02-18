@@ -1,14 +1,14 @@
 import lex from 'coffee-lex';
-import * as CoffeeScript from 'decaffeinate-coffeescript';
 import { patchCoffeeScript } from './ext/coffee-script';
 import mapProgram from './mappers/mapProgram';
 import { Node, Program } from './nodes';
+import parseCS1AsCS2 from './parseCS1AsCS2';
 import fixLocations from './util/fixLocations';
 import ParseContext from './util/ParseContext';
 
 export function parse(source: string): Program {
   patchCoffeeScript();
-  let context = ParseContext.fromSource(source, lex, CoffeeScript.nodes);
+  let context = ParseContext.fromSource(source, lex, parseCS1AsCS2);
   fixLocations(context, context.ast);
   let program = mapProgram(context);
   traverse(program, (node, parent) => {

@@ -1,4 +1,4 @@
-import { Assign, Comment, Obj, Value } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Assign, Obj, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { AssignOp, ObjectInitialiser, ObjectInitialiserMember } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
@@ -41,8 +41,6 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         assignee,
         expression
       ));
-    } else if (property instanceof Comment) {
-      // Ignore.
     } else {
       throw new UnsupportedNodeError(property, 'Unexpected object member.');
     }

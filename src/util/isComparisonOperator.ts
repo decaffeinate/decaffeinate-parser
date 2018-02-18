@@ -1,4 +1,4 @@
-import { Base, Op } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+import { Base, Op } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 export default function isComparisonOperator(node: Base): boolean {
   if (!(node instanceof Op)) {
