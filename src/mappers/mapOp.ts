@@ -1,4 +1,5 @@
 import { SourceType } from 'coffee-lex';
+import SourceToken from 'coffee-lex/dist/SourceToken';
 import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
@@ -286,6 +287,10 @@ class TemporaryBinaryOp extends BinaryOp {
   }
 }
 
+function tokenStartsWith(prefix: string, context: ParseContext, token: SourceToken): boolean {
+  return context.source.slice(token.start, token.start + prefix.length) === prefix;
+}
+
 function mapNegateableBinaryOp<T extends INegateableBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
   let { line, column, start, end, raw, left, right } = mapBinaryOp(context, node, TemporaryBinaryOp);
 
@@ -297,7 +302,7 @@ function mapNegateableBinaryOp<T extends INegateableBinaryOp>(context: ParseCont
     for (let i = lastTokenIndexOfLeft.next(); i && i !== firstTokenIndexOfRight; i = i.next()) {
       let token = context.sourceTokens.tokenAtIndex(i);
       if (token && (token.type === SourceType.OPERATOR || token.type === SourceType.RELATION)) {
-        isNot = context.source.slice(token.start, token.start + 'not'.length) === 'not';
+        isNot = tokenStartsWith('not', context, token) || tokenStartsWith('!', context, token);
         break;
       }
     }
