@@ -1,10 +1,10 @@
 {
   "body": {
     "column": 1,
-    "end": 10,
+    "end": 18,
     "inline": false,
     "line": 1,
-    "raw": "a not of b",
+    "raw": "a not of b\na !of b",
     "start": 0,
     "statements": [
       {
@@ -33,14 +33,41 @@
         },
         "start": 0,
         "type": "OfOp"
+      },
+      {
+        "column": 1,
+        "end": 18,
+        "isNot": true,
+        "left": {
+          "column": 1,
+          "data": "a",
+          "end": 12,
+          "line": 2,
+          "raw": "a",
+          "start": 11,
+          "type": "Identifier"
+        },
+        "line": 2,
+        "raw": "a !of b",
+        "right": {
+          "column": 7,
+          "data": "b",
+          "end": 18,
+          "line": 2,
+          "raw": "b",
+          "start": 17,
+          "type": "Identifier"
+        },
+        "start": 11,
+        "type": "OfOp"
       }
     ],
     "type": "Block"
   },
   "column": 1,
-  "end": 10,
+  "end": 19,
   "line": 1,
-  "raw": "a not of b",
+  "raw": "a not of b\na !of b\n",
   "start": 0,
   "type": "Program"
 }
