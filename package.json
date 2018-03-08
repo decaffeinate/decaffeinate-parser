@@ -51,7 +51,7 @@
     "coffee-script-redux": "^2.0.0-beta8",
     "eslint": "^4.15.0",
     "mocha": "^5.0.0",
-    "semantic-release": "^8.2.0",
+    "semantic-release": "^15.0.0",
     "string-repeat": "^1.1.1",
     "ts-node": "^5.0.0",
     "tslint": "^5.8.0",
