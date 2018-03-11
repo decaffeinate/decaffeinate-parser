@@ -3,12 +3,22 @@ import { patchCoffeeScript } from './ext/coffee-script';
 import mapProgram from './mappers/mapProgram';
 import { Node, Program } from './nodes';
 import parseCS1AsCS2 from './parseCS1AsCS2';
+import parseCS2 from './parseCS2';
 import fixLocations from './util/fixLocations';
 import ParseContext from './util/ParseContext';
 
-export function parse(source: string): Program {
+export type Options = {
+  useCS2: boolean;
+};
+
+export const DEFAULT_OPTIONS: Options = {
+  useCS2: false,
+};
+
+export function parse(source: string, options: Options = DEFAULT_OPTIONS): Program {
   patchCoffeeScript();
-  let context = ParseContext.fromSource(source, lex, parseCS1AsCS2);
+  let parse = options.useCS2 ? parseCS2 : parseCS1AsCS2;
+  let context = ParseContext.fromSource(source, lex, parse);
   fixLocations(context, context.ast);
   let program = mapProgram(context);
   traverse(program, (node, parent) => {

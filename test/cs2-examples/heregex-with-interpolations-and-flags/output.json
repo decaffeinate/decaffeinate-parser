@@ -1,22 +1,23 @@
 {
   "body": {
     "column": 1,
-    "end": 7,
+    "end": 30,
     "inline": false,
     "line": 1,
-    "raw": "/// ///",
+    "raw": "///\n  abc # def #{ghi} j\n///gi",
     "start": 0,
     "statements": [
       {
         "column": 1,
-        "end": 7,
+        "end": 30,
         "expressions": [
+          null
         ],
         "flags": {
-          "g": false,
-          "global": false,
-          "i": false,
-          "ignoreCase": false,
+          "g": true,
+          "global": true,
+          "i": true,
+          "ignoreCase": true,
           "m": false,
           "multiline": false,
           "sticky": false,
@@ -28,15 +29,24 @@
         "quasis": [
           {
             "column": 4,
-            "data": "/(?:)/",
-            "end": 4,
+            "data": "",
+            "end": 16,
             "line": 1,
-            "raw": " ",
+            "raw": "\n  abc # def ",
             "start": 3,
+            "type": "Quasi"
+          },
+          {
+            "column": 19,
+            "data": "",
+            "end": 25,
+            "line": 2,
+            "raw": " j\n",
+            "start": 22,
             "type": "Quasi"
           }
         ],
-        "raw": "/// ///",
+        "raw": "///\n  abc # def #{ghi} j\n///gi",
         "start": 0,
         "type": "Heregex"
       }
@@ -44,9 +54,9 @@
     "type": "Block"
   },
   "column": 1,
-  "end": 46,
+  "end": 31,
   "line": 1,
-  "raw": "/// ///  # This has a \\u2028 character in it.\n",
+  "raw": "///\n  abc # def #{ghi} j\n///gi\n",
   "start": 0,
   "type": "Program"
 }
