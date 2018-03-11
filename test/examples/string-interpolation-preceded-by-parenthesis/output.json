@@ -1,58 +1,58 @@
 {
   "body": {
     "column": 1,
-    "end": 65,
+    "end": 7,
     "inline": false,
-    "line": 2,
+    "line": 1,
     "raw": "\"(#{a}\"",
-    "start": 58,
+    "start": 0,
     "statements": [
       {
         "column": 1,
-        "end": 65,
+        "end": 7,
         "expressions": [
           {
             "column": 5,
             "data": "a",
-            "end": 63,
-            "line": 2,
+            "end": 5,
+            "line": 1,
             "raw": "a",
-            "start": 62,
+            "start": 4,
             "type": "Identifier"
           }
         ],
-        "line": 2,
+        "line": 1,
         "quasis": [
           {
             "column": 2,
             "data": "(",
-            "end": 60,
-            "line": 2,
+            "end": 2,
+            "line": 1,
             "raw": "(",
-            "start": 59,
+            "start": 1,
             "type": "Quasi"
           },
           {
             "column": 7,
             "data": "",
-            "end": 64,
-            "line": 2,
+            "end": 6,
+            "line": 1,
             "raw": "",
-            "start": 64,
+            "start": 6,
             "type": "Quasi"
           }
         ],
         "raw": "\"(#{a}\"",
-        "start": 58,
+        "start": 0,
         "type": "String"
       }
     ],
     "type": "Block"
   },
   "column": 1,
-  "end": 66,
+  "end": 67,
   "line": 1,
-  "raw": "# https://github.com/decaffeinate/decaffeinate/issues/212\n\"(#{a}\"\n",
+  "raw": "\"(#{a}\"  # https://github.com/decaffeinate/decaffeinate/issues/212\n",
   "start": 0,
   "type": "Program"
 }

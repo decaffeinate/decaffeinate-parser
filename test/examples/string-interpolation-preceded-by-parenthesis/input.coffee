@@ -1,2 +1,1 @@
-# https://github.com/decaffeinate/decaffeinate/issues/212
-"(#{a}"
+"(#{a}"  # https://github.com/decaffeinate/decaffeinate/issues/212
