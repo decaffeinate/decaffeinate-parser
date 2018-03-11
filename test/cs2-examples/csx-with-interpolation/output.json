@@ -1,0 +1,69 @@
+{
+  "body": {
+    "column": 1,
+    "end": 47,
+    "inline": false,
+    "line": 1,
+    "raw": "x = <div>\n  foo\n  <blah />\n  {bar}\n  baz\n</div>",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "x",
+          "end": 1,
+          "line": 1,
+          "raw": "x",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 47,
+        "expression": {
+          "children": [
+            {
+              "children": [
+              ],
+              "column": 3,
+              "end": 26,
+              "line": 3,
+              "properties": [
+              ],
+              "raw": "<blah />",
+              "start": 18,
+              "type": "CSXElement"
+            },
+            {
+              "column": 4,
+              "data": "bar",
+              "end": 33,
+              "line": 4,
+              "raw": "bar",
+              "start": 30,
+              "type": "Identifier"
+            }
+          ],
+          "column": 5,
+          "end": 47,
+          "line": 1,
+          "properties": [
+          ],
+          "raw": "<div>\n  foo\n  <blah />\n  {bar}\n  baz\n</div>",
+          "start": 4,
+          "type": "CSXElement"
+        },
+        "line": 1,
+        "raw": "x = <div>\n  foo\n  <blah />\n  {bar}\n  baz\n</div>",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 48,
+  "line": 1,
+  "raw": "x = <div>\n  foo\n  <blah />\n  {bar}\n  baz\n</div>\n",
+  "start": 0,
+  "type": "Program"
+}
