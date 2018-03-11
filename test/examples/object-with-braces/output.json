@@ -24,6 +24,7 @@
               "start": 4,
               "type": "Int"
             },
+            "isComputed": false,
             "key": {
               "column": 2,
               "data": "a",

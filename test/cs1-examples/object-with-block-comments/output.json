@@ -36,6 +36,7 @@
                 "start": 46,
                 "type": "Int"
               },
+              "isComputed": false,
               "key": {
                 "column": 3,
                 "data": "a",

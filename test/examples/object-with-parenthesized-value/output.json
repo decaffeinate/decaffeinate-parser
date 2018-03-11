@@ -24,6 +24,7 @@
               "start": 5,
               "type": "Identifier"
             },
+            "isComputed": false,
             "key": {
               "column": 2,
               "data": "a",
@@ -42,6 +43,7 @@
             "column": 10,
             "end": 10,
             "expression": null,
+            "isComputed": false,
             "key": {
               "column": 10,
               "data": "c",

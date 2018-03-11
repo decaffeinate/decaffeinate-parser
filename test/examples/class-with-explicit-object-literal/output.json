@@ -33,6 +33,7 @@
                     "start": 14,
                     "type": "Identifier"
                   },
+                  "isComputed": false,
                   "key": {
                     "column": 4,
                     "data": "b",

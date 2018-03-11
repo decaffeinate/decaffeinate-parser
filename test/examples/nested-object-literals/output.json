@@ -32,6 +32,7 @@
                     "start": 8,
                     "type": "Identifier"
                   },
+                  "isComputed": false,
                   "key": {
                     "column": 3,
                     "data": "b",
@@ -51,6 +52,7 @@
               "start": 5,
               "type": "ObjectInitialiser"
             },
+            "isComputed": false,
             "key": {
               "column": 1,
               "data": "a",

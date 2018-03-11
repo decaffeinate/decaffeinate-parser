@@ -24,6 +24,7 @@
               "start": 7,
               "type": "Int"
             },
+            "isComputed": false,
             "key": {
               "column": 3,
               "data": "a",
@@ -50,6 +51,7 @@
               "start": 15,
               "type": "Int"
             },
+            "isComputed": false,
             "key": {
               "column": 3,
               "data": "b",

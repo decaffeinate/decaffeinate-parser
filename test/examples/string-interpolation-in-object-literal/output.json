@@ -54,6 +54,7 @@
               "start": 4,
               "type": "String"
             },
+            "isComputed": false,
             "key": {
               "column": 2,
               "data": "a",

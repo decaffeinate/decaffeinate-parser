@@ -320,7 +320,7 @@ export class ObjectInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly members: Array<ObjectInitialiserMember | AssignOp>,
+    readonly members: Array<ObjectInitialiserMember | AssignOp | Spread>,
   ) {
     super('ObjectInitialiser', line, column, start, end, raw);
   }
@@ -340,6 +340,7 @@ export class ObjectInitialiserMember extends Node {
     readonly key: Node,
     // If null, this is a shorthand initializer and the key and value are the same.
     readonly expression: Node | null,
+    readonly isComputed: boolean,
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
   }
@@ -725,6 +726,23 @@ export class YieldReturn extends Node {
     readonly expression: Node | null,
   ) {
     super('YieldReturn', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
+  }
+}
+
+export class AwaitReturn extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node | null,
+  ) {
+    super('AwaitReturn', line, column, start, end, raw);
   }
 
   getChildNames(): Array<keyof this> {
@@ -1590,6 +1608,23 @@ export class YieldFrom extends Node {
     readonly expression: Node,
   ) {
     super('YieldFrom', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['expression'];
+  }
+}
+
+export class Await extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly expression: Node,
+  ) {
+    super('Await', line, column, start, end, raw);
   }
 
   getChildNames(): Array<keyof this> {

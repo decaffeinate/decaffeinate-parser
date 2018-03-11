@@ -1,0 +1,92 @@
+{
+  "body": {
+    "column": 1,
+    "end": 16,
+    "inline": false,
+    "line": 1,
+    "raw": "o = {\n  [a]: b\n}",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "o",
+          "end": 1,
+          "line": 1,
+          "raw": "o",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 16,
+        "expression": {
+          "column": 5,
+          "end": 16,
+          "line": 1,
+          "members": [
+            {
+              "column": 3,
+              "end": 14,
+              "expression": {
+                "column": 8,
+                "data": "b",
+                "end": 14,
+                "line": 2,
+                "raw": "b",
+                "start": 13,
+                "type": "Identifier"
+              },
+              "isComputed": true,
+              "key": {
+                "column": 3,
+                "data": {
+                  "base": {
+                    "locationData": {
+                      "first_column": 3,
+                      "first_line": 1,
+                      "last_column": 3,
+                      "last_line": 1
+                    },
+                    "value": "a"
+                  },
+                  "isDefaultValue": false,
+                  "locationData": {
+                    "first_column": 3,
+                    "first_line": 1,
+                    "last_column": 3,
+                    "last_line": 1
+                  },
+                  "properties": [
+                  ]
+                },
+                "end": 11,
+                "line": 2,
+                "raw": "[a]",
+                "start": 8,
+                "type": "Identifier"
+              },
+              "line": 2,
+              "raw": "[a]: b",
+              "start": 8,
+              "type": "ObjectInitialiserMember"
+            }
+          ],
+          "raw": "{\n  [a]: b\n}",
+          "start": 4,
+          "type": "ObjectInitialiser"
+        },
+        "line": 1,
+        "raw": "o = {\n  [a]: b\n}",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 17,
+  "line": 1,
+  "raw": "o = {\n  [a]: b\n}\n",
+  "start": 0,
+  "type": "Program"
+}

@@ -3,11 +3,51 @@ import SourceToken from 'coffee-lex/dist/SourceToken';
 import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
-  BinaryOp, BitAndOp, BitNotOp, BitOrOp, BitXorOp, ChainedComparisonOp, DeleteOp, DivideOp, ExistsOp, ExpOp, EQOp, FloorDivideOp,
-  GTEOp, GTOp, InstanceofOp, LeftShiftOp, LogicalAndOp, LogicalNotOp, LogicalOrOp, LTEOp, LTOp, ModuloOp, MultiplyOp,
-  NewOp, Node, NEQOp, OfOp, Op, OperatorInfo, PlusOp, PostDecrementOp, PostIncrementOp,
-  PreDecrementOp, PreIncrementOp, RemOp, SignedRightShiftOp, SubtractOp, TypeofOp, UnaryNegateOp, UnaryOp, UnaryPlusOp,
-  UnsignedRightShiftOp, Yield, YieldFrom, YieldReturn
+  Await,
+  BinaryOp,
+  BitAndOp,
+  BitNotOp,
+  BitOrOp,
+  BitXorOp,
+  ChainedComparisonOp,
+  DeleteOp,
+  DivideOp,
+  ExistsOp,
+  ExpOp,
+  EQOp,
+  FloorDivideOp,
+  GTEOp,
+  GTOp,
+  InstanceofOp,
+  LeftShiftOp,
+  LogicalAndOp,
+  LogicalNotOp,
+  LogicalOrOp,
+  LTEOp,
+  LTOp,
+  ModuloOp,
+  MultiplyOp,
+  NewOp,
+  Node,
+  NEQOp,
+  OfOp,
+  Op,
+  OperatorInfo,
+  PlusOp,
+  PostDecrementOp,
+  PostIncrementOp,
+  PreDecrementOp,
+  PreIncrementOp,
+  RemOp,
+  SignedRightShiftOp,
+  SubtractOp,
+  TypeofOp,
+  UnaryNegateOp,
+  UnaryOp,
+  UnaryPlusOp,
+  UnsignedRightShiftOp,
+  Yield,
+  YieldFrom,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
@@ -154,6 +194,9 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
 
     case 'yield*':
       return mapUnaryOp(context, node, YieldFrom);
+
+    case 'await':
+      return mapUnaryOp(context, node, Await);
   }
 
   throw new UnsupportedNodeError(node);
@@ -184,7 +227,7 @@ function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
   );
 }
 
-function mapYieldOp(context: ParseContext, node: CoffeeOp): YieldReturn | Yield {
+function mapYieldOp(context: ParseContext, node: CoffeeOp): Yield {
   let { line, column, start, end, raw } = getLocation(context, node);
   if (isBareYield(node)) {
     return new Yield(line, column, start, end, raw, null);
