@@ -1,0 +1,84 @@
+{
+  "body": {
+    "column": 1,
+    "end": 22,
+    "inline": false,
+    "line": 1,
+    "raw": "f = ->\n  await sleep()",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "f",
+          "end": 1,
+          "line": 1,
+          "raw": "f",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 22,
+        "expression": {
+          "body": {
+            "column": 3,
+            "end": 22,
+            "inline": false,
+            "line": 2,
+            "raw": "await sleep()",
+            "start": 9,
+            "statements": [
+              {
+                "column": 3,
+                "end": 22,
+                "expression": {
+                  "arguments": [
+                  ],
+                  "column": 9,
+                  "end": 22,
+                  "function": {
+                    "column": 9,
+                    "data": "sleep",
+                    "end": 20,
+                    "line": 2,
+                    "raw": "sleep",
+                    "start": 15,
+                    "type": "Identifier"
+                  },
+                  "line": 2,
+                  "raw": "sleep()",
+                  "start": 15,
+                  "type": "FunctionApplication"
+                },
+                "line": 2,
+                "raw": "await sleep()",
+                "start": 9,
+                "type": "Await"
+              }
+            ],
+            "type": "Block"
+          },
+          "column": 5,
+          "end": 22,
+          "line": 1,
+          "parameters": [
+          ],
+          "raw": "->\n  await sleep()",
+          "start": 4,
+          "type": "Function"
+        },
+        "line": 1,
+        "raw": "f = ->\n  await sleep()",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 23,
+  "line": 1,
+  "raw": "f = ->\n  await sleep()\n",
+  "start": 0,
+  "type": "Program"
+}

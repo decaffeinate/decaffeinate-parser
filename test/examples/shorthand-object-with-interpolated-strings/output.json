@@ -28,6 +28,7 @@
               "column": 6,
               "end": 13,
               "expression": null,
+              "isComputed": false,
               "key": {
                 "column": 6,
                 "end": 13,

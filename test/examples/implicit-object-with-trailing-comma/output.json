@@ -36,6 +36,7 @@
                 "start": 9,
                 "type": "Identifier"
               },
+              "isComputed": false,
               "key": {
                 "column": 3,
                 "data": "b",
@@ -62,6 +63,7 @@
                 "start": 17,
                 "type": "Identifier"
               },
+              "isComputed": false,
               "key": {
                 "column": 3,
                 "data": "d",

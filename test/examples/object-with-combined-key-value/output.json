@@ -16,6 +16,7 @@
             "column": 3,
             "end": 3,
             "expression": null,
+            "isComputed": false,
             "key": {
               "column": 3,
               "data": "a",
@@ -42,6 +43,7 @@
               "start": 8,
               "type": "Int"
             },
+            "isComputed": false,
             "key": {
               "column": 6,
               "data": "b",

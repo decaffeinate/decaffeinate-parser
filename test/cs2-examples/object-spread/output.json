@@ -1,0 +1,82 @@
+{
+  "body": {
+    "column": 1,
+    "end": 13,
+    "inline": false,
+    "line": 1,
+    "raw": "o = {a..., b}",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "o",
+          "end": 1,
+          "line": 1,
+          "raw": "o",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 13,
+        "expression": {
+          "column": 5,
+          "end": 13,
+          "line": 1,
+          "members": [
+            {
+              "column": 6,
+              "end": 9,
+              "expression": {
+                "column": 6,
+                "data": "a",
+                "end": 6,
+                "line": 1,
+                "raw": "a",
+                "start": 5,
+                "type": "Identifier"
+              },
+              "line": 1,
+              "raw": "a...",
+              "start": 5,
+              "type": "Spread"
+            },
+            {
+              "column": 12,
+              "end": 12,
+              "expression": null,
+              "isComputed": false,
+              "key": {
+                "column": 12,
+                "data": "b",
+                "end": 12,
+                "line": 1,
+                "raw": "b",
+                "start": 11,
+                "type": "Identifier"
+              },
+              "line": 1,
+              "raw": "b",
+              "start": 11,
+              "type": "ObjectInitialiserMember"
+            }
+          ],
+          "raw": "{a..., b}",
+          "start": 4,
+          "type": "ObjectInitialiser"
+        },
+        "line": 1,
+        "raw": "o = {a..., b}",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 14,
+  "line": 1,
+  "raw": "o = {a..., b}\n",
+  "start": 0,
+  "type": "Program"
+}

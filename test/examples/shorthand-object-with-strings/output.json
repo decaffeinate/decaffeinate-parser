@@ -28,6 +28,7 @@
               "column": 6,
               "end": 10,
               "expression": null,
+              "isComputed": false,
               "key": {
                 "column": 6,
                 "end": 10,
@@ -58,6 +59,7 @@
               "column": 13,
               "end": 17,
               "expression": null,
+              "isComputed": false,
               "key": {
                 "column": 13,
                 "end": 17,
@@ -88,6 +90,7 @@
               "column": 20,
               "end": 24,
               "expression": null,
+              "isComputed": false,
               "key": {
                 "column": 20,
                 "end": 24,

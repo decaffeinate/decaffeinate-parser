@@ -53,6 +53,7 @@
                           "start": 22,
                           "type": "Identifier"
                         },
+                        "isComputed": false,
                         "key": {
                           "column": 5,
                           "data": "c",

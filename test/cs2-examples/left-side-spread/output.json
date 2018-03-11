@@ -1,0 +1,72 @@
+{
+  "body": {
+    "column": 1,
+    "end": 13,
+    "inline": false,
+    "line": 1,
+    "raw": "a = [...b, c]",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "a",
+          "end": 1,
+          "line": 1,
+          "raw": "a",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 13,
+        "expression": {
+          "column": 5,
+          "end": 13,
+          "line": 1,
+          "members": [
+            {
+              "column": 6,
+              "end": 9,
+              "expression": {
+                "column": 9,
+                "data": "b",
+                "end": 9,
+                "line": 1,
+                "raw": "b",
+                "start": 8,
+                "type": "Identifier"
+              },
+              "line": 1,
+              "raw": "...b",
+              "start": 5,
+              "type": "Spread"
+            },
+            {
+              "column": 12,
+              "data": "c",
+              "end": 12,
+              "line": 1,
+              "raw": "c",
+              "start": 11,
+              "type": "Identifier"
+            }
+          ],
+          "raw": "[...b, c]",
+          "start": 4,
+          "type": "ArrayInitialiser"
+        },
+        "line": 1,
+        "raw": "a = [...b, c]",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 14,
+  "line": 1,
+  "raw": "a = [...b, c]\n",
+  "start": 0,
+  "type": "Program"
+}

@@ -113,6 +113,7 @@
                   "start": 9,
                   "type": "Function"
                 },
+                "isComputed": false,
                 "key": {
                   "column": 3,
                   "data": "b",

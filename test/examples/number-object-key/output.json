@@ -36,6 +36,7 @@
                 "start": 15,
                 "type": "Int"
               },
+              "isComputed": false,
               "key": {
                 "column": 8,
                 "data": "length",
@@ -74,6 +75,7 @@
                 "start": 21,
                 "type": "String"
               },
+              "isComputed": false,
               "key": {
                 "column": 19,
                 "data": 0,
@@ -100,6 +102,7 @@
                 "start": 36,
                 "type": "Int"
               },
+              "isComputed": false,
               "key": {
                 "column": 31,
                 "data": 3.14,
