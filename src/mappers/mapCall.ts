@@ -21,9 +21,14 @@ import ParseContext from '../util/ParseContext';
 import parseString from '../util/parseString';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
+import mapCSX from './mapCSX';
 
 export default function mapCall(context: ParseContext, node: Call): Node {
   let { line, column, start, end, raw } = getLocation(context, node);
+
+  if (node.csx) {
+    return mapCSX(context, node);
+  }
 
   if (isHeregexTemplateNode(node, context)) {
     let firstArg = node.args[0];

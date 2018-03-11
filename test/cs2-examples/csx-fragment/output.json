@@ -1,0 +1,72 @@
+{
+  "body": {
+    "column": 1,
+    "end": 52,
+    "inline": false,
+    "line": 1,
+    "raw": "x = <>\n  <span>Hello</span>\n  <span>World</span>\n</>",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "x",
+          "end": 1,
+          "line": 1,
+          "raw": "x",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 52,
+        "expression": {
+          "children": [
+            {
+              "children": [
+              ],
+              "column": 3,
+              "end": 27,
+              "line": 2,
+              "properties": [
+              ],
+              "raw": "<span>Hello</span>",
+              "start": 9,
+              "type": "CSXElement"
+            },
+            {
+              "children": [
+              ],
+              "column": 3,
+              "end": 48,
+              "line": 3,
+              "properties": [
+              ],
+              "raw": "<span>World</span>",
+              "start": 30,
+              "type": "CSXElement"
+            }
+          ],
+          "column": 5,
+          "end": 52,
+          "line": 1,
+          "properties": [
+          ],
+          "raw": "<>\n  <span>Hello</span>\n  <span>World</span>\n</>",
+          "start": 4,
+          "type": "CSXElement"
+        },
+        "line": 1,
+        "raw": "x = <>\n  <span>Hello</span>\n  <span>World</span>\n</>",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 53,
+  "line": 1,
+  "raw": "x = <>\n  <span>Hello</span>\n  <span>World</span>\n</>\n",
+  "start": 0,
+  "type": "Program"
+}

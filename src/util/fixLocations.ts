@@ -107,7 +107,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Call) {
-    if (node.variable && !node.do) {
+    if (node.variable && !node.do && !node.csx) {
       // `super` won't have a callee (i.e. `node.variable`)
       let calleeLoc = node.variable.locationData;
       let calleeEnd = linesAndColumns.indexForLocation({

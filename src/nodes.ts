@@ -2091,3 +2091,21 @@ export class ModuleSpecifier extends Node {
     return ['original', 'alias'];
   }
 }
+
+export class CSXElement extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    readonly properties: Array<Node>,
+    readonly children: Array<Node | null>,
+  ) {
+    super('CSXElement', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return ['properties', 'children'];
+  }
+}

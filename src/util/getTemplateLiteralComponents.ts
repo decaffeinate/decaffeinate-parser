@@ -46,13 +46,20 @@ export default function getTemplateLiteralComponents(context: ParseContext, node
     if (!token) {
       break;
     }
-    if (token.type === SourceType.INTERPOLATION_START) {
+    if (
+      token.type === SourceType.INTERPOLATION_START ||
+      token.type === SourceType.CSX_OPEN_TAG_START
+    ) {
       depth++;
       if (depth === 1) {
         quasis.push(findQuasi(lastToken, token, context, elements));
         lastToken = token;
       }
-    } else if (token.type === SourceType.INTERPOLATION_END) {
+    } else if (
+      token.type === SourceType.INTERPOLATION_END ||
+      token.type === SourceType.CSX_SELF_CLOSING_TAG_END ||
+      token.type === SourceType.CSX_CLOSE_TAG_END
+    ) {
       depth--;
       if (depth === 0) {
         unmappedExpressions.push(findExpression(lastToken, token, context, elements));
@@ -169,6 +176,7 @@ function isTemplateLiteralStart(token: SourceToken): boolean {
     SourceType.TDSTRING_START,
     SourceType.TSSTRING_START,
     SourceType.HEREGEXP_START,
+    SourceType.CSX_OPEN_TAG_END,
   ].indexOf(token.type) >= 0;
 }
 
@@ -179,5 +187,6 @@ function isTemplateLiteralEnd(token: SourceToken): boolean {
     SourceType.TDSTRING_END,
     SourceType.TSSTRING_END,
     SourceType.HEREGEXP_END,
+    SourceType.CSX_CLOSE_TAG_START,
   ].indexOf(token.type) >= 0;
 }

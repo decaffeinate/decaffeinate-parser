@@ -1,0 +1,83 @@
+{
+  "body": {
+    "column": 1,
+    "end": 59,
+    "inline": false,
+    "line": 1,
+    "raw": "x = <Test foo={bar} {...props} a={b} c='d' baz>hello</Test>",
+    "start": 0,
+    "statements": [
+      {
+        "assignee": {
+          "column": 1,
+          "data": "x",
+          "end": 1,
+          "line": 1,
+          "raw": "x",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "column": 1,
+        "end": 59,
+        "expression": {
+          "children": [
+          ],
+          "column": 5,
+          "end": 59,
+          "line": 1,
+          "properties": [
+            {
+              "column": 16,
+              "data": "bar",
+              "end": 18,
+              "line": 1,
+              "raw": "bar",
+              "start": 15,
+              "type": "Identifier"
+            },
+            {
+              "column": 22,
+              "end": 29,
+              "expression": {
+                "column": 25,
+                "data": "props",
+                "end": 29,
+                "line": 1,
+                "raw": "props",
+                "start": 24,
+                "type": "Identifier"
+              },
+              "line": 1,
+              "raw": "...props",
+              "start": 21,
+              "type": "Spread"
+            },
+            {
+              "column": 35,
+              "data": "b",
+              "end": 35,
+              "line": 1,
+              "raw": "b",
+              "start": 34,
+              "type": "Identifier"
+            }
+          ],
+          "raw": "<Test foo={bar} {...props} a={b} c='d' baz>hello</Test>",
+          "start": 4,
+          "type": "CSXElement"
+        },
+        "line": 1,
+        "raw": "x = <Test foo={bar} {...props} a={b} c='d' baz>hello</Test>",
+        "start": 0,
+        "type": "AssignOp"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 60,
+  "line": 1,
+  "raw": "x = <Test foo={bar} {...props} a={b} c='d' baz>hello</Test>\n",
+  "start": 0,
+  "type": "Program"
+}
