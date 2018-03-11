@@ -29,7 +29,7 @@
     "babylon": "^6.18.0",
     "coffee-lex": "^8.1.2",
     "decaffeinate-coffeescript": "1.12.7-patch.2",
-    "decaffeinate-coffeescript2": "2.2.1-patch.1",
+    "decaffeinate-coffeescript2": "2.2.1-patch.2",
     "json-stable-stringify": "^1.0.1",
     "lines-and-columns": "^1.1.6"
   },
