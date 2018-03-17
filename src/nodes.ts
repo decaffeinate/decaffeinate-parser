@@ -856,6 +856,22 @@ export class Expansion extends Node {
   }
 }
 
+export class Elision extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+  ) {
+    super('Elision', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this> {
+    return [];
+  }
+}
+
 export class Break extends Node {
   constructor(
     line: number,

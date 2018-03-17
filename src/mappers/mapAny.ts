@@ -1,6 +1,33 @@
 import {
-  Arr, Assign, Base, Block, Call, Class, Code, Existence, Expansion, Extends, For, If, In, Literal, ModuleDeclaration,
-  Obj, Op, Param, Parens, Range, Return, Splat, StringWithInterpolations, Switch, TaggedTemplateCall, Throw, Try, Value,
+  Arr,
+  Assign,
+  Base,
+  Block,
+  Call,
+  Class,
+  Code,
+  Elision,
+  Existence,
+  Expansion,
+  Extends,
+  For,
+  If,
+  In,
+  Literal,
+  ModuleDeclaration,
+  Obj,
+  Op,
+  Param,
+  Parens,
+  Range,
+  Return,
+  Splat,
+  StringWithInterpolations,
+  Switch,
+  TaggedTemplateCall,
+  Throw,
+  Try,
+  Value,
   While,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node } from '../nodes';
@@ -12,6 +39,7 @@ import mapBlock from './mapBlock';
 import mapCall from './mapCall';
 import mapClass from './mapClass';
 import mapCode from './mapCode';
+import mapElision from './mapElision';
 import mapExistence from './mapExistence';
 import mapExpansion from './mapExpansion';
 import mapExtends from './mapExtends';
@@ -121,6 +149,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Expansion) {
     return mapExpansion(context, node);
+  }
+
+  if (node instanceof Elision) {
+    return mapElision(context, node);
   }
 
   if (node instanceof Switch) {
