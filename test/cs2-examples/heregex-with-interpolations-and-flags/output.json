@@ -11,7 +11,6 @@
         "column": 1,
         "end": 30,
         "expressions": [
-          null
         ],
         "flags": {
           "g": true,
@@ -29,20 +28,11 @@
         "quasis": [
           {
             "column": 4,
-            "data": "",
-            "end": 16,
-            "line": 1,
-            "raw": "\n  abc # def ",
-            "start": 3,
-            "type": "Quasi"
-          },
-          {
-            "column": 19,
-            "data": "",
+            "data": "/abc/gi",
             "end": 25,
-            "line": 2,
-            "raw": " j\n",
-            "start": 22,
+            "line": 1,
+            "raw": "\n  abc # def #{ghi} j\n",
+            "start": 3,
             "type": "Quasi"
           }
         ],

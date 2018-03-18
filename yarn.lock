@@ -750,9 +750,9 @@ co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
-coffee-lex@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.npmjs.org/coffee-lex/-/coffee-lex-9.0.0.tgz#a518929db1a31dcca9f8f0bc8752c2f7fcf78de8"
+coffee-lex@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.npmjs.org/coffee-lex/-/coffee-lex-9.1.0.tgz#1fce57576ddcec6243ec43b7e276ac1da81aaca2"
 
 coffee-script-redux@^2.0.0-beta8:
   version "2.0.0-beta8"
