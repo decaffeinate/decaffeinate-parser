@@ -18,12 +18,12 @@ export default function mapValue(context: ParseContext, node: Value): Node {
   let location = getLocation(context, node);
 
   return node.properties.reduce(
-    (reduced, property) => propertyReducer(context, location, reduced, property),
+    (reduced, property) => reduceProperty(context, location, reduced, property),
     mapAny(context, node.base)
   );
 }
 
-function propertyReducer(context: ParseContext, location: NodeLocation, reduced: Node, property: Access | Index | CoffeeSlice): Node {
+export function reduceProperty(context: ParseContext, location: NodeLocation, reduced: Node, property: Access | Index | CoffeeSlice): Node {
   if (property instanceof Access) {
     let name = property.name;
 

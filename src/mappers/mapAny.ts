@@ -22,7 +22,7 @@ import {
   Range,
   Return,
   Splat,
-  StringWithInterpolations,
+  StringWithInterpolations, Super,
   Switch,
   TaggedTemplateCall,
   Throw,
@@ -55,6 +55,7 @@ import mapParens from './mapParens';
 import mapRange from './mapRange';
 import mapReturn from './mapReturn';
 import mapSplat from './mapSplat';
+import mapSuper from './mapSuper';
 import mapSwitch from './mapSwitch';
 import mapTaggedTemplateCall from './mapTaggedTemplateCall';
 import mapThrow from './mapThrow';
@@ -81,6 +82,10 @@ export default function mapAny(context: ParseContext, node: Base): Node {
 
   if (node instanceof Call) {
     return mapCall(context, node);
+  }
+
+  if (node instanceof Super) {
+    return mapSuper(context, node);
   }
 
   if (node instanceof Arr) {
