@@ -6,6 +6,7 @@ import {
   Call,
   Class,
   Code,
+  ComputedPropertyName,
   Elision,
   Existence,
   Expansion,
@@ -22,7 +23,8 @@ import {
   Range,
   Return,
   Splat,
-  StringWithInterpolations, Super,
+  StringWithInterpolations,
+  Super,
   Switch,
   TaggedTemplateCall,
   Throw,
@@ -39,6 +41,7 @@ import mapBlock from './mapBlock';
 import mapCall from './mapCall';
 import mapClass from './mapClass';
 import mapCode from './mapCode';
+import mapComputedPropertyName from './mapComputedPropertyName';
 import mapElision from './mapElision';
 import mapExistence from './mapExistence';
 import mapExpansion from './mapExpansion';
@@ -66,6 +69,10 @@ import mapWhile from './mapWhile';
 export default function mapAny(context: ParseContext, node: Base): Node {
   if (node instanceof Value) {
     return mapValue(context, node);
+  }
+
+  if (node instanceof ComputedPropertyName) {
+    return mapComputedPropertyName(context, node);
   }
 
   if (node instanceof Literal) {

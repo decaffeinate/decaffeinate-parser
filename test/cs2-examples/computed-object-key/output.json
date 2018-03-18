@@ -38,31 +38,12 @@
               },
               "isComputed": true,
               "key": {
-                "column": 3,
-                "data": {
-                  "base": {
-                    "locationData": {
-                      "first_column": 3,
-                      "first_line": 1,
-                      "last_column": 3,
-                      "last_line": 1
-                    },
-                    "value": "a"
-                  },
-                  "isDefaultValue": false,
-                  "locationData": {
-                    "first_column": 3,
-                    "first_line": 1,
-                    "last_column": 3,
-                    "last_line": 1
-                  },
-                  "properties": [
-                  ]
-                },
-                "end": 11,
+                "column": 4,
+                "data": "a",
+                "end": 10,
                 "line": 2,
-                "raw": "[a]",
-                "start": 8,
+                "raw": "a",
+                "start": 9,
                 "type": "Identifier"
               },
               "line": 2,
