@@ -1,0 +1,49 @@
+{
+  "body": {
+    "column": 1,
+    "end": 6,
+    "inline": false,
+    "line": 1,
+    "raw": "a (->)",
+    "start": 0,
+    "statements": [
+      {
+        "arguments": [
+          {
+            "body": null,
+            "column": 4,
+            "end": 5,
+            "line": 1,
+            "parameters": [
+            ],
+            "raw": "->",
+            "start": 3,
+            "type": "Function"
+          }
+        ],
+        "column": 1,
+        "end": 6,
+        "function": {
+          "column": 1,
+          "data": "a",
+          "end": 1,
+          "line": 1,
+          "raw": "a",
+          "start": 0,
+          "type": "Identifier"
+        },
+        "line": 1,
+        "raw": "a (->)",
+        "start": 0,
+        "type": "FunctionApplication"
+      }
+    ],
+    "type": "Block"
+  },
+  "column": 1,
+  "end": 7,
+  "line": 1,
+  "raw": "a (->)\n",
+  "start": 0,
+  "type": "Program"
+}
