@@ -18,7 +18,7 @@ export const DEFAULT_OPTIONS: Options = {
 export function parse(source: string, options: Options = DEFAULT_OPTIONS): Program {
   patchCoffeeScript();
   let parse = options.useCS2 ? parseCS2 : parseCS1AsCS2;
-  let sourceLex = s => lex(s, {useCS2: options.useCS2});
+  let sourceLex = (s: string) => lex(s, {useCS2: options.useCS2});
   let context = ParseContext.fromSource(source, sourceLex, parse);
   fixLocations(context, context.ast);
   let program = mapProgram(context);
