@@ -1,7 +1,19 @@
 import { SourceType } from 'coffee-lex';
 import { Assign, Base, Block as CoffeeBlock, Obj, Value } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
-import { AssignOp, Block, BoundFunction, BoundGeneratorFunction, ClassProtoAssignOp, Constructor, Identifier, MemberAccessOp, Node, This } from '../nodes';
+import {
+  AssignOp,
+  Block,
+  BoundAsyncFunction,
+  BoundFunction,
+  BoundGeneratorFunction,
+  ClassProtoAssignOp,
+  Constructor,
+  Identifier,
+  MemberAccessOp,
+  Node,
+  This,
+} from '../nodes';
 import getLocation from '../util/getLocation';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';
@@ -69,7 +81,11 @@ function mapChild(blockContext: ParseContext, childContext: ParseContext, node: 
         statements.push(assignment);
 
         if (assignment instanceof ClassProtoAssignOp &&
-            (assignment.expression instanceof BoundFunction || assignment.expression instanceof BoundGeneratorFunction)) {
+            (
+              assignment.expression instanceof BoundFunction ||
+              assignment.expression instanceof BoundGeneratorFunction ||
+              assignment.expression instanceof BoundAsyncFunction
+            )) {
           blockContext.parseState.recordBoundMethod(assignment);
         }
 

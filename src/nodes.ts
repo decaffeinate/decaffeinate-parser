@@ -1789,6 +1789,46 @@ export class BoundGeneratorFunction extends BaseFunction {
   }
 }
 
+export class AsyncFunction extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    parameters: Array<Node>,
+    body: Block | null
+  ) {
+    super('AsyncFunction', line, column, start, end, raw, parameters, body);
+  }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new AsyncFunction(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
+  }
+}
+
+export class BoundAsyncFunction extends BaseFunction {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string,
+    parameters: Array<Node>,
+    body: Block | null
+  ) {
+    super('BoundAsyncFunction', line, column, start, end, raw, parameters, body);
+  }
+
+  withParameters(parameters: Array<Node>): BaseFunction {
+    return new BoundAsyncFunction(
+      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+    );
+  }
+}
+
 export class Try extends Node {
   constructor(
     line: number,
