@@ -5,10 +5,12 @@ import {
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import expandToIncludeParens from './expandToIncludeParens';
 import fixInvalidLocationData from './fixInvalidLocationData';
+import locationDataFromSourceRange from './locationDataFromSourceRange';
 import locationWithLastPosition from './locationWithLastPosition';
 import mergeLocations from './mergeLocations';
 import ParseContext from './ParseContext';
 import rangeOfBracketTokensForIndexNode from './rangeOfBracketTokensForIndexNode';
+import sourceRangeFromLocationData from './sourceRangeFromLocationData';
 
 export default function fixLocations(context: ParseContext, node: Base): void {
   let { linesAndColumns, source } = context;
@@ -141,6 +143,10 @@ export default function fixLocations(context: ParseContext, node: Base): void {
         node.locationData,
         lastChild.locationData
       );
+    } else {
+      // Shorten range (usually length 1, the shortest range expressible by the CoffeeScript parser) to length 0.
+      let sourceRange = sourceRangeFromLocationData(context, node.locationData);
+      node.locationData = locationDataFromSourceRange(context, {start: sourceRange.end, end: sourceRange.end});
     }
     // Blocks can sometimes end one index before their terminating semicolon
     // when really they should end exactly at that semicolon.
