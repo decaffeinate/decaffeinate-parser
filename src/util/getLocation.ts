@@ -1,6 +1,5 @@
 import { SourceType } from 'coffee-lex';
 import SourceToken from 'coffee-lex/dist/SourceToken';
-import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import { Base } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import ParseContext from './ParseContext';
@@ -34,8 +33,8 @@ export default function getLocation(context: ParseContext, node: Base): NodeLoca
     end = context.source.length;
   }
 
-  let firstTokenOfNode = firstSemanticTokenAfter(context, start, node);
-  let lastTokenOfNode = firstSemanticTokenBefore(context, end, node);
+  let firstTokenOfNode = requireToken(firstSemanticTokenAfter(context, start), node);
+  let lastTokenOfNode = requireToken(firstSemanticTokenBefore(context, end), node);
 
   start = firstTokenOfNode.start;
   end = lastTokenOfNode.end;
@@ -44,7 +43,7 @@ export default function getLocation(context: ParseContext, node: Base): NodeLoca
   return {line, column, start, end, raw};
 }
 
-function firstSemanticTokenAfter(context: ParseContext, index: number, node: Base): SourceToken {
+export function firstSemanticTokenAfter(context: ParseContext, index: number): SourceToken | null {
   let tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(token => {
     return (
       token.start >= index &&
@@ -52,10 +51,10 @@ function firstSemanticTokenAfter(context: ParseContext, index: number, node: Bas
       token.type !== SourceType.COMMENT
     );
   }, context.sourceTokens.indexOfTokenNearSourceIndex(index));
-  return tokenFromIndex(context, tokenIndex, node);
+  return tokenIndex === null ? null : context.sourceTokens.tokenAtIndex(tokenIndex);
 }
 
-function firstSemanticTokenBefore(context: ParseContext, index: number, node: Base): SourceToken {
+export function firstSemanticTokenBefore(context: ParseContext, index: number): SourceToken | null {
   let tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
     return (
       token.end <= index &&
@@ -63,14 +62,10 @@ function firstSemanticTokenBefore(context: ParseContext, index: number, node: Ba
       token.type !== SourceType.COMMENT
     );
   }, context.sourceTokens.indexOfTokenNearSourceIndex(index));
-  return tokenFromIndex(context, tokenIndex, node);
+  return tokenIndex === null ? null : context.sourceTokens.tokenAtIndex(tokenIndex);
 }
 
-function tokenFromIndex(context: ParseContext, tokenIndex: SourceTokenListIndex | null, node: Base): SourceToken {
-  if (tokenIndex === null) {
-    throw new Error(`unable to find token index for node: ${inspect(node)}`);
-  }
-  let token = context.sourceTokens.tokenAtIndex(tokenIndex);
+function requireToken(token: SourceToken | null, node: Base): SourceToken {
   if (token === null) {
     throw new Error(`unable to find token for node: ${inspect(node)}`);
   }

@@ -3,6 +3,7 @@ import {
   Assign, Base, Block, Call, Class, Code, Extends, For, If, In, Index, Literal,
   Obj, Op, Param, Slice, Switch, Try, Value, While
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import expandToIncludeParens from './expandToIncludeParens';
 import fixInvalidLocationData from './fixInvalidLocationData';
 import locationWithLastPosition from './locationWithLastPosition';
 import mergeLocations from './mergeLocations';
@@ -159,6 +160,10 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       node.locationData.last_line = loc.line;
       node.locationData.last_column = loc.column;
     }
+    // The CS2 AST doesn't include the surrounding parens in a block, which can cause trouble with
+    // things like postfix loops with parenthesized bodies. Expand every block to include any
+    // surrounding parens.
+    node.locationData = expandToIncludeParens(context, node.locationData);
   }
 
   if (node instanceof If) {
