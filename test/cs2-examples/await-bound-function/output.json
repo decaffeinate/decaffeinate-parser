@@ -4,7 +4,7 @@
     "end": 22,
     "inline": false,
     "line": 1,
-    "raw": "f = ->\n  await sleep()",
+    "raw": "f = =>\n  await sleep()",
     "start": 0,
     "statements": [
       {
@@ -63,12 +63,12 @@
           "line": 1,
           "parameters": [
           ],
-          "raw": "->\n  await sleep()",
+          "raw": "=>\n  await sleep()",
           "start": 4,
-          "type": "AsyncFunction"
+          "type": "BoundAsyncFunction"
         },
         "line": 1,
-        "raw": "f = ->\n  await sleep()",
+        "raw": "f = =>\n  await sleep()",
         "start": 0,
         "type": "AssignOp"
       }
@@ -78,7 +78,7 @@
   "column": 1,
   "end": 23,
   "line": 1,
-  "raw": "f = ->\n  await sleep()\n",
+  "raw": "f = =>\n  await sleep()\n",
   "start": 0,
   "type": "Program"
 }

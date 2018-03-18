@@ -47,7 +47,7 @@
           ],
           "raw": "->\n  await return",
           "start": 4,
-          "type": "Function"
+          "type": "AsyncFunction"
         },
         "line": 1,
         "raw": "f = ->\n  await return",

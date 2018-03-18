@@ -1,0 +1,2 @@
+f = =>
+  await sleep()
