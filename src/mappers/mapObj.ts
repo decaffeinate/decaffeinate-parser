@@ -21,12 +21,13 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
     if (property instanceof Value) {
       // shorthand property
       let value = mapValue(context, property);
+      let isComputed = property.base instanceof ComputedPropertyName;
 
       members.push(new ObjectInitialiserMember(
         line, column, start, end, raw,
         value,
         null,
-        false /* isComputed */
+        isComputed
       ));
     } else if (property instanceof Assign && property.context === 'object') {
       let key = mapAny(context, property.variable);
