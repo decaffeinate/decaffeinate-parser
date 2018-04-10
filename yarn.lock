@@ -72,9 +72,9 @@
   version "5.0.0"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-5.0.0.tgz#a3014921991066193f6c8e47290d4d598dfd19e6"
 
-"@types/node@9.6.2":
-  version "9.6.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-9.6.2.tgz#e49ac1adb458835e95ca6487bc20f916b37aff23"
+"@types/node@9.6.3":
+  version "9.6.3"
+  resolved "https://registry.npmjs.org/@types/node/-/node-9.6.3.tgz#f5fd440f8a9867b65ae76d442e269622a1db00b5"
 
 StringScanner@~0.0.3:
   version "0.0.3"
