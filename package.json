@@ -52,7 +52,7 @@
     "eslint": "^4.15.0",
     "mocha": "^5.0.0",
     "string-repeat": "^1.1.1",
-    "ts-node": "^5.0.0",
+    "ts-node": "^6.0.0",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2"
   },
