@@ -3,3 +3,4 @@ dist
 _actual_cs1.json
 _actual_cs2.json
 .idea/
+*.log
