@@ -850,7 +850,7 @@ decaffeinate-coffeescript2@2.2.1-patch.4:
 
 decaffeinate-coffeescript@1.12.7-patch.2:
   version "1.12.7-patch.2"
-  resolved "https://registry.npmjs.org/decaffeinate-coffeescript2/-/decaffeinate-coffeescript-1.12.7-patch.2.tgz#c0a453395e0194bcf0dce8d81dbf7170c5a1d578"
+  resolved "https://registry.npmjs.org/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.12.7-patch.2.tgz#c0a453395e0194bcf0dce8d81dbf7170c5a1d578"
 
 deep-is@~0.1.3:
   version "0.1.3"
