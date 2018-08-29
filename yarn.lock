@@ -20,9 +20,9 @@
   version "5.2.4"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-5.2.4.tgz#2f8fbdf95c69ebf82150a7864864010f186745bf"
 
-"@types/node@10.9.2":
-  version "10.9.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-10.9.2.tgz#f0ab8dced5cd6c56b26765e1c0d9e4fdcc9f2a00"
+"@types/node@10.9.3":
+  version "10.9.3"
+  resolved "https://registry.npmjs.org/@types/node/-/node-10.9.3.tgz#85f288502503ade0b3bfc049fe1777b05d0327d5"
 
 StringScanner@~0.0.3:
   version "0.0.3"
