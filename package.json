@@ -37,7 +37,7 @@
     "@types/babylon": "^6.16.2",
     "@types/json-stable-stringify": "^1.0.32",
     "@types/mocha": "^5.0.0",
-    "@types/node": "10.9.2",
+    "@types/node": "10.9.3",
     "babel": "^6.5.2",
     "babel-plugin-external-helpers": "^6.8.0",
     "babel-plugin-object-rest-spread": "0.0.0",
