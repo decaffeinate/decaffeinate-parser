@@ -49,7 +49,7 @@ export class Identifier extends Node {
     super('Identifier', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -74,7 +74,7 @@ export class Bool extends Node {
     return new Bool(0, 0, 0, 0, '', false);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -91,7 +91,7 @@ export class JavaScript extends Node {
     super('JavaScript', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -109,7 +109,7 @@ export class Number extends Node {
     super(type, line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -167,7 +167,7 @@ export class MemberAccessOp extends AccessOp {
     super('MemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'member'];
   }
 }
@@ -184,7 +184,7 @@ export class ProtoMemberAccessOp extends AccessOp {
     super('ProtoMemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -202,7 +202,7 @@ export class SoakedMemberAccessOp extends AccessOp {
     super('SoakedMemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'member'];
   }
 }
@@ -219,7 +219,7 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
     super('SoakedProtoMemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -237,7 +237,7 @@ export class DynamicMemberAccessOp extends AccessOp {
     super('DynamicMemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'indexingExpr'];
   }
 }
@@ -255,7 +255,7 @@ export class SoakedDynamicMemberAccessOp extends AccessOp {
     super('SoakedDynamicMemberAccessOp', line, column, start, end, raw, expression);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'indexingExpr'];
   }
 }
@@ -272,7 +272,7 @@ export class Quasi extends Node {
     super('Quasi', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -290,7 +290,7 @@ export class String extends Node {
     super('String', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['quasis', 'expressions'];
   }
 }
@@ -308,7 +308,7 @@ export class TaggedTemplateLiteral extends Node {
     super('TaggedTemplateLiteral', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['tag', 'template'];
   }
 }
@@ -325,7 +325,7 @@ export class ObjectInitialiser extends Node {
     super('ObjectInitialiser', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['members'];
   }
 }
@@ -345,7 +345,7 @@ export class ObjectInitialiserMember extends Node {
     super('ObjectInitialiserMember', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['key', 'expression'];
   }
 }
@@ -365,7 +365,7 @@ export class Conditional extends Node {
     super('Conditional', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['condition', 'consequent', 'alternate'];
   }
 }
@@ -386,7 +386,7 @@ export class Program extends Node {
     this.context = context;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['body'];
   }
 }
@@ -404,7 +404,7 @@ export class Block extends Node {
     super('Block', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['statements'];
   }
 
@@ -427,7 +427,7 @@ export class Loop extends Node {
     super('Loop', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['body'];
   }
 }
@@ -447,7 +447,7 @@ export class While extends Node {
     super('While', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['condition', 'guard', 'body'];
   }
 }
@@ -487,7 +487,7 @@ export class ForOf extends For {
     super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['keyAssignee', 'valAssignee', 'target', 'filter', 'body'];
   }
 }
@@ -509,7 +509,7 @@ export class ForIn extends For {
     super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['keyAssignee', 'valAssignee', 'target', 'step', 'filter', 'body'];
   }
 }
@@ -529,7 +529,7 @@ export class ForFrom extends For {
     super('ForFrom', line, column, start, end, raw, null /* keyAssignee */, valAssignee, target, filter, body);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['keyAssignee', 'valAssignee', 'target', 'filter', 'body'];
   }
 }
@@ -548,7 +548,7 @@ export class Switch extends Node {
     super('Switch', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'cases', 'alternate'];
   }
 }
@@ -566,7 +566,7 @@ export class SwitchCase extends Node {
     super('SwitchCase', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['conditions', 'consequent'];
   }
 }
@@ -644,7 +644,7 @@ export class Heregex extends Node {
     super('Heregex', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['quasis', 'expressions'];
   }
 }
@@ -660,7 +660,7 @@ export class Null extends Node {
     super('Null', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -676,7 +676,7 @@ export class Undefined extends Node {
     super('Undefined', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -694,7 +694,7 @@ export class Regex extends Node {
     super('Regex', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -711,7 +711,7 @@ export class Return extends Node {
     super('Return', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -728,7 +728,7 @@ export class YieldReturn extends Node {
     super('YieldReturn', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -745,7 +745,7 @@ export class AwaitReturn extends Node {
     super('AwaitReturn', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -761,7 +761,7 @@ export class This extends Node {
     super('This', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -778,7 +778,7 @@ export class Throw extends Node {
     super('Throw', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -795,7 +795,7 @@ export class ArrayInitialiser extends Node {
     super('ArrayInitialiser', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['members'];
   }
 }
@@ -818,7 +818,7 @@ export class DefaultParam extends Node {
     this.default = defaultValue;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['param', 'default'];
   }
 }
@@ -835,7 +835,7 @@ export class Rest extends Node {
     super('Rest', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -851,7 +851,7 @@ export class Expansion extends Node {
     super('Expansion', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -867,7 +867,7 @@ export class Elision extends Node {
     super('Elision', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -883,7 +883,7 @@ export class Break extends Node {
     super('Break', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -899,7 +899,7 @@ export class Continue extends Node {
     super('Continue', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -916,7 +916,7 @@ export class Spread extends Node {
     super('Spread', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -935,7 +935,7 @@ export class Range extends Node {
     super('Range', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['left', 'right'];
   }
 }
@@ -972,7 +972,7 @@ export abstract class UnaryOp extends Node {
     super(type, line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -990,7 +990,7 @@ export class ChainedComparisonOp extends Node {
     super('ChainedComparisonOp', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['operands'];
   }
 }
@@ -1609,7 +1609,7 @@ export class Yield extends Node {
     super('Yield', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -1626,7 +1626,7 @@ export class YieldFrom extends Node {
     super('YieldFrom', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -1643,7 +1643,7 @@ export class Await extends Node {
     super('Await', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -1663,7 +1663,7 @@ export class Slice extends Node {
     super('Slice', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'left', 'right'];
   }
 }
@@ -1683,7 +1683,7 @@ export class SoakedSlice extends Node {
     super('SoakedSlice', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression', 'left', 'right'];
   }
 }
@@ -1702,7 +1702,7 @@ export abstract class BaseFunction extends Node {
     super(type, line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['parameters', 'body'];
   }
 
@@ -1844,7 +1844,7 @@ export class Try extends Node {
     super('Try', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['body', 'catchAssignee', 'catchBody', 'finallyBody'];
   }
 }
@@ -1894,7 +1894,7 @@ export class Class extends Node {
     super('Class', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['nameAssignee', 'parent', 'body'];
   }
 }
@@ -1917,7 +1917,7 @@ export class FunctionApplication extends Node {
     this.arguments = args;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['function', 'arguments'];
   }
 }
@@ -1940,7 +1940,7 @@ export class SoakedFunctionApplication extends Node {
     this.arguments = args;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['function', 'arguments'];
   }
 }
@@ -1956,7 +1956,7 @@ export class Super extends Node {
     super('Super', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -1972,7 +1972,7 @@ export class BareSuperFunctionApplication extends Node {
     super('BareSuperFunctionApplication', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return [];
   }
 }
@@ -1995,7 +1995,7 @@ export class NewOp extends Node {
     this.arguments = args;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['ctor', 'arguments'];
   }
 }
@@ -2018,7 +2018,7 @@ export class SoakedNewOp extends Node {
     this.arguments = args;
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['ctor', 'arguments'];
   }
 }
@@ -2035,7 +2035,7 @@ export class DoOp extends Node {
     super('DoOp', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -2055,7 +2055,7 @@ export class ImportDeclaration extends Node {
     super('ImportDeclaration', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['defaultBinding', 'namespaceImport', 'namedImports', 'source'];
   }
 }
@@ -2073,7 +2073,7 @@ export class ExportNamedDeclaration extends Node {
     super('ExportNamedDeclaration', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -2091,7 +2091,7 @@ export class ExportBindingsDeclaration extends Node {
     super('ExportBindingsDeclaration', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['namedExports', 'source'];
   }
 }
@@ -2108,7 +2108,7 @@ export class ExportDefaultDeclaration extends Node {
     super('ExportDefaultDeclaration', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['expression'];
   }
 }
@@ -2125,7 +2125,7 @@ export class ExportAllDeclaration extends Node {
     super('ExportAllDeclaration', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['source'];
   }
 }
@@ -2143,7 +2143,7 @@ export class ModuleSpecifier extends Node {
     super('ModuleSpecifier', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['original', 'alias'];
   }
 }
@@ -2161,7 +2161,7 @@ export class CSXElement extends Node {
     super('CSXElement', line, column, start, end, raw);
   }
 
-  getChildNames(): Array<keyof this> {
+  getChildNames(): Array<keyof this & string> {
     return ['properties', 'children'];
   }
 }
