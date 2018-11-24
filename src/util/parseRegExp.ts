@@ -1,5 +1,5 @@
-import { ExpressionStatement, RegExpLiteral } from 'babel-types';
-import { parse } from 'babylon';
+import { parse } from '@babel/parser';
+import { ExpressionStatement, RegExpLiteral } from '@babel/types';
 
 /**
  * Parses JavaScript source representing a regular expression.
