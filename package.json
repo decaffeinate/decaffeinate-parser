@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@babel/parser": "^7.1.6",
-    "coffee-lex": "^9.1.0",
+    "coffee-lex": "^9.1.2",
     "decaffeinate-coffeescript": "1.12.7-patch.2",
     "decaffeinate-coffeescript2": "2.2.1-patch.4",
     "json-stable-stringify": "^1.0.1",
