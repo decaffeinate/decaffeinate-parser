@@ -42,7 +42,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@types/jest": "^23.3.10",
-    "@types/node": "10.12.19",
+    "@types/node": "10.12.21",
     "coffee-script-redux": "^2.0.0-beta8",
     "jest": "^23.6.0",
     "string-repeat": "^1.1.1",
