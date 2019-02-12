@@ -1296,9 +1296,10 @@ decaffeinate-coffeescript2@2.2.1-patch.4:
   version "2.2.1-patch.4"
   resolved "https://registry.npmjs.org/decaffeinate-coffeescript2/-/decaffeinate-coffeescript2-2.2.1-patch.4.tgz#901e67350d985b4c7994f84b2325f72bf6a6a865"
 
-decaffeinate-coffeescript@1.12.7-patch.2:
-  version "1.12.7-patch.2"
-  resolved "https://registry.npmjs.org/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.12.7-patch.2.tgz#c0a453395e0194bcf0dce8d81dbf7170c5a1d578"
+decaffeinate-coffeescript@1.12.7-patch.3:
+  version "1.12.7-patch.3"
+  resolved "https://registry.yarnpkg.com/decaffeinate-coffeescript/-/decaffeinate-coffeescript-1.12.7-patch.3.tgz#ae261022a35dc42dd9a0bc2c241717d5a23f8e67"
+  integrity sha512-4NshbupYgQsVm/jOosp/nen1MWi43i1/z0I+F1JQQ8sNpS6SvvJWYwMayfuYkE/c/5mK3ISWu2H9OyPZYwtMLg==
 
 decamelize@^1.1.1:
   version "1.2.0"
