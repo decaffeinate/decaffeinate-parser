@@ -55,11 +55,11 @@ export default function mapModuleDeclaration(context: ParseContext, node: Module
       let source = node.source ? mapSource(context, node.source) : null;
       return new ExportBindingsDeclaration(line, column, start, end, raw, namedExports, source);
     } else {
-      let expression = mapAny(context, node.clause);
+      let expression = mapAny(context, node.clause!);
       return new ExportNamedDeclaration(line, column, start, end, raw, expression);
     }
   } else if (node instanceof CoffeeExportDefaultDeclaration) {
-    let expression = mapAny(context, node.clause);
+    let expression = mapAny(context, node.clause!);
     return new ExportDefaultDeclaration(line, column, start, end, raw, expression);
   } else if (node instanceof CoffeeExportAllDeclaration) {
     if (!node.source) {
