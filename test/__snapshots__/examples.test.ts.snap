@@ -10922,6 +10922,60 @@ Program {
 }
 `;
 
+exports[`CS1: import-without-specifiers 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 11,
+    "inline": false,
+    "line": 1,
+    "raw": "import 'a';",
+    "start": 0,
+    "statements": Array [
+      ImportDeclaration {
+        "column": 1,
+        "defaultBinding": null,
+        "end": 10,
+        "line": 1,
+        "namedImports": null,
+        "namespaceImport": null,
+        "raw": "import 'a'",
+        "source": String {
+          "column": 8,
+          "end": 10,
+          "expressions": Array [],
+          "line": 1,
+          "quasis": Array [
+            Quasi {
+              "column": 9,
+              "data": "a",
+              "end": 9,
+              "line": 1,
+              "raw": "a",
+              "start": 8,
+              "type": "Quasi",
+            },
+          ],
+          "raw": "'a'",
+          "start": 7,
+          "type": "String",
+        },
+        "start": 0,
+        "type": "ImportDeclaration",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 12,
+  "line": 1,
+  "raw": "import 'a';
+",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`CS1: in 1`] = `
 Program {
   "body": Block {
@@ -31698,6 +31752,60 @@ Program {
   "end": 23,
   "line": 1,
   "raw": "import * as a from 'b'
+",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`CS2: import-without-specifiers 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 11,
+    "inline": false,
+    "line": 1,
+    "raw": "import 'a';",
+    "start": 0,
+    "statements": Array [
+      ImportDeclaration {
+        "column": 1,
+        "defaultBinding": null,
+        "end": 10,
+        "line": 1,
+        "namedImports": null,
+        "namespaceImport": null,
+        "raw": "import 'a'",
+        "source": String {
+          "column": 8,
+          "end": 10,
+          "expressions": Array [],
+          "line": 1,
+          "quasis": Array [
+            Quasi {
+              "column": 9,
+              "data": "a",
+              "end": 9,
+              "line": 1,
+              "raw": "a",
+              "start": 8,
+              "type": "Quasi",
+            },
+          ],
+          "raw": "'a'",
+          "start": 7,
+          "type": "String",
+        },
+        "start": 0,
+        "type": "ImportDeclaration",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 12,
+  "line": 1,
+  "raw": "import 'a';
 ",
   "start": 0,
   "type": "Program",

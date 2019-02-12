@@ -2,7 +2,6 @@ import {
   ExportAllDeclaration as CoffeeExportAllDeclaration,
   ExportDefaultDeclaration as CoffeeExportDefaultDeclaration,
   ExportNamedDeclaration as CoffeeExportNamedDeclaration, ExportSpecifierList,
-  ImportClause,
   ImportDeclaration as CoffeeImportDeclaration,
   ImportNamespaceSpecifier,
   ImportSpecifierList,
@@ -31,17 +30,17 @@ export default function mapModuleDeclaration(context: ParseContext, node: Module
 
   if (node instanceof CoffeeImportDeclaration) {
     let clause = node.clause;
-    if (!(clause instanceof ImportClause)) {
-      throw new Error('Expected import clause as the clause for an import declaration.');
-    }
-    let defaultBinding = clause.defaultBinding && mapIdentifierSpecifier(context, clause.defaultBinding);
+    let defaultBinding = null;
     let namespaceImport = null;
     let namedImports = null;
 
-    if (clause.namedImports instanceof ImportNamespaceSpecifier) {
-      namespaceImport = mapStarSpecifier(context, clause.namedImports);
-    } else if (clause.namedImports instanceof ImportSpecifierList) {
-      namedImports = clause.namedImports.specifiers.map((specifier) => mapSpecifier(context, specifier));
+    if (clause) {
+      defaultBinding = clause.defaultBinding && mapIdentifierSpecifier(context, clause.defaultBinding);
+      if (clause.namedImports instanceof ImportNamespaceSpecifier) {
+        namespaceImport = mapStarSpecifier(context, clause.namedImports);
+      } else if (clause.namedImports instanceof ImportSpecifierList) {
+        namedImports = clause.namedImports.specifiers.map((specifier) => mapSpecifier(context, specifier));
+      }
     }
 
     if (!node.source) {
