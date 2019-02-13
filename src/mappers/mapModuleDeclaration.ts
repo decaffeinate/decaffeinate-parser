@@ -2,12 +2,12 @@ import {
   ExportAllDeclaration as CoffeeExportAllDeclaration,
   ExportDefaultDeclaration as CoffeeExportDefaultDeclaration,
   ExportNamedDeclaration as CoffeeExportNamedDeclaration, ExportSpecifierList,
+  IdentifierLiteral,
   ImportDeclaration as CoffeeImportDeclaration,
   ImportNamespaceSpecifier,
   ImportSpecifierList,
   Literal,
-  ModuleDeclaration,
-  ModuleSpecifier as CoffeeModuleSpecifier, StringLiteral,
+  ModuleDeclaration, ModuleSpecifier as CoffeeModuleSpecifier, StringLiteral,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   ExportAllDeclaration,
@@ -104,9 +104,12 @@ function mapSpecifier(context: ParseContext, specifier: CoffeeModuleSpecifier): 
 }
 
 function mapLiteralToIdentifier(context: ParseContext, literal: Literal): Identifier {
-  let identifier = mapLiteral(context, literal);
-  if (!(identifier instanceof Identifier)) {
-    throw new Error('Expected identifier in declaration.');
+  if (literal instanceof IdentifierLiteral) {
+    return mapLiteral(context, literal) as Identifier;
+  } else if (literal.constructor === Literal) {
+    let { line, column, start, end, raw } = getLocation(context, literal);
+    return new Identifier(line, column, start, end, raw, literal.value);
+  } else {
+    throw new Error('Expected identifier in module declaration.');
   }
-  return identifier;
 }
