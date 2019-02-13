@@ -7838,6 +7838,77 @@ Program {
 }
 `;
 
+exports[`CS1: export-default-from-source 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 35,
+    "inline": false,
+    "line": 1,
+    "raw": "export { default } from './source';",
+    "start": 0,
+    "statements": Array [
+      ExportBindingsDeclaration {
+        "column": 1,
+        "end": 34,
+        "line": 1,
+        "namedExports": Array [
+          ModuleSpecifier {
+            "alias": null,
+            "column": 10,
+            "end": 16,
+            "line": 1,
+            "original": Identifier {
+              "column": 10,
+              "data": "default",
+              "end": 16,
+              "line": 1,
+              "raw": "default",
+              "start": 9,
+              "type": "Identifier",
+            },
+            "raw": "default",
+            "start": 9,
+            "type": "ModuleSpecifier",
+          },
+        ],
+        "raw": "export { default } from './source'",
+        "source": String {
+          "column": 25,
+          "end": 34,
+          "expressions": Array [],
+          "line": 1,
+          "quasis": Array [
+            Quasi {
+              "column": 26,
+              "data": "./source",
+              "end": 33,
+              "line": 1,
+              "raw": "./source",
+              "start": 25,
+              "type": "Quasi",
+            },
+          ],
+          "raw": "'./source'",
+          "start": 24,
+          "type": "String",
+        },
+        "start": 0,
+        "type": "ExportBindingsDeclaration",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 36,
+  "line": 1,
+  "raw": "export { default } from './source';
+",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`CS1: export-multiple-bindings 1`] = `
 Program {
   "body": Block {
@@ -28690,6 +28761,77 @@ Program {
   "end": 17,
   "line": 1,
   "raw": "export default a
+",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`CS2: export-default-from-source 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 35,
+    "inline": false,
+    "line": 1,
+    "raw": "export { default } from './source';",
+    "start": 0,
+    "statements": Array [
+      ExportBindingsDeclaration {
+        "column": 1,
+        "end": 34,
+        "line": 1,
+        "namedExports": Array [
+          ModuleSpecifier {
+            "alias": null,
+            "column": 10,
+            "end": 16,
+            "line": 1,
+            "original": Identifier {
+              "column": 10,
+              "data": "default",
+              "end": 16,
+              "line": 1,
+              "raw": "default",
+              "start": 9,
+              "type": "Identifier",
+            },
+            "raw": "default",
+            "start": 9,
+            "type": "ModuleSpecifier",
+          },
+        ],
+        "raw": "export { default } from './source'",
+        "source": String {
+          "column": 25,
+          "end": 34,
+          "expressions": Array [],
+          "line": 1,
+          "quasis": Array [
+            Quasi {
+              "column": 26,
+              "data": "./source",
+              "end": 33,
+              "line": 1,
+              "raw": "./source",
+              "start": 25,
+              "type": "Quasi",
+            },
+          ],
+          "raw": "'./source'",
+          "start": 24,
+          "type": "String",
+        },
+        "start": 0,
+        "type": "ExportBindingsDeclaration",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 36,
+  "line": 1,
+  "raw": "export { default } from './source';
 ",
   "start": 0,
   "type": "Program",
