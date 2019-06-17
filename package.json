@@ -44,7 +44,7 @@
     "@types/jest": "^24.0.0",
     "@types/node": "12.0.8",
     "coffee-script-redux": "^2.0.0-beta8",
-    "jest": "^23.6.0",
+    "jest": "^24.8.0",
     "string-repeat": "^1.1.1",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
