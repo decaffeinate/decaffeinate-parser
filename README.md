@@ -1,4 +1,4 @@
-# decaffeinate-parser [![CircleCI](https://circleci.com/gh/decaffeinate/decaffeinate-parser.svg?style=svg)](https://circleci.com/gh/decaffeinate/decaffeinate-parser) [![package version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/decaffeinate/decaffeinate-parser.svg)](https://greenkeeper.io/)
+# decaffeinate-parser [![CircleCI](https://circleci.com/gh/decaffeinate/decaffeinate-parser.svg?style=svg)](https://circleci.com/gh/decaffeinate/decaffeinate-parser) [![package version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser)
 
 This project uses the [official CoffeeScript
 parser](https://github.com/jashkenas/coffeescript) to parse CoffeeScript source
