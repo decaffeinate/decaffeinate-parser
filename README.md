@@ -1,4 +1,4 @@
-# decaffeinate-parser [![Build Status](https://travis-ci.org/decaffeinate/decaffeinate-parser.svg?branch=master)](https://travis-ci.org/decaffeinate/decaffeinate-parser) [![package version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/decaffeinate/decaffeinate-parser.svg)](https://greenkeeper.io/)
+# decaffeinate-parser [![CircleCI](https://circleci.com/gh/decaffeinate/decaffeinate-parser.svg?style=svg)](https://circleci.com/gh/decaffeinate/decaffeinate-parser) [![package version](https://badge.fury.io/js/decaffeinate-parser.svg)](https://badge.fury.io/js/decaffeinate-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/decaffeinate/decaffeinate-parser.svg)](https://greenkeeper.io/)
 
 This project uses the [official CoffeeScript
 parser](https://github.com/jashkenas/coffeescript) to parse CoffeeScript source
@@ -24,9 +24,9 @@ $ npm install decaffeinate-parser
 This example gets the names of the parameters in the `add` function:
 
 ```js
-import { parse } from 'decaffeinate-parser';
+import { parse } from "decaffeinate-parser";
 
-let program = parse('add = (a, b) -> a + b');
+let program = parse("add = (a, b) -> a + b");
 let assignment = program.body.statements[0];
 let fn = assignment.expression;
 
