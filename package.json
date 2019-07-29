@@ -41,7 +41,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^24.0.16",
     "@types/node": "12.6.8",
     "coffee-script-redux": "^2.0.0-beta8",
     "jest": "^24.8.0",
