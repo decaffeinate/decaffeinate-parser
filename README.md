@@ -24,11 +24,11 @@ $ npm install decaffeinate-parser
 This example gets the names of the parameters in the `add` function:
 
 ```js
-import { parse } from "decaffeinate-parser";
+import { parse } from 'decaffeinate-parser';
 
-let program = parse("add = (a, b) -> a + b");
-let assignment = program.body.statements[0];
-let fn = assignment.expression;
+const program = parse('add = (a, b) -> a + b');
+const assignment = program.body.statements[0];
+const fn = assignment.expression;
 
 console.log(fn.parameters.map(param => param.data)); // [ 'a', 'b' ]
 ```
