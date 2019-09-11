@@ -1,7 +1,21 @@
 {
   "name": "decaffeinate-parser",
-  "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
   "version": "0.0.0-development",
+  "description": "A better AST for CoffeeScript, inspired by CoffeeScriptRedux.",
+  "keywords": [
+    "ast",
+    "coffeescript",
+    "parse"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decaffeinate/decaffeinate-parser.git"
+  },
+  "license": "MIT",
+  "author": "Brian Donovan",
+  "files": [
+    "dist/"
+  ],
   "main": "dist/parser.js",
   "module": "dist/parser.mjs",
   "types": "dist/parser.d.ts",
@@ -13,18 +27,20 @@
     "test": "jest",
     "test:ci": "jest --ci"
   },
-  "keywords": [
-    "coffeescript",
-    "ast",
-    "parse"
-  ],
-  "author": "Brian Donovan",
-  "license": "MIT",
-  "files": [
-    "dist/"
-  ],
-  "engines": {
-    "node": ">=6"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
   },
   "dependencies": {
     "@babel/parser": "^7.1.6",
@@ -51,18 +67,20 @@
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.5",
     "jest": "^24.8.0",
+    "lint-staged": "^9.2.5",
     "prettier": "^1.18.2",
+    "sort-package-json": "^1.22.1",
     "string-repeat": "^1.1.1",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
     "typescript": "^3.0.3"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/decaffeinate/decaffeinate-parser.git"
   }
 }

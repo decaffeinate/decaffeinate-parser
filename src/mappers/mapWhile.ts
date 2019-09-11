@@ -6,14 +6,24 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
-export default function mapWhile(context: ParseContext, node: CoffeeWhile): While | Loop {
+export default function mapWhile(
+  context: ParseContext,
+  node: CoffeeWhile
+): While | Loop {
   const { line, column, start, end, raw } = getLocation(context, node);
-  const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-  const startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
+  const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
+    start
+  );
+  const startToken =
+    startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
 
   if (startToken && startToken.type === SourceType.LOOP) {
     return new Loop(
-      line, column, start, end, raw,
+      line,
+      column,
+      start,
+      end,
+      raw,
       mapPossiblyEmptyBlock(context, node.body)
     );
   }
@@ -27,8 +37,14 @@ export default function mapWhile(context: ParseContext, node: CoffeeWhile): Whil
   }
 
   return new While(
-    line, column, start, end, raw,
-    condition, guard, body,
+    line,
+    column,
+    start,
+    end,
+    raw,
+    condition,
+    guard,
+    body,
     node.condition.inverted === true
   );
 }

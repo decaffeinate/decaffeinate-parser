@@ -5,7 +5,10 @@ import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
-export default function mapRange(context: ParseContext, node: CoffeeRange): Range {
+export default function mapRange(
+  context: ParseContext,
+  node: CoffeeRange
+): Range {
   const { line, column, start, end, raw } = getLocation(context, node);
 
   if (!node.from || !node.to) {
@@ -13,7 +16,11 @@ export default function mapRange(context: ParseContext, node: CoffeeRange): Rang
   }
 
   return new Range(
-    line, column, start, end, raw,
+    line,
+    column,
+    start,
+    end,
+    raw,
     mapAny(context, node.from),
     mapAny(context, node.to),
     !node.exclusive
