@@ -8,9 +8,9 @@ import {
   Splat,
   StringLiteral,
   StringWithInterpolations,
-  Value,
+  Value
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
-import {CSXElement, Node} from '../nodes';
+import { CSXElement, Node } from '../nodes';
 import getLocation from '../util/getLocation';
 import getTemplateLiteralComponents from '../util/getTemplateLiteralComponents';
 import ParseContext from '../util/ParseContext';
@@ -21,10 +21,21 @@ export default function mapCSX(context: ParseContext, node: Call): Node {
   const [properties, children] = node.args;
   const mappedProperties = mapCSXProperties(context, properties);
   const mappedChildren = mapCSXChildren(context, children);
-  return new CSXElement(line, column, start, end, raw, mappedProperties, mappedChildren);
+  return new CSXElement(
+    line,
+    column,
+    start,
+    end,
+    raw,
+    mappedProperties,
+    mappedChildren
+  );
 }
 
-function mapCSXProperties(context: ParseContext, properties: Base): Array<Node> {
+function mapCSXProperties(
+  context: ParseContext,
+  properties: Base
+): Array<Node> {
   if (!(properties instanceof Value) || !(properties.base instanceof Arr)) {
     throw new Error('Expected a value for the CSX properties arg.');
   }
@@ -46,7 +57,9 @@ function mapCSXProperties(context: ParseContext, properties: Base): Array<Node> 
             resultProperties.push(mapAny(context, propertyAssignment.value));
           }
         } else {
-          throw new Error('Unexpected property assignment object field in CSX.');
+          throw new Error(
+            'Unexpected property assignment object field in CSX.'
+          );
         }
       }
     } else if (value.base instanceof IdentifierLiteral) {
@@ -58,7 +71,10 @@ function mapCSXProperties(context: ParseContext, properties: Base): Array<Node> 
   return resultProperties;
 }
 
-function mapCSXChildren(context: ParseContext, children: Base | null): Array<Node | null> {
+function mapCSXChildren(
+  context: ParseContext,
+  children: Base | null
+): Array<Node | null> {
   if (!children) {
     return [];
   }
@@ -71,6 +87,11 @@ function mapCSXChildren(context: ParseContext, children: Base | null): Array<Nod
     throw new Error('Expected a valid CSX children arg.');
   }
   const childInterpolatedString = children.base.body.expressions[0];
-  const {unmappedExpressions} = getTemplateLiteralComponents(context, childInterpolatedString);
-  return unmappedExpressions.map(child => child ? mapAny(context, child) : null);
+  const { unmappedExpressions } = getTemplateLiteralComponents(
+    context,
+    childInterpolatedString
+  );
+  return unmappedExpressions.map(child =>
+    child ? mapAny(context, child) : null
+  );
 }

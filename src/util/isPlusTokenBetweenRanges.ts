@@ -6,7 +6,11 @@ import ParseContext from './ParseContext';
  * is a real '+' operator between them. A plus operation without an actual '+'
  * operator is an implicit string interpolation operation.
  */
-export default function isPlusTokenBetweenRanges(leftRange: [number, number], rightRange: [number, number], context: ParseContext): boolean {
+export default function isPlusTokenBetweenRanges(
+  leftRange: [number, number],
+  rightRange: [number, number],
+  context: ParseContext
+): boolean {
   const tokens = context.sourceTokens;
   const leftEnd = tokens.indexOfTokenContainingSourceIndex(leftRange[1] - 1);
   const rightStart = tokens.indexOfTokenContainingSourceIndex(rightRange[0]);
@@ -24,7 +28,10 @@ export default function isPlusTokenBetweenRanges(leftRange: [number, number], ri
   // this must be an implicit '+'.
   let foundPlusToken = false;
   tokensBetweenOperands.forEach(({ type, start, end }) => {
-    if (type === SourceType.OPERATOR && context.source.slice(start, end) === '+') {
+    if (
+      type === SourceType.OPERATOR &&
+      context.source.slice(start, end) === '+'
+    ) {
       foundPlusToken = true;
     }
   });

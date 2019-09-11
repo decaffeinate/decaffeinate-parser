@@ -22,26 +22,34 @@ export default function mapIf(context: ParseContext, node: If): Conditional {
     consequent = consequent.withInline(true);
     // POST-if, so look for tokens between the consequent and the condition
     left = context.sourceTokens.indexOfTokenEndingAtSourceIndex(consequent.end);
-    right = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.start);
+    right = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
+      condition.start
+    );
   } else {
     // regular `if`, so look from the start of the node until the condition
     left = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-    right = context.sourceTokens.indexOfTokenStartingAtSourceIndex(condition.start);
+    right = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
+      condition.start
+    );
   }
 
   if (left && right) {
-    isUnless = context.sourceTokens.indexOfTokenMatchingPredicate(
-      token => (
-        token.type === SourceType.IF &&
-        context.source.slice(token.start, token.end) === 'unless'
-      ),
-      left,
-      right
-    ) !== null;
+    isUnless =
+      context.sourceTokens.indexOfTokenMatchingPredicate(
+        token =>
+          token.type === SourceType.IF &&
+          context.source.slice(token.start, token.end) === 'unless',
+        left,
+        right
+      ) !== null;
   }
 
   return new Conditional(
-    line, column, start, end, raw,
+    line,
+    column,
+    start,
+    end,
+    raw,
     condition,
     consequent,
     alternate,

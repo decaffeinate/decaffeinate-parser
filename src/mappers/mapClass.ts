@@ -5,7 +5,10 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
-export default function mapClass(context: ParseContext, node: CoffeeClass): Class {
+export default function mapClass(
+  context: ParseContext,
+  node: CoffeeClass
+): Class {
   const { line, column, start, end, raw } = getLocation(context, node);
 
   const nameAssignee = node.variable ? mapAny(context, node.variable) : null;
@@ -19,7 +22,11 @@ export default function mapClass(context: ParseContext, node: CoffeeClass): Clas
   }
 
   return new Class(
-    line, column, start, end, raw,
+    line,
+    column,
+    start,
+    end,
+    raw,
     nameAssignee,
     nameAssignee,
     body,

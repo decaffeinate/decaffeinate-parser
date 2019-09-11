@@ -1,5 +1,9 @@
 import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
-import { Base, Block, LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import {
+  Base,
+  Block,
+  LocationData
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import LinesAndColumns from 'lines-and-columns';
 import { ClassProtoAssignOp, Constructor } from '../nodes';
 
@@ -19,7 +23,9 @@ class ParseError extends Error {
  */
 export class ParseState {
   currentClassCtor: Constructor | null;
-  constructor(readonly currentClassBoundMethods: Array<ClassProtoAssignOp> | null) {
+  constructor(
+    readonly currentClassBoundMethods: Array<ClassProtoAssignOp> | null
+  ) {
     this.currentClassCtor = null;
   }
 
@@ -29,7 +35,9 @@ export class ParseState {
 
   recordBoundMethod(method: ClassProtoAssignOp): void {
     if (!this.currentClassBoundMethods) {
-      throw new Error('Cannot assign a bound method name when there is no current class.');
+      throw new Error(
+        'Cannot assign a bound method name when there is no current class.'
+      );
     }
     this.currentClassBoundMethods.push(method);
   }
@@ -57,16 +65,22 @@ export default class ParseContext {
     readonly linesAndColumns: LinesAndColumns,
     readonly sourceTokens: SourceTokenList,
     readonly ast: Block,
-    readonly parseState: ParseState) {
-  }
+    readonly parseState: ParseState
+  ) {}
 
   getRange(locatable: Base | LocationData): [number, number] | null {
     if (locatable instanceof Base) {
       return this.getRange(locatable.locationData);
     } else {
       const locationData = locatable as LocationData;
-      const start = this.linesAndColumns.indexForLocation({ line: locationData.first_line, column: locationData.first_column });
-      const end = this.linesAndColumns.indexForLocation({ line: locationData.last_line, column: locationData.last_column });
+      const start = this.linesAndColumns.indexForLocation({
+        line: locationData.first_line,
+        column: locationData.first_column
+      });
+      const end = this.linesAndColumns.indexForLocation({
+        line: locationData.last_line,
+        column: locationData.last_column
+      });
 
       if (start === null || end === null) {
         return null;
@@ -76,7 +90,11 @@ export default class ParseContext {
     }
   }
 
-  static fromSource(source: string, sourceLex: (source: string) => SourceTokenList, parse: (source: string) => Block): ParseContext {
+  static fromSource(
+    source: string,
+    sourceLex: (source: string) => SourceTokenList,
+    parse: (source: string) => Block
+  ): ParseContext {
     try {
       const sourceTokens = sourceLex(source);
       return new ParseContext(
@@ -97,7 +115,10 @@ export default class ParseContext {
 
   updateState(updater: (oldState: ParseState) => ParseState): ParseContext {
     return new ParseContext(
-      this.source, this.linesAndColumns, this.sourceTokens, this.ast,
+      this.source,
+      this.linesAndColumns,
+      this.sourceTokens,
+      this.ast,
       updater(this.parseState)
     );
   }

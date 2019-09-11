@@ -1,4 +1,4 @@
-import {nodes} from 'decaffeinate-coffeescript';
+import { nodes } from 'decaffeinate-coffeescript';
 import {
   Access as CS1Access,
   Arr as CS1Arr,
@@ -63,7 +63,7 @@ import {
   UndefinedLiteral as CS1UndefinedLiteral,
   Value as CS1Value,
   While as CS1While,
-  YieldReturn as CS1YieldReturn,
+  YieldReturn as CS1YieldReturn
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import {
   Access,
@@ -127,7 +127,7 @@ import {
   UndefinedLiteral,
   Value,
   While,
-  YieldReturn,
+  YieldReturn
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 const nodeTypeMap = new Map();
@@ -218,21 +218,31 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
   const result = Object.create(cs2Constructor.prototype);
   for (const key of Object.keys(node)) {
     const value = node[key];
-    if (Array.isArray(value) && value.length > 0 && value[0] instanceof CS1Base) {
-      result[key] = value
-        .map((child: CS1Base) => convertCS1NodeToCS2(child));
+    if (
+      Array.isArray(value) &&
+      value.length > 0 &&
+      value[0] instanceof CS1Base
+    ) {
+      result[key] = value.map((child: CS1Base) => convertCS1NodeToCS2(child));
     } else if (key === 'cases') {
       // Switch cases have a complex structure, so special-case those.
-      result[key] = value.map(([switchCaseCondition, block]: [CS1SwitchCaseCondition, CS1Block]) => {
-        if (Array.isArray(switchCaseCondition)) {
-          return [
-            switchCaseCondition.map((condition) => convertCS1NodeToCS2(condition)),
-            convertCS1NodeToCS2(block)
-          ];
-        } else {
-          return [convertCS1NodeToCS2(switchCaseCondition), convertCS1NodeToCS2(block)];
+      result[key] = value.map(
+        ([switchCaseCondition, block]: [CS1SwitchCaseCondition, CS1Block]) => {
+          if (Array.isArray(switchCaseCondition)) {
+            return [
+              switchCaseCondition.map(condition =>
+                convertCS1NodeToCS2(condition)
+              ),
+              convertCS1NodeToCS2(block)
+            ];
+          } else {
+            return [
+              convertCS1NodeToCS2(switchCaseCondition),
+              convertCS1NodeToCS2(block)
+            ];
+          }
         }
-      });
+      );
     } else if (value instanceof CS1Base) {
       result[key] = convertCS1NodeToCS2(value);
     } else {

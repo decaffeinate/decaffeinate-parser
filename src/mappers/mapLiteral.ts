@@ -10,7 +10,7 @@ import {
   StatementLiteral,
   StringLiteral,
   ThisLiteral,
-  UndefinedLiteral,
+  UndefinedLiteral
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   Bool,
@@ -25,7 +25,7 @@ import {
   Regex,
   RegexFlags,
   This,
-  Undefined,
+  Undefined
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import makeHeregex from '../util/makeHeregex';
@@ -47,7 +47,10 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     return new Undefined(line, column, start, end, raw);
   } else if (node instanceof BooleanLiteral) {
     return new Bool(line, column, start, end, raw, JSON.parse(node.value));
-  } else if (node instanceof IdentifierLiteral || node instanceof PropertyName) {
+  } else if (
+    node instanceof IdentifierLiteral ||
+    node instanceof PropertyName
+  ) {
     // Sometimes the CoffeeScript AST contains a string object instead of a
     // string primitive. Convert to string primitive if necessary.
     const value = node.value.valueOf();
@@ -68,8 +71,13 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
     } else {
       const regExp = parseRegExp(node.value);
       return new Regex(
-        line, column, start, end, raw,
-        regExp.pattern, RegexFlags.parse(regExp.flags || '')
+        line,
+        column,
+        start,
+        end,
+        raw,
+        regExp.pattern,
+        RegexFlags.parse(regExp.flags || '')
       );
     }
   } else if (node instanceof StringLiteral) {

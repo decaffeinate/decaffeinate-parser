@@ -23,11 +23,14 @@ import mapBlock from './mapBlock';
  * the block is only a semicolon or if the block only consists of comments. All
  * other empty blocks result in null.
  */
-export default function mapPossiblyEmptyBlock(context: ParseContext, node: CoffeeBlock | null | undefined): Block | null {
+export default function mapPossiblyEmptyBlock(
+  context: ParseContext,
+  node: CoffeeBlock | null | undefined
+): Block | null {
   if (!node) {
     return null;
   }
-  if (node.expressions.every((expression) => isCommentOnlyNode(expression))) {
+  if (node.expressions.every(expression => isCommentOnlyNode(expression))) {
     return null;
   }
 

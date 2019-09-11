@@ -5,7 +5,10 @@ import ParseContext from './ParseContext';
 /**
  * Determine if the operator is a fake + operator for string interpolation.
  */
-export default function isImplicitPlusOp(op: Op, context: ParseContext): boolean {
+export default function isImplicitPlusOp(
+  op: Op,
+  context: ParseContext
+): boolean {
   if (op.operator !== '+' || !op.second) {
     return false;
   }

@@ -1,11 +1,32 @@
 import { Assign } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
-import { AssignOp, BaseAssignOp, BitAndOp, BitOrOp, BitXorOp, CompoundAssignOp, DivideOp, ExistsOp, ExpOp, FloorDivideOp, LeftShiftOp, LogicalAndOp, LogicalOrOp, ModuloOp, MultiplyOp, PlusOp, RemOp, SignedRightShiftOp, SubtractOp, UnsignedRightShiftOp } from '../nodes';
+import {
+  AssignOp,
+  BaseAssignOp,
+  BitAndOp,
+  BitOrOp,
+  BitXorOp,
+  CompoundAssignOp,
+  DivideOp,
+  ExistsOp,
+  ExpOp,
+  FloorDivideOp,
+  LeftShiftOp,
+  LogicalAndOp,
+  LogicalOrOp,
+  ModuloOp,
+  MultiplyOp,
+  PlusOp,
+  RemOp,
+  SignedRightShiftOp,
+  SubtractOp,
+  UnsignedRightShiftOp
+} from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
 
-const COMPOUND_ASSIGN_OPS: {[op: string]: string | undefined} = {
+const COMPOUND_ASSIGN_OPS: { [op: string]: string | undefined } = {
   '-=': SubtractOp.name,
   '+=': PlusOp.name,
   '/=': DivideOp.name,
@@ -22,29 +43,46 @@ const COMPOUND_ASSIGN_OPS: {[op: string]: string | undefined} = {
   '|=': BitOrOp.name,
   '**=': ExpOp.name,
   '//=': FloorDivideOp.name,
-  '%%=': ModuloOp.name,
+  '%%=': ModuloOp.name
 };
 
-export default function mapAssign(context: ParseContext, node: Assign): BaseAssignOp {
+export default function mapAssign(
+  context: ParseContext,
+  node: Assign
+): BaseAssignOp {
   if (node.context === 'object') {
-    throw new UnsupportedNodeError(node, 'Unexpected object context when mapping regular assign op.');
+    throw new UnsupportedNodeError(
+      node,
+      'Unexpected object context when mapping regular assign op.'
+    );
   }
 
   const { line, column, start, end, raw } = getLocation(context, node);
   if (node.context) {
     const opName = COMPOUND_ASSIGN_OPS[node.context];
     if (!opName) {
-      throw new UnsupportedNodeError(node, 'Unexpected operator context for assign op.');
+      throw new UnsupportedNodeError(
+        node,
+        'Unexpected operator context for assign op.'
+      );
     }
     return new CompoundAssignOp(
-      line, column, start, end, raw,
+      line,
+      column,
+      start,
+      end,
+      raw,
       mapAny(context, node.variable),
       mapAny(context, node.value),
       opName
     );
   } else {
     return new AssignOp(
-      line, column, start, end, raw,
+      line,
+      column,
+      start,
+      end,
+      raw,
       mapAny(context, node.variable),
       mapAny(context, node.value)
     );
