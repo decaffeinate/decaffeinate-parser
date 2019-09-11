@@ -7,10 +7,11 @@
   "types": "dist/parser.d.ts",
   "scripts": {
     "build": "./script/build",
-    "lint": "tslint --config tslint.json --project tsconfig.json",
-    "lint-fix": "tslint --config tslint.json --project tsconfig.json --fix",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "yarn lint --fix",
     "pretest": "yarn lint",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --ci"
   },
   "keywords": [
     "coffeescript",
@@ -43,12 +44,18 @@
     "@babel/register": "^7.0.0",
     "@types/jest": "^24.0.16",
     "@types/node": "12.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "coffee-script-redux": "^2.0.0-beta8",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
+    "prettier": "^1.18.2",
     "string-repeat": "^1.1.1",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
-    "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   },
   "publishConfig": {

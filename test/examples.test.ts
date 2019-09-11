@@ -9,11 +9,22 @@ function defineTests(): void {
   defineExamplesDir(join(__dirname, 'cs2-examples'), false, true);
 }
 
-function defineExamplesDir(examplesPath: string, shouldTestCS1: boolean, shouldTestCS2: boolean): void {
-  readdirSync(examplesPath).forEach(entry => defineTestsForEntry(examplesPath, entry, shouldTestCS1, shouldTestCS2));
+function defineExamplesDir(
+  examplesPath: string,
+  shouldTestCS1: boolean,
+  shouldTestCS2: boolean
+): void {
+  readdirSync(examplesPath).forEach(entry =>
+    defineTestsForEntry(examplesPath, entry, shouldTestCS1, shouldTestCS2)
+  );
 }
 
-function defineTestsForEntry(examplesPath: string, entry: string, shouldTestCS1: boolean, shouldTestCS2: boolean): void {
+function defineTestsForEntry(
+  examplesPath: string,
+  entry: string,
+  shouldTestCS1: boolean,
+  shouldTestCS2: boolean
+): void {
   const dir = join(examplesPath, entry);
   const testFn = test;
   const testName = basename(entry, '.coffee');
@@ -25,7 +36,12 @@ function defineTestsForEntry(examplesPath: string, entry: string, shouldTestCS1:
   }
 }
 
-function defineTest(path: string, testFn: typeof it.skip, testName: string, useCS2: boolean): void {
+function defineTest(
+  path: string,
+  testFn: typeof it.skip,
+  testName: string,
+  useCS2: boolean
+): void {
   const fullTestName = `${useCS2 ? 'CS2' : 'CS1'}: ${testName}`;
   testFn(fullTestName, () => {
     const input = readFileSync(path, { encoding: 'utf8' });
@@ -41,7 +57,7 @@ function stripContext(programNode: Program): Program {
 
 function stripExtraInfo(node: Node): Node {
   traverse(node, (node, parent) => {
-    expect(node.parentNode).toEqual(parent);
+    expect(node.parentNode).toBe(parent);
     delete node.parentNode;
   });
   return node;

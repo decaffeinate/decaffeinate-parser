@@ -1,13 +1,22 @@
-import {LocationData} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
-import ParseContext from './ParseContext';
-import {SourceRange} from './sourceRangeFromLocationData';
+/* eslint-disable @typescript-eslint/camelcase */
 
-export default function locationDataFromSourceRange(context: ParseContext, sourceRange: SourceRange): LocationData {
-  let startLocationInclusive = context.linesAndColumns.locationForIndex(sourceRange.start);
+import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import ParseContext from './ParseContext';
+import { SourceRange } from './sourceRangeFromLocationData';
+
+export default function locationDataFromSourceRange(
+  context: ParseContext,
+  sourceRange: SourceRange
+): LocationData {
+  const startLocationInclusive = context.linesAndColumns.locationForIndex(
+    sourceRange.start
+  );
   if (startLocationInclusive === null) {
     throw new Error('Expected start location for source range.');
   }
-  let endLocationInclusive = context.linesAndColumns.locationForIndex(sourceRange.end - 1);
+  const endLocationInclusive = context.linesAndColumns.locationForIndex(
+    sourceRange.end - 1
+  );
   if (endLocationInclusive === null) {
     throw new Error('Expected end location for source range.');
   }
@@ -15,6 +24,6 @@ export default function locationDataFromSourceRange(context: ParseContext, sourc
     first_line: startLocationInclusive.line,
     first_column: startLocationInclusive.column,
     last_line: endLocationInclusive.line,
-    last_column: endLocationInclusive.column,
+    last_column: endLocationInclusive.column
   };
 }

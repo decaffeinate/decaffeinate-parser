@@ -8,20 +8,20 @@ import mapAny from './mapAny';
 import mapValue from './mapValue';
 
 export default function mapObj(context: ParseContext, node: Obj): ObjectInitialiser {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
-  let members: Array<ObjectInitialiserMember | AssignOp | Spread> = [];
+  const members: Array<ObjectInitialiserMember | AssignOp | Spread> = [];
 
-  for (let property of node.properties) {
+  for (const property of node.properties) {
     if (isCommentOnlyNode(property)) {
       continue;
     }
-    let { line, column, start, end, raw } = getLocation(context, property);
+    const { line, column, start, end, raw } = getLocation(context, property);
 
     if (property instanceof Value) {
       // shorthand property
-      let value = mapValue(context, property);
-      let isComputed = property.base instanceof ComputedPropertyName;
+      const value = mapValue(context, property);
+      const isComputed = property.base instanceof ComputedPropertyName;
 
       members.push(new ObjectInitialiserMember(
         line, column, start, end, raw,
@@ -30,9 +30,9 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         isComputed
       ));
     } else if (property instanceof Assign && property.context === 'object') {
-      let key = mapAny(context, property.variable);
-      let expression = mapAny(context, property.value);
-      let isComputed = property.variable instanceof Value &&
+      const key = mapAny(context, property.variable);
+      const expression = mapAny(context, property.value);
+      const isComputed = property.variable instanceof Value &&
         property.variable.base instanceof ComputedPropertyName;
 
       members.push(new ObjectInitialiserMember(
@@ -42,8 +42,8 @@ export default function mapObj(context: ParseContext, node: Obj): ObjectInitiali
         isComputed
       ));
     } else if (property instanceof Assign) {
-      let assignee = mapAny(context, property.variable);
-      let expression = mapAny(context, property.value);
+      const assignee = mapAny(context, property.variable);
+      const expression = mapAny(context, property.value);
 
       members.push(new AssignOp(
         line, column, start, end, raw,

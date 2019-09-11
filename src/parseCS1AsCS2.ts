@@ -198,8 +198,8 @@ nodeTypeMap.set(CS1If, If);
  * Run the CS1 parser and convert the resulting AST into a CS2-compatible AST.
  */
 export default function parseCS1AsCS2(source: string): Block {
-  let cs1AST = nodes(source);
-  let cs2AST = convertCS1NodeToCS2(cs1AST);
+  const cs1AST = nodes(source);
+  const cs2AST = convertCS1NodeToCS2(cs1AST);
   if (!(cs2AST instanceof Block)) {
     throw new Error('Expected top-level CS file to convert to a Block');
   }
@@ -210,14 +210,14 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
   if (node instanceof CS1Comment) {
     return makeCS2Comment(node);
   }
-  let cs1Constructor = node.constructor;
-  let cs2Constructor = nodeTypeMap.get(cs1Constructor);
+  const cs1Constructor = node.constructor;
+  const cs2Constructor = nodeTypeMap.get(cs1Constructor);
   if (!cs2Constructor) {
     throw new Error(`Unexpected CS1 type for node ${node}`);
   }
-  let result = Object.create(cs2Constructor.prototype);
-  for (let key of Object.keys(node)) {
-    let value = node[key];
+  const result = Object.create(cs2Constructor.prototype);
+  for (const key of Object.keys(node)) {
+    const value = node[key];
     if (Array.isArray(value) && value.length > 0 && value[0] instanceof CS1Base) {
       result[key] = value
         .map((child: CS1Base) => convertCS1NodeToCS2(child));
@@ -248,8 +248,8 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
  * in block comments.
  */
 function makeCS2Comment(comment: CS1Comment): Value {
-  let valueNode = Object.create(Value.prototype);
-  let passthroughNode = Object.create(PassthroughLiteral.prototype);
+  const valueNode = Object.create(Value.prototype);
+  const passthroughNode = Object.create(PassthroughLiteral.prototype);
   valueNode.properties = [];
   valueNode.base = passthroughNode;
   passthroughNode.value = '';

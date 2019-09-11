@@ -5,11 +5,11 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
 export default function mapParam(context: ParseContext, node: Param): Node {
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let param = mapAny(context, node.name);
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const param = mapAny(context, node.name);
 
   if (node.value) {
-    let value = mapAny(context, node.value);
+    const value = mapAny(context, node.value);
     return new DefaultParam(line, column, start, end, raw, param, value);
   }
 

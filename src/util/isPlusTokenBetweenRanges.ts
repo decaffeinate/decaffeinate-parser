@@ -7,19 +7,19 @@ import ParseContext from './ParseContext';
  * operator is an implicit string interpolation operation.
  */
 export default function isPlusTokenBetweenRanges(leftRange: [number, number], rightRange: [number, number], context: ParseContext): boolean {
-  let tokens = context.sourceTokens;
-  let leftEnd = tokens.indexOfTokenContainingSourceIndex(leftRange[1] - 1);
-  let rightStart = tokens.indexOfTokenContainingSourceIndex(rightRange[0]);
+  const tokens = context.sourceTokens;
+  const leftEnd = tokens.indexOfTokenContainingSourceIndex(leftRange[1] - 1);
+  const rightStart = tokens.indexOfTokenContainingSourceIndex(rightRange[0]);
   // Normal '+' operators should find tokens here, so if we don't, this must be
   // an implicit '+' operator.
   if (!leftEnd || !rightStart) {
     return false;
   }
-  let afterLeftEnd = leftEnd.next();
+  const afterLeftEnd = leftEnd.next();
   if (!afterLeftEnd) {
     return false;
   }
-  let tokensBetweenOperands = tokens.slice(afterLeftEnd, rightStart);
+  const tokensBetweenOperands = tokens.slice(afterLeftEnd, rightStart);
   // If we find an actual operator, this must have been a real '+'. Otherwise,
   // this must be an implicit '+'.
   let foundPlusToken = false;

@@ -6,22 +6,27 @@ import parseCS1AsCS2 from './parseCS1AsCS2';
 import parseCS2 from './parseCS2';
 import fixLocations from './util/fixLocations';
 import ParseContext from './util/ParseContext';
+import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 
 export type Options = {
   useCS2: boolean;
 };
 
 export const DEFAULT_OPTIONS: Options = {
-  useCS2: false,
+  useCS2: false
 };
 
-export function parse(source: string, options: Options = DEFAULT_OPTIONS): Program {
+export function parse(
+  source: string,
+  options: Options = DEFAULT_OPTIONS
+): Program {
   patchCoffeeScript();
-  let parse = options.useCS2 ? parseCS2 : parseCS1AsCS2;
-  let sourceLex = (s: string) => lex(s, {useCS2: options.useCS2});
-  let context = ParseContext.fromSource(source, sourceLex, parse);
+  const parse = options.useCS2 ? parseCS2 : parseCS1AsCS2;
+  const sourceLex = (s: string): SourceTokenList =>
+    lex(s, { useCS2: options.useCS2 });
+  const context = ParseContext.fromSource(source, sourceLex, parse);
   fixLocations(context, context.ast);
-  let program = mapProgram(context);
+  const program = mapProgram(context);
   traverse(program, (node, parent) => {
     node.parentNode = parent;
   });
@@ -33,9 +38,9 @@ export function traverse(
   callback: (node: Node, parent: Node | null) => boolean | void
 ): void {
   function traverseRec(currentNode: Node, currentParent: Node | null): void {
-    let shouldDescend = callback(currentNode, currentParent);
+    const shouldDescend = callback(currentNode, currentParent);
     if (shouldDescend !== false) {
-      for (let child of currentNode.getChildren()) {
+      for (const child of currentNode.getChildren()) {
         traverseRec(child, currentNode);
       }
     }

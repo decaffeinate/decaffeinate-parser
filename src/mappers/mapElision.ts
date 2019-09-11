@@ -4,6 +4,6 @@ import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
 
 export default function mapElision(context: ParseContext, node: CoffeeElision): Elision {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
   return new Elision(line, column, start, end, raw);
 }

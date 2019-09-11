@@ -8,21 +8,21 @@ import mapAny from './mapAny';
 export default function mapIn(context: ParseContext, node: CoffeeIn): InOp {
   // We don't use the `negated` flag on `node` because it gets set to
   // `true` when a parent `If` is an `unless`.
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let left = mapAny(context, node.object);
-  let right = mapAny(context, node.array);
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const left = mapAny(context, node.object);
+  const right = mapAny(context, node.array);
   let isNot = false;
 
-  let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
-  let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
-  let relationTokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
+  const lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
+  const firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
+  const relationTokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
     token => token.type === SourceType.RELATION,
     lastTokenIndexOfLeft,
     firstTokenIndexOfRight
   );
 
   if (relationTokenIndex) {
-    let relationToken = context.sourceTokens.tokenAtIndex(relationTokenIndex);
+    const relationToken = context.sourceTokens.tokenAtIndex(relationTokenIndex);
 
     if (relationToken) {
       isNot = context.source.slice(relationToken.start, relationToken.end) !== 'in';

@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
-export default function mergeLocations(left: LocationData, right: LocationData): LocationData {
+export default function mergeLocations(
+  left: LocationData,
+  right: LocationData
+): LocationData {
   let first_line;
   let first_column;
   let last_line;

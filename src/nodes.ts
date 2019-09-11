@@ -10,15 +10,16 @@ export abstract class Node {
     readonly column: number,
     readonly start: number,
     readonly end: number,
-    readonly raw: string,
-  ) {
-  }
+    readonly raw: string
+  ) {}
 
   getChildren(): Array<Node> {
-    let children: Array<Node> = [];
-    for (let childField of this.getChildFields()) {
+    const children: Array<Node> = [];
+    for (const childField of this.getChildFields()) {
       if (Array.isArray(childField)) {
-        children.push(...childField.filter<Node>((node): node is Node => node !== null));
+        children.push(
+          ...childField.filter<Node>((node): node is Node => node !== null)
+        );
       } else if (childField) {
         children.push(childField);
       }
@@ -44,7 +45,7 @@ export class Identifier extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly data: string,
+    readonly data: string
   ) {
     super('Identifier', line, column, start, end, raw);
   }
@@ -61,7 +62,7 @@ export class Bool extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly data: boolean,
+    readonly data: boolean
   ) {
     super('Bool', line, column, start, end, raw);
   }
@@ -86,7 +87,7 @@ export class JavaScript extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly data: string,
+    readonly data: string
   ) {
     super('JavaScript', line, column, start, end, raw);
   }
@@ -104,7 +105,7 @@ export class Number extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly data: number,
+    readonly data: number
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -148,7 +149,7 @@ export abstract class AccessOp extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -162,7 +163,7 @@ export class MemberAccessOp extends AccessOp {
     end: number,
     raw: string,
     expression: Node,
-    readonly member: Identifier,
+    readonly member: Identifier
   ) {
     super('MemberAccessOp', line, column, start, end, raw, expression);
   }
@@ -197,7 +198,7 @@ export class SoakedMemberAccessOp extends AccessOp {
     end: number,
     raw: string,
     expression: Node,
-    readonly member: Identifier,
+    readonly member: Identifier
   ) {
     super('SoakedMemberAccessOp', line, column, start, end, raw, expression);
   }
@@ -216,7 +217,15 @@ export class SoakedProtoMemberAccessOp extends AccessOp {
     raw: string,
     expression: Node
   ) {
-    super('SoakedProtoMemberAccessOp', line, column, start, end, raw, expression);
+    super(
+      'SoakedProtoMemberAccessOp',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      expression
+    );
   }
 
   getChildNames(): Array<keyof this & string> {
@@ -252,7 +261,15 @@ export class SoakedDynamicMemberAccessOp extends AccessOp {
     expression: Node,
     readonly indexingExpr: Node
   ) {
-    super('SoakedDynamicMemberAccessOp', line, column, start, end, raw, expression);
+    super(
+      'SoakedDynamicMemberAccessOp',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      expression
+    );
   }
 
   getChildNames(): Array<keyof this & string> {
@@ -267,7 +284,7 @@ export class Quasi extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly data: string,
+    readonly data: string
   ) {
     super('Quasi', line, column, start, end, raw);
   }
@@ -285,7 +302,7 @@ export class String extends Node {
     end: number,
     raw: string,
     readonly quasis: Array<Quasi>,
-    readonly expressions: Array<Node | null>,
+    readonly expressions: Array<Node | null>
   ) {
     super('String', line, column, start, end, raw);
   }
@@ -303,7 +320,8 @@ export class TaggedTemplateLiteral extends Node {
     end: number,
     raw: string,
     readonly tag: Node,
-    readonly template: String,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    readonly template: String
   ) {
     super('TaggedTemplateLiteral', line, column, start, end, raw);
   }
@@ -320,7 +338,7 @@ export class ObjectInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly members: Array<ObjectInitialiserMember | AssignOp | Spread>,
+    readonly members: Array<ObjectInitialiserMember | AssignOp | Spread>
   ) {
     super('ObjectInitialiser', line, column, start, end, raw);
   }
@@ -340,7 +358,7 @@ export class ObjectInitialiserMember extends Node {
     readonly key: Node,
     // If null, this is a shorthand initializer and the key and value are the same.
     readonly expression: Node | null,
-    readonly isComputed: boolean,
+    readonly isComputed: boolean
   ) {
     super('ObjectInitialiserMember', line, column, start, end, raw);
   }
@@ -360,7 +378,7 @@ export class Conditional extends Node {
     readonly condition: Node,
     readonly consequent: Block | null,
     readonly alternate: Block | null,
-    readonly isUnless: boolean,
+    readonly isUnless: boolean
   ) {
     super('Conditional', line, column, start, end, raw);
   }
@@ -399,7 +417,7 @@ export class Block extends Node {
     end: number,
     raw: string,
     readonly statements: Array<Node>,
-    readonly inline: boolean,
+    readonly inline: boolean
   ) {
     super('Block', line, column, start, end, raw);
   }
@@ -410,7 +428,13 @@ export class Block extends Node {
 
   withInline(inline: boolean): Block {
     return new Block(
-      this.line, this.column, this.start, this.end, this.raw, this.statements, inline
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      this.statements,
+      inline
     );
   }
 }
@@ -422,7 +446,7 @@ export class Loop extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly body: Node | null,
+    readonly body: Node | null
   ) {
     super('Loop', line, column, start, end, raw);
   }
@@ -442,7 +466,7 @@ export class While extends Node {
     readonly condition: Node,
     readonly guard: Node | null,
     readonly body: Node | null,
-    readonly isUntil: boolean,
+    readonly isUntil: boolean
   ) {
     super('While', line, column, start, end, raw);
   }
@@ -464,7 +488,7 @@ export abstract class For extends Node {
     readonly valAssignee: Node | null,
     readonly target: Node,
     readonly filter: Node | null,
-    readonly body: Block | null,
+    readonly body: Block | null
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -482,9 +506,21 @@ export class ForOf extends For {
     target: Node,
     filter: Node | null,
     body: Block | null,
-    readonly isOwn: boolean,
+    readonly isOwn: boolean
   ) {
-    super('ForOf', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
+    super(
+      'ForOf',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      keyAssignee,
+      valAssignee,
+      target,
+      filter,
+      body
+    );
   }
 
   getChildNames(): Array<keyof this & string> {
@@ -504,9 +540,21 @@ export class ForIn extends For {
     target: Node,
     filter: Node | null,
     body: Block | null,
-    readonly step: Node | null,
+    readonly step: Node | null
   ) {
-    super('ForIn', line, column, start, end, raw, keyAssignee, valAssignee, target, filter, body);
+    super(
+      'ForIn',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      keyAssignee,
+      valAssignee,
+      target,
+      filter,
+      body
+    );
   }
 
   getChildNames(): Array<keyof this & string> {
@@ -524,9 +572,21 @@ export class ForFrom extends For {
     valAssignee: Node | null,
     target: Node,
     filter: Node | null,
-    body: Block | null,
+    body: Block | null
   ) {
-    super('ForFrom', line, column, start, end, raw, null /* keyAssignee */, valAssignee, target, filter, body);
+    super(
+      'ForFrom',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      null /* keyAssignee */,
+      valAssignee,
+      target,
+      filter,
+      body
+    );
   }
 
   getChildNames(): Array<keyof this & string> {
@@ -543,7 +603,7 @@ export class Switch extends Node {
     raw: string,
     readonly expression: Node | null,
     readonly cases: Array<SwitchCase>,
-    readonly alternate: Block | null,
+    readonly alternate: Block | null
   ) {
     super('Switch', line, column, start, end, raw);
   }
@@ -561,7 +621,7 @@ export class SwitchCase extends Node {
     end: number,
     raw: string,
     readonly conditions: Array<Node>,
-    readonly consequent: Block | null,
+    readonly consequent: Block | null
   ) {
     super('SwitchCase', line, column, start, end, raw);
   }
@@ -583,7 +643,7 @@ export class RegexFlags {
     readonly ignoreCase: boolean,
     readonly multiline: boolean,
     readonly unicode: boolean,
-    readonly sticky: boolean,
+    readonly sticky: boolean
   ) {
     this.g = global;
     this.i = ignoreCase;
@@ -639,7 +699,7 @@ export class Heregex extends Node {
     raw: string,
     readonly quasis: Array<Quasi>,
     readonly expressions: Array<Node | null>,
-    readonly flags: RegexFlags,
+    readonly flags: RegexFlags
   ) {
     super('Heregex', line, column, start, end, raw);
   }
@@ -655,7 +715,7 @@ export class Null extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Null', line, column, start, end, raw);
   }
@@ -671,7 +731,7 @@ export class Undefined extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Undefined', line, column, start, end, raw);
   }
@@ -689,7 +749,7 @@ export class Regex extends Node {
     end: number,
     raw: string,
     readonly pattern: string,
-    readonly flags: RegexFlags,
+    readonly flags: RegexFlags
   ) {
     super('Regex', line, column, start, end, raw);
   }
@@ -706,7 +766,7 @@ export class Return extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node | null,
+    readonly expression: Node | null
   ) {
     super('Return', line, column, start, end, raw);
   }
@@ -723,7 +783,7 @@ export class YieldReturn extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node | null,
+    readonly expression: Node | null
   ) {
     super('YieldReturn', line, column, start, end, raw);
   }
@@ -740,7 +800,7 @@ export class AwaitReturn extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node | null,
+    readonly expression: Node | null
   ) {
     super('AwaitReturn', line, column, start, end, raw);
   }
@@ -756,7 +816,7 @@ export class This extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('This', line, column, start, end, raw);
   }
@@ -773,7 +833,7 @@ export class Throw extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node | null,
+    readonly expression: Node | null
   ) {
     super('Throw', line, column, start, end, raw);
   }
@@ -790,7 +850,7 @@ export class ArrayInitialiser extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly members: Array<Node>,
+    readonly members: Array<Node>
   ) {
     super('ArrayInitialiser', line, column, start, end, raw);
   }
@@ -830,7 +890,7 @@ export class Rest extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('Rest', line, column, start, end, raw);
   }
@@ -846,7 +906,7 @@ export class Expansion extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Expansion', line, column, start, end, raw);
   }
@@ -862,7 +922,7 @@ export class Elision extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Elision', line, column, start, end, raw);
   }
@@ -878,7 +938,7 @@ export class Break extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Break', line, column, start, end, raw);
   }
@@ -894,7 +954,7 @@ export class Continue extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Continue', line, column, start, end, raw);
   }
@@ -911,7 +971,7 @@ export class Spread extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('Spread', line, column, start, end, raw);
   }
@@ -930,7 +990,7 @@ export class Range extends Node {
     raw: string,
     readonly left: Node,
     readonly right: Node,
-    readonly isInclusive: boolean,
+    readonly isInclusive: boolean
   ) {
     super('Range', line, column, start, end, raw);
   }
@@ -949,7 +1009,7 @@ export abstract class BinaryOp extends Node {
     end: number,
     raw: string,
     readonly left: Node,
-    readonly right: Node,
+    readonly right: Node
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -967,7 +1027,7 @@ export abstract class UnaryOp extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -985,7 +1045,7 @@ export class ChainedComparisonOp extends Node {
     end: number,
     raw: string,
     readonly operands: Array<Node>,
-    readonly operators: Array<OperatorInfo>,
+    readonly operators: Array<OperatorInfo>
   ) {
     super('ChainedComparisonOp', line, column, start, end, raw);
   }
@@ -996,11 +1056,7 @@ export class ChainedComparisonOp extends Node {
 }
 
 export class OperatorInfo {
-  constructor(
-    readonly operator: string,
-    readonly token: SourceToken,
-  ) {
-  }
+  constructor(readonly operator: string, readonly token: SourceToken) {}
 }
 
 export type Op = UnaryOp | BinaryOp | ChainedComparisonOp;
@@ -1096,7 +1152,7 @@ export class LogicalNotOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('LogicalNotOp', line, column, start, end, raw, expression);
   }
@@ -1110,7 +1166,7 @@ export class LogicalAndOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('LogicalAndOp', line, column, start, end, raw, left, right);
   }
@@ -1124,7 +1180,7 @@ export class LogicalOrOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('LogicalOrOp', line, column, start, end, raw, left, right);
   }
@@ -1247,7 +1303,7 @@ export class UnaryNegateOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('UnaryNegateOp', line, column, start, end, raw, expression);
   }
@@ -1260,7 +1316,7 @@ export class BitNotOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('BitNotOp', line, column, start, end, raw, expression);
   }
@@ -1274,7 +1330,7 @@ export class BitAndOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('BitAndOp', line, column, start, end, raw, left, right);
   }
@@ -1288,7 +1344,7 @@ export class BitOrOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('BitOrOp', line, column, start, end, raw, left, right);
   }
@@ -1302,7 +1358,7 @@ export class BitXorOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('BitXorOp', line, column, start, end, raw, left, right);
   }
@@ -1316,7 +1372,7 @@ export class LeftShiftOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('LeftShiftOp', line, column, start, end, raw, left, right);
   }
@@ -1330,7 +1386,7 @@ export class SignedRightShiftOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('SignedRightShiftOp', line, column, start, end, raw, left, right);
   }
@@ -1344,7 +1400,7 @@ export class UnsignedRightShiftOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('UnsignedRightShiftOp', line, column, start, end, raw, left, right);
   }
@@ -1357,7 +1413,7 @@ export class PreDecrementOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('PreDecrementOp', line, column, start, end, raw, expression);
   }
@@ -1370,7 +1426,7 @@ export class PreIncrementOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('PreIncrementOp', line, column, start, end, raw, expression);
   }
@@ -1383,7 +1439,7 @@ export class PostDecrementOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('PostDecrementOp', line, column, start, end, raw, expression);
   }
@@ -1396,7 +1452,7 @@ export class PostIncrementOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('PostIncrementOp', line, column, start, end, raw, expression);
   }
@@ -1410,7 +1466,7 @@ export class ExpOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('ExpOp', line, column, start, end, raw, left, right);
   }
@@ -1424,7 +1480,7 @@ export class RemOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('RemOp', line, column, start, end, raw, left, right);
   }
@@ -1438,7 +1494,7 @@ export class ModuloOp extends BinaryOp {
     end: number,
     raw: string,
     left: Node,
-    right: Node,
+    right: Node
   ) {
     super('ModuloOp', line, column, start, end, raw, left, right);
   }
@@ -1453,7 +1509,7 @@ export class InOp extends BinaryOp {
     raw: string,
     left: Node,
     right: Node,
-    readonly isNot: boolean,
+    readonly isNot: boolean
   ) {
     super('InOp', line, column, start, end, raw, left, right);
   }
@@ -1468,7 +1524,7 @@ export class BaseAssignOp extends Node {
     end: number,
     raw: string,
     readonly assignee: Node,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -1493,7 +1549,13 @@ export class AssignOp extends BaseAssignOp {
 
   withExpression(expression: Node): AssignOp {
     return new AssignOp(
-      this.line, this.column, this.start, this.end, this.raw, this.assignee, expression
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      this.assignee,
+      expression
     );
   }
 }
@@ -1507,9 +1569,18 @@ export class CompoundAssignOp extends BaseAssignOp {
     raw: string,
     assignee: Node,
     expression: Node,
-    readonly op: string,
+    readonly op: string
   ) {
-    super('CompoundAssignOp', line, column, start, end, raw, assignee, expression);
+    super(
+      'CompoundAssignOp',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      assignee,
+      expression
+    );
   }
 }
 
@@ -1548,7 +1619,7 @@ export class TypeofOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('TypeofOp', line, column, start, end, raw, expression);
   }
@@ -1563,7 +1634,7 @@ export class InstanceofOp extends BinaryOp {
     raw: string,
     left: Node,
     right: Node,
-    readonly isNot: boolean,
+    readonly isNot: boolean
   ) {
     super('InstanceofOp', line, column, start, end, raw, left, right);
   }
@@ -1578,7 +1649,7 @@ export class OfOp extends BinaryOp {
     raw: string,
     left: Node,
     right: Node,
-    readonly isNot: boolean,
+    readonly isNot: boolean
   ) {
     super('OfOp', line, column, start, end, raw, left, right);
   }
@@ -1591,7 +1662,7 @@ export class DeleteOp extends UnaryOp {
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ) {
     super('DeleteOp', line, column, start, end, raw, expression);
   }
@@ -1604,7 +1675,7 @@ export class Yield extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node | null,
+    readonly expression: Node | null
   ) {
     super('Yield', line, column, start, end, raw);
   }
@@ -1621,7 +1692,7 @@ export class YieldFrom extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('YieldFrom', line, column, start, end, raw);
   }
@@ -1638,7 +1709,7 @@ export class Await extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('Await', line, column, start, end, raw);
   }
@@ -1658,7 +1729,7 @@ export class Slice extends Node {
     readonly expression: Node,
     readonly left: Node | null,
     readonly right: Node | null,
-    readonly isInclusive: boolean,
+    readonly isInclusive: boolean
   ) {
     super('Slice', line, column, start, end, raw);
   }
@@ -1678,7 +1749,7 @@ export class SoakedSlice extends Node {
     readonly expression: Node,
     readonly left: Node | null,
     readonly right: Node | null,
-    readonly isInclusive: boolean,
+    readonly isInclusive: boolean
   ) {
     super('SoakedSlice', line, column, start, end, raw);
   }
@@ -1697,7 +1768,7 @@ export abstract class BaseFunction extends Node {
     end: number,
     raw: string,
     readonly parameters: Array<Node>,
-    readonly body: Block | null,
+    readonly body: Block | null
   ) {
     super(type, line, column, start, end, raw);
   }
@@ -1724,7 +1795,13 @@ export class Function extends BaseFunction {
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new Function(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1744,7 +1821,13 @@ export class BoundFunction extends BaseFunction {
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new BoundFunction(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1764,7 +1847,13 @@ export class GeneratorFunction extends BaseFunction {
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new GeneratorFunction(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1779,12 +1868,27 @@ export class BoundGeneratorFunction extends BaseFunction {
     parameters: Array<Node>,
     body: Block | null
   ) {
-    super('BoundGeneratorFunction', line, column, start, end, raw, parameters, body);
+    super(
+      'BoundGeneratorFunction',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      parameters,
+      body
+    );
   }
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new BoundGeneratorFunction(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1804,7 +1908,13 @@ export class AsyncFunction extends BaseFunction {
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new AsyncFunction(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1819,12 +1929,27 @@ export class BoundAsyncFunction extends BaseFunction {
     parameters: Array<Node>,
     body: Block | null
   ) {
-    super('BoundAsyncFunction', line, column, start, end, raw, parameters, body);
+    super(
+      'BoundAsyncFunction',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      parameters,
+      body
+    );
   }
 
   withParameters(parameters: Array<Node>): BaseFunction {
     return new BoundAsyncFunction(
-      this.line, this.column, this.start, this.end, this.raw, parameters, this.body
+      this.line,
+      this.column,
+      this.start,
+      this.end,
+      this.raw,
+      parameters,
+      this.body
     );
   }
 }
@@ -1839,7 +1964,7 @@ export class Try extends Node {
     readonly body: Node | null,
     readonly catchAssignee: Node | null,
     readonly catchBody: Node | null,
-    readonly finallyBody: Node | null,
+    readonly finallyBody: Node | null
   ) {
     super('Try', line, column, start, end, raw);
   }
@@ -1873,7 +1998,16 @@ export class ClassProtoAssignOp extends BaseAssignOp {
     assignee: Node,
     expression: Node
   ) {
-    super('ClassProtoAssignOp', line, column, start, end, raw, assignee, expression);
+    super(
+      'ClassProtoAssignOp',
+      line,
+      column,
+      start,
+      end,
+      raw,
+      assignee,
+      expression
+    );
   }
 }
 
@@ -1889,7 +2023,7 @@ export class Class extends Node {
     readonly body: Block | null,
     readonly boundMembers: Array<ClassProtoAssignOp>,
     readonly parent: Node | null,
-    readonly ctor: Constructor | null,
+    readonly ctor: Constructor | null
   ) {
     super('Class', line, column, start, end, raw);
   }
@@ -1951,7 +2085,7 @@ export class Super extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('Super', line, column, start, end, raw);
   }
@@ -1967,7 +2101,7 @@ export class BareSuperFunctionApplication extends Node {
     column: number,
     start: number,
     end: number,
-    raw: string,
+    raw: string
   ) {
     super('BareSuperFunctionApplication', line, column, start, end, raw);
   }
@@ -2050,7 +2184,8 @@ export class ImportDeclaration extends Node {
     readonly defaultBinding: Identifier | null,
     readonly namespaceImport: Identifier | null,
     readonly namedImports: Array<ModuleSpecifier> | null,
-    readonly source: String,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    readonly source: String
   ) {
     super('ImportDeclaration', line, column, start, end, raw);
   }
@@ -2068,7 +2203,7 @@ export class ExportNamedDeclaration extends Node {
     end: number,
     raw: string,
     // This may be an assignment to an identifier, or it could be another binding expression like a class.
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('ExportNamedDeclaration', line, column, start, end, raw);
   }
@@ -2086,7 +2221,8 @@ export class ExportBindingsDeclaration extends Node {
     end: number,
     raw: string,
     readonly namedExports: Array<ModuleSpecifier>,
-    readonly source: String | null,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    readonly source: String | null
   ) {
     super('ExportBindingsDeclaration', line, column, start, end, raw);
   }
@@ -2103,7 +2239,7 @@ export class ExportDefaultDeclaration extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly expression: Node,
+    readonly expression: Node
   ) {
     super('ExportDefaultDeclaration', line, column, start, end, raw);
   }
@@ -2120,7 +2256,8 @@ export class ExportAllDeclaration extends Node {
     start: number,
     end: number,
     raw: string,
-    readonly source: String,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    readonly source: String
   ) {
     super('ExportAllDeclaration', line, column, start, end, raw);
   }
@@ -2138,7 +2275,7 @@ export class ModuleSpecifier extends Node {
     end: number,
     raw: string,
     readonly original: Identifier,
-    readonly alias: Identifier | null,
+    readonly alias: Identifier | null
   ) {
     super('ModuleSpecifier', line, column, start, end, raw);
   }
@@ -2156,7 +2293,7 @@ export class CSXElement extends Node {
     end: number,
     raw: string,
     readonly properties: Array<Node>,
-    readonly children: Array<Node | null>,
+    readonly children: Array<Node | null>
   ) {
     super('CSXElement', line, column, start, end, raw);
   }

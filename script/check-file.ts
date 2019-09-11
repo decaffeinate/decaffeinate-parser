@@ -2,10 +2,7 @@
 
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { basename, extname, join } from 'path';
-
-// TODO: Change to an import when parser is TypeScript.
-// tslint:disable-next-line:no-var-requires
-const parse = require('../src/parser').parse;
+import { parse } from '../src/parser';
 
 for (let i = 2; i < process.argv.length; i++) {
   processPath(process.argv[i]);
@@ -29,7 +26,12 @@ function processFile(path: string): void {
   } catch (ex) {
     console.log(`NOT OK ${path}`);
     console.log(`    ${ex.message}`);
-    console.log(ex.stack.split('\n').map((line: string) => `   ${line}`).join('\n'));
+    console.log(
+      ex.stack
+        .split('\n')
+        .map((line: string) => `   ${line}`)
+        .join('\n')
+    );
   }
 }
 

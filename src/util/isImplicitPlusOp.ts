@@ -9,8 +9,8 @@ export default function isImplicitPlusOp(op: Op, context: ParseContext): boolean
   if (op.operator !== '+' || !op.second) {
     return false;
   }
-  let firstRange = context.getRange(op.first);
-  let secondRange = context.getRange(op.second);
+  const firstRange = context.getRange(op.first);
+  const secondRange = context.getRange(op.second);
   if (!firstRange || !secondRange) {
     throw new Error('Expected valid location data on plus operation.');
   }

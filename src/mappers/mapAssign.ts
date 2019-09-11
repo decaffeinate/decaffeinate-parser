@@ -30,9 +30,9 @@ export default function mapAssign(context: ParseContext, node: Assign): BaseAssi
     throw new UnsupportedNodeError(node, 'Unexpected object context when mapping regular assign op.');
   }
 
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
   if (node.context) {
-    let opName = COMPOUND_ASSIGN_OPS[node.context];
+    const opName = COMPOUND_ASSIGN_OPS[node.context];
     if (!opName) {
       throw new UnsupportedNodeError(node, 'Unexpected operator context for assign op.');
     }
