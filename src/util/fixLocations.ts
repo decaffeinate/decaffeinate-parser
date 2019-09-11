@@ -1,7 +1,27 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import SourceType from 'coffee-lex/dist/SourceType';
 import {
-  Assign, Base, Block, Call, Class, Code, Extends, For, If, In, Index, Literal,
-  Obj, Op, Param, Slice, Switch, Try, Value, While
+  Assign,
+  Base,
+  Block,
+  Call,
+  Class,
+  Code,
+  Extends,
+  For,
+  If,
+  In,
+  Index,
+  Literal,
+  Obj,
+  Op,
+  Param,
+  Slice,
+  Switch,
+  Try,
+  Value,
+  While
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import expandToIncludeParens from './expandToIncludeParens';
 import fixInvalidLocationData from './fixInvalidLocationData';
@@ -13,7 +33,7 @@ import rangeOfBracketTokensForIndexNode from './rangeOfBracketTokensForIndexNode
 import sourceRangeFromLocationData from './sourceRangeFromLocationData';
 
 export default function fixLocations(context: ParseContext, node: Base): void {
-  let { linesAndColumns, source } = context;
+  const { linesAndColumns, source } = context;
   node.eachChild(child => {
     if (child && child.locationData) {
       fixLocations(context, child);
@@ -21,10 +41,13 @@ export default function fixLocations(context: ParseContext, node: Base): void {
     return undefined;
   });
 
-  node.locationData = fixInvalidLocationData(node.locationData, context.linesAndColumns);
+  node.locationData = fixInvalidLocationData(
+    node.locationData,
+    context.linesAndColumns
+  );
 
   if (node instanceof Value) {
-    let lastChild = node.properties[node.properties.length - 1] || node.base;
+    const lastChild = node.properties[node.properties.length - 1] || node.base;
     if (lastChild) {
       node.locationData = locationWithLastPosition(
         node.locationData,
@@ -34,26 +57,30 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Index || node instanceof Slice) {
-    let rangeOfBrackets = rangeOfBracketTokensForIndexNode(context, node);
-    let lbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[0]);
+    const rangeOfBrackets = rangeOfBracketTokensForIndexNode(context, node);
+    const lbracket = context.sourceTokens.tokenAtIndex(rangeOfBrackets[0]);
     if (lbracket === null) {
       throw new Error('Expected to find left-bracket token.');
     }
-    let lbracketLoc = linesAndColumns.locationForIndex(lbracket.start);
+    const lbracketLoc = linesAndColumns.locationForIndex(lbracket.start);
     if (lbracketLoc === null) {
-      throw new Error('Expected to find a location for the left-bracket token.');
+      throw new Error(
+        'Expected to find a location for the left-bracket token.'
+      );
     }
-    let rbracketIndex = rangeOfBrackets[1].previous();
+    const rbracketIndex = rangeOfBrackets[1].previous();
     if (rbracketIndex === null) {
       throw new Error('Expected to find a non-null right-bracket token index.');
     }
-    let rbracket = context.sourceTokens.tokenAtIndex(rbracketIndex);
+    const rbracket = context.sourceTokens.tokenAtIndex(rbracketIndex);
     if (rbracket === null) {
       throw new Error('Expected to find right-bracket token.');
     }
-    let rbracketLoc = linesAndColumns.locationForIndex(rbracket.start);
+    const rbracketLoc = linesAndColumns.locationForIndex(rbracket.start);
     if (rbracketLoc === null) {
-      throw new Error('Expected to find a location for the right-bracket token.');
+      throw new Error(
+        'Expected to find a location for the right-bracket token.'
+      );
     }
     node.locationData = {
       first_line: lbracketLoc.line,
@@ -64,18 +91,24 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Obj) {
-    let loc = node.locationData;
-    let start = linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
+    const loc = node.locationData;
+    const start = linesAndColumns.indexForLocation({
+      line: loc.first_line,
+      column: loc.first_column
+    });
     if (start === null) {
       throw new Error('Expected to find a start index for object.');
     }
-    let end = linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
+    const end = linesAndColumns.indexForLocation({
+      line: loc.last_line,
+      column: loc.last_column
+    });
     if (end === null) {
       throw new Error('Expected to find an end index for object.');
     }
-    let isImplicitObject = source[start] !== '{';
+    const isImplicitObject = source[start] !== '{';
     if (isImplicitObject && source[end] !== ',') {
-      let lastChild = node.properties[node.properties.length - 1];
+      const lastChild = node.properties[node.properties.length - 1];
       node.locationData = locationWithLastPosition(
         node.locationData,
         lastChild.locationData
@@ -84,7 +117,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Op) {
-    let lastChild = node.second;
+    const lastChild = node.second;
     if (lastChild) {
       node.locationData = locationWithLastPosition(
         node.locationData,
@@ -94,7 +127,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Assign) {
-    let lastChild = node.value;
+    const lastChild = node.value;
     node.locationData = locationWithLastPosition(
       node.locationData,
       lastChild.locationData
@@ -102,7 +135,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof In) {
-    let lastChild = node.array;
+    const lastChild = node.array;
     node.locationData = locationWithLastPosition(
       node.locationData,
       lastChild.locationData
@@ -112,7 +145,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   if (node instanceof Call) {
     if (node.variable && !node.do && !node.csx) {
       // `super` won't have a callee (i.e. `node.variable`)
-      let calleeLoc = node.variable.locationData;
+      const calleeLoc = node.variable.locationData;
       let calleeEnd = linesAndColumns.indexForLocation({
         line: calleeLoc.last_line,
         column: calleeLoc.last_column
@@ -122,10 +155,12 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       }
       calleeEnd++;
       // Account for soaked calls, e.g. `a?()`.
-      if (source[calleeEnd] === '?') { calleeEnd += 1; }
-      let isImplicitCall = source[calleeEnd] !== '(';
+      if (source[calleeEnd] === '?') {
+        calleeEnd += 1;
+      }
+      const isImplicitCall = source[calleeEnd] !== '(';
       if (isImplicitCall) {
-        let lastChild = node.args[node.args.length - 1] || node.variable;
+        const lastChild = node.args[node.args.length - 1] || node.variable;
         if (lastChild) {
           node.locationData = locationWithLastPosition(
             node.locationData,
@@ -137,7 +172,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Block) {
-    let lastChild = node.expressions[node.expressions.length - 1];
+    const lastChild = node.expressions[node.expressions.length - 1];
     if (lastChild) {
       node.locationData = locationWithLastPosition(
         node.locationData,
@@ -145,21 +180,27 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       );
     } else {
       // Shorten range (usually length 1, the shortest range expressible by the CoffeeScript parser) to length 0.
-      let sourceRange = sourceRangeFromLocationData(context, node.locationData);
-      node.locationData = locationDataFromSourceRange(context, {start: sourceRange.end, end: sourceRange.end});
+      const sourceRange = sourceRangeFromLocationData(
+        context,
+        node.locationData
+      );
+      node.locationData = locationDataFromSourceRange(context, {
+        start: sourceRange.end,
+        end: sourceRange.end
+      });
     }
     // Blocks can sometimes end one index before their terminating semicolon
     // when really they should end exactly at that semicolon.
     let blockEnd = linesAndColumns.indexForLocation({
       line: node.locationData.last_line,
-      column: node.locationData.last_column,
+      column: node.locationData.last_column
     });
     if (blockEnd === null) {
       throw new Error('Expected to find index for block end.');
     }
     if (source[blockEnd + 1] === ';') {
       blockEnd++;
-      let loc = linesAndColumns.locationForIndex(blockEnd);
+      const loc = linesAndColumns.locationForIndex(blockEnd);
       if (loc === null) {
         throw new Error('Expected to find location for block end.');
       }
@@ -173,7 +214,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof If) {
-    let lastChild = node.elseBody || node.body;
+    const lastChild = node.elseBody || node.body;
     node.locationData = mergeLocations(
       node.locationData,
       lastChild.locationData
@@ -181,7 +222,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof For || node instanceof While) {
-    let lastChild = node.body;
+    const lastChild = node.body;
     if (lastChild) {
       node.locationData = mergeLocations(
         node.locationData,
@@ -192,7 +233,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
 
   if (node instanceof Param) {
     if (!node.splat) {
-      let lastChild = node.value || node.name;
+      const lastChild = node.value || node.name;
       node.locationData = locationWithLastPosition(
         node.locationData,
         lastChild.locationData
@@ -210,7 +251,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Class) {
-    let lastChild = node.body;
+    const lastChild = node.body;
     node.locationData = locationWithLastPosition(
       node.locationData,
       lastChild.locationData
@@ -218,7 +259,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Switch) {
-    let lastChild = node.otherwise || node.cases[node.cases.length - 1][1];
+    const lastChild = node.otherwise || node.cases[node.cases.length - 1][1];
     node.locationData = locationWithLastPosition(
       node.locationData,
       lastChild.locationData
@@ -226,7 +267,8 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Try) {
-    let lastChild = node.ensure || node.recovery || node.errorVariable || node.attempt;
+    const lastChild =
+      node.ensure || node.recovery || node.errorVariable || node.attempt;
     if (lastChild) {
       node.locationData = locationWithLastPosition(
         node.locationData,
@@ -236,7 +278,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   }
 
   if (node instanceof Extends) {
-    let lastChild = node.parent;
+    const lastChild = node.parent;
     node.locationData = locationWithLastPosition(
       node.locationData,
       lastChild.locationData
@@ -246,20 +288,22 @@ export default function fixLocations(context: ParseContext, node: Base): void {
   if (node instanceof Literal) {
     // Heregexp flags have an incorrect location, so detect that case and adjust
     // the end location to be correct.
-    let endIndex = linesAndColumns.indexForLocation({
+    const endIndex = linesAndColumns.indexForLocation({
       line: node.locationData.last_line,
       column: node.locationData.last_column
     });
     if (endIndex !== null) {
-      let tokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(endIndex);
-      let token = context.sourceTokens.tokenAtIndex(tokenIndex);
+      const tokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(
+        endIndex
+      );
+      const token = context.sourceTokens.tokenAtIndex(tokenIndex);
       if (token && token.type === SourceType.HEREGEXP_END) {
-        let location = linesAndColumns.locationForIndex(token.end - 1);
+        const location = linesAndColumns.locationForIndex(token.end - 1);
         if (location) {
           node.locationData = {
             ...node.locationData,
             last_line: location.line,
-            last_column: location.column,
+            last_column: location.column
           };
         }
       }

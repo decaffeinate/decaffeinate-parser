@@ -5,16 +5,16 @@ import { inspect } from 'util';
 import ParseContext from './ParseContext';
 
 export default function rangeOfBracketTokensForIndexNode(context: ParseContext, indexNode: Index | Slice): [SourceTokenListIndex, SourceTokenListIndex] {
-  let start = context.linesAndColumns.indexForLocation({
+  const start = context.linesAndColumns.indexForLocation({
     line: indexNode.locationData.first_line,
     column: indexNode.locationData.first_column
   });
 
   if (start !== null) {
-    let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
+    const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
 
     if (startTokenIndex !== null) {
-      let range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(
+      const range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(
         SourceType.LBRACKET,
         SourceType.RBRACKET,
         startTokenIndex

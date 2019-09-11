@@ -64,9 +64,9 @@ export default class ParseContext {
     if (locatable instanceof Base) {
       return this.getRange(locatable.locationData);
     } else {
-      let locationData = locatable as LocationData;
-      let start = this.linesAndColumns.indexForLocation({ line: locationData.first_line, column: locationData.first_column });
-      let end = this.linesAndColumns.indexForLocation({ line: locationData.last_line, column: locationData.last_column });
+      const locationData = locatable as LocationData;
+      const start = this.linesAndColumns.indexForLocation({ line: locationData.first_line, column: locationData.first_column });
+      const end = this.linesAndColumns.indexForLocation({ line: locationData.last_line, column: locationData.last_column });
 
       if (start === null || end === null) {
         return null;

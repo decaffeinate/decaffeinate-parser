@@ -31,7 +31,7 @@ export default function mapPossiblyEmptyBlock(context: ParseContext, node: Coffe
     return null;
   }
 
-  let lastSourceIndex = context.linesAndColumns.indexForLocation({
+  const lastSourceIndex = context.linesAndColumns.indexForLocation({
     line: node.locationData.last_line,
     column: node.locationData.last_column
   });

@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/all",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["prettier", "jest", "@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false, "classes": false }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      { "allowExpressions": true }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.{js,ts}", "test/**/*.{js,ts}"],
+      "rules": {
+        "jest/prefer-expect-assertions": "off",
+        "jest/prefer-inline-snapshots": "off",
+        "jest/expect-expect": "off",
+        "jest/no-if": "off"
+      },
+      "env": {
+        "jest/globals": true
+      }
+    }
+  ]
+}

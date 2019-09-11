@@ -37,7 +37,7 @@ import parseRegExp from '../util/parseRegExp';
 const HEREGEX_PATTERN = /^\/\/\/((?:.|\s)*)\/\/\/([gimuy]*)$/;
 
 export default function mapLiteral(context: ParseContext, node: Literal): Node {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   if (node instanceof ThisLiteral) {
     return new This(line, column, start, end, raw);
@@ -50,7 +50,7 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
   } else if (node instanceof IdentifierLiteral || node instanceof PropertyName) {
     // Sometimes the CoffeeScript AST contains a string object instead of a
     // string primitive. Convert to string primitive if necessary.
-    let value = node.value.valueOf();
+    const value = node.value.valueOf();
     return new Identifier(line, column, start, end, raw, value);
   } else if (node instanceof PassthroughLiteral) {
     return new JavaScript(line, column, start, end, raw, node.value);
@@ -63,10 +63,10 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
   } else if (node instanceof RegexLiteral) {
     const heregexMatch = raw.match(HEREGEX_PATTERN);
     if (heregexMatch) {
-      let flags = heregexMatch[2];
+      const flags = heregexMatch[2];
       return makeHeregex(context, node, flags);
     } else {
-      let regExp = parseRegExp(node.value);
+      const regExp = parseRegExp(node.value);
       return new Regex(
         line, column, start, end, raw,
         regExp.pattern, RegexFlags.parse(regExp.flags || '')

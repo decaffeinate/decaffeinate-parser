@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
-export default function locationWithLastPosition(loc: LocationData, last: LocationData): LocationData {
+export default function locationWithLastPosition(
+  loc: LocationData,
+  last: LocationData
+): LocationData {
   return {
     first_line: loc.first_line,
     first_column: loc.first_column,

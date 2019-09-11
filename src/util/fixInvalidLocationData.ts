@@ -1,12 +1,20 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import LinesAndColumns from 'lines-and-columns';
 
 /**
  * Assumes first_line/first_column are correct.
  */
-export default function fixInvalidLocationData(locationData: LocationData, linesAndColumns: LinesAndColumns): LocationData {
+export default function fixInvalidLocationData(
+  locationData: LocationData,
+  linesAndColumns: LinesAndColumns
+): LocationData {
   let { last_line, last_column } = locationData;
-  let indexForLocation = linesAndColumns.indexForLocation({ line: last_line, column: last_column });
+  const indexForLocation = linesAndColumns.indexForLocation({
+    line: last_line,
+    column: last_column
+  });
 
   if (indexForLocation !== null) {
     return locationData;
@@ -14,18 +22,23 @@ export default function fixInvalidLocationData(locationData: LocationData, lines
     let offset = 1;
 
     for (;;) {
-      let index = linesAndColumns.indexForLocation({ line: last_line, column: last_column - offset });
+      const index = linesAndColumns.indexForLocation({
+        line: last_line,
+        column: last_column - offset
+      });
 
       offset++;
 
       if (index !== null) {
-        let location = linesAndColumns.locationForIndex(index + offset);
+        const location = linesAndColumns.locationForIndex(index + offset);
 
         if (!location) {
           throw new Error(
             `Unable to determine adjustment offset for incorrect location data: ` +
-            `${JSON.stringify(locationData)}. No valid location found for index: ` +
-            `${index + offset}`
+              `${JSON.stringify(
+                locationData
+              )}. No valid location found for index: ` +
+              `${index + offset}`
           );
         }
 

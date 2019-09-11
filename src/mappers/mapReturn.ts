@@ -5,8 +5,8 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
 export default function mapReturn(context: ParseContext, node: CoffeeReturn): Return {
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let argument = node.expression ? mapAny(context, node.expression) : null;
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const argument = node.expression ? mapAny(context, node.expression) : null;
   if (node instanceof CoffeeYieldReturn) {
     return new YieldReturn(line, column, start, end, raw, argument);
   } else if (node instanceof CoffeeAwaitReturn) {

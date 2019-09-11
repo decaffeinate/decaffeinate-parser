@@ -7,9 +7,9 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapWhile(context: ParseContext, node: CoffeeWhile): While | Loop {
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-  let startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
+  const startToken = startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
 
   if (startToken && startToken.type === SourceType.LOOP) {
     return new Loop(
@@ -18,8 +18,8 @@ export default function mapWhile(context: ParseContext, node: CoffeeWhile): Whil
     );
   }
 
-  let condition = mapAny(context, node.condition);
-  let guard = node.guard ? mapAny(context, node.guard) : null;
+  const condition = mapAny(context, node.condition);
+  const guard = node.guard ? mapAny(context, node.guard) : null;
   let body = mapPossiblyEmptyBlock(context, node.body);
 
   if (body instanceof Block && body.start < condition.start) {

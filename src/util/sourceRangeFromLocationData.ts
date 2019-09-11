@@ -7,14 +7,14 @@ export type SourceRange = {
 };
 
 export default function sourceRangeFromLocationData(context: ParseContext, locationData: LocationData): SourceRange {
-  let startIndexInclusive = context.linesAndColumns.indexForLocation({
+  const startIndexInclusive = context.linesAndColumns.indexForLocation({
     line: locationData.first_line,
     column: locationData.first_column,
   });
   if (startIndexInclusive === null) {
     throw new Error('Expected index for start of range.');
   }
-  let endIndexInclusive = context.linesAndColumns.indexForLocation({
+  const endIndexInclusive = context.linesAndColumns.indexForLocation({
     line: locationData.last_line,
     column: locationData.last_column,
   });

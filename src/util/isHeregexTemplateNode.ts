@@ -15,16 +15,16 @@ export default function isHeregexTemplateNode(node: Base, context: ParseContext)
       node.variable.base.value !== 'RegExp') {
     return false;
   }
-  let { sourceTokens, linesAndColumns } = context;
-  let start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
+  const { sourceTokens, linesAndColumns } = context;
+  const start = linesAndColumns.indexForLocation({ line: node.locationData.first_line, column: node.locationData.first_column });
   if (start === null) {
     return false;
   }
-  let startTokenIndex = sourceTokens.indexOfTokenContainingSourceIndex(start);
+  const startTokenIndex = sourceTokens.indexOfTokenContainingSourceIndex(start);
   if (startTokenIndex === null) {
     return false;
   }
-  let startToken = sourceTokens.tokenAtIndex(startTokenIndex);
+  const startToken = sourceTokens.tokenAtIndex(startTokenIndex);
   if (startToken === null) {
     return false;
   }

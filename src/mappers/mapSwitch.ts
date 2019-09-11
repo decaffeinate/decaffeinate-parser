@@ -8,24 +8,24 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Switch {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
-  let expression = node.subject ? mapAny(context, node.subject) : null;
-  let cases = node.cases.map(([conditions, body]) => {
+  const expression = node.subject ? mapAny(context, node.subject) : null;
+  const cases = node.cases.map(([conditions, body]) => {
     if (!Array.isArray(conditions)) {
       conditions = [conditions];
     }
-    let switchConditions = conditions.map(condition => mapAny(context, condition));
-    let consequent = mapPossiblyEmptyBlock(context, body);
-    let whenToken = getWhenTokenBeforeOffset(context, switchConditions[0].start, start);
-    let locationForIndex = context.linesAndColumns.locationForIndex(whenToken.start);
+    const switchConditions = conditions.map(condition => mapAny(context, condition));
+    const consequent = mapPossiblyEmptyBlock(context, body);
+    const whenToken = getWhenTokenBeforeOffset(context, switchConditions[0].start, start);
+    const locationForIndex = context.linesAndColumns.locationForIndex(whenToken.start);
 
     if (!locationForIndex) {
       throw new Error(`cannot map WHEN token start to line/column: ${whenToken.start}`);
     }
 
-    let { line: caseLine, column: caseColumn } = locationForIndex;
-    let { end } = getLocation(context, body);
+    const { line: caseLine, column: caseColumn } = locationForIndex;
+    const { end } = getLocation(context, body);
     return new SwitchCase(
       caseLine + 1, caseColumn + 1, whenToken.start, end,
       context.source.slice(whenToken.start, end),
@@ -43,16 +43,16 @@ export default function mapSwitch(context: ParseContext, node: CoffeeSwitch): Sw
 }
 
 function getWhenTokenBeforeOffset(context: ParseContext, offset: number, lowerBound: number): SourceToken {
-  let offsetTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(offset);
-  let lowerBoundTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(lowerBound);
-  let whenTokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
+  const offsetTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(offset);
+  const lowerBoundTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(lowerBound);
+  const whenTokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
     token => token.type === SourceType.WHEN,
     offsetTokenIndex,
     lowerBoundTokenIndex
   );
 
   if (whenTokenIndex) {
-    let whenToken = context.sourceTokens.tokenAtIndex(whenTokenIndex);
+    const whenToken = context.sourceTokens.tokenAtIndex(whenTokenIndex);
 
     if (whenToken) {
       return whenToken;

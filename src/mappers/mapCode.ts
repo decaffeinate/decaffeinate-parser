@@ -13,11 +13,11 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapCode(context: ParseContext, node: Code): BaseFunction {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
-  let Node = getNodeTypeForCode(node);
+  const Node = getNodeTypeForCode(node);
 
-  let childContext = context.updateState(s => s.dropCurrentClass());
+  const childContext = context.updateState(s => s.dropCurrentClass());
 
   return new Node(
     line, column, start, end, raw,

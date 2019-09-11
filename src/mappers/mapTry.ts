@@ -6,7 +6,7 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapTry(context: ParseContext, node: CoffeeTry): Try {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   return new Try(
     line, column, start, end, raw,

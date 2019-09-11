@@ -5,7 +5,7 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
 export default function mapExtends(context: ParseContext, node: Extends): ExtendsOp {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
   return new ExtendsOp(
     line, column, start, end, raw,
     mapAny(context, node.child),

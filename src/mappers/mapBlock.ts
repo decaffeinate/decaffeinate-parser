@@ -25,7 +25,7 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
     // Replicate a bug in CoffeeScript: at any block where we see an
     // object-style proto assignment, stop considering proto assignments in any
     // sub-traversals. This is taken from the walkBody implementation.
-    let hasProtoAssignChild = node.expressions.some(child =>
+    const hasProtoAssignChild = node.expressions.some(child =>
       child instanceof Value && child.isObject(true)
     );
     if (hasProtoAssignChild) {
@@ -33,10 +33,10 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
     }
   }
 
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start).previous();
-  let previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
-  let inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const previousTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(start).previous();
+  const previousToken = previousTokenIndex ? context.sourceTokens.tokenAtIndex(previousTokenIndex) : null;
+  const inline = previousToken ? previousToken.type !== SourceType.NEWLINE : false;
 
   return new Block(
     line, column, start, end, raw,
@@ -50,20 +50,20 @@ export default function mapBlock(context: ParseContext, node: CoffeeBlock): Bloc
 
 function mapChild(blockContext: ParseContext, childContext: ParseContext, node: Base): Array<Node> {
   if (blockContext.parseState.isInClassBody() && node instanceof Value && node.isObject(true)) {
-    let obj = node.base;
+    const obj = node.base;
     if (!(obj instanceof Obj)) {
       throw new Error('Expected isObject node to be an object.');
     }
 
-    let statements: Array<Node> = [];
-    for (let property of obj.properties) {
+    const statements: Array<Node> = [];
+    for (const property of obj.properties) {
       if (isCommentOnlyNode(property)) {
         continue;
       }
       if (property instanceof Assign) {
-        let { line, column, start, end, raw } = getLocation(childContext, property);
-        let key = mapAny(childContext, property.variable);
-        let value = mapAny(childContext, property.value);
+        const { line, column, start, end, raw } = getLocation(childContext, property);
+        const key = mapAny(childContext, property.variable);
+        const value = mapAny(childContext, property.value);
         let Node = ClassProtoAssignOp;
 
         if (key instanceof Identifier && key.data === 'constructor') {
@@ -72,7 +72,7 @@ function mapChild(blockContext: ParseContext, childContext: ParseContext, node: 
           Node = AssignOp;
         }
 
-        let assignment = new Node(
+        const assignment = new Node(
           line, column, start, end, raw,
           key,
           value

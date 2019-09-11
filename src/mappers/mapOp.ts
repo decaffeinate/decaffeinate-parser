@@ -1,6 +1,10 @@
 import { SourceType } from 'coffee-lex';
 import SourceToken from 'coffee-lex/dist/SourceToken';
-import {Literal, Op as CoffeeOp, Value} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import {
+  Literal,
+  Op as CoffeeOp,
+  Value
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
   Await,
@@ -47,7 +51,7 @@ import {
   UnaryPlusOp,
   UnsignedRightShiftOp,
   Yield,
-  YieldFrom,
+  YieldFrom
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
@@ -67,15 +71,18 @@ export default function mapOp(context: ParseContext, node: CoffeeOp): Node {
   }
 }
 
-function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp): ChainedComparisonOp {
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let coffeeOperands = unwindChainedComparison(node);
-  let operands = coffeeOperands.map(operand => mapAny(context, operand));
-  let operators: Array<OperatorInfo> = [];
+function mapChainedComparisonOp(
+  context: ParseContext,
+  node: CoffeeOp
+): ChainedComparisonOp {
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const coffeeOperands = unwindChainedComparison(node);
+  const operands = coffeeOperands.map(operand => mapAny(context, operand));
+  const operators: Array<OperatorInfo> = [];
 
   for (let i = 0; i < operands.length - 1; i++) {
-    let left = operands[i];
-    let right = operands[i + 1];
+    const left = operands[i];
+    const right = operands[i + 1];
 
     operators.push(getOperatorInfoInRange(context, left.end - 1, right.start));
   }
@@ -91,7 +98,10 @@ function mapChainedComparisonOp(context: ParseContext, node: CoffeeOp): ChainedC
   );
 }
 
-function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): Node {
+function mapOpWithoutChainedComparison(
+  context: ParseContext,
+  node: CoffeeOp
+): Node {
   switch (node.operator) {
     case '===':
       return mapBinaryOp(context, node, EQOp);
@@ -139,10 +149,18 @@ function mapOpWithoutChainedComparison(context: ParseContext, node: CoffeeOp): N
       return mapBinaryOp(context, node, GTEOp);
 
     case '++':
-      return mapUnaryOp(context, node, node.flip ? PostIncrementOp : PreIncrementOp);
+      return mapUnaryOp(
+        context,
+        node,
+        node.flip ? PostIncrementOp : PreIncrementOp
+      );
 
     case '--':
-      return mapUnaryOp(context, node, node.flip ? PostDecrementOp : PreDecrementOp);
+      return mapUnaryOp(
+        context,
+        node,
+        node.flip ? PostDecrementOp : PreDecrementOp
+      );
 
     case 'typeof':
       return mapUnaryOp(context, node, TypeofOp);
@@ -215,35 +233,50 @@ function mapPlusOp(context: ParseContext, node: CoffeeOp): Node {
 
 function mapNewOp(context: ParseContext, node: CoffeeOp): NewOp {
   if (node.second) {
-    throw new Error(`unexpected 'new' operator with multiple operands: ${inspect(node)}`);
+    throw new Error(
+      `unexpected 'new' operator with multiple operands: ${inspect(node)}`
+    );
   }
 
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   return new NewOp(
-    line, column, start, end, raw,
+    line,
+    column,
+    start,
+    end,
+    raw,
     mapAny(context, node.first),
     []
   );
 }
 
 function mapYieldOp(context: ParseContext, node: CoffeeOp): Yield {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
   if (isBareYield(node)) {
     return new Yield(line, column, start, end, raw, null);
   } else {
-    return new Yield(line, column, start, end, raw, mapAny(context, node.first));
+    return new Yield(
+      line,
+      column,
+      start,
+      end,
+      raw,
+      mapAny(context, node.first)
+    );
   }
 }
 
 function isBareYield(node: CoffeeOp): boolean {
-  return node.first instanceof Value &&
+  return (
+    node.first instanceof Value &&
     node.first.base instanceof Literal &&
-    node.first.base.value === '';
+    node.first.base.value === ''
+  );
 }
 
-interface IBinaryOp {
-  new(
+interface BinaryOpCtor {
+  new (
     line: number,
     column: number,
     start: number,
@@ -254,45 +287,67 @@ interface IBinaryOp {
   ): BinaryOp;
 }
 
-function mapBinaryOp<T extends IBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
-  let { line, column, start, end, raw } = getLocation(context, node);
+function mapBinaryOp<T extends BinaryOpCtor>(
+  context: ParseContext,
+  node: CoffeeOp,
+  Op: T
+): BinaryOp {
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   if (!node.second) {
-    throw new Error(`unexpected '${node.operator}' operator with only one operand: ${inspect(node)}`);
+    throw new Error(
+      `unexpected '${node.operator}' operator with only one operand: ${inspect(
+        node
+      )}`
+    );
   }
 
   return new Op(
-    line, column, start, end, raw,
+    line,
+    column,
+    start,
+    end,
+    raw,
     mapAny(context, node.first),
     mapAny(context, node.second)
   );
 }
 
-interface IUnaryOp {
-  new(
+interface UnaryOpCtor {
+  new (
     line: number,
     column: number,
     start: number,
     end: number,
     raw: string,
-    expression: Node,
+    expression: Node
   ): UnaryOp;
 }
 
-function mapUnaryOp<T extends IUnaryOp>(context: ParseContext, node: CoffeeOp, Op: T): UnaryOp {
-  let { line, column, start, end, raw } = getLocation(context, node);
+function mapUnaryOp<T extends UnaryOpCtor>(
+  context: ParseContext,
+  node: CoffeeOp,
+  Op: T
+): UnaryOp {
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   if (node.second) {
-    throw new Error(`unexpected '${node.operator}' operator with two operands: ${inspect(node)}`);
+    throw new Error(
+      `unexpected '${node.operator}' operator with two operands: ${inspect(
+        node
+      )}`
+    );
   }
 
-  return new Op(
-    line, column, start, end, raw,
-    mapAny(context, node.first)
-  );
+  return new Op(line, column, start, end, raw, mapAny(context, node.first));
 }
 
-function mapBinaryOrUnaryOp<B extends IBinaryOp, U extends IUnaryOp>(context: ParseContext, node: CoffeeOp, BinaryOp: B, UnaryOp: U): Op {
+function mapBinaryOrUnaryOp<B extends BinaryOpCtor, U extends UnaryOpCtor>(
+  context: ParseContext,
+  node: CoffeeOp,
+  BinaryOp: B,
+  UnaryOp: U
+): Op {
   if (node.second) {
     return mapBinaryOp(context, node, BinaryOp);
   } else {
@@ -300,8 +355,8 @@ function mapBinaryOrUnaryOp<B extends IBinaryOp, U extends IUnaryOp>(context: Pa
   }
 }
 
-interface INegateableBinaryOp {
-  new(
+interface NegateableBinaryOpCtor {
+  new (
     line: number,
     column: number,
     start: number,
@@ -309,7 +364,7 @@ interface INegateableBinaryOp {
     raw: string,
     left: Node,
     right: Node,
-    isNot: boolean,
+    isNot: boolean
   ): BinaryOp;
 }
 
@@ -330,29 +385,54 @@ class TemporaryBinaryOp extends BinaryOp {
   }
 }
 
-function tokenStartsWith(prefix: string, context: ParseContext, token: SourceToken): boolean {
-  return context.source.slice(token.start, token.start + prefix.length) === prefix;
+function tokenStartsWith(
+  prefix: string,
+  context: ParseContext,
+  token: SourceToken
+): boolean {
+  return (
+    context.source.slice(token.start, token.start + prefix.length) === prefix
+  );
 }
 
-function mapNegateableBinaryOp<T extends INegateableBinaryOp>(context: ParseContext, node: CoffeeOp, Op: T): BinaryOp {
-  let { line, column, start, end, raw, left, right } = mapBinaryOp(context, node, TemporaryBinaryOp);
+function mapNegateableBinaryOp<T extends NegateableBinaryOpCtor>(
+  context: ParseContext,
+  node: CoffeeOp,
+  Op: T
+): BinaryOp {
+  const { line, column, start, end, raw, left, right } = mapBinaryOp(
+    context,
+    node,
+    TemporaryBinaryOp
+  );
 
-  let lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
-  let firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
+  const lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(
+    left.end
+  );
+  const firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
+    right.start
+  );
   let isNot = false;
 
   if (lastTokenIndexOfLeft) {
-    for (let i = lastTokenIndexOfLeft.next(); i && i !== firstTokenIndexOfRight; i = i.next()) {
-      let token = context.sourceTokens.tokenAtIndex(i);
-      if (token && (token.type === SourceType.OPERATOR || token.type === SourceType.RELATION)) {
-        isNot = tokenStartsWith('not', context, token) || tokenStartsWith('!', context, token);
+    for (
+      let i = lastTokenIndexOfLeft.next();
+      i && i !== firstTokenIndexOfRight;
+      i = i.next()
+    ) {
+      const token = context.sourceTokens.tokenAtIndex(i);
+      if (
+        token &&
+        (token.type === SourceType.OPERATOR ||
+          token.type === SourceType.RELATION)
+      ) {
+        isNot =
+          tokenStartsWith('not', context, token) ||
+          tokenStartsWith('!', context, token);
         break;
       }
     }
   }
 
-  return new Op(
-    line, column, start, end, raw,
-    left, right, isNot
-  );
+  return new Op(line, column, start, end, raw, left, right, isNot);
 }

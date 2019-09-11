@@ -6,7 +6,7 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
 export default function mapRange(context: ParseContext, node: CoffeeRange): Range {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   if (!node.from || !node.to) {
     throw new Error(`'from' or 'to' unexpectedly missing: ${inspect(node)}`);

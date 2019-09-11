@@ -15,7 +15,7 @@ import UnsupportedNodeError from '../util/UnsupportedNodeError';
 import mapAny from './mapAny';
 
 export default function mapValue(context: ParseContext, node: Value): Node {
-  let location = getLocation(context, node);
+  const location = getLocation(context, node);
 
   return node.properties.reduce(
     (reduced, property) => reduceProperty(context, location, reduced, property),
@@ -25,7 +25,7 @@ export default function mapValue(context: ParseContext, node: Value): Node {
 
 export function reduceProperty(context: ParseContext, location: NodeLocation, reduced: Node, property: Access | Index | CoffeeSlice): Node {
   if (property instanceof Access) {
-    let name = property.name;
+    const name = property.name;
 
     if (!(name instanceof Literal)) {
       throw new Error(`unexpected non-Literal property access name: ${inspect(name)}`);
@@ -47,7 +47,7 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
       throw new Error(`cannot find token at start of property: ${inspect(property)}`);
     }
 
-    let last = context.linesAndColumns.indexForLocation({
+    const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
       column: property.locationData.last_column
     });
@@ -56,10 +56,10 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
       throw new Error(`cannot find offset of last character of property: ${inspect(property)}`);
     }
 
-    let isPrototypeAccess = startToken.type === SourceType.PROTO;
+    const isPrototypeAccess = startToken.type === SourceType.PROTO;
 
     if (isPrototypeAccess) {
-      let AccessOp = property.soak ? SoakedProtoMemberAccessOp : ProtoMemberAccessOp;
+      const AccessOp = property.soak ? SoakedProtoMemberAccessOp : ProtoMemberAccessOp;
 
       return new AccessOp(
         location.line,
@@ -70,13 +70,13 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
         reduced
       );
     } else {
-      let member = mapAny(context, name);
+      const member = mapAny(context, name);
 
       if (!(member instanceof Identifier)) {
         throw new Error(`unexpected non-Identifier access member: ${inspect(member)}`);
       }
 
-      let AccessOp = property.soak ? SoakedMemberAccessOp : MemberAccessOp;
+      const AccessOp = property.soak ? SoakedMemberAccessOp : MemberAccessOp;
 
       return new AccessOp(
         location.line,
@@ -89,8 +89,8 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
       );
     }
   } else if (property instanceof Index) {
-    let NodeClass = property.soak ? SoakedDynamicMemberAccessOp : DynamicMemberAccessOp;
-    let last = context.linesAndColumns.indexForLocation({
+    const NodeClass = property.soak ? SoakedDynamicMemberAccessOp : DynamicMemberAccessOp;
+    const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
       column: property.locationData.last_column
     });
@@ -104,7 +104,7 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
       mapAny(context, property.index)
     );
   } else if (property instanceof CoffeeSlice) {
-    let last = context.linesAndColumns.indexForLocation({
+    const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
       column: property.locationData.last_column
     });
@@ -113,7 +113,7 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
       throw new Error(`cannot find offset of last character of slice: ${inspect(property)}`);
     }
 
-    let SliceClass = property.soak ? SoakedSlice : Slice;
+    const SliceClass = property.soak ? SoakedSlice : Slice;
     return new SliceClass(
       location.line,
       location.column,
@@ -131,7 +131,7 @@ export function reduceProperty(context: ParseContext, location: NodeLocation, re
 }
 
 function tokenIndexAtLocation(context: ParseContext, location: LocationData): SourceTokenListIndex | null {
-  let start = context.linesAndColumns.indexForLocation({
+  const start = context.linesAndColumns.indexForLocation({
     line: location.first_line,
     column: location.first_column
   });

@@ -13,16 +13,16 @@ export type NodeLocation = {
 };
 
 export default function getLocation(context: ParseContext, node: Base): NodeLocation {
-  let loc = node.locationData;
+  const loc = node.locationData;
   let start = context.linesAndColumns.indexForLocation({ line: loc.first_line, column: loc.first_column });
-  let last = context.linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
+  const last = context.linesAndColumns.indexForLocation({ line: loc.last_line, column: loc.last_column });
 
   if (start === null || last === null) {
     throw new Error(`unable to determine range for location: ${inspect(loc)}}`);
   }
 
-  let line = loc.first_line + 1;
-  let column = loc.first_column + 1;
+  const line = loc.first_line + 1;
+  const column = loc.first_column + 1;
   let end = last + 1;
 
   // Shrink to be within the size of the source.
@@ -33,18 +33,18 @@ export default function getLocation(context: ParseContext, node: Base): NodeLoca
     end = context.source.length;
   }
 
-  let firstTokenOfNode = requireToken(firstSemanticTokenAfter(context, start), node);
-  let lastTokenOfNode = requireToken(firstSemanticTokenBefore(context, end), node);
+  const firstTokenOfNode = requireToken(firstSemanticTokenAfter(context, start), node);
+  const lastTokenOfNode = requireToken(firstSemanticTokenBefore(context, end), node);
 
   start = firstTokenOfNode.start;
   end = lastTokenOfNode.end;
-  let raw = context.source.slice(start, end);
+  const raw = context.source.slice(start, end);
 
   return {line, column, start, end, raw};
 }
 
 export function firstSemanticTokenAfter(context: ParseContext, index: number): SourceToken | null {
-  let tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(token => {
+  const tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(token => {
     return (
       token.start >= index &&
       token.type !== SourceType.NEWLINE &&
@@ -55,7 +55,7 @@ export function firstSemanticTokenAfter(context: ParseContext, index: number): S
 }
 
 export function firstSemanticTokenBefore(context: ParseContext, index: number): SourceToken | null {
-  let tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
+  const tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(token => {
     return (
       token.end <= index &&
       token.type !== SourceType.NEWLINE &&

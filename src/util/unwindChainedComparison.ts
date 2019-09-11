@@ -8,7 +8,7 @@ export default function unwindChainedComparison(node: Op): Array<Base> {
 
   for (let link: Base = node;;) {
     if (link instanceof Op && isComparisonOperator(link)) {
-      let { first, second } = link;
+      const { first, second } = link;
 
       if (!second) {
         throw new Error(`unexpected unary operator inside chained comparison: ${inspect(node)}`);

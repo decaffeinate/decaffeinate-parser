@@ -24,21 +24,21 @@ import mapAny from './mapAny';
 import mapCSX from './mapCSX';
 
 export default function mapCall(context: ParseContext, node: Call): Node {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   if (node.csx) {
     return mapCSX(context, node);
   }
 
   if (isHeregexTemplateNode(node, context)) {
-    let firstArg = node.args[0];
+    const firstArg = node.args[0];
     if (!(firstArg instanceof Value) || !(firstArg.base instanceof StringWithInterpolations)) {
       throw new Error('Expected a valid first heregex arg in the AST.');
     }
-    let strNode = firstArg.base.body.expressions[0];
+    const strNode = firstArg.base.body.expressions[0];
     let flags;
     if (node.args.length > 1) {
-      let secondArg = node.args[1];
+      const secondArg = node.args[1];
       if (!(secondArg instanceof Value) || !(secondArg.base instanceof Literal)) {
         throw new Error('Expected a string flags value in the heregex AST.');
       }
@@ -49,7 +49,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
     return makeHeregex(context, strNode, flags);
   }
 
-  let args = node.args.map(arg => mapAny(context, arg));
+  const args = node.args.map(arg => mapAny(context, arg));
 
   if (node instanceof SuperCall) {
     if (
@@ -66,14 +66,14 @@ export default function mapCall(context: ParseContext, node: Call): Node {
       );
     }
 
-    let superIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
-    let superToken = superIndex && context.sourceTokens.tokenAtIndex(superIndex);
+    const superIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
+    const superToken = superIndex && context.sourceTokens.tokenAtIndex(superIndex);
 
     if (!superToken || superToken.type !== SourceType.SUPER) {
       throw new Error(`unable to find SUPER token in 'super' function call: ${inspect(node)}`);
     }
 
-    let superLocation = context.linesAndColumns.locationForIndex(superToken.start);
+    const superLocation = context.linesAndColumns.locationForIndex(superToken.start);
 
     if (!superLocation) {
       throw new Error(`unable to locate SUPER token for 'super' function call: ${inspect(node)}`);
@@ -99,7 +99,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
   if (!node.variable) {
     throw new Error('Expected non-super call to have a variable defined.');
   }
-  let callee = mapAny(context, node.variable);
+  const callee = mapAny(context, node.variable);
 
   if (node.isNew) {
     return mapNewOp(context, node);
@@ -138,9 +138,9 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let callee = mapAny(context, node.variable);
-  let args = node.args.map(arg => mapAny(context, arg));
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const callee = mapAny(context, node.variable);
+  const args = node.args.map(arg => mapAny(context, arg));
 
   if (node.soak) {
     return new SoakedNewOp(
@@ -172,18 +172,18 @@ function mapDoOp(context: ParseContext, node: Call): DoOp {
     throw new UnsupportedNodeError(node);
   }
 
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
   let expression = mapAny(context, node.variable);
 
 
-  let args = node.args.map((arg) => mapAny(context, arg));
+  const args = node.args.map((arg) => mapAny(context, arg));
 
   if (expression instanceof BaseFunction) {
     expression = augmentDoFunctionWithArgs(context, expression, args);
   } else if (expression instanceof AssignOp &&
       expression.expression instanceof BaseFunction) {
-    let newRhs = augmentDoFunctionWithArgs(context, expression.expression, args);
+    const newRhs = augmentDoFunctionWithArgs(context, expression.expression, args);
     expression = expression.withExpression(newRhs);
   }
 
@@ -192,7 +192,7 @@ function mapDoOp(context: ParseContext, node: Call): DoOp {
 
 function augmentDoFunctionWithArgs(
     context: ParseContext, func: BaseFunction, args: Array<Node>): BaseFunction {
-  let newParameters = func.parameters.map((param, i) => {
+  const newParameters = func.parameters.map((param, i) => {
     const arg = args[i];
 
     // If there's a parameter with no default, CoffeeScript will insert a fake

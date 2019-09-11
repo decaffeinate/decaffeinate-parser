@@ -8,11 +8,11 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapIf(context: ParseContext, node: If): Conditional {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
-  let condition = mapAny(context, node.condition);
+  const condition = mapAny(context, node.condition);
   let consequent = mapPossiblyEmptyBlock(context, node.body);
-  let alternate = mapPossiblyEmptyBlock(context, node.elseBody);
+  const alternate = mapPossiblyEmptyBlock(context, node.elseBody);
   let isUnless = false;
 
   let left: SourceTokenListIndex | null = null;

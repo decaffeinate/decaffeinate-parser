@@ -22,17 +22,17 @@ export type TemplateLiteralComponents = {
  * are generally unreliable and we need to rely on the token locations instead.
  */
 export default function getTemplateLiteralComponents(context: ParseContext, node: Base): TemplateLiteralComponents {
-  let tokens = context.sourceTokens;
+  const tokens = context.sourceTokens;
 
-  let quasis: Array<Quasi> = [];
-  let unmappedExpressions: Array<Base | null> = [];
+  const quasis: Array<Quasi> = [];
+  const unmappedExpressions: Array<Base | null> = [];
 
-  let elements = getElements(node, context);
-  let nodeRange = context.getRange(node);
+  const elements = getElements(node, context);
+  const nodeRange = context.getRange(node);
   if (!nodeRange) {
     throw new Error('Expected valid range on template literal node.');
   }
-  let { startTokenIndex, startToken } = getStartToken(nodeRange[0], tokens);
+  const { startTokenIndex, startToken } = getStartToken(nodeRange[0], tokens);
 
   let depth = 0;
   let lastToken = startToken;
@@ -42,7 +42,7 @@ export default function getTemplateLiteralComponents(context: ParseContext, node
       tokenIndex;
       tokenIndex = tokenIndex.next()
   ) {
-    let token = tokens.tokenAtIndex(tokenIndex);
+    const token = tokens.tokenAtIndex(tokenIndex);
     if (!token) {
       break;
     }
@@ -97,14 +97,14 @@ function getElements(node: Base, context: ParseContext): Array<Base> {
 function getStartToken(start: number, tokens: SourceTokenList): { startToken: SourceToken, startTokenIndex: SourceTokenListIndex } {
   let tokenIndex = tokens.indexOfTokenNearSourceIndex(start);
   for (let i = 0; i < 5; i++) {
-    let token = tokens.tokenAtIndex(tokenIndex);
+    const token = tokens.tokenAtIndex(tokenIndex);
     if (!token) {
       throw new Error('Expected to find a start token in a template literal.');
     }
     if (isTemplateLiteralStart(token)) {
       return { startToken: token, startTokenIndex: tokenIndex };
     }
-    let prevToken = tokenIndex.previous();
+    const prevToken = tokenIndex.previous();
     if (!prevToken) {
       throw new Error('Expected a previous token when searching for a template start.');
     }
@@ -114,26 +114,26 @@ function getStartToken(start: number, tokens: SourceTokenList): { startToken: So
 }
 
 function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Quasi {
-  let matchingElements = elements.filter(elem => {
-    let range = context.getRange(elem);
+  const matchingElements = elements.filter(elem => {
+    const range = context.getRange(elem);
     if (!range) {
       throw new Error('Unexpected invalid range.');
     }
     return range[0] >= leftToken.start && range[1] <= rightToken.end;
   });
 
-  let start = leftToken.end;
-  let end = rightToken.start;
-  let startLoc = context.linesAndColumns.locationForIndex(leftToken.end);
+  const start = leftToken.end;
+  const end = rightToken.start;
+  const startLoc = context.linesAndColumns.locationForIndex(leftToken.end);
   if (!startLoc) {
     throw new Error(`Expected to find a location for index ${leftToken.end}.`);
   }
-  let raw = context.source.slice(start, end);
+  const raw = context.source.slice(start, end);
 
   if (matchingElements.length === 0) {
     return new Quasi(startLoc.line + 1, startLoc.column + 1, start, end, raw, '');
   } else if (matchingElements.length === 1) {
-    let element = matchingElements[0];
+    const element = matchingElements[0];
     let literal;
     if (element instanceof Literal) {
       literal = element;
@@ -142,7 +142,7 @@ function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: Par
     } else {
       throw new Error('Expected quasi element to be either a literal or a value containing only a literal.');
     }
-    let stringValue = parseString(literal.value);
+    const stringValue = parseString(literal.value);
     return new Quasi(
       startLoc.line + 1, startLoc.column + 1, start, end, raw,
       stringValue !== undefined ? stringValue : literal.value);
@@ -152,8 +152,8 @@ function findQuasi(leftToken: SourceToken, rightToken: SourceToken, context: Par
 }
 
 function findExpression(leftToken: SourceToken, rightToken: SourceToken, context: ParseContext, elements: Array<Base>): Base | null {
-  let matchingElements = elements.filter(elem => {
-    let range = context.getRange(elem);
+  const matchingElements = elements.filter(elem => {
+    const range = context.getRange(elem);
     if (!range) {
       throw new Error('Unexpected invalid range.');
     }

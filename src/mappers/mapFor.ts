@@ -6,20 +6,20 @@ import mapAny from './mapAny';
 import mapPossiblyEmptyBlock from './mapPossiblyEmptyBlock';
 
 export default function mapFor(context: ParseContext, node: CoffeeFor): For {
-  let { line, column, start, end, raw } = getLocation(context, node);
+  const { line, column, start, end, raw } = getLocation(context, node);
 
-  let keyAssignee = node.index ? mapAny(context, node.index) : null;
-  let valAssignee = node.name ? mapAny(context, node.name) : null;
+  const keyAssignee = node.index ? mapAny(context, node.index) : null;
+  const valAssignee = node.name ? mapAny(context, node.name) : null;
   let body = mapPossiblyEmptyBlock(context, node.body);
-  let target = mapAny(context, node.source);
-  let filter = node.guard ? mapAny(context, node.guard) : null;
+  const target = mapAny(context, node.source);
+  const filter = node.guard ? mapAny(context, node.guard) : null;
 
   if (body && body.start < target.start) {
     body = body.withInline(true);
   }
 
   if (node.object) {
-    let isOwn = node.own;
+    const isOwn = node.own;
 
     return new ForOf(
       line, column, start, end, raw,
@@ -43,7 +43,7 @@ export default function mapFor(context: ParseContext, node: CoffeeFor): For {
         body,
       );
     } else {
-      let step = node.step ? mapAny(context, node.step) : null;
+      const step = node.step ? mapAny(context, node.step) : null;
       return new ForIn(
         line, column, start, end, raw,
         keyAssignee,

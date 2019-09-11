@@ -5,7 +5,7 @@ import ParseContext from '../util/ParseContext';
 import mapAny from './mapAny';
 
 export default function mapArr(context: ParseContext, node: Arr): ArrayInitialiser {
-  let { line, column, start, end, raw } = getLocation(context, node);
-  let members = node.objects.map(object => mapAny(context, object));
+  const { line, column, start, end, raw } = getLocation(context, node);
+  const members = node.objects.map(object => mapAny(context, object));
   return new ArrayInitialiser(line, column, start, end, raw, members);
 }
