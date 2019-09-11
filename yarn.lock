@@ -1552,7 +1552,7 @@ code-point-at@^1.0.0:
   resolved "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-coffee-lex@^9.1.4:
+coffee-lex@^9.1.5:
   version "9.1.5"
   resolved "https://registry.npmjs.org/coffee-lex/-/coffee-lex-9.1.5.tgz#6f46f33df539de3c00831d47bbe115991336aa4e"
   integrity sha512-94lUMjs1vhlV86vnbCCnnIYzR4oszuO4qJzKUuKOLidiksh/UyQFOzPusjmLJt6vy5CNB0d/KtaceqV84zr46g==
