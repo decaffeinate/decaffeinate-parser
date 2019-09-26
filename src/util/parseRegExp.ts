@@ -1,4 +1,4 @@
-import { parse } from '@babel/parser';
+import { parse } from '@codemod/parser';
 import { ExpressionStatement, RegExpLiteral } from '@babel/types';
 
 /**
