@@ -43,21 +43,14 @@
     ]
   },
   "dependencies": {
-    "@babel/parser": "^7.1.6",
+    "@babel/types": "^7.6.1",
+    "@codemod/parser": "^1.0.3",
     "coffee-lex": "^9.1.5",
     "decaffeinate-coffeescript": "1.12.7-patch.3",
     "decaffeinate-coffeescript2": "2.2.1-patch.5",
     "lines-and-columns": "^1.1.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-external-helpers": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-syntax-flow": "^7.0.0",
-    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
-    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
     "@types/jest": "^24.0.16",
     "@types/node": "12.7.7",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
