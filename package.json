@@ -58,7 +58,7 @@
     "coffee-script-redux": "^2.0.0-beta8",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jest": "^23.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
