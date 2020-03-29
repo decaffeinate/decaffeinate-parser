@@ -3,7 +3,7 @@ import SourceToken from 'coffee-lex/dist/SourceToken';
 import {
   Literal,
   Op as CoffeeOp,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
@@ -51,7 +51,7 @@ import {
   UnaryPlusOp,
   UnsignedRightShiftOp,
   Yield,
-  YieldFrom
+  YieldFrom,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import getOperatorInfoInRange from '../util/getOperatorInfoInRange';
@@ -77,7 +77,7 @@ function mapChainedComparisonOp(
 ): ChainedComparisonOp {
   const { line, column, start, end, raw } = getLocation(context, node);
   const coffeeOperands = unwindChainedComparison(node);
-  const operands = coffeeOperands.map(operand => mapAny(context, operand));
+  const operands = coffeeOperands.map((operand) => mapAny(context, operand));
   const operators: Array<OperatorInfo> = [];
 
   for (let i = 0; i < operands.length - 1; i++) {

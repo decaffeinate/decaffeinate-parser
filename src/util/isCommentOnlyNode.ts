@@ -1,7 +1,7 @@
 import {
   Base,
   PassthroughLiteral,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 export default function isCommentOnlyNode(base: Base): boolean {

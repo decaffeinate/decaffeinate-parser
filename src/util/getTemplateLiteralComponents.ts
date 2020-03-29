@@ -6,7 +6,7 @@ import {
   Base,
   Literal,
   Op,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Quasi } from '../nodes';
 import isImplicitPlusOp from './isImplicitPlusOp';
@@ -85,7 +85,7 @@ export default function getTemplateLiteralComponents(
     quasis,
     unmappedExpressions,
     start: startToken.start,
-    end: lastToken.end
+    end: lastToken.end,
   };
 }
 
@@ -96,7 +96,7 @@ function getElements(node: Base, context: ParseContext): Array<Base> {
     }
     return [
       ...getElements(node.first, context),
-      ...getElements(node.second, context)
+      ...getElements(node.second, context),
     ];
   }
   return [node];
@@ -137,7 +137,7 @@ function findQuasi(
   context: ParseContext,
   elements: Array<Base>
 ): Quasi {
-  const matchingElements = elements.filter(elem => {
+  const matchingElements = elements.filter((elem) => {
     const range = context.getRange(elem);
     if (!range) {
       throw new Error('Unexpected invalid range.');
@@ -200,7 +200,7 @@ function findExpression(
   context: ParseContext,
   elements: Array<Base>
 ): Base | null {
-  const matchingElements = elements.filter(elem => {
+  const matchingElements = elements.filter((elem) => {
     const range = context.getRange(elem);
     if (!range) {
       throw new Error('Unexpected invalid range.');
@@ -227,7 +227,7 @@ function isTemplateLiteralStart(token: SourceToken): boolean {
       SourceType.TDSTRING_START,
       SourceType.TSSTRING_START,
       SourceType.HEREGEXP_START,
-      SourceType.CSX_OPEN_TAG_END
+      SourceType.CSX_OPEN_TAG_END,
     ].indexOf(token.type) >= 0
   );
 }
@@ -240,7 +240,7 @@ function isTemplateLiteralEnd(token: SourceToken): boolean {
       SourceType.TDSTRING_END,
       SourceType.TSSTRING_END,
       SourceType.HEREGEXP_END,
-      SourceType.CSX_CLOSE_TAG_START
+      SourceType.CSX_CLOSE_TAG_START,
     ].indexOf(token.type) >= 0
   );
 }

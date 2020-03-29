@@ -6,7 +6,7 @@ import {
   BoundFunction,
   BoundGeneratorFunction,
   Function,
-  GeneratorFunction
+  GeneratorFunction,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
@@ -21,7 +21,7 @@ export default function mapCode(
 
   const Node = getNodeTypeForCode(node);
 
-  const childContext = context.updateState(s => s.dropCurrentClass());
+  const childContext = context.updateState((s) => s.dropCurrentClass());
 
   return new Node(
     line,
@@ -29,7 +29,7 @@ export default function mapCode(
     start,
     end,
     raw,
-    node.params.map(param => mapAny(childContext, param)),
+    node.params.map((param) => mapAny(childContext, param)),
     mapPossiblyEmptyBlock(childContext, node.body)
   );
 }

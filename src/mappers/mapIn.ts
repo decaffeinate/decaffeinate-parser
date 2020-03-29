@@ -20,7 +20,7 @@ export default function mapIn(context: ParseContext, node: CoffeeIn): InOp {
     right.start
   );
   const relationTokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
-    token => token.type === SourceType.RELATION,
+    (token) => token.type === SourceType.RELATION,
     lastTokenIndexOfLeft,
     firstTokenIndexOfRight
   );

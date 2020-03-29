@@ -1,7 +1,7 @@
 import {
   Block,
   Parens,
-  StringWithInterpolations
+  StringWithInterpolations,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node, SeqOp } from '../nodes';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';
@@ -17,14 +17,14 @@ export default function mapParens(
   }
 
   let { expressions } = node.body;
-  expressions = expressions.filter(expr => !isCommentOnlyNode(expr));
+  expressions = expressions.filter((expr) => !isCommentOnlyNode(expr));
 
   if (expressions.length === 1) {
     return mapAny(context, expressions[0]);
   }
 
   return expressions
-    .map(expression => mapAny(context, expression))
+    .map((expression) => mapAny(context, expression))
     .reduceRight(
       (right, left) =>
         new SeqOp(

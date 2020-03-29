@@ -36,7 +36,7 @@ function processFile(path: string): void {
 }
 
 function processDirectory(path: string): void {
-  readdirSync(path).forEach(child => {
+  readdirSync(path).forEach((child) => {
     if (child[0] === '.' || child === 'node_modules') {
       return;
     }

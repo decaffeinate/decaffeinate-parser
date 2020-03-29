@@ -18,7 +18,7 @@ export default function mapSwitch(
     if (!Array.isArray(conditions)) {
       conditions = [conditions];
     }
-    const switchConditions = conditions.map(condition =>
+    const switchConditions = conditions.map((condition) =>
       mapAny(context, condition)
     );
     const consequent = mapPossiblyEmptyBlock(context, body);
@@ -74,7 +74,7 @@ function getWhenTokenBeforeOffset(
     lowerBound
   );
   const whenTokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
-    token => token.type === SourceType.WHEN,
+    (token) => token.type === SourceType.WHEN,
     offsetTokenIndex,
     lowerBoundTokenIndex
   );

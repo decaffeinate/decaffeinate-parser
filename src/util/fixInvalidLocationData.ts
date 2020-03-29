@@ -13,7 +13,7 @@ export default function fixInvalidLocationData(
   let { last_line, last_column } = locationData;
   const indexForLocation = linesAndColumns.indexForLocation({
     line: last_line,
-    column: last_column
+    column: last_column,
   });
 
   if (indexForLocation !== null) {
@@ -24,7 +24,7 @@ export default function fixInvalidLocationData(
     for (;;) {
       const index = linesAndColumns.indexForLocation({
         line: last_line,
-        column: last_column - offset
+        column: last_column - offset,
       });
 
       offset++;
@@ -51,7 +51,7 @@ export default function fixInvalidLocationData(
     return {
       ...locationData,
       last_line,
-      last_column
+      last_column,
     };
   }
 }

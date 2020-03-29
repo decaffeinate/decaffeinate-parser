@@ -10,7 +10,7 @@ import {
   StatementLiteral,
   StringLiteral,
   ThisLiteral,
-  UndefinedLiteral
+  UndefinedLiteral,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   Bool,
@@ -25,7 +25,7 @@ import {
   Regex,
   RegexFlags,
   This,
-  Undefined
+  Undefined,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import makeHeregex from '../util/makeHeregex';

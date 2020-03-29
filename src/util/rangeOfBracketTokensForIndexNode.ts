@@ -2,7 +2,7 @@ import { SourceType } from 'coffee-lex';
 import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
 import {
   Index,
-  Slice
+  Slice,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import ParseContext from './ParseContext';
@@ -13,7 +13,7 @@ export default function rangeOfBracketTokensForIndexNode(
 ): [SourceTokenListIndex, SourceTokenListIndex] {
   const start = context.linesAndColumns.indexForLocation({
     line: indexNode.locationData.first_line,
-    column: indexNode.locationData.first_column
+    column: indexNode.locationData.first_column,
   });
 
   if (start !== null) {

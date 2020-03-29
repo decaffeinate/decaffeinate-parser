@@ -10,7 +10,7 @@ import {
   Literal,
   ModuleDeclaration,
   ModuleSpecifier as CoffeeModuleSpecifier,
-  StringLiteral
+  StringLiteral,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import * as nodes from '../nodes';
 import getLocation from '../util/getLocation';
@@ -39,7 +39,7 @@ export default function mapModuleDeclaration(
       if (clause.namedImports instanceof ImportNamespaceSpecifier) {
         namespaceImport = mapStarSpecifier(context, clause.namedImports);
       } else if (clause.namedImports instanceof ImportSpecifierList) {
-        namedImports = clause.namedImports.specifiers.map(specifier =>
+        namedImports = clause.namedImports.specifiers.map((specifier) =>
           mapSpecifier(context, specifier)
         );
       }
@@ -62,7 +62,7 @@ export default function mapModuleDeclaration(
     );
   } else if (node instanceof CoffeeExportNamedDeclaration) {
     if (node.clause instanceof ExportSpecifierList) {
-      const namedExports = node.clause.specifiers.map(specifier =>
+      const namedExports = node.clause.specifiers.map((specifier) =>
         mapSpecifier(context, specifier)
       );
       const source = node.source ? mapSource(context, node.source) : null;

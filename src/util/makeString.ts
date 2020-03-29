@@ -12,7 +12,7 @@ export default function makeString(
     quasis,
     unmappedExpressions,
     start,
-    end
+    end,
   } = getTemplateLiteralComponents(context, node);
   const startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {
@@ -26,6 +26,6 @@ export default function makeString(
     end,
     raw,
     quasis,
-    unmappedExpressions.map(expr => (expr ? mapAny(context, expr) : null))
+    unmappedExpressions.map((expr) => (expr ? mapAny(context, expr) : null))
   );
 }

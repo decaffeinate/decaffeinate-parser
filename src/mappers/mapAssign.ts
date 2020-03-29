@@ -19,7 +19,7 @@ import {
   RemOp,
   SignedRightShiftOp,
   SubtractOp,
-  UnsignedRightShiftOp
+  UnsignedRightShiftOp,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
@@ -43,7 +43,7 @@ const COMPOUND_ASSIGN_OPS: { [op: string]: string | undefined } = {
   '|=': BitOrOp.name,
   '**=': ExpOp.name,
   '//=': FloorDivideOp.name,
-  '%%=': ModuloOp.name
+  '%%=': ModuloOp.name,
 };
 
 export default function mapAssign(

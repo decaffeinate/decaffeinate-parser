@@ -30,7 +30,7 @@ import {
   Throw,
   Try,
   Value,
-  While
+  While,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';

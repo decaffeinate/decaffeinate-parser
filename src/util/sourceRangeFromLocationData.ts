@@ -12,20 +12,20 @@ export default function sourceRangeFromLocationData(
 ): SourceRange {
   const startIndexInclusive = context.linesAndColumns.indexForLocation({
     line: locationData.first_line,
-    column: locationData.first_column
+    column: locationData.first_column,
   });
   if (startIndexInclusive === null) {
     throw new Error('Expected index for start of range.');
   }
   const endIndexInclusive = context.linesAndColumns.indexForLocation({
     line: locationData.last_line,
-    column: locationData.last_column
+    column: locationData.last_column,
   });
   if (endIndexInclusive === null) {
     throw new Error('Expected index for end of range.');
   }
   return {
     start: startIndexInclusive,
-    end: endIndexInclusive + 1
+    end: endIndexInclusive + 1,
   };
 }

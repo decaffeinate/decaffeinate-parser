@@ -2,7 +2,7 @@ import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
 import {
   Base,
   Block,
-  LocationData
+  LocationData,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import LinesAndColumns from 'lines-and-columns';
 import { ClassProtoAssignOp, Constructor } from '../nodes';
@@ -75,11 +75,11 @@ export default class ParseContext {
       const locationData = locatable as LocationData;
       const start = this.linesAndColumns.indexForLocation({
         line: locationData.first_line,
-        column: locationData.first_column
+        column: locationData.first_column,
       });
       const end = this.linesAndColumns.indexForLocation({
         line: locationData.last_line,
-        column: locationData.last_column
+        column: locationData.last_column,
       });
 
       if (start === null || end === null) {

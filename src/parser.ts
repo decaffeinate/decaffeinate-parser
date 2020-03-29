@@ -13,7 +13,7 @@ export type Options = {
 };
 
 export const DEFAULT_OPTIONS: Options = {
-  useCS2: false
+  useCS2: false,
 };
 
 export function parse(

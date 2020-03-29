@@ -4,7 +4,7 @@ import {
   Base,
   Block as CoffeeBlock,
   Obj,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
@@ -18,7 +18,7 @@ import {
   Identifier,
   MemberAccessOp,
   Node,
-  This
+  This,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';
@@ -35,10 +35,10 @@ export default function mapBlock(
     // object-style proto assignment, stop considering proto assignments in any
     // sub-traversals. This is taken from the walkBody implementation.
     const hasProtoAssignChild = node.expressions.some(
-      child => child instanceof Value && child.isObject(true)
+      (child) => child instanceof Value && child.isObject(true)
     );
     if (hasProtoAssignChild) {
-      childContext = childContext.updateState(s => s.dropCurrentClass());
+      childContext = childContext.updateState((s) => s.dropCurrentClass());
     }
   }
 
@@ -60,8 +60,8 @@ export default function mapBlock(
     end,
     raw,
     node.expressions
-      .filter(expression => !isCommentOnlyNode(expression))
-      .map(expression => mapChild(context, childContext, expression))
+      .filter((expression) => !isCommentOnlyNode(expression))
+      .map((expression) => mapChild(context, childContext, expression))
       .reduce((arr, current) => arr.concat(current), []),
     inline
   );

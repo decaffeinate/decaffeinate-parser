@@ -14,7 +14,7 @@ export default function mapClass(
   const nameAssignee = node.variable ? mapAny(context, node.variable) : null;
   const parent = node.parent ? mapAny(context, node.parent) : null;
 
-  const childContext = context.updateState(s => s.pushCurrentClass());
+  const childContext = context.updateState((s) => s.pushCurrentClass());
   const body = mapPossiblyEmptyBlock(childContext, node.body);
   const boundMethods = childContext.parseState.currentClassBoundMethods;
   if (!boundMethods) {

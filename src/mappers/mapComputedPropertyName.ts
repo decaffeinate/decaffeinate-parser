@@ -1,6 +1,6 @@
 import {
   Base,
-  ComputedPropertyName
+  ComputedPropertyName,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';

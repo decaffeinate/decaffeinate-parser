@@ -1,6 +1,6 @@
 import {
   Base as CS1Base,
-  Op as CS1Op
+  Op as CS1Op,
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import { Base, Op } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 

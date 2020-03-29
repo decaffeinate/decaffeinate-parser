@@ -13,7 +13,7 @@ export default function makeHeregex(
     quasis,
     unmappedExpressions,
     start,
-    end
+    end,
   } = getTemplateLiteralComponents(context, node);
   const startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {
@@ -27,7 +27,7 @@ export default function makeHeregex(
     end,
     raw,
     quasis,
-    unmappedExpressions.map(expr => (expr ? mapAny(context, expr) : null)),
+    unmappedExpressions.map((expr) => (expr ? mapAny(context, expr) : null)),
     RegexFlags.parse(flags)
   );
 }
