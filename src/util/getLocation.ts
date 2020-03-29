@@ -19,11 +19,11 @@ export default function getLocation(
   const loc = node.locationData;
   let start = context.linesAndColumns.indexForLocation({
     line: loc.first_line,
-    column: loc.first_column
+    column: loc.first_column,
   });
   const last = context.linesAndColumns.indexForLocation({
     line: loc.last_line,
-    column: loc.last_column
+    column: loc.last_column,
   });
 
   if (start === null || last === null) {
@@ -63,7 +63,7 @@ export function firstSemanticTokenAfter(
   index: number
 ): SourceToken | null {
   const tokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
-    token => {
+    (token) => {
       return (
         token.start >= index &&
         token.type !== SourceType.NEWLINE &&
@@ -82,7 +82,7 @@ export function firstSemanticTokenBefore(
   index: number
 ): SourceToken | null {
   const tokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
-    token => {
+    (token) => {
       return (
         token.end <= index &&
         token.type !== SourceType.NEWLINE &&

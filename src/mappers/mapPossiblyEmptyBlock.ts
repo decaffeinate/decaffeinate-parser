@@ -30,13 +30,13 @@ export default function mapPossiblyEmptyBlock(
   if (!node) {
     return null;
   }
-  if (node.expressions.every(expression => isCommentOnlyNode(expression))) {
+  if (node.expressions.every((expression) => isCommentOnlyNode(expression))) {
     return null;
   }
 
   const lastSourceIndex = context.linesAndColumns.indexForLocation({
     line: node.locationData.last_line,
-    column: node.locationData.last_column
+    column: node.locationData.last_column,
   });
   if (lastSourceIndex === null) {
     throw new Error('Expected to find last source index of block.');

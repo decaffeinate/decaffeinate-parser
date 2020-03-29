@@ -36,7 +36,7 @@ export default function mapIf(context: ParseContext, node: If): Conditional {
   if (left && right) {
     isUnless =
       context.sourceTokens.indexOfTokenMatchingPredicate(
-        token =>
+        (token) =>
           token.type === SourceType.IF &&
           context.source.slice(token.start, token.end) === 'unless',
         left,

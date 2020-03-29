@@ -63,7 +63,7 @@ import {
   UndefinedLiteral as CS1UndefinedLiteral,
   Value as CS1Value,
   While as CS1While,
-  YieldReturn as CS1YieldReturn
+  YieldReturn as CS1YieldReturn,
 } from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
 import {
   Access,
@@ -127,7 +127,7 @@ import {
   UndefinedLiteral,
   Value,
   While,
-  YieldReturn
+  YieldReturn,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 const nodeTypeMap = new Map();
@@ -230,15 +230,15 @@ function convertCS1NodeToCS2(node: CS1Base): Base {
         ([switchCaseCondition, block]: [CS1SwitchCaseCondition, CS1Block]) => {
           if (Array.isArray(switchCaseCondition)) {
             return [
-              switchCaseCondition.map(condition =>
+              switchCaseCondition.map((condition) =>
                 convertCS1NodeToCS2(condition)
               ),
-              convertCS1NodeToCS2(block)
+              convertCS1NodeToCS2(block),
             ];
           } else {
             return [
               convertCS1NodeToCS2(switchCaseCondition),
-              convertCS1NodeToCS2(block)
+              convertCS1NodeToCS2(block),
             ];
           }
         }

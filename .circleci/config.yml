@@ -20,12 +20,12 @@ aliases:
       - *save_cache_step
       - run:
           name: tests
-          command: "yarn test:ci"
+          command: 'yarn test:ci'
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - run:
           name: lint
-          command: "yarn lint"
+          command: 'yarn lint'
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -33,10 +33,6 @@ aliases:
 
 version: 2
 jobs:
-  node-v8-latest:
-    docker:
-      - image: circleci/node:8
-    <<: *unit_test
   node-v10-latest:
     docker:
       - image: circleci/node:10
@@ -49,6 +45,10 @@ jobs:
     docker:
       - image: circleci/node:12
     <<: *unit_test
+  node-v13-latest:
+    docker:
+      - image: circleci/node:13
+    <<: *unit_test
   deploy:
     docker:
       - image: circleci/node:latest
@@ -59,22 +59,22 @@ jobs:
       - *save_cache_step
       - run:
           name: Publish package
-          command: "yarn install && yarn build && npx semantic-release"
+          command: 'yarn install && yarn build && npx semantic-release'
 
 workflows:
   version: 2
   test-deploy:
     jobs:
-      - node-v8-latest
       - node-v10-latest
       - node-v11-latest
       - node-v12-latest
+      - node-v13-latest
       - deploy:
           requires:
-            - node-v8-latest
             - node-v10-latest
             - node-v11-latest
             - node-v12-latest
+            - node-v13-latest
           filters:
             branches:
               only: master

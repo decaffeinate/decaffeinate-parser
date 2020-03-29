@@ -3,13 +3,13 @@ import {
   ComputedPropertyName,
   Obj,
   Splat,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   AssignOp,
   ObjectInitialiser,
   ObjectInitialiserMember,
-  Spread
+  Spread,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';

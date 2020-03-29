@@ -28,7 +28,7 @@ export abstract class Node {
   }
 
   getChildFields(): Array<Node | Array<Node | null> | null> {
-    return this.getChildNames().map(name => this[name]);
+    return this.getChildNames().map((name) => this[name]);
   }
 
   /**

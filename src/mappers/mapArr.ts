@@ -9,6 +9,6 @@ export default function mapArr(
   node: Arr
 ): ArrayInitialiser {
   const { line, column, start, end, raw } = getLocation(context, node);
-  const members = node.objects.map(object => mapAny(context, object));
+  const members = node.objects.map((object) => mapAny(context, object));
   return new ArrayInitialiser(line, column, start, end, raw, members);
 }

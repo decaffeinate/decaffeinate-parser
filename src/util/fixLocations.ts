@@ -21,7 +21,7 @@ import {
   Switch,
   Try,
   Value,
-  While
+  While,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import expandToIncludeParens from './expandToIncludeParens';
 import fixInvalidLocationData from './fixInvalidLocationData';
@@ -34,7 +34,7 @@ import sourceRangeFromLocationData from './sourceRangeFromLocationData';
 
 export default function fixLocations(context: ParseContext, node: Base): void {
   const { linesAndColumns, source } = context;
-  node.eachChild(child => {
+  node.eachChild((child) => {
     if (child && child.locationData) {
       fixLocations(context, child);
     }
@@ -86,7 +86,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       first_line: lbracketLoc.line,
       first_column: lbracketLoc.column,
       last_line: rbracketLoc.line,
-      last_column: rbracketLoc.column
+      last_column: rbracketLoc.column,
     };
   }
 
@@ -94,14 +94,14 @@ export default function fixLocations(context: ParseContext, node: Base): void {
     const loc = node.locationData;
     const start = linesAndColumns.indexForLocation({
       line: loc.first_line,
-      column: loc.first_column
+      column: loc.first_column,
     });
     if (start === null) {
       throw new Error('Expected to find a start index for object.');
     }
     const end = linesAndColumns.indexForLocation({
       line: loc.last_line,
-      column: loc.last_column
+      column: loc.last_column,
     });
     if (end === null) {
       throw new Error('Expected to find an end index for object.');
@@ -148,7 +148,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       const calleeLoc = node.variable.locationData;
       let calleeEnd = linesAndColumns.indexForLocation({
         line: calleeLoc.last_line,
-        column: calleeLoc.last_column
+        column: calleeLoc.last_column,
       });
       if (calleeEnd === null) {
         throw new Error('Expected to find index for callee end.');
@@ -186,14 +186,14 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       );
       node.locationData = locationDataFromSourceRange(context, {
         start: sourceRange.end,
-        end: sourceRange.end
+        end: sourceRange.end,
       });
     }
     // Blocks can sometimes end one index before their terminating semicolon
     // when really they should end exactly at that semicolon.
     let blockEnd = linesAndColumns.indexForLocation({
       line: node.locationData.last_line,
-      column: node.locationData.last_column
+      column: node.locationData.last_column,
     });
     if (blockEnd === null) {
       throw new Error('Expected to find index for block end.');
@@ -290,7 +290,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
     // the end location to be correct.
     const endIndex = linesAndColumns.indexForLocation({
       line: node.locationData.last_line,
-      column: node.locationData.last_column
+      column: node.locationData.last_column,
     });
     if (endIndex !== null) {
       const tokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(
@@ -303,7 +303,7 @@ export default function fixLocations(context: ParseContext, node: Base): void {
           node.locationData = {
             ...node.locationData,
             last_line: location.line,
-            last_column: location.column
+            last_column: location.column,
           };
         }
       }

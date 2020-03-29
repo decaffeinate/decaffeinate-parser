@@ -3,12 +3,12 @@ import SourceType from 'coffee-lex/dist/SourceType';
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import {
   firstSemanticTokenAfter,
-  firstSemanticTokenBefore
+  firstSemanticTokenBefore,
 } from './getLocation';
 import locationDataFromSourceRange from './locationDataFromSourceRange';
 import ParseContext from './ParseContext';
 import sourceRangeFromLocationData, {
-  SourceRange
+  SourceRange,
 } from './sourceRangeFromLocationData';
 
 export default function expandToIncludeParens(

@@ -5,7 +5,7 @@ import {
   Splat,
   StringWithInterpolations,
   SuperCall,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
@@ -20,7 +20,7 @@ import {
   Node,
   SoakedFunctionApplication,
   SoakedNewOp,
-  Super
+  Super,
 } from '../nodes';
 import getLocation from '../util/getLocation';
 import isHeregexTemplateNode from '../util/isHeregexTemplateNode';
@@ -64,7 +64,7 @@ export default function mapCall(context: ParseContext, node: Call): Node {
     return makeHeregex(context, strNode, flags);
   }
 
-  const args = node.args.map(arg => mapAny(context, arg));
+  const args = node.args.map((arg) => mapAny(context, arg));
 
   if (node instanceof SuperCall) {
     if (
@@ -152,7 +152,7 @@ function mapNewOp(context: ParseContext, node: Call): NewOp {
 
   const { line, column, start, end, raw } = getLocation(context, node);
   const callee = mapAny(context, node.variable);
-  const args = node.args.map(arg => mapAny(context, arg));
+  const args = node.args.map((arg) => mapAny(context, arg));
 
   if (node.soak) {
     return new SoakedNewOp(line, column, start, end, raw, callee, args);
@@ -171,7 +171,7 @@ function mapDoOp(context: ParseContext, node: Call): DoOp {
 
   let expression = mapAny(context, node.variable);
 
-  const args = node.args.map(arg => mapAny(context, arg));
+  const args = node.args.map((arg) => mapAny(context, arg));
 
   if (expression instanceof BaseFunction) {
     expression = augmentDoFunctionWithArgs(context, expression, args);

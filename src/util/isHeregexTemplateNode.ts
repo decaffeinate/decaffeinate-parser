@@ -3,7 +3,7 @@ import {
   Base,
   Call,
   Literal,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import ParseContext from './ParseContext';
 
@@ -28,7 +28,7 @@ export default function isHeregexTemplateNode(
   const { sourceTokens, linesAndColumns } = context;
   const start = linesAndColumns.indexForLocation({
     line: node.locationData.first_line,
-    column: node.locationData.first_column
+    column: node.locationData.first_column,
   });
   if (start === null) {
     return false;

@@ -22,7 +22,7 @@ export default function getOperatorInfoInRange(
   }
 
   const operatorIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
-    token =>
+    (token) =>
       token.type !== SourceType.LPAREN && token.type !== SourceType.RPAREN,
     startIndex.next(),
     endIndex

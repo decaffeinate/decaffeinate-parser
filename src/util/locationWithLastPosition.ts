@@ -10,6 +10,6 @@ export default function locationWithLastPosition(
     first_line: loc.first_line,
     first_column: loc.first_column,
     last_line: last.last_line,
-    last_column: last.last_column
+    last_column: last.last_column,
   };
 }

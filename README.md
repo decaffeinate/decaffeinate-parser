@@ -30,5 +30,5 @@ const program = parse('add = (a, b) -> a + b');
 const assignment = program.body.statements[0];
 const fn = assignment.expression;
 
-console.log(fn.parameters.map(param => param.data)); // [ 'a', 'b' ]
+console.log(fn.parameters.map((param) => param.data)); // [ 'a', 'b' ]
 ```

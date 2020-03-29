@@ -24,6 +24,6 @@ export default function locationDataFromSourceRange(
     first_line: startLocationInclusive.line,
     first_column: startLocationInclusive.column,
     last_line: endLocationInclusive.line,
-    last_column: endLocationInclusive.column
+    last_column: endLocationInclusive.column,
   };
 }

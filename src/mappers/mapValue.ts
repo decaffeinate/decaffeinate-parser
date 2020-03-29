@@ -6,7 +6,7 @@ import {
   Literal,
   LocationData,
   Slice as CoffeeSlice,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { inspect } from 'util';
 import {
@@ -19,7 +19,7 @@ import {
   SoakedDynamicMemberAccessOp,
   SoakedMemberAccessOp,
   SoakedProtoMemberAccessOp,
-  SoakedSlice
+  SoakedSlice,
 } from '../nodes';
 import getLocation, { NodeLocation } from '../util/getLocation';
 import ParseContext from '../util/ParseContext';
@@ -76,7 +76,7 @@ export function reduceProperty(
 
     const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
-      column: property.locationData.last_column
+      column: property.locationData.last_column,
     });
 
     if (last === null) {
@@ -127,7 +127,7 @@ export function reduceProperty(
       : DynamicMemberAccessOp;
     const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
-      column: property.locationData.last_column
+      column: property.locationData.last_column,
     });
     if (last === null) {
       throw new Error(
@@ -147,7 +147,7 @@ export function reduceProperty(
   } else if (property instanceof CoffeeSlice) {
     const last = context.linesAndColumns.indexForLocation({
       line: property.locationData.last_line,
-      column: property.locationData.last_column
+      column: property.locationData.last_column,
     });
 
     if (last === null) {
@@ -179,7 +179,7 @@ function tokenIndexAtLocation(
 ): SourceTokenListIndex | null {
   const start = context.linesAndColumns.indexForLocation({
     line: location.first_line,
-    column: location.first_column
+    column: location.first_column,
   });
 
   if (start === null) {

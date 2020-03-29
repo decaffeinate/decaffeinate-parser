@@ -15,7 +15,7 @@ describe('fixInvalidLocationData', () => {
       first_line: 0,
       first_column: 0,
       last_line: 0,
-      last_column: 0
+      last_column: 0,
     });
   });
 
@@ -30,7 +30,7 @@ describe('fixInvalidLocationData', () => {
       first_line: 0,
       first_column: 0,
       last_line: 2,
-      last_column: 3
+      last_column: 3,
     });
   });
 });

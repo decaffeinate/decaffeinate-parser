@@ -1,7 +1,7 @@
 import {
   AwaitReturn as CoffeeAwaitReturn,
   Return as CoffeeReturn,
-  YieldReturn as CoffeeYieldReturn
+  YieldReturn as CoffeeYieldReturn,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { AwaitReturn, Return, YieldReturn } from '../nodes';
 import getLocation from '../util/getLocation';

@@ -14,7 +14,7 @@ function defineExamplesDir(
   shouldTestCS1: boolean,
   shouldTestCS2: boolean
 ): void {
-  readdirSync(examplesPath).forEach(entry =>
+  readdirSync(examplesPath).forEach((entry) =>
     defineTestsForEntry(examplesPath, entry, shouldTestCS1, shouldTestCS2)
   );
 }

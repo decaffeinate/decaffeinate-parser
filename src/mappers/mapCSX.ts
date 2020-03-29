@@ -8,7 +8,7 @@ import {
   Splat,
   StringLiteral,
   StringWithInterpolations,
-  Value
+  Value,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { CSXElement, Node } from '../nodes';
 import getLocation from '../util/getLocation';
@@ -91,7 +91,7 @@ function mapCSXChildren(
     context,
     childInterpolatedString
   );
-  return unmappedExpressions.map(child =>
+  return unmappedExpressions.map((child) =>
     child ? mapAny(context, child) : null
   );
 }
