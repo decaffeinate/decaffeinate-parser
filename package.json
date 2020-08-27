@@ -68,7 +68,7 @@
     "string-repeat": "^1.1.1",
     "ts-jest": "^26.1.3",
     "ts-node": "^9.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^4.0.2"
   },
   "engines": {
     "node": ">=6"
