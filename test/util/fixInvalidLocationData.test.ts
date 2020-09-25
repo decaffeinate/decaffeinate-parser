@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import LinesAndColumns from 'lines-and-columns';
 import fixInvalidLocationData from '../../src/util/fixInvalidLocationData';
 

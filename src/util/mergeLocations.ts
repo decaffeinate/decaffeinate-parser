@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 
 export default function mergeLocations(

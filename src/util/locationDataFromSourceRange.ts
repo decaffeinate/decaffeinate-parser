@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import ParseContext from './ParseContext';
 import { SourceRange } from './sourceRangeFromLocationData';

@@ -51,14 +51,16 @@ function defineTest(
 }
 
 function stripContext(programNode: Program): Program {
-  delete programNode.context;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  delete (programNode as any).context;
   return programNode;
 }
 
 function stripExtraInfo(node: Node): Node {
   traverse(node, (node, parent) => {
     expect(node.parentNode).toBe(parent);
-    delete node.parentNode;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    delete (node as any).parentNode;
   });
   return node;
 }
