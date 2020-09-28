@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import SourceType from 'coffee-lex/dist/SourceType';
 import {
   Assign,
