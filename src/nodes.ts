@@ -964,6 +964,22 @@ export class Continue extends Node {
   }
 }
 
+export class Debugger extends Node {
+  constructor(
+    line: number,
+    column: number,
+    start: number,
+    end: number,
+    raw: string
+  ) {
+    super('Debugger', line, column, start, end, raw);
+  }
+
+  getChildNames(): Array<keyof this & string> {
+    return [];
+  }
+}
+
 export class Spread extends Node {
   constructor(
     line: number,

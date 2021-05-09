@@ -16,6 +16,7 @@ import {
   Bool,
   Break,
   Continue,
+  Debugger,
   Float,
   Identifier,
   Int,
@@ -87,6 +88,8 @@ export default function mapLiteral(context: ParseContext, node: Literal): Node {
       return new Break(line, column, start, end, raw);
     } else if (node.value === 'continue') {
       return new Continue(line, column, start, end, raw);
+    } else if (node.value === 'debugger') {
+      return new Debugger(line, column, start, end, raw);
     }
   }
 
