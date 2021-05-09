@@ -17,6 +17,7 @@
   "plugins": ["prettier", "jest", "@typescript-eslint/eslint-plugin"],
   "rules": {
     "no-unused-vars": "off",
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/array-type": ["error", { "default": "generic" }],
     "@typescript-eslint/no-use-before-define": [
