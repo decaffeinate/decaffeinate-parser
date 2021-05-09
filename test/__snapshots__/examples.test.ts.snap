@@ -5983,6 +5983,36 @@ Program {
 }
 `;
 
+exports[`CS1: debugger 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 8,
+    "inline": false,
+    "line": 1,
+    "raw": "debugger",
+    "start": 0,
+    "statements": Array [
+      Debugger {
+        "column": 1,
+        "end": 8,
+        "line": 1,
+        "raw": "debugger",
+        "start": 0,
+        "type": "Debugger",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 8,
+  "line": 1,
+  "raw": "debugger",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`CS1: delete 1`] = `
 Program {
   "body": Block {
@@ -26803,6 +26833,36 @@ Program {
   "line": 1,
   "raw": "a()::
 ",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`CS2: debugger 1`] = `
+Program {
+  "body": Block {
+    "column": 1,
+    "end": 8,
+    "inline": false,
+    "line": 1,
+    "raw": "debugger",
+    "start": 0,
+    "statements": Array [
+      Debugger {
+        "column": 1,
+        "end": 8,
+        "line": 1,
+        "raw": "debugger",
+        "start": 0,
+        "type": "Debugger",
+      },
+    ],
+    "type": "Block",
+  },
+  "column": 1,
+  "end": 8,
+  "line": 1,
+  "raw": "debugger",
   "start": 0,
   "type": "Program",
 }
