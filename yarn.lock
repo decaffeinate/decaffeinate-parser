@@ -216,10 +216,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.12.5", "@babel/parser@^7.6.0", "@babel/parser@^7.6.2", "@babel/parser@^7.7.5", "@babel/parser@^7.8.6", "@babel/parser@^7.9.0":
-  version "7.12.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.12.5.tgz#b4af32ddd473c0bfa643bd7ff0728b8e71b81ea0"
-  integrity sha512-FVM6RZQ0mn2KCf1VUED7KepYeUWoVShczewOCfm3nzoBybaih51h+sYVVGthW9M6lPByEPTQf+xm27PBdlpwmQ==
+"@babel/parser@^7.1.0", "@babel/parser@^7.16.3", "@babel/parser@^7.6.0", "@babel/parser@^7.6.2", "@babel/parser@^7.7.5", "@babel/parser@^7.8.6", "@babel/parser@^7.9.0":
+  version "7.17.8"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.17.8.tgz#2817fb9d885dd8132ea0f8eb615a6388cca1c240"
+  integrity sha512-BoHhDJrJXqcg+ZL16Xv39H9n+AqJ4pcDrQBGZN+wHxIysrLZ3/ECwCBUch/1zUNhnsXULcONU3Ei5Hmkfk6kiQ==
 
 "@babel/plugin-syntax-async-generators@^7.8.4":
   version "7.8.4"
@@ -390,11 +390,11 @@
     minimist "^1.2.0"
 
 "@codemod/parser@^1.0.3":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@codemod/parser/-/parser-1.1.0.tgz#8a8f0bf2f261082cf5b8a39cfafe3d15e2454da6"
-  integrity sha512-MR2oYTZRobGBFTMzo+NmwzgXUT3VgihaLJroZHA34XaF+Nqnw3rqU/Jf08jI/bctVtyZ0FTosZCRz6OKVbttAw==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@codemod/parser/-/parser-1.2.1.tgz#255aa050bf8174c2c091ac9fcf2d45803932db50"
+  integrity sha512-JJKEESRXSsfbvrKnXaxaOLxrBeCrv0lCEin3MeSepbwQmKb138eGpK22c+M6/mQUuAFYbsGdtJ5eI/mdf4rXww==
   dependencies:
-    "@babel/parser" "^7.12.5"
+    "@babel/parser" "^7.16.3"
 
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
