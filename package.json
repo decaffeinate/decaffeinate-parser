@@ -51,7 +51,7 @@
     "lines-and-columns": "^1.1.6"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.0",
+    "@types/jest": "^27.5.0",
     "@types/node": "^14.0.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
