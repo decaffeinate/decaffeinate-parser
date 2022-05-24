@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^6.0.0",
     "jest": "^26.4.2",
-    "lint-staged": "^10.0.0",
+    "lint-staged": "^12.4.2",
     "prettier": "^2.0.2",
     "sort-package-json": "^1.22.1",
     "string-repeat": "^1.1.1",
