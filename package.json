@@ -67,7 +67,7 @@
     "sort-package-json": "^1.22.1",
     "string-repeat": "^1.1.1",
     "ts-jest": "^26.4.0",
-    "ts-node": "^9.0.0",
+    "ts-node": "^10.8.1",
     "typescript": "^4.0.3"
   },
   "engines": {
