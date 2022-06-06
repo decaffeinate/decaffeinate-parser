@@ -58,7 +58,7 @@
     "coffee-script-redux": "https://github.com/michaelficarra/CoffeeScriptRedux",
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^6.0.0",
     "jest": "^26.4.2",
