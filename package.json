@@ -43,12 +43,12 @@
     ]
   },
   "dependencies": {
-    "@babel/types": "^7.6.1",
-    "@codemod/parser": "^1.0.3",
+    "@babel/types": "^7.18.4",
+    "@codemod/parser": "^1.2.1",
     "coffee-lex": "^9.1.5",
-    "decaffeinate-coffeescript": "1.12.7-patch.3",
-    "decaffeinate-coffeescript2": "2.2.1-patch.5",
-    "lines-and-columns": "^1.1.6"
+    "decaffeinate-coffeescript": "^1.12.7-patch.3",
+    "decaffeinate-coffeescript2": "^2.2.1-patch.5",
+    "lines-and-columns": "^2.0.3"
   },
   "devDependencies": {
     "@types/jest": "^28.1.1",

@@ -4,7 +4,7 @@ import {
   Block,
   LocationData,
 } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
-import LinesAndColumns from 'lines-and-columns';
+import { LinesAndColumns } from 'lines-and-columns';
 import { ClassProtoAssignOp, Constructor } from '../nodes';
 
 class ParseError extends Error {

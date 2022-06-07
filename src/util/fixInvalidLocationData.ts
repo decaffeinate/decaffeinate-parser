@@ -1,5 +1,5 @@
 import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
-import LinesAndColumns from 'lines-and-columns';
+import { LinesAndColumns } from 'lines-and-columns';
 
 /**
  * Assumes first_line/first_column are correct.
