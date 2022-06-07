@@ -23,21 +23,17 @@ aliases:
 
 version: 2
 jobs:
-  node-v10-latest:
-    docker:
-      - image: circleci/node:10
-    <<: *unit_test
-  node-v12-latest:
-    docker:
-      - image: circleci/node:12
-    <<: *unit_test
-  node-v13-latest:
-    docker:
-      - image: circleci/node:13
-    <<: *unit_test
   node-v14-latest:
     docker:
-      - image: circleci/node:14
+      - image: cimg/node:14.19
+    <<: *unit_test
+  node-v16-latest:
+    docker:
+      - image: cimg/node:16.15
+    <<: *unit_test
+  node-v18-latest:
+    docker:
+      - image: cimg/node:18.3
     <<: *unit_test
   deploy:
     docker:
@@ -53,16 +49,14 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - node-v10-latest
-      - node-v12-latest
-      - node-v13-latest
       - node-v14-latest
+      - node-v16-latest
+      - node-v18-latest
       - deploy:
           requires:
-            - node-v10-latest
-            - node-v12-latest
-            - node-v13-latest
             - node-v14-latest
+            - node-v16-latest
+            - node-v18-latest
           filters:
             branches:
               only: master

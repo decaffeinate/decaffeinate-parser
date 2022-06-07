@@ -55,7 +55,6 @@
     "@types/node": "^14.0.0",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
-    "coffee-script-redux": "https://github.com/michaelficarra/CoffeeScriptRedux",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.5.3",
