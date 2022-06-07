@@ -13,12 +13,10 @@ export default function mapIn(context: ParseContext, node: CoffeeIn): InOp {
   const right = mapAny(context, node.array);
   let isNot = false;
 
-  const lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(
-    left.end
-  );
-  const firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-    right.start
-  );
+  const lastTokenIndexOfLeft =
+    context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
+  const firstTokenIndexOfRight =
+    context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
   const relationTokenIndex = context.sourceTokens.indexOfTokenMatchingPredicate(
     (token) => token.type === SourceType.RELATION,
     lastTokenIndexOfLeft,

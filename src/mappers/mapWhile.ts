@@ -11,9 +11,8 @@ export default function mapWhile(
   node: CoffeeWhile
 ): While | Loop {
   const { line, column, start, end, raw } = getLocation(context, node);
-  const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-    start
-  );
+  const startTokenIndex =
+    context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
   const startToken =
     startTokenIndex && context.sourceTokens.tokenAtIndex(startTokenIndex);
 

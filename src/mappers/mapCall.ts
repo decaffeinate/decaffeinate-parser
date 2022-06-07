@@ -75,9 +75,8 @@ export default function mapCall(context: ParseContext, node: Call): Node {
       return new BareSuperFunctionApplication(line, column, start, end, raw);
     }
 
-    const superIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-      start
-    );
+    const superIndex =
+      context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
     const superToken =
       superIndex && context.sourceTokens.tokenAtIndex(superIndex);
 

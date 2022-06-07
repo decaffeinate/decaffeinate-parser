@@ -9,12 +9,8 @@ export default function makeHeregex(
   node: Base,
   flags: string
 ): Heregex {
-  const {
-    quasis,
-    unmappedExpressions,
-    start,
-    end,
-  } = getTemplateLiteralComponents(context, node);
+  const { quasis, unmappedExpressions, start, end } =
+    getTemplateLiteralComponents(context, node);
   const startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {
     throw new Error(`Expected to find a location for index ${start}.`);

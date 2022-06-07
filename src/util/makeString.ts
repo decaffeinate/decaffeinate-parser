@@ -8,12 +8,8 @@ export default function makeString(
   context: ParseContext,
   node: Base
 ): nodes.String {
-  const {
-    quasis,
-    unmappedExpressions,
-    start,
-    end,
-  } = getTemplateLiteralComponents(context, node);
+  const { quasis, unmappedExpressions, start, end } =
+    getTemplateLiteralComponents(context, node);
   const startLoc = context.linesAndColumns.locationForIndex(start);
   if (!startLoc) {
     throw new Error(`Expected to find a location for index ${start}.`);

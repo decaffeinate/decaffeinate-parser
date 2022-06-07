@@ -406,12 +406,10 @@ function mapNegateableBinaryOp<T extends NegateableBinaryOpCtor>(
     TemporaryBinaryOp
   );
 
-  const lastTokenIndexOfLeft = context.sourceTokens.indexOfTokenEndingAtSourceIndex(
-    left.end
-  );
-  const firstTokenIndexOfRight = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-    right.start
-  );
+  const lastTokenIndexOfLeft =
+    context.sourceTokens.indexOfTokenEndingAtSourceIndex(left.end);
+  const firstTokenIndexOfRight =
+    context.sourceTokens.indexOfTokenStartingAtSourceIndex(right.start);
   let isNot = false;
 
   if (lastTokenIndexOfLeft) {

@@ -291,9 +291,8 @@ export default function fixLocations(context: ParseContext, node: Base): void {
       column: node.locationData.last_column,
     });
     if (endIndex !== null) {
-      const tokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(
-        endIndex
-      );
+      const tokenIndex =
+        context.sourceTokens.indexOfTokenNearSourceIndex(endIndex);
       const token = context.sourceTokens.tokenAtIndex(tokenIndex);
       if (token && token.type === SourceType.HEREGEXP_END) {
         const location = linesAndColumns.locationForIndex(token.end - 1);
