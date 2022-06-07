@@ -1,4 +1,4 @@
-import LinesAndColumns from 'lines-and-columns';
+import { LinesAndColumns } from 'lines-and-columns';
 import fixInvalidLocationData from '../../src/util/fixInvalidLocationData';
 
 describe('fixInvalidLocationData', () => {
