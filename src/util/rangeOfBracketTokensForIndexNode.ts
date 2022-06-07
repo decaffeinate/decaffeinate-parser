@@ -17,16 +17,16 @@ export default function rangeOfBracketTokensForIndexNode(
   });
 
   if (start !== null) {
-    const startTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-      start
-    );
+    const startTokenIndex =
+      context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
 
     if (startTokenIndex !== null) {
-      const range = context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(
-        SourceType.LBRACKET,
-        SourceType.RBRACKET,
-        startTokenIndex
-      );
+      const range =
+        context.sourceTokens.rangeOfMatchingTokensContainingTokenIndex(
+          SourceType.LBRACKET,
+          SourceType.RBRACKET,
+          startTokenIndex
+        );
 
       if (range !== null) {
         return range;

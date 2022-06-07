@@ -12,9 +12,8 @@ export default function mapSuper(
   const location = getLocation(context, node);
   const { line, column, start } = location;
 
-  const superTokenIndex = context.sourceTokens.indexOfTokenStartingAtSourceIndex(
-    start
-  );
+  const superTokenIndex =
+    context.sourceTokens.indexOfTokenStartingAtSourceIndex(start);
   if (!superTokenIndex) {
     throw new Error('Expected token at the start of super node.');
   }

@@ -12,5 +12,5 @@ export default function mapComputedPropertyName(
 ): Node {
   // ComputedPropertyName is the only Literal where the value isn't a primitive, so just
   // fake the type here for now.
-  return mapAny(context, (node.value as unknown) as Base);
+  return mapAny(context, node.value as unknown as Base);
 }

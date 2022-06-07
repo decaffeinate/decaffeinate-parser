@@ -14,8 +14,8 @@ echo 'Building ES module version.'
   --module ES2015 \
   --moduleResolution node
 
-for js in $(find "${DIST}" -name '*.js'); do
-  mv "${js}" "$(dirname "${js}")/$(basename "${js}" .js).mjs"
+for file in $(find "${DIST}" -name '*.js'); do
+  mv "${file}" "${file%.js}.mjs"
 done
 
 echo 'Building CommonJS version.'

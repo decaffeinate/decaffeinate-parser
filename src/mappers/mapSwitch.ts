@@ -67,12 +67,10 @@ function getWhenTokenBeforeOffset(
   offset: number,
   lowerBound: number
 ): SourceToken {
-  const offsetTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(
-    offset
-  );
-  const lowerBoundTokenIndex = context.sourceTokens.indexOfTokenNearSourceIndex(
-    lowerBound
-  );
+  const offsetTokenIndex =
+    context.sourceTokens.indexOfTokenNearSourceIndex(offset);
+  const lowerBoundTokenIndex =
+    context.sourceTokens.indexOfTokenNearSourceIndex(lowerBound);
   const whenTokenIndex = context.sourceTokens.lastIndexOfTokenMatchingPredicate(
     (token) => token.type === SourceType.WHEN,
     offsetTokenIndex,

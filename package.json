@@ -22,8 +22,8 @@
   "scripts": {
     "build": "./script/build",
     "lint": "eslint '{src,test}/**/*.ts'",
-    "lint:fix": "yarn lint --fix",
-    "pretest": "yarn lint",
+    "lint:fix": "npm run lint --fix",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:ci": "jest --ci"
   },
@@ -51,24 +51,23 @@
     "lines-and-columns": "^1.1.6"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.0",
+    "@types/jest": "^28.1.1",
     "@types/node": "^14.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
-    "coffee-script-redux": "https://github.com/michaelficarra/CoffeeScriptRedux",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-jest": "^24.0.2",
-    "eslint-plugin-prettier": "^3.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^6.0.0",
-    "jest": "^26.4.2",
+    "jest": "^28.1.0",
     "lint-staged": "^10.0.0",
-    "prettier": "^2.0.2",
-    "sort-package-json": "^1.22.1",
+    "prettier": "^2.6.2",
+    "sort-package-json": "^1.57.0",
     "string-repeat": "^1.1.1",
-    "ts-jest": "^26.4.0",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "ts-jest": "^28.0.4",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
   },
   "engines": {
     "node": ">=6"
