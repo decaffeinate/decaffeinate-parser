@@ -48,7 +48,7 @@
     "coffee-lex": "^9.1.5",
     "decaffeinate-coffeescript": "1.12.7-patch.3",
     "decaffeinate-coffeescript2": "2.2.1-patch.5",
-    "lines-and-columns": "^1.1.6"
+    "lines-and-columns": "^2.0.3"
   },
   "devDependencies": {
     "@types/jest": "^28.1.1",
