@@ -1,7 +1,7 @@
-import SourceToken from 'coffee-lex/dist/SourceToken';
-import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
-import SourceTokenListIndex from 'coffee-lex/dist/SourceTokenListIndex';
-import SourceType from 'coffee-lex/dist/SourceType';
+import { SourceToken } from 'coffee-lex';
+import { SourceTokenList } from 'coffee-lex';
+import { SourceTokenListIndex } from 'coffee-lex';
+import { SourceType } from 'coffee-lex';
 import {
   Base,
   Literal,

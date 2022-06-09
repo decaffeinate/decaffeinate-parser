@@ -1,4 +1,4 @@
-import SourceType from 'coffee-lex/dist/SourceType';
+import { SourceType } from 'coffee-lex';
 import { OperatorInfo } from '../nodes';
 import ParseContext from './ParseContext';
 
