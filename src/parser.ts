@@ -6,7 +6,7 @@ import parseCS1AsCS2 from './parseCS1AsCS2';
 import parseCS2 from './parseCS2';
 import fixLocations from './util/fixLocations';
 import ParseContext from './util/ParseContext';
-import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
+import { SourceTokenList } from 'coffee-lex';
 
 export type Options = {
   useCS2: boolean;

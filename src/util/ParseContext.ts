@@ -1,4 +1,4 @@
-import SourceTokenList from 'coffee-lex/dist/SourceTokenList';
+import { SourceTokenList } from 'coffee-lex';
 import {
   Base,
   Block,

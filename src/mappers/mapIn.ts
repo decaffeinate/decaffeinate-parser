@@ -1,4 +1,4 @@
-import SourceType from 'coffee-lex/dist/SourceType';
+import { SourceType } from 'coffee-lex';
 import { In as CoffeeIn } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
 import { InOp } from '../nodes';
 import getLocation from '../util/getLocation';

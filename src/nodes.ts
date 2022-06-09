@@ -1,4 +1,4 @@
-import SourceToken from 'coffee-lex/dist/SourceToken';
+import { SourceToken } from 'coffee-lex';
 import ParseContext from './util/ParseContext';
 
 export abstract class Node {
