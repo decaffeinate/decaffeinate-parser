@@ -5,7 +5,7 @@ import {
   Block as CoffeeBlock,
   Obj,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { inspect } from 'util';
 import {
   AssignOp,

@@ -1,4 +1,4 @@
-import { Base, Op } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Base, Op } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { inspect } from 'util';
 
 import isComparisonOperator from './isComparisonOperator';

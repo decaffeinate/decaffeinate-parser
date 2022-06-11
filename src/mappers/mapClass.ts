@@ -1,4 +1,4 @@
-import { Class as CoffeeClass } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Class as CoffeeClass } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Class } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

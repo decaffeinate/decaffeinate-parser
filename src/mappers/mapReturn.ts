@@ -2,7 +2,7 @@ import {
   AwaitReturn as CoffeeAwaitReturn,
   Return as CoffeeReturn,
   YieldReturn as CoffeeYieldReturn,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { AwaitReturn, Return, YieldReturn } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

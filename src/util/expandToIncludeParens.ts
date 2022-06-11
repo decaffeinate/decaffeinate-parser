@@ -1,6 +1,5 @@
-import { SourceToken } from 'coffee-lex';
-import { SourceType } from 'coffee-lex';
-import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { SourceToken, SourceType } from 'coffee-lex';
+import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import {
   firstSemanticTokenAfter,
   firstSemanticTokenBefore,

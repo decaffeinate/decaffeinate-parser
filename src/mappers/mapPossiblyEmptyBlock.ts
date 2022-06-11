@@ -1,4 +1,4 @@
-import { Block as CoffeeBlock } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Block as CoffeeBlock } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Block } from '../nodes';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';

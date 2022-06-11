@@ -4,7 +4,7 @@ import {
   Call,
   Literal,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import ParseContext from './ParseContext';
 
 /**

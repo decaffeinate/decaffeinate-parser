@@ -11,7 +11,7 @@ import {
   ModuleDeclaration,
   ModuleSpecifier as CoffeeModuleSpecifier,
   StringLiteral,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import * as nodes from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

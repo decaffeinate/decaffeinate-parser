@@ -1,4 +1,4 @@
-import { Elision as CoffeeElision } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Elision as CoffeeElision } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Elision } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

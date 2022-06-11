@@ -9,7 +9,7 @@ import {
   StringLiteral,
   StringWithInterpolations,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { CSXElement, Node } from '../nodes';
 import getLocation from '../util/getLocation';
 import getTemplateLiteralComponents from '../util/getTemplateLiteralComponents';

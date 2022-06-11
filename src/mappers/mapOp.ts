@@ -1,10 +1,9 @@
-import { SourceType } from 'coffee-lex';
-import { SourceToken } from 'coffee-lex';
+import { SourceType, SourceToken } from 'coffee-lex';
 import {
   Literal,
   Op as CoffeeOp,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { inspect } from 'util';
 import {
   Await,

@@ -4,7 +4,7 @@ import {
   Obj,
   Splat,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import {
   AssignOp,
   ObjectInitialiser,

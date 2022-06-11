@@ -1,4 +1,4 @@
-import { Param } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Param } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { DefaultParam, Node, Rest } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

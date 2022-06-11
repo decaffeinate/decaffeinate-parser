@@ -1,4 +1,4 @@
-import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { LocationData } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import ParseContext from './ParseContext';
 import { SourceRange } from './sourceRangeFromLocationData';
 
