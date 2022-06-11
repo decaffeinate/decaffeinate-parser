@@ -1,13 +1,19 @@
 aliases:
-  install_dependencies_step: &install_dependencies_step
+  install_pnpm: &install_pnpm
     run:
-      name: install-dependencies
+      name: Install pnpm
       command: |
         curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
+
+  install_dependencies_step: &install_dependencies_step
+    run:
+      name: Install dependencies
+      command: |
         pnpm install --frozen-lockfile
 
   unit_test: &unit_test
     steps:
+      - *install_pnpm
       - checkout
       - *install_dependencies_step
       - run:
@@ -41,6 +47,7 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - *install_pnpm
       - checkout
       - *install_dependencies_step
       - run:
