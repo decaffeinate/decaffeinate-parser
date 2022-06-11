@@ -20,7 +20,7 @@ import {
   Try,
   Value,
   While,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import expandToIncludeParens from './expandToIncludeParens';
 import fixInvalidLocationData from './fixInvalidLocationData';
 import locationDataFromSourceRange from './locationDataFromSourceRange';

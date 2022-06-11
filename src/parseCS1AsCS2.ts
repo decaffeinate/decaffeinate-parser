@@ -64,7 +64,7 @@ import {
   Value as CS1Value,
   While as CS1While,
   YieldReturn as CS1YieldReturn,
-} from 'decaffeinate-coffeescript/lib/coffee-script/nodes';
+} from 'decaffeinate-coffeescript/lib/coffee-script/nodes.js';
 import {
   Access,
   Arr,
@@ -128,7 +128,7 @@ import {
   Value,
   While,
   YieldReturn,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 
 const nodeTypeMap = new Map();
 nodeTypeMap.set(CS1Base, Base);

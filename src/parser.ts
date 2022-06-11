@@ -1,4 +1,4 @@
-import lex from 'coffee-lex';
+import lex, { SourceTokenList } from 'coffee-lex';
 import { patchCoffeeScript } from './ext/coffee-script';
 import mapProgram from './mappers/mapProgram';
 import { Node, Program } from './nodes';
@@ -6,7 +6,6 @@ import parseCS1AsCS2 from './parseCS1AsCS2';
 import parseCS2 from './parseCS2';
 import fixLocations from './util/fixLocations';
 import ParseContext from './util/ParseContext';
-import { SourceTokenList } from 'coffee-lex';
 
 export type Options = {
   useCS2: boolean;

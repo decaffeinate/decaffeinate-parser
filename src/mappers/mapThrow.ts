@@ -1,4 +1,4 @@
-import { Throw as CoffeeThrow } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Throw as CoffeeThrow } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Throw } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

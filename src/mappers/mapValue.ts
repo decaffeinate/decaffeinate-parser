@@ -1,5 +1,4 @@
-import { SourceType } from 'coffee-lex';
-import { SourceTokenListIndex } from 'coffee-lex';
+import { SourceType, SourceTokenListIndex } from 'coffee-lex';
 import {
   Access,
   Index,
@@ -7,7 +6,7 @@ import {
   LocationData,
   Slice as CoffeeSlice,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { inspect } from 'util';
 import {
   DynamicMemberAccessOp,

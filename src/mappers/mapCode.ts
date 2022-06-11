@@ -1,4 +1,4 @@
-import { Code } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Code } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import {
   AsyncFunction,
   BaseFunction,

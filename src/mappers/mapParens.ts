@@ -2,7 +2,7 @@ import {
   Block,
   Parens,
   StringWithInterpolations,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Node, SeqOp } from '../nodes';
 import isCommentOnlyNode from '../util/isCommentOnlyNode';
 import ParseContext from '../util/ParseContext';

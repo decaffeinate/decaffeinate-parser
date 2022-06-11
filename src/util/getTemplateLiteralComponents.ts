@@ -1,13 +1,15 @@
-import { SourceToken } from 'coffee-lex';
-import { SourceTokenList } from 'coffee-lex';
-import { SourceTokenListIndex } from 'coffee-lex';
-import { SourceType } from 'coffee-lex';
+import {
+  SourceToken,
+  SourceTokenList,
+  SourceTokenListIndex,
+  SourceType,
+} from 'coffee-lex';
 import {
   Base,
   Literal,
   Op,
   Value,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Quasi } from '../nodes';
 import isImplicitPlusOp from './isImplicitPlusOp';
 import ParseContext from './ParseContext';

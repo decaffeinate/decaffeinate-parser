@@ -2,7 +2,9 @@ aliases:
   install_dependencies_step: &install_dependencies_step
     run:
       name: install-dependencies
-      command: npm ci
+      command: |
+        curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
+        pnpm install --frozen-lockfile
 
   unit_test: &unit_test
     steps:
@@ -10,12 +12,12 @@ aliases:
       - *install_dependencies_step
       - run:
           name: tests
-          command: 'npm run test:ci'
+          command: 'pnpm test:ci'
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - run:
           name: lint
-          command: 'npm run lint'
+          command: 'pnpm lint'
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -43,7 +45,7 @@ jobs:
       - *install_dependencies_step
       - run:
           name: Publish package
-          command: 'npm ci && npm run build && npx semantic-release'
+          command: 'pnpm build && npx semantic-release'
 
 workflows:
   version: 2

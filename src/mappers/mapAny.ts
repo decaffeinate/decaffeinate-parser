@@ -31,7 +31,7 @@ import {
   Try,
   Value,
   While,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { Node } from '../nodes';
 import ParseContext from '../util/ParseContext';
 import UnsupportedNodeError from '../util/UnsupportedNodeError';

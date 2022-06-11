@@ -3,7 +3,7 @@ import {
   Base,
   Block,
   LocationData,
-} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+} from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { LinesAndColumns } from 'lines-and-columns';
 import { ClassProtoAssignOp, Constructor } from '../nodes';
 

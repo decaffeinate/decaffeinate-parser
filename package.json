@@ -13,17 +13,25 @@
   },
   "license": "MIT",
   "author": "Brian Donovan",
-  "main": "dist/parser.js",
-  "module": "dist/parser.mjs",
-  "types": "dist/parser.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist/"
   ],
   "scripts": {
-    "build": "./script/build",
+    "build": "tsup",
     "lint": "eslint '{src,test}/**/*.ts'",
-    "lint:fix": "npm run lint --fix",
-    "pretest": "npm run lint",
+    "lint:fix": "pnpm lint --fix",
+    "prepublishOnly": "pnpm build",
+    "pretest": "pnpm lint",
     "test": "jest",
     "test:ci": "jest --ci"
   },
@@ -46,8 +54,8 @@
     "@babel/types": "^7.18.4",
     "@codemod/parser": "^1.2.1",
     "coffee-lex": "^9.2.1",
-    "decaffeinate-coffeescript": "^1.12.7-patch.3",
-    "decaffeinate-coffeescript2": "^2.2.1-patch.5",
+    "decaffeinate-coffeescript": "^1.12.7-patch.4",
+    "decaffeinate-coffeescript2": "^2.2.1-patch.6",
     "lines-and-columns": "^2.0.3"
   },
   "devDependencies": {
@@ -57,6 +65,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^6.0.0",
@@ -67,6 +76,7 @@
     "string-repeat": "^1.1.1",
     "ts-jest": "^28.0.4",
     "ts-node": "^10.8.1",
+    "tsup": "^6.1.0",
     "typescript": "^4.7.3"
   },
   "engines": {

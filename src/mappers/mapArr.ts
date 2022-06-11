@@ -1,4 +1,4 @@
-import { Arr } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Arr } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import { ArrayInitialiser } from '../nodes';
 import getLocation from '../util/getLocation';
 import ParseContext from '../util/ParseContext';

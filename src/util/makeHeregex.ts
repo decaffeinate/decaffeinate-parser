@@ -1,4 +1,4 @@
-import { Base } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Base } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import mapAny from '../mappers/mapAny';
 import { Heregex, RegexFlags } from '../nodes';
 import getTemplateLiteralComponents from './getTemplateLiteralComponents';

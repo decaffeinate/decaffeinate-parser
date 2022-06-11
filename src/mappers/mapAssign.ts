@@ -1,4 +1,4 @@
-import { Assign } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes';
+import { Assign } from 'decaffeinate-coffeescript2/lib/coffeescript/nodes.js';
 import {
   AssignOp,
   BaseAssignOp,
