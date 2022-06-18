@@ -7,7 +7,7 @@ specifiers:
   '@types/node': ^14.0.0
   '@typescript-eslint/eslint-plugin': ^5.27.1
   '@typescript-eslint/parser': ^5.27.1
-  coffee-lex: ^9.2.1
+  coffee-lex: ^9.3.1
   decaffeinate-coffeescript: ^1.12.7-patch.4
   decaffeinate-coffeescript2: ^2.2.1-patch.6
   eslint: ^8.17.0
@@ -30,7 +30,7 @@ specifiers:
 dependencies:
   '@babel/types': 7.18.4
   '@codemod/parser': 1.2.1
-  coffee-lex: 9.2.1
+  coffee-lex: 9.3.1
   decaffeinate-coffeescript: 1.12.7-patch.4
   decaffeinate-coffeescript2: 2.2.1-patch.6
   lines-and-columns: 2.0.3
@@ -1352,8 +1352,8 @@ packages:
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
     dev: true
 
-  /coffee-lex/9.2.1:
-    resolution: {integrity: sha512-uvylajBdHBDF4szw3O2NKNOkk3vPq37CPWyJNvXJmQzQ33Z3h8mPXYQ+ToMy+PL92gUbZ8g8MBOxMXNTvGxxjQ==}
+  /coffee-lex/9.3.1:
+    resolution: {integrity: sha512-5KRL4RDU1PcQDQ7CEKNymqfvqhTOdZWWsMoisPNLv2bMErauKoBiqpZRpdapxQavWusffbTGVeaas1M3CzVCsQ==}
     dev: false
 
   /collect-v8-coverage/1.0.1:
