@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install pnpm
-        run: curl -L https://pnpm.js.org/pnpm.js | node - add --global pnpm
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
